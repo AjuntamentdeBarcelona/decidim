@@ -16,6 +16,19 @@ describe "Explore Budgets", :slow, type: :system do
            landing_page_instructions: { en: "<p>Follow your instincts</p>" })
   end
 
+  let!(:current_step) do
+    create(:participatory_process_step,
+      start_date: 1.day.ago,
+      end_date: 3.days.from_now,
+      participatory_process: participatory_process
+    )
+  end
+
+  before do
+    participatory_process.steps.first.update(start_date: 1.month.ago, end_date: 1.day.ago - 1.hour, active: false)
+    participatory_process.steps.last.update(active: true)
+  end
+
   context "with only one budget" do
     let!(:budgets) { create_list(:budget, 1, component: component) }
 
@@ -41,7 +54,13 @@ describe "Explore Budgets", :slow, type: :system do
 
     it "shows the dates" do
       expect(page).to have_content("Voting dates")
-      expect(page).to have_selector(".extra__date-container")
+      
+      within ".extra__date-container" do
+        expect(page).to have_content(I18n.l(current_step.start_date, format: "%B"))
+        expect(page).to have_content(current_step.start_date.day)
+        expect(page).to have_content(I18n.l(current_step.end_date, format: "%B"))
+        expect(page).to have_content(current_step.end_date.day)
+      end
     end
 
     it "shows the instructions" do

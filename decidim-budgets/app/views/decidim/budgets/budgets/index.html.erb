@@ -1,5 +1,5 @@
 <%= render partial: "decidim/shared/component_announcement" %>
-<% start_date, end_date = %w(start_date end_date).map { |attribute| current_component.participatory_space.try(attribute) } %>
+<% start_date, end_date = %w(start_date end_date).map { |attribute| current_component.participatory_space.try(:active_step)&.try(attribute) || current_component.participatory_space.try(attribute) } %>
 <% instructions = translated_attribute(current_component.current_settings.landing_page_instructions).presence || translated_attribute(current_component.settings.landing_page_instructions) %>
 
 <div class="row">
