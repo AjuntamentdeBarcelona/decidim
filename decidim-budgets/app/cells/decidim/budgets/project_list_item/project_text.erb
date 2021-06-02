@@ -12,6 +12,12 @@
       <%= cell "decidim/budgets/project_tags", model, context: { extra_classes: ["tags--project"] } %>
     </div>
 
+    <% unless voting_finished? %>
+      <div class="hide-for-medium">
+        <%= budget_to_currency(model.budget_amount) %>
+      </div>
+    <% end %>
+
     <div class="budget-list__data__number budget-list__number hide-for-medium">
       <%= cell("decidim/budgets/project_votes_count",
       model,

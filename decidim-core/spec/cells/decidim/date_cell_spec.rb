@@ -10,7 +10,8 @@ describe Decidim::DateCell, type: :cell do
   let(:my_cell) { cell("decidim/date", model) }
   let!(:organization) { create(:organization) }
   let(:user) { create(:user, :confirmed, organization: organization) }
-  let(:model) { { start: start_time, end: end_time } }
+  let(:model) { { start: start_time, end: end_time, extra_classes: extra_classes } }
+  let(:extra_classes) { "extra__class" }
   let(:start_time) { Time.zone.now - 1.hour }
   let(:start_time_past_year) { Time.zone.now - 1.year }
   let(:end_time_same_date) { Time.zone.now + 1.hour }
@@ -23,6 +24,10 @@ describe Decidim::DateCell, type: :cell do
 
     it "renders a Date card" do
       expect(subject).to have_css(".extra__date-container")
+    end
+
+    it "renders a the extra classes" do
+      expect(subject).to have_css(".extra__class")
     end
   end
 
