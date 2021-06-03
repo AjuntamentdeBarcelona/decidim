@@ -4,30 +4,17 @@
   justify-content: space-between;
   align-items: center;
 
-  .icon-wrapper {
-    @extend .budget-list__action;
-  }
-
-  &.added {
-    @extend .budget-list__data--added;
-    color: $body-font-color;
-
-    .icon-wrapper {
-      background: var(--success);
-      border-color: $body-font-color;
-      color: $body-font-color;
+  &:hover,
+  &:focus {
+    &.added {
+      .budget-list__action {
+        background: var(--primary);
+        border-color: white;
+        color: white;
+      }
     }
-  }
-
-  &.hollow {
-    .icon-wrapper {
-      border: $button-hollow-border-width solid var(--primary);
-      color: var(--primary);
-    }
-
-    &:hover,
-    &:focus {
-      .icon-wrapper {
+    &:not(.added) {
+      .budget-list__action {
         border-color: white;
         color: white;
       }

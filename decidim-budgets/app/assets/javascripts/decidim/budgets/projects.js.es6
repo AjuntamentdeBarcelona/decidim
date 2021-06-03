@@ -6,6 +6,7 @@ $(() => {
   const $budgetSummaryTotal = $(".budget-summary__total");
   const $budgetExceedModal = $("#budget-excess");
   const $budgetSummary = $(".budget-summary__progressbox");
+  const $voteButton = $(".budget-vote-button");
   const totalAllocation = parseInt($budgetSummaryTotal.attr("data-total-allocation"), 10);
 
   const cancelEvent = (event) => {
@@ -23,6 +24,10 @@ $(() => {
 
     return false;
   }
+
+  $voteButton.on("click", "span", (event) => {
+    $(".budget-list__action").click();
+  });
 
   $projects.on("click", ".budget-list__action", (event) => {
     const currentAllocation = parseInt($budgetSummary.attr("data-current-allocation"), 10);
