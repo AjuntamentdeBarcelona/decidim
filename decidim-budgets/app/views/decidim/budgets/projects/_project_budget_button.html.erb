@@ -1,53 +1,15 @@
-<div id="project-<%= project.id %>-budget-button">
-  <% if current_user.blank? %>
+<% if current_user.blank? %>
+  <div id="project-<%= project.id %>-budget-button">
     <button class="button expanded button--sc" data-toggle="loginModal">
       <%= t(".add") %>
     </button>
-  <% else %>
+  </div> 
+<% else %>
+  <div id="project-<%= project.id %>-budget-button" class="<%= "added" if voted_for?(project) %> button expanded button--sc budget-vote-button budget-list__data">
+    <span>
+      <%= t(voted_for?(project) ? ".added" : ".add") %>
+    </span>
 
-    <% if voted_for?(project) %>
-      <% options = {
-          method: :delete,
-          class: "added",
-          aria_label: ".added_descriptive",
-          label: ".added",
-          icon: "x"
-      } %>
-    <% else %>
-     <% options = {
-        method: :post,
-        class: "hollow",
-        aria_label: ".add_descriptive",
-        label: ".add",
-        icon: "check",
-        data: {
-          allocation: current_order.allocation_for(project),
-          add: true
-        }
-      } %>
-    <% end %>
-
-    <%= action_authorized_button_to(
-          "vote",
-          budget_order_line_item_path(budget, project_id: project),
-          method: options[:method],
-          remote: true,
-          data: {
-            disable: true,
-            budget: project.budget_amount,
-            "redirect-url": budget_project_path(budget, project),
-          }.merge(options[:data].to_h),
-          disabled: !can_have_order? || current_order_checked_out?,
-          class: "button expanded button--sc budget-vote-button #{options[:class]}",
-          "aria-label": t(options[:aria_label], resource_name: translated_attribute(project.title))
-        ) do %>
-
-      <span>
-        <%= t(options[:label]) %>
-      </span>
-      <span class="icon-wrapper">
-        <%= icon options[:icon], class: "icon--small", role: "img" %>
-      </span>
-    <% end %>
-  <% end %>
-</div>
+    <%= cell("decidim/budgets/project_vote_button", project) %>
+  </div>
+<% end %>

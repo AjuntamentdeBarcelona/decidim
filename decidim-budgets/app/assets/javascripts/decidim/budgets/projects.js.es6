@@ -24,7 +24,7 @@ $(() => {
     return false;
   }
 
-  $projects.on("click", ".budget-list__action, .budget-vote-button", (event) => {
+  $projects.on("click", ".budget-list__action", (event) => {
     const currentAllocation = parseInt($budgetSummary.attr("data-current-allocation"), 10);
     const $currentTarget = $(event.currentTarget);
     const projectAllocation = parseInt($currentTarget.attr("data-allocation"), 10);
