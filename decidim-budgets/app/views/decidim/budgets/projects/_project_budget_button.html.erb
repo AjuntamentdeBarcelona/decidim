@@ -2,7 +2,6 @@
   <% if voted_for?(project) %>
     <%= action_authorized_button_to(
           "vote",
-          t(".added"),
           budget_order_line_item_path(budget, project_id: project),
           method: :delete,
           remote: true,
@@ -12,13 +11,20 @@
             "redirect-url": budget_project_path(budget, project)
           },
           disabled: !can_have_order? || current_order_checked_out?,
-          class: "button expanded button--sc success",
+          class: "button expanded button--sc budget-vote-button added",
           "aria-label": t(".added_descriptive", resource_name: translated_attribute(project.title))
-        ) %>
+        ) do %>
+
+      <span>
+        <%= t(".added") %>
+      </span>
+      <span class="icon-wrapper">
+        <%= icon "x", class: "icon--small", role: "img" %>
+      </span>
+    <% end %>
   <% elsif current_user.present? %>
     <%= action_authorized_button_to(
           "vote",
-          t(".add"),
           budget_order_line_item_path(budget, project_id: project),
           method: :post,
           remote: true,
@@ -29,9 +35,17 @@
             "redirect-url": budget_project_path(budget, project)
           },
           disabled: !can_have_order? || current_order_checked_out?,
-          class: "button expanded button--sc",
+          class: "button expanded button--sc budget-vote-button hollow",
           "aria-label": t(".add_descriptive", resource_name: translated_attribute(project.title))
-        ) %>
+        ) do %>
+
+      <span>
+        <%= t(".add") %>
+      </span>
+      <span class="icon-wrapper">
+        <%= icon "check", class: "icon--small", role: "img" %>
+      </span>
+    <% end %>
   <% else %>
     <button class="button expanded button--sc" data-toggle="loginModal">
       <%= t(".add") %>

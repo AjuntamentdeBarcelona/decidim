@@ -1,0 +1,36 @@
+.budget-vote-button.expanded {
+  display: flex;
+  text-align: left;
+  justify-content: space-between;
+  align-items: center;
+
+  .icon-wrapper {
+    @extend .budget-list__action;
+  }
+
+  &.added {
+    @extend .budget-list__data--added;
+    color: $body-font-color;
+
+    .icon-wrapper {
+      background: var(--success);
+      border-color: $body-font-color;
+      color: $body-font-color;
+    }
+  }
+
+  &.hollow {
+    .icon-wrapper {
+      border: $button-hollow-border-width solid var(--primary);
+      color: var(--primary);
+    }
+
+    &:hover,
+    &:focus {
+      .icon-wrapper {
+        border-color: white;
+        color: white;
+      }
+    }
+  }
+}

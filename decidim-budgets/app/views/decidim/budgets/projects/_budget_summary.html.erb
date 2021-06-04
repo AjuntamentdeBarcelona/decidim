@@ -1,20 +1,24 @@
-<div class="row column voting-rules">
-  <div class="callout warning">
-    <div class="row">
-      <div class="columns medium-8 large-9">
-        <h3 class="heading3">
-          <%= t(".rules.title") %>
-        </h3>
-        <ul>
-          <%= raw current_rule_explanation %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="card budget-summary" data-progress-reference data-safe-url="<%= budget_url(budget) %>">
-  <div class="card__content">
-    <% if include_heading %>
+<%= focus_mode(
+  title: translated_attribute(current_component.participatory_space.title),
+  url: Decidim::EngineRouter.main_proxy(current_component).root_path,
+  opener_button: false
+) do %>
+
+  <% unless current_workflow.single? %>
+    <% project_detail = action_name == "show" %>
+    <% back_path = project_detail ? budget_path(budget) : Decidim::EngineRouter.main_proxy(current_component).root_path %>
+    <% back_title = project_detail ? t(".back_to_projects", budget_name: translated_attribute(budget.title)) : t(".back_to_budgets", component_name: translated_attribute(current_component.name)) %>
+
+    <p>
+      <%= link_to back_path, class: "muted-link" do %>
+        <%= icon "chevron-left", class: "icon--small", role: "img", "aria-hidden": true %>
+        <%= back_title %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <div class="card budget-summary" data-progress-reference data-safe-url="<%= budget_url(budget) %>">
+    <div class="card__content">
       <% if current_order_checked_out? %>
         <h3 class="heading3">
           <%= t(".checked_out.title") %>
@@ -33,44 +37,54 @@
             <%= translated_attribute(budget.title) %>
           <% end %>
         </h3>
-        <p>
-          <%= raw current_rule_description %>
-        </p>
       <% end %>
-    <% end %>
 
-    <% if current_order.projects_rule? %>
-      <div class="budget-summary__total" data-total-allocation="<%= current_order.available_allocation %>">
-        <span class="mini-title"><%= t(".total_projects") %>
-          <strong class="mini-title__strong mini-title__strong--highlight">
-            <%= current_order.maximum_projects %>
-          </strong>
-        </span>
+      <div class="row column voting-rules">
+        <div class="callout warning">
+          <div class="row">
+            <div class="columns medium-8 large-9">
+              <%= raw current_rule_explanation %>
+            </div>
+          </div>
+        </div>
       </div>
-    <% else %>
-      <div class="budget-summary__total" data-total-allocation="<%= current_order.available_allocation %>" data-total-budget="<%= budget.total_budget %>">
-        <span class="mini-title"><%= t(".total_budget") %>
-          <strong class="mini-title__strong mini-title__strong--highlight">
-            <%= budget_to_currency(budget.total_budget) %>
-          </strong>
-        </span>
-      </div>
-    <% end %>
 
-    <%= render partial: "order_progress" %>
+      <%= cell("decidim/budgets/budget_information_modal", budget) %>
 
-    <div>
-      <span class="mini-title">
-        <%= t(".assigned") %>
-        <%= render partial: "order_total_budget" %>
-      </span>
+      <% if current_order.projects_rule? %>
+        <div class="budget-summary__total" data-total-allocation="<%= current_order.available_allocation %>">
+          <span class="mini-title"><%= t(".total_projects") %>
+            <strong class="mini-title__strong mini-title__strong--highlight">
+              <%= current_order.maximum_projects %>
+            </strong>
+          </span>
+        </div>
+      <% else %>
+        <div class="budget-summary__total" data-total-allocation="<%= current_order.available_allocation %>" data-total-budget="<%= budget.total_budget %>">
+          <span class="mini-title"><%= t(".total_budget") %>
+            <strong class="mini-title__strong mini-title__strong--highlight">
+              <%= budget_to_currency(budget.total_budget) %>
+            </strong>
+          </span>
+
+          <span class="mini-title mr-s">
+            <%= t(".assigned") %>
+            <%= render partial: "order_total_budget" %>
+          </span>
+
+          <span class="mini-title">
+            <%= t(".remaining") %>
+            <%= render partial: "order_remaining_budget" %>
+          </span>
+        </div>
+      <% end %>
+
+      <%= render partial: "order_progress" %>
     </div>
 
-    <%= cell("decidim/budgets/budget_information_modal", budget) %>
+    <%= render partial: "order_selected_projects" %>
   </div>
 
-  <%= render partial: "order_selected_projects" %>
-</div>
-
-<%= render partial: "budget_excess" %>
-<%= render partial: "budget_confirm" %>
+  <%= render partial: "budget_excess" %>
+  <%= render partial: "budget_confirm" %>
+<% end %>

@@ -98,6 +98,22 @@ FactoryBot.define do
         }
       end
     end
+
+    trait :with_landing_page_content do
+      transient do
+        landing_page_content { Decidim::Faker::Localized.wrapped("<h1>", "</h1>") }
+        landing_page_instructions { Decidim::Faker::Localized.wrapped("<p>", "</p>") }
+      end
+
+      step_settings do
+        {
+          participatory_space.active_step.id => {
+            landing_page_content: landing_page_content,
+            landing_page_instructions: landing_page_instructions
+          }
+        }
+      end
+    end
   end
 
   factory :budget, class: "Decidim::Budgets::Budget" do

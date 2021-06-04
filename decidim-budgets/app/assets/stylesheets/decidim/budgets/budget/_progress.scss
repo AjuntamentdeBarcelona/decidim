@@ -4,6 +4,17 @@
   position: relative;
 }
 
+.budget-progress .progress-meter{
+  &:not(&--minimum) {
+    background-color: tint($success, 80%);
+  }
+
+  .progress-meter-text{
+    color: $body-font-color; 
+    font-size: 1rem;
+  }
+}
+
 .progress-meter--minimum{
   background: repeating-linear-gradient(-55deg, rgba(white, .2), rgba(white, .2) 8px, rgba(black, .03) 8px, rgba(black, .03) 16px);
   position: absolute;
@@ -16,4 +27,22 @@
   text-align: right;
   padding-left: 1rem;
   padding-right: .5rem;
+
+  @include breakpoint(smallmedium down) {
+    text-align: center;
+    padding: 0;
+    left: 0;
+  }
+}
+
+.progress-text-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+}
+
+.progress-text {
+  font-size: 1em;
 }
