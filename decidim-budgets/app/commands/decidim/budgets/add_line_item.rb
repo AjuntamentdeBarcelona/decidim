@@ -45,7 +45,6 @@ module Decidim
       end
 
       def exceeds_budget?
-        byebug
         order.allocation_for(project) + order.total > order.available_allocation
       end
 
