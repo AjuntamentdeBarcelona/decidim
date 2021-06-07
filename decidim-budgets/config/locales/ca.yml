@@ -121,7 +121,7 @@ ca:
         if_change_opinion: Si has canviat d'opinió, pots
         my_budgets: Els meus pressupostos
         progress: Finalitza la votació
-        show: Veure més
+        show: Veure projectes
         vote: Vota
         voted_on: Has votat a %{links}
       limit_announcement:
