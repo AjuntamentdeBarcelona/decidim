@@ -121,7 +121,7 @@ es:
         if_change_opinion: Si has cambiado de opinión, puedes
         my_budgets: Mis presupuestos
         progress: Finaliza la votación
-        show: Ver más
+        show: Ver proyectos
         vote: Vota
         voted_on: Has votado en %{links}
       limit_announcement:
