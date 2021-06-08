@@ -34,7 +34,9 @@ $(() => {
     const $currentTarget = $(event.currentTarget);
     const projectAllocation = parseInt($currentTarget.attr("data-allocation"), 10);
 
-    $currentTarget.addClass("loading-spinner");
+    if(!$currentTarget.attr("data-open")) {
+      $currentTarget.addClass("loading-spinner");
+    }
 
     if ($currentTarget.attr("disabled")) {
       cancelEvent(event);
