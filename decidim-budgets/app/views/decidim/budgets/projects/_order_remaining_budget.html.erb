@@ -1,0 +1,5 @@
+<strong id="order-remaining-budget" class="mini-title__strong">
+  <% unless current_order.projects_rule? %>
+    <%= budget_to_currency (current_order&.budget&.total_budget.to_f - current_order&.total_budget.to_f) %>
+  <% end %>
+</strong>

@@ -5,7 +5,6 @@ module Decidim
     # This cell renders a horizontal project card
     # for an given instance of a Project in a budget list
     class ProjectListItemCell < Decidim::ViewModel
-      include ActiveSupport::NumberHelper
       include Decidim::LayoutHelper
       include Decidim::ActionAuthorizationHelper
       include Decidim::Budgets::ProjectsHelper

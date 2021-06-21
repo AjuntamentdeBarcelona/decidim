@@ -695,6 +695,8 @@ en:
       source: Source
       title: Fingerprint
       value: Value
+    focus_mode:
+      focus_mode: Enter focus mode
     followers:
       followers_count:
         one: "%{count} follower"

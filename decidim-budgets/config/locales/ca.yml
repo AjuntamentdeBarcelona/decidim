@@ -103,6 +103,10 @@ ca:
           update: "%{user_name} ha actualitzat el projecte %{resource_name} de l'espai %{space_name}"
       budget:
         view: Veure tots els projectes de pressupost
+      budgets:
+        index:
+          date: Dates de votació
+          instructions: Com participar
       budget_information_modal:
         back_to: Tornar a %{component_name}
         close_modal: Tancar el modal
@@ -119,6 +123,9 @@ ca:
         highlighted_cta: Votar a %{name}
         if_change_opinion: Si has canviat d'opinió, pots
         my_budgets: Els meus pressupostos
+        progress: Finalitza la votació
+        show: Veure projectes
+        vote: Vota
         voted_on: Has votat a %{links}
       limit_announcement:
         cant_vote: No pots votar a aquests pressupostos. <a href="%{landing_path}"> Prova amb un altre pressupost </a>.
@@ -158,27 +165,31 @@ ca:
         budget_summary:
           are_you_sure: Segur que vols cancel·lar el teu vot?
           assigned: 'Assignat:'
+          back_to_budgets: Tornar a %{component_name}
+          back_to_projects: Tornar a %{budget_name}
           cancel_order: eliminar el teu vot i començar de nou
           checked_out:
             description: Ja has votat pel pressupost. Si has canviat d'idea, pots %{cancel_link}.
             title: Vot pels pressupostos completat
           minimum_projects_rule:
-            description: A quins projectes creus que hem de destinar el pressupost? Selecciona com a mínim %{minimum_number} projectes i vota segons les teves preferències per a definir el pressupost.
-            instruction: "<li>Selecciona com a mínim %{minimum_number} projectes i vota segons les teves preferències per a definir el pressupost.</li>"
+            description: A quins projectes creus que hem de destinar el pressupost? Selecciona <strong>com a mínim %{minimum_number} projectes</strong> i vota segons les teves preferències per a definir el pressupost.
+            instruction: "Selecciona <strong>com a mínim %{minimum_number} projectes</strong> i vota segons les teves preferències per a definir el pressupost."
           projects_rule:
-            description: A quins projectes creus que hem de destinar el pressupost? Selecciona entre %{minimum_number} i %{maximum_number} projectes i vota segons les teves preferències per a definir el pressupost.
-            instruction: "<li>Selecciona entre %{minimum_number} i %{maximum_number} projectes i vota segons les teves preferències per a definir el pressupost.</li>"
+            description: A quins projectes creus que hem de destinar el pressupost? Selecciona <strong>entre %{minimum_number} i %{maximum_number} projectes</strong> i vota segons les teves preferències per a definir el pressupost.
+            instruction: "Selecciona <strong>entre %{minimum_number} i %{maximum_number} projectes</strong> i vota segons les teves preferències per a definir el pressupost."
           projects_rule_maximum_only:
-            description: A quins projectes creus que hem de destinar el pressupost? Selecciona fins a %{maximum_number} projectes i vota segons les teves preferències per a definir el pressupost.
-            instruction: "<li>Selecciona fins a %{maximum_number} projectes i vota segons les teves preferències per a definir el pressupost.</li>"
+            description: A quins projectes creus que hem de destinar el pressupost? Selecciona <strong>fins a %{maximum_number} projectes</strong> i vota segons les teves preferències per a definir el pressupost.
+            instruction: "Selecciona <strong>fins a %{maximum_number} projectes</strong> i vota segons les teves preferències per a definir el pressupost."
+          remaining: 'Restant:'
           rules:
             title: Regles de votació
           title: Tu decideixes el pressupost
           total_budget: Pressupost total
           total_projects: Vots totals
           vote_threshold_percent_rule:
-            description: A quins projectes creus que hem de destinar el pressupost? Assigna com a mínim %{minimum_budget} als projectes que vulguis i vota segons les teves preferències per a definir el pressupost.
-            instruction: "<li>Assigna com a mínim %{minimum_budget} als projectes que vulguis i vota segons les teves preferències per a definir el pressupost.</li>"
+            description: A quins projectes creus que hem de destinar el pressupost? Assigna <strong>com a mínim %{minimum_budget}</strong> als projectes que vulguis i vota segons les teves preferències per a definir el pressupost.
+            instruction: "Assigna <strong>com a mínim %{minimum_budget}</strong> als projectes que vulguis i vota segons les teves preferències per a definir el pressupost."
+          vote: Vota
         count:
           projects_count:
             one: 1 projecte
@@ -245,6 +256,7 @@ ca:
                 budget_voting_rule_only_one: Cal activar com a mínim una norma per a la votació
                 budget_voting_rule_required: Es requereix una norma per a la votació
             landing_page_content: Pàgina d'inici de pressupostos
+            landing_page_instructions: Instruccions per la pàgina d'inici de pressupostos
             more_information_modal: Finestra de "Més informació"
             projects_per_page: Projectes per pàgina
             resources_permissions_enabled: Es poden establir permisos d'accions per a cada projecte
@@ -268,6 +280,7 @@ ca:
             comments_blocked: Comentaris bloquejats
             highlighted_heading: Capçalera destacada
             landing_page_content: Pàgina d'inici de pressupostos
+            landing_page_instructions: Instruccions per la pàgina d'inici de pressupostos
             list_heading: Títol de la llista
             more_information_modal: Finestra de "Més informació"
             show_votes: Mostra els suports
