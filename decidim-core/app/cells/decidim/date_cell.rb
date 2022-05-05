@@ -31,6 +31,10 @@ module Decidim
       model[:end]
     end
 
+    def extra_classes
+      model[:extra_classes]
+    end
+
     def same_day?
       start_time.beginning_of_day == end_time.beginning_of_day
     end

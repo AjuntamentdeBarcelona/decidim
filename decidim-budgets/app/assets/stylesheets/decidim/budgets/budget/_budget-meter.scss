@@ -1,5 +1,22 @@
 .budget-summary__total{
   margin-bottom: .5rem;
+  
+  .mini-title {
+    display: block;
+    
+    &__strong {
+      line-height: 1rem;
+    }
+  }
+
+  @include breakpoint(medium) {
+    align-content: center;
+    display: flex;
+  
+    .mini-title:nth-of-type(2) {
+      margin-left: auto;
+    }
+  }
 }
 
 .budget-summary__progressbox{

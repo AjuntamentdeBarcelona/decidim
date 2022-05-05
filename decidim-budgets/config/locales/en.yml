@@ -109,6 +109,10 @@ en:
         close_modal: Close modal
         continue: Continue
         more_information: More information
+      budgets:
+        index:
+          date: Voting dates
+          instructions: How to participate
       budgets_list:
         cancel_order:
           more_than_one: delete your vote on %{name} and start over
@@ -117,6 +121,9 @@ en:
         highlighted_cta: Vote on %{name}
         if_change_opinion: If you've changed your mind, you can
         my_budgets: My budgets
+        progress: Finish voting
+        show: See projects
+        vote: Vote
         voted_on: You've voted on %{links}
       limit_announcement:
         cant_vote: You can't vote on this budget. <a href="%{landing_path}">Try on another budget</a>.
@@ -156,27 +163,30 @@ en:
         budget_summary:
           are_you_sure: Are you sure you want to cancel your vote?
           assigned: 'Assigned:'
+          back_to_budgets: Back to %{component_name}
+          back_to_projects: Back to %{budget_name}
           cancel_order: delete your vote and start over
           checked_out:
             description: You've already voted for the budget. If you've changed your mind, you can %{cancel_link}.
             title: Budget vote completed
           minimum_projects_rule:
-            description: What projects do you think we should allocate budget for? Select at least %{minimum_number} projects you want and vote according to your preferences to define the budget.
-            instruction: "<li>Select at least %{minimum_number} projects you want and vote according to your preferences to define the budget.</li>"
+            description: What projects do you think we should allocate budget for? Select <strong>at least %{minimum_number} projects</strong> you want and vote according to your preferences to define the budget.
+            instruction: "Select <strong>at least %{minimum_number} projects</strong> you want and vote according to your preferences to define the budget."
           projects_rule:
-            description: What projects do you think we should allocate budget for? Select at least %{minimum_number} and up to %{maximum_number} projects you want and vote according to your preferences to define the budget.
-            instruction: "<li>Select at least %{minimum_number} and up to %{maximum_number} projects you want and vote according to your preferences to define the budget.</li>"
+            description: What projects do you think we should allocate budget for? Select <strong>at least %{minimum_number} and up to %{maximum_number} projects</strong> you want and vote according to your preferences to define the budget.
+            instruction: "Select <strong>at least %{minimum_number} and up to %{maximum_number} projects</strong> you want and vote according to your preferences to define the budget."
           projects_rule_maximum_only:
-            description: What projects do you think we should allocate budget for? Select up to %{maximum_number} projects you want and vote according to your preferences to define the budget.
-            instruction: "<li>Select up to %{maximum_number} projects you want and vote according to your preferences to define the budget.</li>"
+            description: What projects do you think we should allocate budget for? Select <strong>up to %{maximum_number} projects</strong> you want and vote according to your preferences to define the budget.
+            instruction: "Select <strong>up to %{maximum_number} projects</strong> you want and vote according to your preferences to define the budget."
+          remaining: 'Remaining:'
           rules:
             title: Budget rules
           title: You decide the budget
           total_budget: Total budget
           total_projects: Total votes
           vote_threshold_percent_rule:
-            description: What projects do you think we should allocate budget for? Assign at least %{minimum_budget} to the projects you want and vote according to your preferences to define the budget.
-            instruction: "<li>Assign at least %{minimum_budget} to the projects you want and vote according to your preferences to define the budget.</li>"
+            description: What projects do you think we should allocate budget for? Assign <strong>at least %{minimum_budget}</strong> to the projects you want and vote according to your preferences to define the budget.
+            instruction: "Assign <strong>at least %{minimum_budget}</strong> to the projects you want and vote according to your preferences to define the budget."
         count:
           projects_count:
             one: 1 project
@@ -243,6 +253,7 @@ en:
                 budget_voting_rule_only_one: Only one voting rule must be enabled
                 budget_voting_rule_required: One voting rule is required
             landing_page_content: Budgets landing page
+            landing_page_instructions: Budgets landing page instructions
             more_information_modal: More information modal
             projects_per_page: Projects per page
             resources_permissions_enabled: Actions permissions can be set for each project
@@ -266,6 +277,7 @@ en:
             comments_blocked: Comments blocked
             highlighted_heading: Highlighted heading
             landing_page_content: Budgets landing page
+            landing_page_instructions: Budgets landing page instructions
             list_heading: List heading
             more_information_modal: More information modal
             show_votes: Show votes
