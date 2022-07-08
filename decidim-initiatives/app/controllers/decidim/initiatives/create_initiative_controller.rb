@@ -37,12 +37,11 @@ module Decidim
       before_action :ensure_type_exists, only: :show
 
       def show
-        enforce_permission_to :create, :initiative
         send("#{step}_step", initiative: session_initiative)
       end
 
       def update
-        enforce_permission_to :create, :initiative
+        enforce_permission_to :create, :initiative, { initiative_type: initiative_type_from_params }
         send("#{step}_step", params)
       end
 
@@ -72,6 +71,9 @@ module Decidim
 
       def previous_form_step(parameters)
         @form = build_form(Decidim::Initiatives::PreviousForm, parameters)
+
+        enforce_permission_to :create, :initiative, { initiative_type: initiative_type }
+
         render_wizard
       end
 
@@ -168,6 +170,10 @@ module Decidim
 
       def initiative_type
         @initiative_type ||= InitiativesType.where(organization: current_organization).find_by(id: initiative_type_id)
+      end
+
+      def initiative_type_from_params
+        Decidim::InitiativesType.find_by(id: params["initiative"]["type_id"])
       end
 
       def initiative_type_id
