@@ -5,6 +5,7 @@ require "digest/sha1"
 module Decidim
   # Initiatives can be voted by users and supported by organizations.
   class InitiativesVote < ApplicationRecord
+    include Decidim::Traceable
     include Decidim::TranslatableAttributes
 
     belongs_to :author,
