@@ -24,7 +24,7 @@ module Decidim
     #
     # Returns an HTML tag with the icon.
     def manifest_icon(manifest, options = {})
-      if manifest.icon
+      if manifest&.icon
         external_icon manifest.icon, options
       else
         icon "question-mark", options
