@@ -406,8 +406,6 @@ tr:
         sms_phone:
           invalid: Telefon numarası geçersiz veya yetki bekleniyor. Lütfen yetkilerinizi kontrol edin.
       initiatives:
-        author:
-          deleted: Silindi
         author_list:
           hidden_authors_count:
             one: ve 1 kişi daha

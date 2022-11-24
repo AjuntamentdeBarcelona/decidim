@@ -439,8 +439,6 @@ ro:
         sms_phone:
           invalid: Numărul de telefon este invalid sau în aşteptarea autorizaţiei. Te rugăm să verific setările tale de autorizare.
       initiatives:
-        author:
-          deleted: Șters
         author_list:
           hidden_authors_count:
             one: și încă o persoană

@@ -389,8 +389,6 @@ nl:
         sms_phone:
           invalid: Het telefoonnummer is ongeldig of in afwachting van autorisatie. Controleer alstublieft uw autorisaties.
       initiatives:
-        author:
-          deleted: verwijderde
         author_list:
           hidden_authors_count:
             one: en nog 1 persoon

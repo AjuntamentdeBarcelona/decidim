@@ -316,8 +316,6 @@ gl:
         sms_phone:
           invalid: O número de teléfono non é válido nin está en espera de autorización. Verifique as súas autorizacións.
       initiatives:
-        author:
-          deleted: Eliminado
         author_list:
           hidden_authors_count:
             one: e 1 persoa máis

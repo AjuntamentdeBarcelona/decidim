@@ -308,8 +308,6 @@ id:
         sms_phone:
           invalid: Nomor telepon tidak valid atau menunggu otorisasi. Silakan periksa otorisasi Anda.
       initiatives:
-        author:
-          deleted: Dihapus
         author_list:
           hidden_authors_count:
             other: dan %{count} lebih banyak orang

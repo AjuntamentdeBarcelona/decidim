@@ -338,8 +338,6 @@ fi-pl:
         sms_phone:
           invalid: Puhelinnumero on virheellinen tai odottaa tarkastusta. Tarkista valtuutesi.
       initiatives:
-        author:
-          deleted: Poistettu
         author_list:
           hidden_authors_count:
             one: ja yksi muu henkilö

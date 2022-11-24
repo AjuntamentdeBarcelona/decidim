@@ -169,8 +169,6 @@ is-IS:
       index:
         title: Frumkvæði
       initiatives:
-        author:
-          deleted: Eytt
         count:
           title:
             one: "%{count} frumkvæði"

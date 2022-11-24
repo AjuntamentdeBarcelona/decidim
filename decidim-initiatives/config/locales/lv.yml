@@ -356,8 +356,6 @@ lv:
         sms_phone:
           invalid: Tālruņa numurs nav derīgs vai gaida autorizāciju. Lūdzu, pārbaudiet savas autorizācijas.
       initiatives:
-        author:
-          deleted: Dzēsts
         author_list:
           hidden_authors_count:
             zero: un vēl %{count} personas

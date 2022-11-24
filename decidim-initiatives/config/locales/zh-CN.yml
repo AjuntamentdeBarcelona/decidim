@@ -374,8 +374,6 @@ zh-CN:
         sms_phone:
           invalid: 电话号码无效或正在等待授权。请检查您的授权。
       initiatives:
-        author:
-          deleted: 已删除
         author_list:
           hidden_authors_count:
             other: 和更多 %{count} 人

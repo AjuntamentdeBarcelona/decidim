@@ -298,8 +298,6 @@ sk:
         sms_phone:
           invalid: Telefónne číslo je neplatné alebo čaká na autorizáciu. Skontrolujte prosím vaše oprávnenie.
       initiatives:
-        author:
-          deleted: Zmazaných
         author_list:
           hidden_authors_count:
             one: a 1 ďalšou osobou

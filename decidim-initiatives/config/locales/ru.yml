@@ -227,8 +227,6 @@ ru:
         create:
           error: При попытке подписаться за этот почин произошли ошибки.
       initiatives:
-        author:
-          deleted: Удален
         author_list:
           hidden_authors_count:
             one: и еще 1 человек

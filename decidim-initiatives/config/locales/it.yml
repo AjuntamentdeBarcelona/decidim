@@ -435,8 +435,6 @@ it:
         sms_phone:
           invalid: Il numero di telefono non è valido o è in attesa di autorizzazione. Per favore, controlla le tue autorizzazioni.
       initiatives:
-        author:
-          deleted: eliminata
         author_list:
           hidden_authors_count:
             one: e 1 altra persona

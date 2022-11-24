@@ -435,8 +435,6 @@ pt-BR:
         sms_phone:
           invalid: O número de telefone é inválido ou está pendente de autorização. Por favor, verifique suas autorizações.
       initiatives:
-        author:
-          deleted: Excluído
         author_list:
           hidden_authors_count:
             one: e mais 1 pessoa

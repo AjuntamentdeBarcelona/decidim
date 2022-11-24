@@ -330,8 +330,6 @@ ar:
         sms_phone:
           invalid: رقم الهاتف غير صالح أو قيد التفويض. من فضلك ، تحقق من التراخيص الخاصة بك.
       initiatives:
-        author:
-          deleted: تم الحذف
         author_list:
           hidden_authors_count:
             zero: و %{count} المزيد من الناس

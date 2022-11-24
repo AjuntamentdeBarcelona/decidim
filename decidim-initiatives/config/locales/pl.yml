@@ -442,8 +442,6 @@ pl:
         sms_phone:
           invalid: Numer telefonu jest nieprawidłowy lub oczekuje na autoryzację. Sprawdź swoje autoryzacje.
       initiatives:
-        author:
-          deleted: Usunięto
         author_list:
           hidden_authors_count:
             one: i jeszcze 1 osoba

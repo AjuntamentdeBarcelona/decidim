@@ -442,8 +442,6 @@ ca:
         sms_phone:
           invalid: El número de telèfon no és vàlid o està pendent d'autorització. Si us plau, consulta les teves autoritzacions.
       initiatives:
-        author:
-          deleted: Eliminat
         author_list:
           hidden_authors_count:
             one: i 1 persona més

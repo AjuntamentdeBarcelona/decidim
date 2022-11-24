@@ -429,8 +429,6 @@
         sms_phone:
           invalid: Telefonnummeret er ugyldig eller venter på godkjenning. Vennligst sjekk autorisasjonene dine.
       initiatives:
-        author:
-          deleted: Slettet
         author_list:
           hidden_authors_count:
             one: og 1 til persjon

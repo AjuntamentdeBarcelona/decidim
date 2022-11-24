@@ -355,8 +355,6 @@ el:
         sms_phone:
           invalid: Ο αριθμός τηλεφώνου δεν είναι έγκυρος ή εκκρεμεί εξουσιοδότηση. Ελέγξτε τις εξουσιοδοτήσεις σας.
       initiatives:
-        author:
-          deleted: Διαγράφηκε
         author_list:
           hidden_authors_count:
             one: και 1 ακόμη άτομο

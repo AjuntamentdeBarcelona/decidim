@@ -442,8 +442,6 @@ es:
         sms_phone:
           invalid: El número de teléfono no es válido o está pendiente de autorización. Por favor, revisa tus autorizaciones.
       initiatives:
-        author:
-          deleted: Eliminado
         author_list:
           hidden_authors_count:
             one: y 1 persona más

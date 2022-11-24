@@ -63,6 +63,7 @@ describe "Initiative", type: :system do
       it "shows the author name once in the authors list" do
         within ".initiative-authors" do
           expect(page).to have_content(initiative.author_name, count: 1)
+          expect(page).to have_link(href: "/profiles/#{initiative.author.nickname}")
         end
       end
 
