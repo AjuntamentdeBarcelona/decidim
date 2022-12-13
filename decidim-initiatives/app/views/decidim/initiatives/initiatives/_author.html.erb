@@ -1,15 +1,5 @@
 <div class="author-data initiative-authors">
   <div class="author-data__main ">
-    <%== cell("decidim/author", present(initiative.author)).profile %>
-
-    <% initiative.committee_members.excluding_author.approved.each do |m| %>
-      <% unless m.user.deleted? %>
-        <%== cell("decidim/author", present(m.user)).profile %>
-      <% end %>
-    <% end %>
-
-    <div class="publish-date">
-      <%= l initiative.published_at || initiative.created_at, format: "%d/%m/%Y" %>
-    </div>
+    <%== cell("decidim/coauthorships", initiative, extra_small: true, has_actions: true) %>
   </div>
 </div>
