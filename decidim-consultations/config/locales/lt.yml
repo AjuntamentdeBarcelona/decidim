@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -267,9 +268,9 @@ lt:
       filters:
         active: Aktyvios
         all: Visi
+        date: Data
         finished: Užbaigta
         search: Ieškoti
-        state: Būsena
         upcoming: Artėjančios
       filters_small_view:
         close_modal: Uždaryti langą

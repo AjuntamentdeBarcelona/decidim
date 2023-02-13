@@ -11,7 +11,7 @@ module Decidim::Assemblies
     let!(:current_user) { create :user, :confirmed, organization: assembly.organization }
     let(:existing_user) { false }
     let(:non_user_avatar) do
-      ActiveStorage::Blob.create_after_upload!(
+      ActiveStorage::Blob.create_and_upload!(
         io: File.open(Decidim::Dev.asset("avatar.jpg")),
         filename: "avatar.jpeg",
         content_type: "image/jpeg"
@@ -55,7 +55,7 @@ module Decidim::Assemblies
       context "when image is invalid" do
         let(:existing_user) { false }
         let(:non_user_avatar) do
-          ActiveStorage::Blob.create_after_upload!(
+          ActiveStorage::Blob.create_and_upload!(
             io: File.open(Decidim::Dev.asset("invalid.jpeg")),
             filename: "avatar.jpeg",
             content_type: "image/jpeg"
@@ -73,7 +73,7 @@ module Decidim::Assemblies
       let(:assembly_member) { Decidim::AssemblyMember.last }
 
       it "creates an assembly" do
-        expect { subject.call }.to change { Decidim::AssemblyMember.count }.by(1)
+        expect { subject.call }.to change(Decidim::AssemblyMember, :count).by(1)
       end
 
       it "broadcasts ok" do

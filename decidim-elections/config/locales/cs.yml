@@ -1,3 +1,4 @@
+---
 cs:
   activemodel:
     attributes:
@@ -6,18 +7,44 @@ cs:
         image: Obrázek
         proposals: Související návrhy
         title: Název
+      ballot_style:
+        code: Kód
       election:
         description: Popis
         end_time: Hlasování končí v
         start_time: Hlasování začíná v
         title: Název
+      monitoring_committee_member:
+        email: E-mail
+        name: Jméno
+      polling_officer:
+        email: E-mail
+        name: Jméno
+      polling_station:
+        address: Adresa
+        location: Poloha
+        location_hints: Nápověda k poloze
+        polling_station_managers: Manažeři
+        polling_station_president_id: Předseda
+        title: Název
       question:
         max_selections: Maximální počet výběrů
         min_selections: Žádná z výše uvedených možností
         title: Název
+      trustees_participatory_space:
+        user_id: Účastník
       voting:
+        banner_image: Obrázek banneru
+        census_contact_information: Kontaktní informace pro rejstřík obyvatel
+        description: Popis
         end_time: Hlasování končí
+        introductory_image: Úvodní obrázek
+        promoted: Propagováno
+        scope_id: Oblast působnosti
+        show_check_census: Zobrazit stránku "zkontrolovat rejstřík"
         start_time: Hlasování začíná
+        title: Název
+        voting_type: Typ hlasování
     errors:
       models:
         answer:
@@ -34,6 +61,10 @@ cs:
               cant_be_changed: nelze změnit
             public_key:
               cant_be_changed: nelze změnit
+        voting:
+          attributes:
+            voting_type:
+              inclusion: "%{value} není platný typ hlasování"
   activerecord:
     errors:
       models:
@@ -308,15 +339,6 @@ cs:
             selected: Vybráno
             submit: Odeslat
             title: Výsledky publikovány
-          tally:
-            continue: Pokračovat
-            invalid: Došlo k problému s nahlášením chybějícího důvěrníka
-            mark_as_missing: Označit jako chybějící
-            mark_as_missing_description: Tohoto procesu by se měli účastnit všichni důvěrníci, ale pokud se některý důvěrník nemůže procesu účastnit, můžete ho označit jako chybějícího.
-            success: Zpráva o chybějícím důvěrníkovi byla úspěšně odeslána na vývěsku
-            tally_completion: Proces bude dokončen, jakmile budou všichni důvěrníci aktivní nebo budou označeni jako chybějící. K dokončení procesu je zapotřebí alespoň %{quorum} důvěrníků.
-            title: Proces volebního přepočítání
-            undo_mark_as_missing: Správce, který byl omylem označen jako chybějící, se bude moci zúčastnit před dokončením procesu. Může postupovat jako obvykle a chybějící označení bude ignorováno.
           tally_ended:
             answer: Odpověď
             not_selected: Nevybráno
@@ -326,6 +348,15 @@ cs:
             submit: Publikovat výsledky
             success: Žádost o Zveřejnění výsledků bylo úspěšně odesláno na Vývěsku
             title: Vypočítané výsledky
+          tally_started:
+            continue: Pokračovat
+            invalid: Došlo k problému s nahlášením chybějícího důvěrníka
+            mark_as_missing: Označit jako chybějící
+            mark_as_missing_description: Tohoto procesu by se měli účastnit všichni důvěrníci, ale pokud se některý důvěrník nemůže procesu účastnit, můžete ho označit jako chybějícího.
+            success: Zpráva o chybějícím důvěrníkovi byla úspěšně odeslána na vývěsku
+            tally_completion: Proces bude dokončen, jakmile budou všichni důvěrníci aktivní nebo budou označeni jako chybějící. K dokončení procesu je zapotřebí alespoň %{quorum} důvěrníků.
+            title: Proces volebního přepočítání
+            undo_mark_as_missing: Správce, který byl omylem označen jako chybějící, se bude moci zúčastnit před dokončením procesu. Může postupovat jako obvykle a chybějící označení bude ignorováno.
           vote:
             errors:
               time_after: Volby stále probíhají. Musíte počkat na ukončení hlasovacího období (%{end_time}).
@@ -399,8 +430,9 @@ cs:
         footer:
           remaining_time:
             one: "Na hlasování zbývá <strong>%{count} hodina a %{minutes} minut</strong>."
+            few: "Na hlasování zbývá <strong>%{count} hodiny a %{minutes} minut</strong>."
+            many: "Na hlasování zbývá <strong>%{count} hodin a %{minutes} minut</strong>."
             other: "Na hlasování zbývá <strong>%{count} hodin a %{minutes} minut</strong>."
-            zero: "Na hlasování zbývá <strong>%{minutes} minut</strong>."
           view: Zobrazit
           vote: Hlasovat
         label:
@@ -463,9 +495,9 @@ cs:
         filters:
           active: Aktivní
           all: Vše
+          date: Datum
           finished: Dokončeno
           search: Hledat
-          state: Stav
           upcoming: Nadcházející
         filters_small_view:
           close_modal: Zavřít okno
@@ -483,8 +515,9 @@ cs:
           title: Výsledky voleb
           votes:
             one: "%{count} hlas"
+            few: "%{count} hlasy"
+            many: "%{count} hlasů"
             other: "%{count} hlasů"
-            zero: "%{count} hlasů"
         show:
           action_button:
             change_vote: Změňte svůj hlas
@@ -574,7 +607,7 @@ cs:
             title: Obnovit volební klíče pro %{election}
             upload_election_keys: Nahrát volební klíče
             upload_icon: Ikona, která indikuje akci ke stažení
-          tally_steps:
+          tally_started_steps:
             back: Zpět
             description: Výsledky těchto voleb jsou vyčísleny na Vývěsce. Pro dokončení tohoto procesu je zapotřebí vaší účasti jako Důvěrníka.
             keys:
@@ -624,15 +657,15 @@ cs:
               generate_legend_3: Ujistěte se, že váš počítač nemá kopii souboru (např. zkontrolujte složky Stahování a plocha).
               generate_legend_4: Vytvořit další kopii souboru na jiném externím zařízení a uložit jej na velmi bezpečném místě.
               submit: Odeslat
-              submit_legend: Po splnění všech výše uvedených kroků dokončete proces odesílání veřejného identifikačního klíče na server Decidim.
+              submit_legend: Po splnění všech výše uvedených kroků dokončete proces odesílání veřejného identifikačního klíče na server.
               submit_title: Odeslat veřejný identifikační klíč
               title: Identifikační klíče důvěrníka
               upload: Nahrajte své identifikační klíče
               upload_error:
                 invalid_format: Nahraný soubor neobsahuje žádný identifikační klíč.
                 invalid_key: Identifikační klíče v nahraném souboru nelze načíst.
-                invalid_public_key: Identifikační klíče v nahraném souboru neodpovídají veřejnému identifikačnímu klíči uloženému v Decidim.
-              upload_legend: Decidim má vaše veřejné identifikační klíče, ale váš prohlížeč jej stále nemá. Je třeba importovat soubor s identifikačními klíči do počítače ze zálohy, kterou jste vytvořili po jejich vygenerování.
+                invalid_public_key: Identifikační klíče v nahraném souboru neodpovídají uloženému veřejnému identifikačnímu klíči.
+              upload_legend: Server má vaše veřejné identifikační klíče, ale váš prohlížeč jej stále nemá. Je třeba importovat soubor s identifikačními klíči do počítače ze zálohy, kterou jste vytvořili po jejich vygenerování.
             not_supported_browser_description: Vypadá to, že používáte webový prohlížeč, který nelze použít jako správce. Ujistěte se, že používáte nejnovější verzi prohlížeče, nebo zkuste použít některý z nejpopulárnějších prohlížečů, abyste mohli dokončit své úkoly správce.
             not_supported_browser_title: Upgradujte prohlížeč abyste mohl fungovat jako důvěrník
             trustee_role_description: Byl jste pověřen, abyste v některých volbách, které na této platformě probíhají, jednal jako důvěrník.
@@ -674,10 +707,6 @@ cs:
         failed:
           header: Hlasování se nezdařilo
           lead: Váš hlas nebyl odeslán!
-          modal:
-            close: Zavřít
-            communication_lost: Bohužel se zdá, že komunikace s hlasovacím serverem (Bulletin Board) je ztracena.<br>Může se stát, že připojení k internetu je přerušeno nebo že cílový server je příliš zaneprázdněný.<br>Pokud tento problém přetrvává, můžete to zkusit později nebo se obraťte na podporu.
-            title: Něco se pokazilo
           text: Něco se pokazilo, zkuste to prosím znovu.
           try_again: Zkuste to znovu
         header:
@@ -703,9 +732,9 @@ cs:
         onboarding_modal:
           close: Zavřít okno
           create_account: Vytvořit účet
-          description: Chcete si vytvořit nový účet v Decidimu? Budete se moci účastnit procesů a být aktivní součástí organizace.
+          description: Chcete vytvořit nový účet na platformě? Budete se moci účastnit procesů a být aktivní součástí organizace.
           no_account: Ne, děkuji.
-          title: Jste v Decidim poprvé?
+          title: Jste na platformě nový?
         update:
           error: Při aktualizaci statusu hlasování se vyskytl problém. Prosím, hlasujte znovu.
         verify:
@@ -716,9 +745,10 @@ cs:
             header: Hlasování nenalezeno!
             info: Kód hlasu nebyl nalezen v %{link} volebních urnám, zkuste to znovu.
           form:
-            back: Zpět na Decidim
+            back: Zpět na platformu
             submit: Ověřit
             vote_identifier: 'Identifikační kód:'
+            vote_identifier_help: Toto je identifikátor, který vám byl poskytnut po hlasování (ne kód pro zadání hlasovacího pultu).
           header:
             title: Ověřte svůj hlas
           success:
@@ -1039,6 +1069,7 @@ cs:
             introductory_image: Úvodní obrázek
             promoted: Propagováno
             select_a_voting_type: Vyberte prosím typ hlasování
+            show_check_census_help: Zda zobrazit odkaz "Mohu hlasovat?" v nabídce veřejného hlasování
             slug: Slug
             slug_help: 'URL slug se používá k generování URL, které odkazují na toto hlasování. přijímá pouze písmena, čísla a pomlčky a musí začínat písmenem. Příklad: %{url}'
             title: Název
@@ -1087,7 +1118,7 @@ cs:
               invalid: Při nahrávání seznamu osob došlo k chybě, opakujte akci později.
               invalid_csv_header: Hlavičky CSV chybí nebo nejsou správné - přečtěte si prosím pečlivě pokyny
             creating_data:
-              info_message: "<strong>Počkejte prosím</strong>, zpracováno %{processed_count} z %{raw_count} řádků ze souboru %{file}."
+              info_message: "<strong>Počkejte prosím</strong>, zpracováno %{processed_count} z %{raw_count} řádků ze souboru %{file} (to může trvat několik minut)."
             delete:
               button: Odstranit všechna data ze seznamu obyvatel
               confirm: Odstranění všech dat z rejstříku osob nelze vrátit zpět. Opravdu chcete pokračovat?
@@ -1102,9 +1133,13 @@ cs:
               launch_error: Problém se spuštěním exportu přístupových kódů
               launch_success: Export přístupových kódů byl spuštěn. Brzy obdržíte e-mail na %{email}
             exporting_access_codes:
-              info_message: "<strong>Počkejte prosím</strong>, export se připravuje, brzy ho obdržíte na %{email}"
+              info_message: "<strong>Počkejte prosím</strong>, export se připravuje, obdržíte ho brzy na %{email} (to může trvat několik minut)."
             freeze:
               callout: Seznam osob je zmrazen a nelze jej upravit.
+              help_html: |
+                Data z registru obyvatel byla nahrána, kódy byly úspěšně vygenerovány a exportovány.<br>
+                <strong>Nyní jste připraveni zahájit volbu.</strong><br>
+                Použijte exportovaný CSV s individuálními kódy k distribuci ve vašem sčítání pomocí vlastních prostředků nebo aktivujte záložku "Můžu hlasovat", aby kdokoliv mohl tento kód načíst pomocí vlastních dat ze sčítání.
             generate_access_codes:
               button: Generovat hlasovací přístupové kódy
               callout: Nyní můžete přejít k vygenerování přístupových kódů. Pamatujte, že po vygenerování přístupových kódů již nebudete moci měnit seznam osob.
@@ -1113,8 +1148,9 @@ cs:
               info_message_warn: Zkontrolujte, že žádná data nechybí, protože byly vytvořeno %{data_count} záznamů a nahraný soubor %{file} měl %{raw_count} řádků.
               launch_error: Problém při spuštění generování přístupových kódů
               launch_success: Vytváření kódů bylo spuštěno.
+              start_over: Vymažte prosím aktuální rejstřík obyvatel a začněte znovu se správným CSV souborem s platnými řádky.
             generating_access_codes:
-              info_message: "<strong>Počkejte prosím</strong>, přístupové kódy hlasování jsou generovány..."
+              info_message: "<strong>Počkejte prosím</strong>, přístupové kódy pro hlasování jsou vytvářeny (toto může trvat několik minut)..."
             new:
               file_help:
                 explanation: 'Pokyny pro soubor:'
@@ -1233,11 +1269,12 @@ cs:
         in_person_votes:
           complete_voting:
             available_answers: 'Dostupné odpovědi:'
-            census_verified: Uživatel ještě nehlasoval.
+            census_verified: Tento uživatel zatím nehlasoval osobně.
+            census_verified_with_online_vote: Tento uživatel již hlasoval online. Pokud hlasují osobně, předchozí hlasy budou zneplatněny a bude to konečné hlasování.
             complete_voting: Dokončené hlasování
             identify_another: Identifikovat jiného účastníka
             questions_title: 'Má právo hlasovat v těchto otázkách:'
-            questions_title_voted: 'Účastník již hlasoval on-line a je oprávněn hlasovat v následujících otázkách:'
+            questions_title_voted: 'Tento uživatel již hlasoval on-line a je oprávněn hlasovat v následujících otázkách:'
             voted: Uživatel hlasoval
           create:
             error: Hlasování nebylo zaregistrováno. Zkuste to prosím znovu.
@@ -1365,9 +1402,9 @@ cs:
         filters:
           active: Aktivní
           all: Vše
+          date: Datum
           finished: Dokončeno
           search: Hledat
-          state: Stav
           upcoming: Nadcházející
         filters_small_view:
           close_modal: Zavřít modal

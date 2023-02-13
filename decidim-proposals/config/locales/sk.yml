@@ -1,3 +1,4 @@
+---
 sk:
   activemodel:
     attributes:
@@ -39,10 +40,6 @@ sk:
           valuator_role_id: Meno hodnotiteľa
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Neplatný typ dokumentu. Prijateľné formáty sú: %{valid_mime_types} '
         proposal:
           attributes:
             add_documents:
@@ -488,7 +485,6 @@ sk:
           all: Všetko
         filter_origin_values:
           all: Všetko
-          citizens: Občania
           meetings: Stretnutie
           official: Oficiálne
           user_groups: Skupiny užívateľov
@@ -660,7 +656,6 @@ sk:
             many: "%{count} návrhov"
             other: "%{count} návrhov"
         edit:
-          add_documents: Dokumenty
           attachment_legend: "(Voliteľné) Pridanie prílohy"
           back: Zadná
           select_a_category: Vyberte kategóriu

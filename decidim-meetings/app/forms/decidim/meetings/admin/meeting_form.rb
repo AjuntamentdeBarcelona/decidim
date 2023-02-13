@@ -14,7 +14,6 @@ module Decidim
         attribute :transparent, Boolean
         attribute :registration_type, String
         attribute :registration_url, String
-        attribute :available_slots, Integer, default: 0
         attribute :customize_registration_email, Boolean
         attribute :iframe_embed_type, String, default: "none"
         attribute :comments_enabled, Boolean, default: true
@@ -26,13 +25,11 @@ module Decidim
         translatable_attribute :description, String
         translatable_attribute :location, String
         translatable_attribute :location_hints, String
-        translatable_attribute :registration_email_custom_content, String
 
         validates :iframe_embed_type, inclusion: { in: Decidim::Meetings::Meeting.iframe_embed_types }
         validates :title, translatable_presence: true
         validates :description, translatable_presence: true
         validates :registration_type, presence: true
-        validates :available_slots, numericality: { greater_than_or_equal_to: 0 }, presence: true, if: ->(form) { form.on_this_platform? }
         validates :registration_url, presence: true, url: true, if: ->(form) { form.on_different_platform? }
         validates :type_of_meeting, presence: true
         validates :location, translatable_presence: true, if: ->(form) { form.in_person_meeting? || form.hybrid_meeting? }
@@ -75,14 +72,14 @@ module Decidim
         #
         # Returns a Decidim::Scope
         def scope
-          @scope ||= @decidim_scope_id ? current_component.scopes.find_by(id: @decidim_scope_id) : current_component.scope
+          @scope ||= @attributes["decidim_scope_id"].value ? current_component.scopes.find_by(id: @attributes["decidim_scope_id"].value) : current_component.scope
         end
 
         # Scope identifier
         #
         # Returns the scope identifier related to the meeting
         def decidim_scope_id
-          @decidim_scope_id || scope&.id
+          super || scope&.id
         end
 
         def category
@@ -93,15 +90,6 @@ module Decidim
 
         def clean_type_of_meeting
           type_of_meeting.presence
-        end
-
-        def type_of_meeting_select
-          Decidim::Meetings::Meeting::TYPE_OF_MEETING.map do |type|
-            [
-              I18n.t("type_of_meeting.#{type}", scope: "decidim.meetings"),
-              type
-            ]
-          end
         end
 
         def iframe_access_level_select
@@ -120,6 +108,11 @@ module Decidim
               type
             ]
           end
+        end
+
+        # Support for copy meeting
+        def questionnaire
+          Decidim::Forms::Questionnaire.new
         end
 
         def on_this_platform?

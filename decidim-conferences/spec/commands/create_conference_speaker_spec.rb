@@ -22,7 +22,7 @@ module Decidim::Conferences
     end
     let(:meeting_ids) { meetings.map(&:id) }
     let(:avatar) do
-      ActiveStorage::Blob.create_after_upload!(
+      ActiveStorage::Blob.create_and_upload!(
         io: File.open(Decidim::Dev.asset("avatar.jpg")),
         filename: "avatar.jpeg",
         content_type: "image/jpeg"
@@ -73,7 +73,7 @@ module Decidim::Conferences
 
       context "when image is invalid" do
         let(:avatar) do
-          ActiveStorage::Blob.create_after_upload!(
+          ActiveStorage::Blob.create_and_upload!(
             io: File.open(Decidim::Dev.asset("invalid.jpeg")),
             filename: "avatar.jpeg",
             content_type: "image/jpeg"
@@ -91,7 +91,7 @@ module Decidim::Conferences
       let(:conference_speaker) { Decidim::ConferenceSpeaker.last }
 
       it "creates an conference" do
-        expect { subject.call }.to change { Decidim::ConferenceSpeaker.count }.by(1)
+        expect { subject.call }.to change(Decidim::ConferenceSpeaker, :count).by(1)
       end
 
       it "broadcasts ok" do
@@ -112,6 +112,11 @@ module Decidim::Conferences
         expect { subject.call }.to change(Decidim::ActionLog, :count)
         action_log = Decidim::ActionLog.last
         expect(action_log.version).to be_present
+      end
+
+      it "sets the avatar" do
+        subject.call
+        expect(conference_speaker.avatar.blob).to be_a(ActiveStorage::Blob)
       end
 
       context "with an existing user in the platform" do

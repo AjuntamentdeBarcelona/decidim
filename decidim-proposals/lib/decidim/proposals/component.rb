@@ -266,16 +266,21 @@ Decidim.register_component(:proposals) do |component|
         visibility: "all"
       ) do
         proposal = Decidim::Proposals::Proposal.new(params)
-        proposal.add_coauthor(participatory_space.organization)
+        meeting_component = participatory_space.components.find_by(manifest_name: "meetings")
+
+        coauthor = case n
+                   when 0
+                     Decidim::User.where(decidim_organization_id: participatory_space.decidim_organization_id).order(Arel.sql("RANDOM()")).first
+                   when 1
+                     Decidim::UserGroup.where(decidim_organization_id: participatory_space.decidim_organization_id).order(Arel.sql("RANDOM()")).first
+                   when 2
+                     Decidim::Meetings::Meeting.where(component: meeting_component).order(Arel.sql("RANDOM()")).first
+                   else
+                     participatory_space.organization
+                   end
+        proposal.add_coauthor(coauthor)
         proposal.save!
         proposal
-      end
-
-      if n.positive?
-        Decidim::User.where(decidim_organization_id: participatory_space.decidim_organization_id).all.sample(n).each do |author|
-          user_group = [true, false].sample ? Decidim::UserGroups::ManageableUserGroups.for(author).verified.sample : nil
-          proposal.add_coauthor(author, user_group: user_group)
-        end
       end
 
       if proposal.state.nil?
@@ -284,8 +289,8 @@ Decidim.register_component(:proposals) do |component|
 
         author = Decidim::User.find_or_initialize_by(email: email)
         author.update!(
-          password: "decidim123456",
-          password_confirmation: "decidim123456",
+          password: "decidim123456789",
+          password_confirmation: "decidim123456789",
           name: name,
           nickname: Faker::Twitter.unique.screen_name,
           organization: component.organization,
@@ -350,8 +355,8 @@ Decidim.register_component(:proposals) do |component|
 
         author = Decidim::User.find_or_initialize_by(email: email)
         author.update!(
-          password: "decidim123456",
-          password_confirmation: "decidim123456",
+          password: "decidim123456789",
+          password_confirmation: "decidim123456789",
           name: name,
           nickname: Faker::Twitter.unique.screen_name,
           organization: component.organization,
@@ -372,8 +377,8 @@ Decidim.register_component(:proposals) do |component|
 
           author = Decidim::User.find_or_initialize_by(email: email)
           author.update!(
-            password: "decidim123456",
-            password_confirmation: "decidim123456",
+            password: "decidim123456789",
+            password_confirmation: "decidim123456789",
             name: name,
             nickname: Faker::Twitter.unique.screen_name,
             organization: component.organization,

@@ -1,3 +1,4 @@
+---
 nl:
   activemodel:
     attributes:
@@ -118,14 +119,8 @@ nl:
       errors:
         answer:
           body: Lichaam mag niet leeg zijn
-      files:
-        extension_allowlist: 'Geaccepteerde formaten:'
       images:
         dimensions: "%{width} x %{height} px"
-        dimensions_info: 'Deze afbeelding zal zijn:'
-        processors:
-          resize_and_pad: Verkleind en verwijderd naar
-          resize_to_fit: Vergrootst naar pasvorm
       question_types:
         long_answer: Lang antwoord
         matrix_multiple: Matrix (meerdere opties)

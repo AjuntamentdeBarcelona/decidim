@@ -1,3 +1,4 @@
+---
 ga:
   activerecord:
     models:
@@ -16,8 +17,6 @@ ga:
         title: Gníomhartha
       admin:
         models:
-          components:
-            body: Corp
           post:
             name: Postáil
         posts:
@@ -34,7 +33,6 @@ ga:
           fields:
             author: Údar
             body: Corp
-            title: teideal
       posts:
         show:
           comments: Tráchtanna

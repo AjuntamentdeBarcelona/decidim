@@ -15,11 +15,12 @@ module Decidim
         attribute :scope_id, Integer
         attribute :promoted, Boolean
         attribute :remove_banner_image, Boolean, default: false
-        attribute :banner_image, String
+        attribute :banner_image
         attribute :remove_introductory_image, Boolean, default: false
-        attribute :introductory_image, String
+        attribute :introductory_image
         attribute :voting_type, String
         attribute :census_contact_information, String
+        attribute :show_check_census, Boolean, default: false
 
         validates :title, translatable_presence: true
         validates :description, translatable_presence: true
@@ -29,7 +30,7 @@ module Decidim
         validates :end_time, presence: true, date: { after: :start_time }
         validates :banner_image, passthru: { to: Decidim::Votings::Voting }
         validates :introductory_image, passthru: { to: Decidim::Votings::Voting }
-        validates :voting_type, presence: true, inclusion: { in: Votings::Voting.voting_types, message: "%{value} is not a valid voting type" }
+        validates :voting_type, presence: true, inclusion: { in: Votings::Voting.voting_types }
 
         validates :scope, presence: true, if: proc { |object| object.scope_id.present? }
 

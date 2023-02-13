@@ -1,9 +1,13 @@
+---
 sv:
   activemodel:
     attributes:
       assemblies_setting:
         enable_organization_chart: Aktivera organisationskarta
+      assemblies_type:
+        title: Titel
       assembly:
+        announcement: Meddelande
         area_id: Område
         assembly_type: Typ av grupp
         assembly_type_other: Annan typ av grupp
@@ -22,12 +26,14 @@ sv:
         decidim_scope_id: Omfång
         description: Beskrivning
         developer_group: Kampanjgrupp
+        document: Dokument
         domain: Domän
         duration: Varaktighet
         facebook: Facebook
         github: GitHub
         hashtag: Hashtag
         hero_image: Hembild
+        import_attachments: Importera bilagor
         included_at: Inkluderad vid
         instagram: Instagram
         internal_organisation: Intern organisation
@@ -52,7 +58,7 @@ sv:
         target: Vem deltar
         title: Titel
         twitter: Twitter
-        weight: Vikt
+        weight: Ordning
         youtube: YouTube
       assembly_member:
         birthday: Födelsedag
@@ -64,16 +70,11 @@ sv:
         non_user_avatar: Profilbild
         position: Befattning
         user_id: Användare
+        weight: Ordning
       assembly_user_role:
         email: E-post
         name: Namn
         role: Roll
-    errors:
-      models:
-        assembly:
-          attributes:
-            document:
-              invalid_document_type: 'Ogiltig dokumenttyp. Godkända format är: %{valid_mime_types}'
   activerecord:
     models:
       decidim/assembly:
@@ -270,7 +271,7 @@ sv:
             duration_help: Om varaktigheten för gruppen är begränsad, välj ett slutdatum. Annars kommer den att visas som permanent.
             filters: Filter
             images: Bilder
-            included_at_help: Markera det datum då gruppen lades till i Decidim. Det behöver inte nödvändigtvis vara detsamma som datumet det skapades.
+            included_at_help: Markera det datum då gruppen lades till på plattformen. Det behöver inte nödvändigtvis vara detsamma som datumet det skapades.
             metadata: Metadata
             other: Annan
             select_a_created_by: Välj en skapad av

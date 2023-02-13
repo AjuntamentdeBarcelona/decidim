@@ -1,5 +1,10 @@
+---
 sv:
   activemodel:
+    attributes:
+      post:
+        decidim_author_id: Författare
+        title: Titel
     models:
       decidim/blogs/create_post_event: Nytt blogginlägg
   activerecord:
@@ -10,16 +15,14 @@ sv:
   decidim:
     blogs:
       actions:
+        author_id: Skapa inlägg som
         confirm_destroy: Vill du radera inlägget?
         destroy: Radera
         edit: Redigera
         new: Nytt inlägg
         title: Åtgärder
-        user_group_id: Skapa inlägg som
       admin:
         models:
-          components:
-            body: Innehåll
           post:
             name: Publicera
         posts:
@@ -47,7 +50,8 @@ sv:
             author: Författare
             body: Innehåll
             created_at: Skapad
-            title: titel
+            official_blog_post: Officiellt inlägg
+            title: Titel
       posts:
         show:
           back: Tillbaka till listan

@@ -1,3 +1,4 @@
+---
 fr:
   activemodel:
     attributes:
@@ -14,17 +15,24 @@ fr:
         description: Description
         file: Fichier
         title: Nom de la pièce jointe ou de l'image
+        weight: Rang d'affichage
       attachment_collection:
         description: Description
         name: Titre
+        weight: Rang d'affichage
       category:
         description: Description
         name: Titre
         parent_id: Parent
+        weight: Rang d'affichage
       component:
         name: Titre
         published_at: Publiée à
         weight: Rang d'affichage
+      external_domain:
+        value: Valeur
+      help_section:
+        content: Contenu
       id: ID
       import:
         user_group_id: Créer des imports en tant que
@@ -92,6 +100,9 @@ fr:
         welcome_notification_body: Corps du mail de bienvenue
         welcome_notification_subject: Objet du mail de bienvenue
         youtube_handler: Gestionnaire YouTube
+      participatory_space_private_user:
+        email: Email
+        name: Nom
       scope:
         code: Code
         name: Titre
@@ -113,6 +124,7 @@ fr:
         show_in_footer: Montrer dans le pied de page
         slug: Identifiant
         title: Titre
+        topic_id: Sujet
         weight: Rang d'affichage
       static_page_topic:
         description: La description
@@ -133,6 +145,14 @@ fr:
               allowed_file_content_types: Fichier image invalide
             official_img_header:
               allowed_file_content_types: Fichier image invalide
+        participatory_space_private_user_csv_import:
+          attributes:
+            file:
+              malformed: Fichier d'importation mal formé, veuillez lire attentivement les instructions et assurez-vous que le fichier est encodé en UTF-8.
+        user_group_csv_verification:
+          attributes:
+            file:
+              malformed: Fichier d'importation mal formé, veuillez lire attentivement les instructions et assurez-vous que le fichier est encodé en UTF-8.
       new_import:
         attributes:
           file:
@@ -177,7 +197,7 @@ fr:
         reject: Rejeter
         share: Partager
         user:
-          new: Nouvel utilisateur
+          new: Nouvel administrateur
         verify: Vérifier
       admin_terms_of_use:
         accept:
@@ -260,6 +280,8 @@ fr:
         update:
           error: Une erreur s'est produite lors de la mise à jour de ce document lié.
           success: Document lié mis à jour avec succès.
+      attachments_privacy_warning:
+        message: Soyez prudent lorsque vous travaillez avec des pièces jointes dans un espace privé. Tout participant pourrait partager ce document à d'autres.
       autocomplete:
         no_results: Aucun résultat trouvé
         search_prompt: Renseignez au moins trois caractères pour lancer la recherche
@@ -342,7 +364,7 @@ fr:
       dashboard:
         show:
           view_more_logs: Afficher plus
-          welcome: Bienvenue dans l'espace d'administration de Decidim.
+          welcome: Bienvenue dans l'espace d'administration.
       domain_whitelist:
         form:
           domain_too_short: Le nom de domaine est trop court
@@ -835,9 +857,23 @@ fr:
           invalid: Une erreur s'est produite lors de la lecture du fichier CSV.
           success: Fichier CSV a été transféré avec succès, nous envoyons un courriel d'invitation aux participants. Cela peut prendre un certain temps.
         new:
+          destroy:
+            button: Supprimer tous les utilisateurs privés
+            confirm: Êtes-vous sûr de vouloir supprimer tous les utilisateurs privés ? Cette action ne peut pas être annulée, vous ne pourrez pas les récupérer.
+            empty: Vous n'avez aucun utilisateur privé.
+            explanation: Vous avez %{count} utilisateurs privés.
+            title: Supprimer les utilisateurs privés
           explanation: 'Téléchargez votre fichier CSV. Il doit avoir deux colonnes avec dans la première colonne les emails, et dans la deuxième colonne les noms (email, nom) des utilisateurs que vous souhaitez ajouter à l''espace participatif, sans en-tête. Évitez les caractères spéciaux comme `<>?%&^*#@()[]=+:;"{}\|` dans les noms des utilisateurs.'
           title: Téléchargez votre fichier CSV
           upload: Télécharger
+      reminders:
+        create:
+          error: Il y a eu un problème lors de la création des rappels.
+          success:
+            one: "%{count} utilisateur recevra un rappel."
+            other: "%{count} utilisateurs recevront un rappel."
+        new:
+          submit: Envoyer
       resource_permissions:
         edit:
           submit: Soumettre
@@ -895,6 +931,7 @@ fr:
         gallery:
           add_images: Ajouter des images
           delete_image: Supprimer l'image
+          edit_images: Modifier les images
           gallery_legend: Ajouter une galerie d'images (facultatif)
       static_page_topics:
         create:
@@ -955,7 +992,7 @@ fr:
         static_pages: Pages
         statistics: Activité
         user_groups: Groupes d'utilisateurs
-        users: Participants
+        users: Administrateurs
       user_group:
         csv_verify:
           invalid: Une erreur s'est produite lors de la lecture du fichier CSV.
@@ -991,7 +1028,7 @@ fr:
           role: Rôle
         new:
           create: Inviter
-          title: Inviter l'utilisateur en tant qu'administrateur
+          title: Inviter un nouvel administrateur
       users_statistics:
         users_count:
           admins: Administrateurs
@@ -1046,7 +1083,7 @@ fr:
             reportable_id: ID
             reportable_type: Type
             reported_content_url: URL
-            reports: Motif
+            reports: Signalements
             visit_url: Visitez l'URL
         report:
           fields:

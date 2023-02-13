@@ -32,6 +32,9 @@ module Decidim::Conferences
         consultation: consultation
       )
     end
+    let(:related_process_ids) { [participatory_processes.map(&:id)] }
+    let(:related_consultation_ids) { questions.collect(&:consultation).uniq }
+
     let(:form) do
       instance_double(
         Admin::ConferenceForm,
@@ -58,9 +61,9 @@ module Decidim::Conferences
         registrations_enabled: false,
         available_slots: 0,
         registration_terms: { en: "registrations terms" },
-        participatory_processes_ids: participatory_processes.map(&:id),
+        participatory_processes_ids: related_process_ids,
         assemblies_ids: assemblies.map(&:id),
-        consultations_ids: questions.collect(&:consultation).uniq
+        consultations_ids: related_consultation_ids
       )
     end
     let(:invalid) { false }
@@ -80,15 +83,15 @@ module Decidim::Conferences
           persisted?: false,
           valid?: false,
           errors: {
-            hero_image: "Image too big",
-            banner_image: "Image too big"
+            hero_image: "File resolution is too large",
+            banner_image: "File resolution is too large"
           }
         ).as_null_object
       end
 
       before do
         allow(Decidim::ActionLogger).to receive(:log).and_return(true)
-        expect(Decidim::Conference).to receive(:create).and_return(invalid_conference)
+        allow(Decidim::Conference).to receive(:create).and_return(invalid_conference)
       end
 
       it "broadcasts invalid" do
@@ -96,8 +99,8 @@ module Decidim::Conferences
       end
 
       it "adds errors to the form" do
-        expect(errors).to receive(:add).with(:hero_image, "Image too big")
-        expect(errors).to receive(:add).with(:banner_image, "Image too big")
+        expect(errors).to receive(:add).with(:hero_image, "File resolution is too large")
+        expect(errors).to receive(:add).with(:banner_image, "File resolution is too large")
         subject.call
       end
     end
@@ -106,7 +109,7 @@ module Decidim::Conferences
       let(:conference) { Decidim::Conference.last }
 
       it "creates an conference" do
-        expect { subject.call }.to change { Decidim::Conference.count }.by(1)
+        expect { subject.call }.to change(Decidim::Conference, :count).by(1)
       end
 
       it "broadcasts ok" do
@@ -145,6 +148,46 @@ module Decidim::Conferences
         subject.call
         linked_consultations = conference.linked_participatory_space_resources("Consultations", "included_consultations")
         expect(linked_consultations).to match_array(questions.collect(&:consultation).uniq)
+      end
+
+      context "when sorting linked_participatory_space_resources" do
+        let!(:process_one) { create :participatory_process, organization: organization, weight: 2 }
+        let!(:process_two) { create :participatory_process, organization: organization, weight: 1 }
+        let(:related_process_ids) { [process_one.id, process_two.id] }
+        let!(:consultation_one) { create :consultation, organization: organization }
+        let!(:consultation_two) { create :consultation, organization: organization }
+        let(:related_consultation_ids) { [consultation_one.id, consultation_two.id] }
+
+        it "sorts by created at" do
+          subject.call
+
+          linked_processes = conference.linked_participatory_space_resources("Consultations", "included_consultations")
+          expect(linked_processes.first).to eq(consultation_two)
+        end
+
+        it "sorts by weight" do
+          subject.call
+
+          linked_processes = conference.linked_participatory_space_resources(:participatory_process, "included_participatory_processes")
+          expect(linked_processes.first).to eq(process_two)
+        end
+      end
+
+      context "when linking unpublished linked_participatory_space_resources" do
+        let!(:process_one) { create :participatory_process, :unpublished, organization: organization, weight: 2 }
+        let!(:process_two) { create :participatory_process, organization: organization, weight: 1 }
+        let(:related_process_ids) { [process_one.id, process_two.id] }
+        let!(:consultation_one) { create :consultation, :unpublished, organization: organization }
+        let!(:consultation_two) { create :consultation, organization: organization }
+        let(:related_consultation_ids) { [consultation_one.id, consultation_two.id] }
+
+        it "does not include unpublished meetings" do
+          subject.call
+
+          linked_processes = conference.linked_participatory_space_resources("Consultations", "included_consultations")
+          expect(linked_processes.first).to eq(consultation_two)
+          expect(linked_processes.size).to eq(1)
+        end
       end
     end
   end

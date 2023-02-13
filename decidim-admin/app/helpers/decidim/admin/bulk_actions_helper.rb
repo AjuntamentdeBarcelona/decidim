@@ -3,10 +3,6 @@
 module Decidim
   module Admin
     module BulkActionsHelper
-      def proposal_find(id)
-        Decidim::Proposals::Proposal.find(id)
-      end
-
       # Public: Generates a select field with the categories. Only leaf categories can be set as selected.
       #
       # categories - A collection of categories.
@@ -14,9 +10,8 @@ module Decidim
       # Returns a String.
       def bulk_categories_select(collection)
         categories = bulk_categories_for_select collection
-        disabled = bulk_disabled_categories_for collection
         prompt = t("decidim.proposals.admin.proposals.index.change_category")
-        select(:category, :id, options_for_select(categories, selected: [], disabled: disabled), prompt: prompt)
+        select(:category, :id, options_for_select(categories, selected: []), prompt: prompt)
       end
 
       def bulk_categories_for_select(scope)
@@ -37,10 +32,6 @@ module Decidim
 
           parent
         end
-      end
-
-      def bulk_disabled_categories_for(scope)
-        scope.first_class.joins(:subcategories).pluck(:id)
       end
 
       # Public: Generates a select field with the components.

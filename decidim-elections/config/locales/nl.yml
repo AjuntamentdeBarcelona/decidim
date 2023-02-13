@@ -1,3 +1,4 @@
+---
 nl:
   activemodel:
     attributes:
@@ -233,15 +234,6 @@ nl:
             selected: Geselecteerd
             submit: Indienen
             title: Resultaten gepubliceerd
-          tally:
-            continue: Doorgaan
-            invalid: Er is een fout opgetreden bij het rapporteren van de ontbrekende trustee
-            mark_as_missing: Als ontbrekend markeren
-            mark_as_missing_description: Alle trustees moeten deelnemen aan dit proces, maar als een trustee niet aan het proces kan deelnemen, kan je dit als ontbrekend aanduiden.
-            success: Het rapport met de ontbrekende trustees is met succes verzonden naar het Bulletin Board
-            tally_completion: Het proces zal worden voltooid wanneer alle trustees actief zijn of als ontbrekend zijn aangeduid. Tenminste %{quorum} trustees zijn vereist om het proces te voltooien.
-            title: Tellingsproces
-            undo_mark_as_missing: Zolang het proces niet is voltooid zal een trustee die per ongeluk is gemarkeerd als ontbrekend kunnen deelnemen. Ze kunnen doorgaan zoals gebruikelijk en de aanduiding als 'ontbrekend' wordt genegeerd.
           tally_ended:
             answer: Antwoord
             not_selected: Niet geselecteerd
@@ -250,6 +242,13 @@ nl:
             selected: Geselecteerd
             success: Verzoek om de resultaten te publiceren is met succes verzonden naar het Bulletin Board
             title: Berekende resultaten
+          tally_started:
+            invalid: Er is een fout opgetreden bij het rapporteren van de ontbrekende trustee
+            mark_as_missing: Als ontbrekend markeren
+            mark_as_missing_description: Alle trustees moeten deelnemen aan dit proces, maar als een trustee niet aan het proces kan deelnemen, kan je dit als ontbrekend aanduiden.
+            success: Het rapport met de ontbrekende trustees is met succes verzonden naar het Bulletin Board
+            tally_completion: Het proces zal worden voltooid wanneer alle trustees actief zijn of als ontbrekend zijn aangeduid. Tenminste %{quorum} trustees zijn vereist om het proces te voltooien.
+            undo_mark_as_missing: Zolang het proces niet is voltooid zal een trustee die per ongeluk is gemarkeerd als ontbrekend kunnen deelnemen. Ze kunnen doorgaan zoals gebruikelijk en de aanduiding als 'ontbrekend' wordt genegeerd.
           vote:
             title: Stemperiode
           vote_ended:
@@ -296,12 +295,6 @@ nl:
           update: "%{user_name} heeft de verkiezing %{resource_name} van %{space_name} bijgewerkt"
         trustee:
           create: "%{user_name} heeft de gebruiker %{trustee_user} aangewezen als Trustee"
-      election_m:
-        footer:
-          remaining_time:
-            one: "<strong>%{count} uur %{minutes} minuten</strong> over om te stemmen."
-            other: "<strong>%{count} uur %{minutes} minuten</strong> over om te stemmen."
-            zero: "<strong>%{minutes} minuten</strong> over om te stemmen."
       elections:
         count:
           elections_count:
@@ -352,18 +345,12 @@ nl:
             not_started: Het stemproces is nog niet begonnen.
             started: Het stemproces is begonnen.
           vote_title: Stemproces
-        filters:
-          state: Status
         preview:
           available_answers: 'Beschikbare antwoorden:'
           description: 'Dit zijn de vragen die je tijdens het stemproces tegenkomt:'
         results:
           description: 'Dit zijn de resultaten van de stemronde, voor elke vraag:'
           percentage: "%{count}%"
-          votes:
-            one: "%{count} stem"
-            other: "%{count} stemmen"
-            zero: "%{count} stemmen"
         show:
           action_button:
             change_vote: Wijzig je stem
@@ -447,19 +434,8 @@ nl:
             title: Herstel verkiezingssleutels voor %{election}
             upload_election_keys: Upload verkiezingssleutels
             upload_icon: Icoon dat een downloadactie aangeeft
-          tally_steps:
-            back: Achterzijde
+          tally_started_steps:
             description: De resultaten voor deze verkiezingen worden berekend in de Bulletin Board. Om dit proces te voltooien, is uw deelname als Trustee nodig.
-            list:
-              status: Status
-              task: Taak
-            process_warning: Zodra het proces is gestart, mag je de pagina niet verlaten totdat het proces is afgerond. Het duurt enkele minuten, omdat alle Trustees verbonden moeten zijn om het te voltooien.
-            start: Begin
-            start_icon: Icoon met startknop om verkiezingssleutels aan te maken
-            status:
-              completed: Voltooid
-              pending: In afwachting
-              processing: In verwerking
           update:
             error: De verkiezingsstatus is niet bijgewerkt.
             success: 'De verkiezingsstatus is: %{status}'
@@ -491,15 +467,12 @@ nl:
               generate_legend_3: Zorg ervoor dat uw computer geen kopie van het bestand heeft (kijk bijvoorbeeld naar de downloads en Desktop-mappen).
               generate_legend_4: Maak nog een kopie van het bestand op een ander extern apparaat en sla het op een zeer veilige plaats.
               submit: Verzenden
-              submit_legend: Na het volgen van alle bovenstaande stappen, voltooi het proces door de publieke identificatiesleutel naar de Decidim server te sturen.
               submit_title: Vul de publieke identificatiesleutel in
               title: Trustee identificatiesleutels
               upload: Upload jouw identificatiesleutels
               upload_error:
                 invalid_format: Het geüploade bestand bevat geen identificatiesleutel.
                 invalid_key: De identificatiesleutels in het geüploade bestand kunnen niet worden geladen.
-                invalid_public_key: De identificatiesleutels in het geüploade bestand komen niet overeen met de publieke identificatiesleutel die door Decidim is opgeslagen.
-              upload_legend: Decidim heeft jouw publieke identificatiesleutels, maar je browser heeft deze nog niet. Je moet het bestand met jouw identificatiesleutels importeren naar je computer, vanuit de back-up die je hebt gemaakt na het genereren ervan.
             not_supported_browser_description: Het lijkt erop dat je een webbrowser gebruikt die niet kan gebruikt worden als Trustee. Zorg ervoor dat je de meest recente versie van je browser gebruikt, of probeer een van de populairste browsers te gebruiken om je Trustee taken te voltooien.
             not_supported_browser_title: Upgrade de browser om als Trustee te fungeren
             trustee_role_description: Je bent aangeduid om als Trustee te fungeren in enkele verkiezingen op dit platform.
@@ -538,8 +511,6 @@ nl:
         failed:
           header: Stem mislukt
           lead: Je stem is niet uitgebracht!
-          modal:
-            close: Afsluiten
           text: Er is iets mis gegaan, probeer het alsjeblief nog een keer.
           try_again: Probeer opnieuw
         header:
@@ -563,9 +534,7 @@ nl:
         onboarding_modal:
           close: Sluit venster
           create_account: Account aanmaken
-          description: Wil je en nieuwe account aanmaken in Decidim? Je kunt deelnemen aan de processen en een actief deel van de organisatie zijn.
           no_account: Nee, bedankt.
-          title: Nieuw bij Decidim?
         update:
           error: Er is een probleem opgetreden bij het bijwerken van stemstatus. Probeer het opnieuw.
         verify:
@@ -576,7 +545,6 @@ nl:
             header: Stem niet gevonden!
             info: De stemcode werd niet gevonden in de stembus %{link}, probeer het opnieuw.
           form:
-            back: Terug naar Decidim
             submit: Controleer
             vote_identifier: 'Identificatiecode:'
           header:
@@ -909,8 +877,6 @@ nl:
             create:
               invalid: Er is een fout opgetreden bij het uploaden van de kiezerslijst, probeer het later opnieuw.
               invalid_csv_header: De CSV-headers ontbreken of zijn niet correct - lees de instructies zorgvuldig door
-            creating_data:
-              info_message: "<strong>Gelieve te wachten</strong>, %{processed_count} verwerkt van %{raw_count} rijen uit bestand %{file}."
             delete:
               button: Verwijder alle kiezerslijstgegevens
             destroy:
@@ -922,8 +888,6 @@ nl:
               confirm: Je kunt de toegangscodes slechts één keer exporteren. Controleer of je toegang heeft tot het e-mailadres <strong>%{email}</strong>.
               launch_error: Probleem bij het starten van de toegangscodes export
               launch_success: Exporteer toegangscodes gestart. Je ontvangt binnenkort een e-mail op %{email}
-            exporting_access_codes:
-              info_message: "<strong>Gelieve te wachten</strong>, de export wordt voorbereid, je ontvangt deze binnenkort op %{email}"
             freeze:
               callout: De kiezerslijst is bevroren, en kan niet worden gewijzigd.
             generate_access_codes:
@@ -934,8 +898,6 @@ nl:
               info_message_warn: Controleer of er geen gegevens ontbreken, omdat %{data_count} records zijn gemaakt en het geüploade bestand %{file} %{raw_count} rijen had.
               launch_error: Probleem bij het starten van de toegangscodes export
               launch_success: Codes genereren gestart.
-            generating_access_codes:
-              info_message: "<strong>Even geduld</strong>, de codes voor stemtoegang worden gegenereerd..."
             new:
               file_help:
                 explanation: 'Instructie bij het bestand:'
@@ -1050,17 +1012,15 @@ nl:
         in_person_votes:
           complete_voting:
             available_answers: 'Beschikbare antwoorden:'
-            census_verified: De gebruiker heeft nog niet gestemd.
             complete_voting: Voltooi het stemmen
             identify_another: Identificeer een andere deelnemer
             questions_title: 'Zij/hij heeft het recht om te stemmen op de volgende vragen:'
-            questions_title_voted: 'De gebruiker heeft al online gestemd en heeft het recht om te stemmen op de volgende vragen:'
             voted: De gebruiker heeft gestemd
           create:
             error: De stemming werd niet geregistreerd. Probeer het opnieuw.
           in_person_form:
             census_not_present: Deze gebruiker staat niet op het stemregister.
-            census_not_present_description: Zij/hij moet naar het klachtenbureau gaan of contact opnemen met support.
+            census_not_present_description: Zij moeten zich tot het klachtenbureau voor de verkiezing wenden, of contact opnemen met Support.
             date_of_birth: Geboortedatum
             day: Dag
             day_placeholder: DD
@@ -1168,7 +1128,6 @@ nl:
           all: Alle
           finished: Afgelopen
           search: Zoeken
-          state: Status
           upcoming: Gepland
         filters_small_view:
           close_modal: Sluit venster

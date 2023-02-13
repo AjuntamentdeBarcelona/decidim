@@ -18,7 +18,7 @@ module Decidim
       include Decidim::Traceable
       include Decidim::Loggable
       include Decidim::Fingerprintable
-      include Decidim::DataPortability
+      include Decidim::DownloadYourData
       include Decidim::Proposals::ParticipatoryTextSection
       include Decidim::Amendable
       include Decidim::NewsletterParticipant
@@ -27,6 +27,7 @@ module Decidim
       include Decidim::Proposals::Valuatable
       include Decidim::TranslatableResource
       include Decidim::TranslatableAttributes
+      include Decidim::FilterableResource
 
       translatable_fields :title, :body
 
@@ -67,9 +68,32 @@ module Decidim
       scope :except_rejected, -> { where.not(state: "rejected").or(state_not_published) }
       scope :except_withdrawn, -> { where.not(state: "withdrawn").or(where(state: nil)) }
       scope :drafts, -> { where(published_at: nil) }
-      scope :except_drafts, -> { where.not(published_at: nil) }
       scope :published, -> { where.not(published_at: nil) }
       scope :order_by_most_recent, -> { order(created_at: :desc) }
+
+      scope :with_availability, lambda { |state_key|
+        case state_key
+        when "withdrawn"
+          withdrawn
+        else
+          except_withdrawn
+        end
+      }
+
+      scope :with_type, lambda { |type_key, user, component|
+        case type_key
+        when "proposals"
+          only_amendables
+        when "amendments"
+          only_visible_emendations_for(user, component)
+        else # Assume 'all'
+          amendables_and_visible_emendations_for(user, component)
+        end
+      }
+
+      scope :voted_by, lambda { |user|
+        includes(:votes).where(decidim_proposals_proposal_votes: { decidim_author_id: user })
+      }
 
       scope :sort_by_valuation_assignments_count_asc, lambda {
         order(Arel.sql("#{sort_by_valuation_assignments_count_nulls_last_query} ASC NULLS FIRST").to_s)
@@ -78,6 +102,8 @@ module Decidim
       scope :sort_by_valuation_assignments_count_desc, lambda {
         order(Arel.sql("#{sort_by_valuation_assignments_count_nulls_last_query} DESC NULLS LAST").to_s)
       }
+
+      scope_search_multi :with_any_state, [:accepted, :rejected, :evaluating, :state_not_published]
 
       def self.with_valuation_assigned_to(user, space)
         valuator_roles = space.user_roles(:valuator).where(user: user)
@@ -103,7 +129,7 @@ module Decidim
       end
 
       # Returns a collection scoped by an author.
-      # Overrides this method in DataPortability to support Coauthorable.
+      # Overrides this method in DownloadYourData to support Coauthorable.
       def self.user_collection(author)
         return unless author.is_a?(Decidim::User)
 
@@ -241,8 +267,9 @@ module Decidim
       end
 
       # Public: Overrides the `reported_searchable_content_extras` Reportable concern method.
+      # Returns authors name or title in case it's a meeting
       def reported_searchable_content_extras
-        [authors.map(&:name).join("\n")]
+        [authors.map { |p| p.respond_to?(:name) ? p.name : p.title }.join("\n")]
       end
 
       # Public: Whether the proposal is official or not.
@@ -252,7 +279,7 @@ module Decidim
 
       # Public: Whether the proposal is created in a meeting or not.
       def official_meeting?
-        authors.first.class.name == "Decidim::Meetings::Meeting"
+        authors.first.instance_of?(Decidim::Meetings::Meeting)
       end
 
       # Public: The maximum amount of votes allowed for this proposal.
@@ -302,6 +329,10 @@ module Decidim
         published_at.nil?
       end
 
+      def self.ransack(params = {}, options = {})
+        ProposalSearch.new(self, params, options)
+      end
+
       # Defines the base query so that ransack can actually sort by this value
       def self.sort_by_valuation_assignments_count_nulls_last_query
         <<-SQL.squish
@@ -327,9 +358,17 @@ module Decidim
         where(query, value: value)
       end
 
-      def self.ransackable_scopes(_auth = nil)
-        [:valuator_role_ids_has]
+      def self.ransackable_scopes(auth_object = nil)
+        base = [:with_any_origin, :with_any_state, :voted_by, :coauthored_by, :related_to, :with_any_scope, :with_any_category]
+        return base unless auth_object&.admin?
+
+        # Add extra scopes for admins for the admin panel searches
+        base + [:valuator_role_ids_has]
       end
+
+      # Create i18n ransackers for :title and :body.
+      # Create the :search_text ransacker alias for searching from both of these.
+      ransacker_i18n_multi :search_text, [:title, :body]
 
       ransacker :state_published do
         Arel.sql("CASE
@@ -379,7 +418,7 @@ module Decidim
         Decidim::Proposals::ProposalSerializer
       end
 
-      def self.data_portability_images(user)
+      def self.download_your_data_images(user)
         user_collection(user).map { |p| p.attachments.collect(&:file) }
       end
 

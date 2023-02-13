@@ -1,3 +1,4 @@
+---
 gl:
   activemodel:
     attributes:
@@ -111,14 +112,6 @@ gl:
             result: Resultado
             selected: Seleccionado
             submit: Enviar
-          tally:
-            continue: Continuar
-            invalid: Produciuse un problema ao denunciar o comisario ausente
-            mark_as_missing: Marcar coma ausente
-            mark_as_missing_description: Todos os comisarios teñen que participar neste proceso, mais se un comisario non pode tomar parte pode ser sinalado como ausente.
-            success: O informe sobre o comisario ausente foi enviado con éxito ao Bulletin Board
-            tally_completion: O proceso completarase cando todos os comisarios estean activos ou marcados coma ausentes. Son necesarios polo menos %{quorum} comisarios para completar o proceso.
-            undo_mark_as_missing: Un comisario sinalado como ausente poderá participar antes de se completar o proceso. Poderá proceder como é usual e a marca de ausencia será ignorada.
           tally_ended:
             answer: Resposta
             not_selected: Non seleccionado
@@ -127,6 +120,13 @@ gl:
             selected: Seleccionado
             success: A solicitude de publicación de resultados foi enviada con éxito ao Bulletin Board
             title: Resultados calculados
+          tally_started:
+            invalid: Produciuse un problema ao denunciar o comisario ausente
+            mark_as_missing: Marcar coma ausente
+            mark_as_missing_description: Todos os comisarios teñen que participar neste proceso, mais se un comisario non pode tomar parte pode ser sinalado como ausente.
+            success: O informe sobre o comisario ausente foi enviado con éxito ao Bulletin Board
+            tally_completion: O proceso completarase cando todos os comisarios estean activos ou marcados coma ausentes. Son necesarios polo menos %{quorum} comisarios para completar o proceso.
+            undo_mark_as_missing: Un comisario sinalado como ausente poderá participar antes de se completar o proceso. Poderá proceder como é usual e a marca de ausencia será ignorada.
           vote_ended:
             text: Rematou a votación. Podes comezar o reconto agora.
       admin_log:
@@ -146,9 +146,8 @@ gl:
           upcoming: Vindeiras
         footer:
           remaining_time:
-            one: "Falta <strong>%{count} hora %{minutes} minutos</strong> para votar."
-            other: "Faltan <strong>%{count} horas %{minutes} minutos</strong> para votar."
-            zero: "Faltan <strong>%{minutes} minutos</strong> para votar."
+            one: "<strong>%{count} hora %{minutes} minutos</strong> para votar."
+            other: "<strong>%{count} horas %{minutes} minutos</strong> para votar."
           view: Ver
           vote: Votar
         label:
@@ -173,6 +172,7 @@ gl:
         filters:
           active: Activa
           all: Todas
+          date: Data
           finished: Finalizada
           search: Procurar
           upcoming: Vindeiras
@@ -187,10 +187,6 @@ gl:
           description: 'Estes son os resultados da votación, para cada pregunta:'
           percentage: "%{count}%"
           selected: Seleccionado
-          votes:
-            one: "%{count} voto"
-            other: "%{count} votos"
-            zero: "%{count} votos"
         show:
           action_button:
             change_vote: Troca o teu voto
@@ -235,13 +231,6 @@ gl:
             status:
               pending: Pendente
               processing: Procesando
-          tally_steps:
-            list:
-              task: Tarefa
-            start: Comezar
-            status:
-              pending: Pendente
-              processing: Procesando
         trustees:
           show:
             elections:
@@ -252,6 +241,9 @@ gl:
                 bb_status: Estado
             identification_keys:
               submit: Enviar
+              upload_error:
+                invalid_public_key: As claves de identificación no ficheiro a subir non coinciden coas claves públicas almacenadas.
+              upload_legend: O servidor ten as túas claves públicas, mais o teu navegador aínda non. Precisas importar ao teu computador o ficheiro coas túas claves de identificación dende a copia de seguranza creada despois de xerar as chaves.
       votes:
         ballot_decision:
           audit: "( Auditar papeleta )"
@@ -267,8 +259,6 @@ gl:
           header: Cifrando o voto...
           text: Cifrando a papeleta para asegurar que o teu voto é segredo.
         failed:
-          modal:
-            close: Pechar
           try_again: Tentar de novo
         header:
           ballot_decision: Enviar ou auditar o teu voto
@@ -282,11 +272,14 @@ gl:
         onboarding_modal:
           close: Pechar modal
           create_account: Crear conta
-          description: Queres crear unha conta nova no Decidim? Poderás participar nos procesos e ser unha parte activa da organización.
+          description: Queres crear unha conta nova na plataforma? Poderás participar nos procesos e ser unha parte activa da organización.
           no_account: Non, grazas.
-          title: Novo/a no Decidim?
+          title: Es novo na plataforma?
         update:
           error: Produciuse un problema ao actualizar o estado do voto. Por favor, téntao de novo.
+        verify:
+          form:
+            back: Volver á plataforma
     events:
       elections:
         votes:
@@ -413,8 +406,6 @@ gl:
           census:
             create:
               invalid_csv_header: Faltan as cabeceiras CSV ou non son correctas - por favor, le as instrucións con cuidado
-            creating_data:
-              info_message: "<strong>Agarda</strong>, procesadas %{processed_count} de %{raw_count} filas do ficheiro %{file}."
             delete:
               button: Eliminar todos os datos do censo
             destroy:
@@ -425,8 +416,6 @@ gl:
               confirm: Só podes exportar os códigos de acceso unha vez. Asegúrate de ter acceso á conta de correo <strong>%{email}</strong>.
               launch_error: Produciuse un problema ao iniciar a exportación dos códigos de acceso
               launch_success: Iniciada a exportación dos códigos de acceso. Nun intre recibirás un correo en %{email}
-            exporting_access_codes:
-              info_message: "<strong>Agarda</strong>, a exportación esta a ser preparada, a recibirás nun intre en %{email}"
             freeze:
               callout: O censo está conxelado e non pode ser modificado.
             generate_access_codes:
@@ -437,8 +426,6 @@ gl:
               info_message_warn: Por favor, verifica que non se perderan datos, xa que se teñen creado %{data_count} rexistros e o ficheiro subido %{file} ten %{raw_count} filas.
               launch_error: Produciuse un problema ao iniciar a xeración dos códigos de acceso
               launch_success: Xeración dos códigos iniciada.
-            generating_access_codes:
-              info_message: "<strong>Agarda</strong>, os códigos de acceso para votar están a ser xerados..."
             new:
               file_help:
                 explanation: 'Instrucións para o ficheiro:'
@@ -522,8 +509,8 @@ gl:
         in_person_votes:
           complete_voting:
             available_answers: 'Respostas dispoñibles:'
-            census_verified: O participante aínda non votou.
             complete_voting: Completar votación
+            questions_title: 'Teñen dereito a votar nas seguintes preguntas:'
           in_person_form:
             census_not_present: Este participante non está no censo.
             census_not_present_description: Ten de ir á oficina de reclamacións do censo ou contactar coa asistencia técnica.
@@ -610,6 +597,8 @@ gl:
           description: O rexistro da elección amosarache toda a información importante sobre cada votación. Por exemplo, o estado da cerimonia de chaves, o reconto ou se os resultados xa están publicados. Fai clic na elección da que desexas a información do rexistro.
           election_log: Rexistro da elección
           title: Rexistro da elección
+        filters:
+          date: Data
         login:
           access_code: Código de acceso
           access_code_placeholder: Código de acceso

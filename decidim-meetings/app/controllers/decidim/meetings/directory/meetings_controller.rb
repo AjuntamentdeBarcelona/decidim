@@ -15,34 +15,40 @@ module Decidim
         helper Decidim::FiltersHelper
         helper Decidim::Meetings::MapHelper
         helper Decidim::ResourceHelper
+        helper Decidim::ShortLinkHelper
 
         helper_method :meetings, :search
 
         def calendar
-          render plain: CalendarRenderer.for(current_organization), content_type: "type/calendar"
+          render plain: CalendarRenderer.for(current_organization, params[:filter]), content_type: "type/calendar"
         end
 
         private
 
         def meetings
-          is_past_meetings = params.dig("filter", "date")&.include?("past")
-          @meetings ||= paginate(search.results.order(start_time: is_past_meetings ? :desc : :asc))
+          is_past_meetings = params.dig("filter", "with_any_date")&.include?("past")
+          @meetings ||= paginate(search.result.order(start_time: is_past_meetings ? :desc : :asc))
         end
 
-        def search_klass
-          ::Decidim::Meetings::Directory::MeetingSearch
+        def search_collection
+          Meeting.where(component: meeting_components).published.not_hidden.visible_for(current_user).with_availability(
+            filter_params[:availability]
+          ).includes(
+            :component,
+            attachments: :file_attachment
+          )
         end
 
         def default_filter_params
           {
-            date: "upcoming",
-            search_text: "",
+            with_any_date: "upcoming",
+            title_or_description_cont: "",
             activity: "all",
-            scope_id: default_filter_scope_params,
-            space: default_filter_space_params,
-            type: default_filter_type_params,
-            origin: default_filter_origin_params,
-            category_id: default_filter_category_params
+            with_any_scope: default_filter_scope_params,
+            with_any_space: default_filter_space_params,
+            with_any_type: default_filter_type_params,
+            with_any_origin: default_filter_origin_params,
+            with_any_global_category: default_filter_category_params
           }
         end
 
@@ -67,10 +73,6 @@ module Decidim
 
         def default_filter_scope_params
           %w(all global) + current_organization.scopes.pluck(:id).map(&:to_s)
-        end
-
-        def context_params
-          { component: meeting_components, organization: current_organization, current_user: current_user }
         end
 
         def meeting_components

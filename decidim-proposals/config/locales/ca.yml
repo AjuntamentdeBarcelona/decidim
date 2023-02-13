@@ -1,3 +1,4 @@
+---
 ca:
   activemodel:
     attributes:
@@ -45,7 +46,7 @@ ca:
         participatory_text:
           attributes:
             document:
-              invalid_document_type: 'Tipus de document no vàlid. Els formats acceptats són: %{valid_mime_types}'
+              allowed_file_content_types: 'Tipus de document no vàlid. Només s''accepten arxius amb les següents extensions: %{types}'
         proposal:
           attributes:
             add_documents:
@@ -403,14 +404,14 @@ ca:
         imports:
           help:
             answers: |
-              El document d'importació ha de contindre els següents noms de columna i en cas d'arxius CSV o Excel o noms de claus en el cas d'arxius JSON:
+              El document d'importació ha d'incloure els següents noms de columna en cas d'arxius CSV o Excel o noms de claus en el cas d'arxius JSON:
               <ul>
               <li><b>id:</b> ID de la proposta a responder</li>
               <li>state<b>:</b> Un d'aquests "acceptada", "en avaluació" o "rebutjada"</li>
-              <li><b>answer/en</b> Resposta en idioma inglés. Això dependrà de la configuració d'idioma predeterminat a la teva plataforma.</li>
+              <li><b>answer/ca</b> Resposta en català. Això dependrà de la configuració d'idioma predeterminat a la teva plataforma.</li>
               </ul>
             proposals: |
-              El document ha de contindre els següents noms de columna en cas d'arxius CSV o Excel o noms de claus en el cas d'arxius JSON:
+              El document ha d'incloure els següents noms de columna en cas d'arxius CSV o Excel o noms de claus en el cas d'arxius JSON:
               <ul>
               <li><b>title/ca:</b> Títol en català. Això dependrà de la configuració d'idioma predeterminat a la teva plataforma.</li>
               <li><b>body/ca:</b> Descripció en català. Això dependrà de la configuració d'idioma predeterminat a la teva plataforma.</li>
@@ -609,9 +610,9 @@ ca:
           all: Totes
         filter_origin_values:
           all: Totes
-          citizens: Ciutadania
           meetings: Trobades
           official: Oficial
+          participants: Participants
           user_groups: Grups
         filter_scope_values:
           all: Totes
@@ -674,6 +675,8 @@ ca:
           filter_by: Filtra per
           unfold: Desplega
         new:
+          add_file: Afegir fitxer
+          edit_file: Editar el fitxer
           send: Continua
         new_collaborative_draft_button:
           new_collaborative_draft: Nou esborrany col·laboratiu
@@ -784,19 +787,19 @@ ca:
           description: Les coordenades s'actualitzaran quan facis clic en el botó 'previsualitzar'. No obstant això, la direcció no canvia.
           instructions: Pots moure la ubicació en el mapa.
         edit:
-          add_documents: Documents
-          add_images: Arxiu
+          add_documents: Afegir documents
+          add_image: Afegir imatge
           attachment_legend: "(Opcional) Afegiu un fitxer adjunt"
           back: Torna
-          delete_document: Eliminar document
-          delete_image: Eliminar imatge
+          edit_documents: Editar documents
+          edit_image: Editar imatge
           gallery_legend: "(Opcional) Afegir una imatge a la targeta de proposta"
           select_a_category: Si us plau, selecciona una categoria
           send: Envia
           title: Edita proposta
         edit_draft:
           discard: Descarta aquest esborrany
-          discard_confirmation: Estàs segur de que vols descartar l'esborrany d'aquesta proposta?
+          discard_confirmation: Segur que vols descartar l'esborrany d'aquesta proposta?
           send: Vista prèvia
           title: Edició l'esborrany de proposta
         filters:

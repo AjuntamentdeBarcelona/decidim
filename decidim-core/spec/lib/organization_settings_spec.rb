@@ -13,7 +13,8 @@ module Decidim
         "allowed_file_extensions" => {
           "default" => %w(jpg jpeg gif png bmp pdf rtf txt),
           "admin" => %w(jpg jpeg gif png bmp pdf doc docx xls xlsx ppt pptx ppx rtf txt odt ott odf otg ods ots),
-          "image" => %w(jpg jpeg gif png bmp ico)
+          "image" => %w(jpg jpeg gif png bmp),
+          "favicon" => %w(png)
         },
         "allowed_content_types" => {
           "default" => %w(
@@ -72,7 +73,8 @@ module Decidim
           "allowed_file_extensions" => {
             "default" => %w(jpg jpeg pdf),
             "admin" => %w(jpg jpeg pdf docx),
-            "image" => %w(jpg jpeg)
+            "image" => %w(jpg jpeg),
+            "favicon" => %w(png)
           },
           "allowed_content_types" => {
             "default" => %w(
@@ -103,6 +105,7 @@ module Decidim
         # updated settings after the reload method is called.
         organization.file_upload_settings = updated_settings
         described_class.reload(organization)
+
         expect(struct_to_hash(subject)).to eq("upload" => updated_settings)
       end
 
@@ -185,10 +188,10 @@ module Decidim
     private
 
     def struct_to_hash(struct)
-      struct.to_h.map do |key, value|
+      struct.to_h.to_h do |key, value|
         value = struct_to_hash(value) if value.is_a?(OpenStruct)
         [key.to_s, value]
-      end.to_h
+      end
     end
   end
 end

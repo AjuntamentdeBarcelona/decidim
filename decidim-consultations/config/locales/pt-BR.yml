@@ -1,3 +1,4 @@
+---
 pt-BR:
   activemodel:
     attributes:
@@ -253,7 +254,6 @@ pt-BR:
         all: Todos
         finished: Acabado
         search: Pesquisa
-        state: Estado
         upcoming: próximos
       filters_small_view:
         close_modal: Janela fechada

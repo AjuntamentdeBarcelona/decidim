@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -56,16 +57,12 @@ lt:
         short_description: Trumpas aprašymas
         start_date: Pradžios data
         title: Pavadinimas
+      participatory_process_type:
+        title: Pavadinimas
       participatory_process_user_role:
         email: El. paštas
         name: Vardas
         role: Rolė
-    errors:
-      models:
-        participatory_process:
-          attributes:
-            document:
-              invalid_document_type: 'Netinkamas dokumento tipas. Priimtini formatai: %{valid_mime_types}'
     models:
       decidim/participatory_process_step_activated_event: Etapas aktyvuotas
       decidim/participatory_process_step_changed_event: Eatapas pakeistas
@@ -102,6 +99,7 @@ lt:
         new_process: Naujas procesas
         new_process_group: Nauja procesų grupė
         new_process_step: Naujas etapas
+        new_process_type: Naujas proceso tipas
         new_process_user_role: Naujas proceso administratorius
         preview: Peržiūra
         publish: Publikuoti
@@ -112,6 +110,7 @@ lt:
         participatory_process_groups_submenu:
           info: Informacija
           landing_page: Pagrindinis puslapis
+        participatory_process_types: Proceso tipas
         participatory_processes: Procesai
         participatory_processes_submenu:
           attachment_collections: Aplankai
@@ -143,6 +142,11 @@ lt:
             start_date: Pradžios data
             title: Pavadinimas
           name: Dalyvaujamojo proceso etapas
+        participatory_process_type:
+          fields:
+            created_at: Sukurta
+            title: Pavadinimas
+          name: Proceso tipas
         participatory_process_user_role:
           fields:
             email: El. paštas
@@ -225,6 +229,23 @@ lt:
         update:
           error: Atnaujinant šio dalyvaujamojo proceso etapą iškilo problema.
           success: Dalyvaujamasis etapas atnaujintas.
+      participatory_process_types:
+        create:
+          error: Kuriant naują proceso tipą iškilo problema.
+          success: Proceso tipas sėkmingai sukurtas.
+        destroy:
+          success: Proceso tipas sėkmingai ištrintas.
+        edit:
+          title: Redaguoti proceso tipą
+          update: Atnaujinti
+        form:
+          title: Pavadinimas
+        new:
+          create: Sukurti
+          title: Naujas proceso tipas
+        update:
+          error: Atnaujinant šį proceso tipą iškilo problema.
+          success: Proceso tipas sėkmingai sukurtas.
       participatory_process_user_roles:
         create:
           error: Pridedant dalyvį prie dalyvaujamojo proceso iškilo problema.
@@ -269,6 +290,7 @@ lt:
           success: Dalyvaujamojo proceso grupė sukurta.
       titles:
         participatory_process_groups: Dalyvaujamojo proceso grupės
+        participatory_process_types: Dalyvaujamųjų procesų tipai
         participatory_processes: Dalyvaujamieji procesai
       users:
         resend_invitation:
@@ -277,6 +299,9 @@ lt:
     admin_log:
       participatory_process:
         create: "%{user_name} sukūrė %{resource_name} dalyvaujamąjį procesą"
+        duplicate: "%{user_name} dublikavo %{resource_name} dalyvaujamąjį procesą"
+        export: "%{user_name} eksportavo %{resource_name} dalyvaujamąjį procesą"
+        import: "%{user_name} importavo %{resource_name} dalyvaujamąjį procesą"
         publish: "%{user_name} paskelbė %{resource_name} dalyvaujamąjį procesą"
         unpublish: "%{user_name} panaikino %{resource_name} dalyvaujamojo proceso skelbimą"
         update: "%{user_name} atnaujino %{resource_name} dalyvaujamąjį procesą"
@@ -288,6 +313,10 @@ lt:
         create: "%{user_name} sukūrė %{space_name} dalyvaujamojo proceso %{resource_name} etapą"
         delete: "%{user_name} pašalino %{space_name} dalyvaujamojo proceso %{resource_name} etapą"
         update: "%{user_name} atnaujino %{space_name} dalyvaujamojo proceso %{resource_name} etapą"
+      participatory_process_type:
+        create: "%{user_name} sukūrė %{resource_name} dalyvaujamojo proceso tipą"
+        delete: "%{user_name} ištrynė %{resource_name} dalyvaujamojo proceso tipą"
+        update: "%{user_name} atnaujino %{resource_name} dalyvaujamojo proceso tipą"
       participatory_process_user_role:
         create: "%{user_name} pakvietė %{resource_name} dalyvį į %{space_name} dalyvaujamąjį procesą"
         delete: "%{user_name} pašalino %{resource_name} dalyvį iš %{space_name} dalyvaujamojo proceso"
@@ -315,6 +344,10 @@ lt:
           contextual: "<p> <strong>dalyvaujamasis procesas</strong> – dalyvaujamųjų veiklų seka (pvz., visų pirma surengiama apklausa, tada pateikiami pasiūlymai, jie aptariami tiesioginiuose susitikimuose arba vaizdo konferencijose ir galiausiai nustatomi pasiūlymų prioritetai). Šios veiklos tikslas – nustatyti ir priimti sprendimus konkrečia tema.</p> <p>Dalyvaujamojo proceso pavyzdžiai: komiteto narių rinkimo procesas (pirmiausia pateikiamos kandidatūros, po to diskutuojama ir galiausiai pasirenkamas kandidatas), dalyvaujamojo biudžeto nustatymas (teikiami pasiūlymai, jie vertinami ekonomiškai ir dėl jų balsuojama remiantis turimomis lėšomis), strateginio planavimo procesas, bendras reglamento ar standarto rengimas, miesto erdvės planavimas arba viešosios politikos plano rengimas.</p>\n"
           page: "<p> <strong>dalyvaujamasis procesas</strong> – dalyvaujamųjų veiklų seka (pvz., visų pirma surengiama apklausa, tada pateikiami pasiūlymai, jie aptariami tiesioginiuose susitikimuose arba vaizdo konferencijose ir galiausiai nustatomi pasiūlymų prioritetai). Šios veiklos tikslas – nustatyti ir priimti sprendimus konkrečia tema.</p> <p>Dalyvaujamojo proceso pavyzdžiai: komiteto narių rinkimo procesas (pirmiausia pateikiamos kandidatūros, po to diskutuojama ir galiausiai pasirenkamas kandidatas), dalyvaujamojo biudžeto nustatymas (teikiami pasiūlymai, jie vertinami ekonomiškai ir dėl jų balsuojama remiantis turimomis lėšomis), strateginio planavimo procesas, bendras reglamento ar standarto rengimas, miesto erdvės planavimas arba viešosios politikos plano rengimas.</p>\n"
           title: Kas yra dalyvaujamasis procesas?
+    log:
+      value_types:
+        participatory_process_type_presenter:
+          not_found: 'Proceso tipas duomenų bazėje nerastas (ID: %{id})'
     menu:
       processes: Procesai
     metrics:
@@ -392,6 +425,7 @@ lt:
             related_processes: Susiję procesai
             scope_type_max_depth_help: Riboti srities filtro dydį; Filtras parodys nuo bendros iki pasirinktos apimties tipo.
             select_an_area: Pasirinkti aplinką
+            select_participatory_process_type: Pasirinkti proceso tipą
             select_process_group: Pasirinkti procesų grupę
             slug_help: 'Nuorodos priedėliai nukreipia į šią konkretų procesą. Priedėliai sudaromi iš raidžių, skaičių, brukšnių ir turi prasidėti nuo raidės. Pavyzdys: %{url}'
             title: Bendroji informacija
@@ -418,6 +452,7 @@ lt:
           back_to_process: Grįžti į procesų puslapį
       participatory_processes:
         filters:
+          all_types: Visi tipai
           counters:
             active:
               one: 1 aktyvus procesas
@@ -443,6 +478,7 @@ lt:
             no_active: Aktyvių procesų nėra
             no_active_nor_upcoming: Nei aktyvių, nei būsimų procesų nėra
             no_active_nor_upcoming_callout: Nei aktyvių, nei būsimų procesų nėra. Čia pateikiamas buvusių procesų sąrašas.
+          filter_by: Rodyti
           names:
             active: Aktyvūs
             all: Visi

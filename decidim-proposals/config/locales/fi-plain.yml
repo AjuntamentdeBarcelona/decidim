@@ -1,3 +1,4 @@
+---
 fi-pl:
   activemodel:
     attributes:
@@ -45,7 +46,7 @@ fi-pl:
         participatory_text:
           attributes:
             document:
-              invalid_document_type: 'Virheellinen asiakirjan tyyppi. Hyväksytyt tiedostomuodot ovat: %{valid_mime_types}'
+              allowed_file_content_types: 'Virheellinen tiedostomuoto. Ainoastaan seuraavat tiedostomuodot on sallittu: %{types}'
         proposal:
           attributes:
             add_documents:
@@ -608,9 +609,9 @@ fi-pl:
           all: Kaikki
         filter_origin_values:
           all: Kaikki
-          citizens: Kansalaiset
           meetings: Tapaamiset
           official: Virallinen
+          participants: Osallistujat
           user_groups: Käyttäjäryhmät
         filter_scope_values:
           all: Kaikki
@@ -673,6 +674,8 @@ fi-pl:
           filter_by: Rajaa hakua
           unfold: Avaa
         new:
+          add_file: Lisää tiedosto
+          edit_file: Muokkaa tiedostoa
           send: Jatka
         new_collaborative_draft_button:
           new_collaborative_draft: Uusi yhteistyöluonnos
@@ -783,12 +786,12 @@ fi-pl:
           description: Koordinaatit päivitetään, kun painat Esikatsele-painiketta. Osoitetekstiä ei muuteta.
           instructions: Voit siirtää pistettä kartalla.
         edit:
-          add_documents: Asiakirjat
-          add_images: Tiedosto
+          add_documents: Lisää asiakirjoja
+          add_image: Lisää kuva
           attachment_legend: "(Valinnainen) Lisää liite"
           back: Takaisin
-          delete_document: Poista tiedosto
-          delete_image: Poista kuva
+          edit_documents: Muokkaa asiakirjoja
+          edit_image: Muokkaa kuvaa
           gallery_legend: "(Valinnainen) Lisää kuva ehdotuskorttiin"
           select_a_category: Valitse aihepiiri
           send: Lähetä

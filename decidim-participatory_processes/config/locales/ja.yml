@@ -1,3 +1,4 @@
+---
 ja:
   activemodel:
     attributes:
@@ -11,15 +12,22 @@ ja:
         decidim_area_id: エリア
         description: 説明
         developer_group: プロモーターグループ
+        document: ドキュメント
         domain: ドメイン
         end_date: 終了日
         hashtag: ハッシュタグ
         hero_image: ホーム画像
+        import_attachments: 添付ファイルをインポート
+        import_categories: カテゴリをインポート
+        import_components: コンポーネントをインポート
+        import_steps: ステップをインポート
         local_area: 組織エリア
         meta_scope: スコープメタデータ
         participatory_process_group_id: 参加型プロセスグループ
+        participatory_process_type_id: プロセス種別
         participatory_scope: 決定されるもの
         participatory_structure: どのように決められますか？
+        private_space: プライベートプロセス
         promoted: プロモート
         published_at: 公開日時
         related_process_ids: 関連する参加型プロセス
@@ -56,6 +64,8 @@ ja:
         short_description: 短い説明
         start_date: 開始日
         title: タイトル
+      participatory_process_type:
+        title: タイトル
       participatory_process_user_role:
         email: Eメールアドレス
         name: 名前
@@ -65,7 +75,7 @@ ja:
         participatory_process:
           attributes:
             document:
-              invalid_document_type: '無効なドキュメントの種類です。承認されたフォーマットは次のとおりです: %{valid_mime_types}'
+              allowed_file_content_types: '無効なドキュメントタイプです。次の拡張子を持つファイルのみが許可されています: %{types}'
     models:
       decidim/participatory_process_step_activated_event: フェーズ有効化
       decidim/participatory_process_step_changed_event: フェーズ変更
@@ -93,6 +103,7 @@ ja:
         new_process: 新規参加型プロセス
         new_process_group: 新規参加型プロセスグループ
         new_process_step: 新しいフェーズ
+        new_process_type: 新しいプロセス種別
         new_process_user_role: 新しい参加型プロセス管理者
         preview: プレビュー
         publish: 公開
@@ -103,6 +114,7 @@ ja:
         participatory_process_groups_submenu:
           info: 情報
           landing_page: ランディングページ
+        participatory_process_types: プロセスの種別
         participatory_processes: 参加型プロセス
         participatory_processes_submenu:
           attachment_collections: フォルダ
@@ -134,6 +146,11 @@ ja:
             start_date: 開始日
             title: タイトル
           name: プロセスのフェーズ
+        participatory_process_type:
+          fields:
+            created_at: 作成日時
+            title: タイトル
+          name: プロセスの種別
         participatory_process_user_role:
           fields:
             email: Eメールアドレス
@@ -216,6 +233,23 @@ ja:
         update:
           error: 参加型プロセスのこの段階の更新に問題がありました。
           success: 参加段階が正常に更新されました。
+      participatory_process_types:
+        create:
+          error: 新しいプロセス種別の作成中に問題が発生しました。
+          success: プロセス種別が正常に作成されました。
+        destroy:
+          success: プロセス種別が正常に削除されました。
+        edit:
+          title: プロセス種別の編集
+          update: 更新
+        form:
+          title: タイトル
+        new:
+          create: 作成
+          title: 新しいプロセス種別
+        update:
+          error: プロセス種別の更新中に問題が発生しました。
+          success: プロセス種別が正常に更新されました。
       participatory_process_user_roles:
         create:
           error: この参加型プロセスに参加者を追加する際に問題が発生しました。
@@ -260,6 +294,7 @@ ja:
           success: 参加型プロセスグループを作成しました。
       titles:
         participatory_process_groups: 参加型プロセスグループ
+        participatory_process_types: 参加型プロセス種別
         participatory_processes: 参加型プロセス
       users:
         resend_invitation:
@@ -268,6 +303,9 @@ ja:
     admin_log:
       participatory_process:
         create: "%{user_name} が %{resource_name} の参加型プロセスを作成しました"
+        duplicate: "%{user_name} が %{resource_name} の参加プロセスを複製しました"
+        export: "%{user_name} が %{resource_name} の参加プロセスをエクスポートしました"
+        import: "%{user_name} が %{resource_name} の参加プロセスをインポートしました"
         publish: "%{user_name} が %{resource_name} 参加型プロセスを公開しました"
         unpublish: "%{user_name} が %{resource_name} 参加型プロセスを非公開にしました"
         update: "%{user_name} が %{resource_name} の参加型プロセスを更新しました"
@@ -279,6 +317,10 @@ ja:
         create: "%{user_name} が %{resource_name} の参加型プロセスで %{space_name} フェーズを作成しました"
         delete: "%{user_name} が %{resource_name} の参加型プロセスで %{space_name} フェーズを削除しました"
         update: "%{user_name} が %{resource_name} の参加型プロセスで %{space_name} フェーズを更新しました"
+      participatory_process_type:
+        create: "%{user_name} が参加型プロセス種別 %{resource_name} を作成しました"
+        delete: "%{user_name} が参加者プロセス種別 %{resource_name} を削除しました"
+        update: "%{user_name} が参加型プロセス種別 %{resource_name} を更新しました"
       participatory_process_user_role:
         create: "%{user_name} が参加者 %{resource_name} を %{space_name} 参加型プロセスに招待しました"
         delete: "%{user_name} が参加者 %{resource_name} を %{space_name} 参加型プロセスから削除しました"
@@ -306,6 +348,10 @@ ja:
           contextual: "<p> <strong>参加型プロセス</strong>とは、特定のトピックを定義し、決定することを目的とした一連の参加型活動(例えば、最初にアンケートに記入し、次に提案を行い、対面または仮想会議で議論し、最終的に優先順位をつける)のことです。 </p> <p>参加型プロセスの例としては、委員会メンバーの選出プロセス(最初に立候補者が提示され、議論され、最終的に立候補者が選ばれる)、参加型予算(提案がなされ、経済的に評価され、利用可能な資金で投票される)、戦略的計画プロセス、規制や規範の共同起草、都市空間の設計、公共政策計画の作成などが挙げられます。</p>\n"
           page: "<p> <strong>参加型プロセス</strong>とは、特定のトピックを定義し、決定することを目的とした一連の参加型活動(例えば、最初にアンケートに記入し、次に提案を行い、対面または仮想会議で議論し、最終的に優先順位をつける)のことです。 </p> <p>参加型プロセスの例としては、委員会メンバーの選出プロセス(最初に立候補者が提示され、議論され、最終的に立候補者が選ばれる)、参加型予算(提案がなされ、経済的に評価され、利用可能な資金で投票される)、戦略的計画プロセス、規制や規範の共同起草、都市空間の設計、公共政策計画の作成などが挙げられます。</p>\n"
           title: 参加型プロセスとは何ですか?
+    log:
+      value_types:
+        participatory_process_type_presenter:
+          not_found: 'プロセス種別がデータベース上に見つかりませんでした (ID: %{id})'
     menu:
       processes: 参加型プロセス
     metrics:
@@ -380,6 +426,7 @@ ja:
             related_processes: 関連する参加型プロセス
             scope_type_max_depth_help: スコープフィルターの深さを制限します。フィルターは、一般から選択したスコープタイプに表示されます。
             select_an_area: エリアを選択
+            select_participatory_process_type: プロセスの種別を選択
             select_process_group: 参加型プロセス グループを選択
             slug_help: 'URLスラグは、この参加型プロセスを指すURLを生成するために使用されます。 文字、数字、ダッシュのみを受け付け、文字で始める必要があります。例: %{url}'
             title: 一般情報
@@ -406,6 +453,7 @@ ja:
           back_to_process: 参加型プロセスのページに戻る
       participatory_processes:
         filters:
+          all_types: すべての種別
           counters:
             active:
               other: "%{count} 個の有効な参加型プロセス"
@@ -419,6 +467,7 @@ ja:
             no_active: アクティブな参加型プロセスはありません
             no_active_nor_upcoming: アクティブな参加型プロセスも今後の参加型プロセスもありません
             no_active_nor_upcoming_callout: アクティブな参加型プロセスも今後の参加型プロセスもありません。ここでは過去の参加型プロセスのリストを示します。
+          filter_by: 表示
           names:
             active: アクティブ
             all: すべて

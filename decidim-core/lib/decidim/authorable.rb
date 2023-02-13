@@ -12,21 +12,36 @@ module Decidim
       belongs_to :author, polymorphic: true, foreign_key: "decidim_author_id", foreign_type: "decidim_author_type"
       belongs_to :user_group, foreign_key: "decidim_user_group_id", class_name: "Decidim::UserGroup", optional: true
 
-      scope :official_origin, lambda {
+      scope :with_official_origin, lambda {
         where(decidim_author_type: "Decidim::Organization")
       }
 
-      scope :user_group_origin, lambda {
+      scope :with_user_group_origin, lambda {
         where(decidim_author_type: "Decidim::UserBaseEntity")
           .where.not(decidim_user_group_id: nil)
       }
 
-      scope :citizens_origin, lambda {
+      scope :with_participants_origin, lambda {
         where(decidim_author_type: "Decidim::UserBaseEntity")
           .where(decidim_user_group_id: nil)
       }
 
-      validates :author, presence: true
+      scope :with_any_origin, lambda { |*origin_keys|
+        search_values = origin_keys.compact.compact_blank
+
+        conditions = [:official, :participants, :user_group].map do |key|
+          search_values.member?(key.to_s) ? try("with_#{key}_origin") : nil
+        end.compact
+        return self unless conditions.any?
+
+        scoped_query = where(id: conditions.shift)
+        conditions.each do |condition|
+          scoped_query = scoped_query.or(where(id: condition))
+        end
+
+        scoped_query
+      }
+
       validate :verified_user_group, :user_group_membership
       validate :author_belongs_to_organization
 
@@ -35,7 +50,7 @@ module Decidim
       #
       # user - the user to check for authorship
       def authored_by?(other_author)
-        other_author == author || other_author.respond_to?(:user_groups) && other_author.user_groups.include?(user_group)
+        other_author == author || (other_author.respond_to?(:user_groups) && other_author.user_groups.include?(user_group))
       end
 
       # Returns the normalized author, whether it's a user group or a user. Ideally this should be
@@ -70,7 +85,7 @@ module Decidim
       def author_belongs_to_organization
         return if !author || !organization
 
-        errors.add(:author, :invalid) unless author == organization || author.respond_to?(:organization) && author.organization == organization
+        errors.add(:author, :invalid) unless author == organization || (author.respond_to?(:organization) && author.organization == organization)
       end
     end
   end

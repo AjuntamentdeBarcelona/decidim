@@ -1,3 +1,4 @@
+---
 id:
   activemodel:
     attributes:
@@ -245,7 +246,6 @@ id:
       dashboard:
         show:
           view_more_logs: Lihat lebih banyak log
-          welcome: Selamat datang di Panel Admin Decidim.
       exports:
         export_as: "%{name} sebagai %{export_format}"
         notice: Ekspor Anda sedang dalam proses. Anda akan menerima email setelah selesai.
@@ -597,7 +597,6 @@ id:
         scopes: Scopes
         static_pages: Halaman
         user_groups: Grup Pengguna
-        users: Peserta
       user_group:
         csv_verify:
           invalid: Ada kesalahan saat membaca file CSV.
@@ -633,7 +632,6 @@ id:
           role: Peran
         new:
           create: Undang
-          title: Undang pengguna sebagai administrator
       users_statistics:
         users_count:
           admins: Admin
@@ -661,10 +659,10 @@ id:
       models:
         moderation:
           fields:
+            created_at: Tanggal pembuatan
             hidden_at: Tersembunyi di
             report_count: Menghitung
             reported_content_url: URL konten yang dilaporkan
-            reports: Laporan
             visit_url: Kunjungi URL
   errors:
     messages:

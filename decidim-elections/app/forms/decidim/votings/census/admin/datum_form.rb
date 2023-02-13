@@ -25,7 +25,7 @@ module Decidim
                     presence: true
 
           def ballot_style_code
-            @ballot_style_code&.upcase
+            super&.upcase
           end
         end
       end

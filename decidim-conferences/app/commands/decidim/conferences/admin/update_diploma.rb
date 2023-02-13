@@ -4,7 +4,7 @@ module Decidim
   module Conferences
     module Admin
       # This command is executed when the user updates the conference diploma configuration.
-      class UpdateDiploma < Rectify::Command
+      class UpdateDiploma < Decidim::Command
         # Initializes a UpdateDiploma Command.
         #
         # form - The form from which to get the data.
@@ -18,9 +18,9 @@ module Decidim
         #
         # Broadcasts :ok if successful, :invalid otherwise.
         def call
-          @conference.with_lock do
-            return broadcast(:invalid) if form.invalid?
+          return broadcast(:invalid) if form.invalid?
 
+          @conference.with_lock do
             update_conference_diploma
             Decidim.traceability.perform_action!(:update_diploma, @conference, form.current_user) do
               @conference

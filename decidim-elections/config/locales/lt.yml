@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -16,8 +17,16 @@ lt:
         min_selections: Nei vienas iš pasiūlytų variantų
         title: Pavadinimas
       voting:
+        banner_image: Reklamjuostės paveikslėlis
+        census_contact_information: Surašytojų kontaktinė informacija
+        description: Aprašymas
         end_time: Balsavimas baigiasi
+        introductory_image: Įvadinis paveikslėlis
+        promoted: Paremta
+        show_check_census: Rodyti "patikrinti surašymą" puslapį
         start_time: Balsavimas prasideda
+        title: Pavadinimas
+        voting_type: Balsavimo tipas
     errors:
       models:
         answer:
@@ -34,6 +43,10 @@ lt:
               cant_be_changed: negali būti pakeista
             public_key:
               cant_be_changed: negali būti pakeista
+        voting:
+          attributes:
+            voting_type:
+              inclusion: "%{value} nėra tinkamas balsavimo tipas"
   activerecord:
     errors:
       models:
@@ -304,15 +317,6 @@ lt:
             selected: Pasirinkta
             submit: Pateikti
             title: Rezultatai publikuoti
-          tally:
-            continue: Tęsti
-            invalid: Raportuojant trūkstantį patikėtinį iškilo problema
-            mark_as_missing: Pažymėti neesančiu
-            mark_as_missing_description: Visi patikėtiniai turėtų dalyvauti procese, bet jei patikėtinis to padaryti negali, galite jį pažymėti kaip trūkstantį.
-            success: Trūkstančio patikėtinio ataskaita išsiųsta į Skelbimų Lentą
-            tally_completion: Šis procesas bus įvykdytas kai visi patikėtiniai bus aktyvūs arba pažymėti kaip trūkstantys. Reikia bent %{quorum} patikėtinių, kad įvykdyti šį procesą.
-            title: Skaičiavimo procesas
-            undo_mark_as_missing: Patikėtinis netyčia pažymėtas kaip trūkstantis gali dalyvauti prieš pasibaigiant procesui. Jis gali atlikti savo užduotis kaip įprasta.
           tally_ended:
             answer: Atsakymas
             not_selected: Nepasrinkta
@@ -322,6 +326,15 @@ lt:
             submit: Skelbti rezultatus
             success: Balsavimo rezultatų publikavimo užklausa buvo sėkmingai išsiųsta Skelbimų Lentai
             title: Suskaičiuoti rezultatai
+          tally_started:
+            continue: Tęsti
+            invalid: Raportuojant trūkstantį patikėtinį iškilo problema
+            mark_as_missing: Pažymėti neesančiu
+            mark_as_missing_description: Visi patikėtiniai turėtų dalyvauti procese, bet jei patikėtinis to padaryti negali, galite jį pažymėti kaip trūkstantį.
+            success: Trūkstančio patikėtinio ataskaita išsiųsta į Skelbimų Lentą
+            tally_completion: Šis procesas bus įvykdytas kai visi patikėtiniai bus aktyvūs arba pažymėti kaip trūkstantys. Reikia bent %{quorum} patikėtinių, kad įvykdyti šį procesą.
+            title: Perskaičiavimo procesas
+            undo_mark_as_missing: Patikėtinis netyčia pažymėtas kaip trūkstantis gali dalyvauti prieš pasibaigiant procesui. Jis gali atlikti savo užduotis kaip įprasta.
           vote:
             errors:
               time_after: Rinkimai vis dar vyksta. Turite palaukti iki %{end_time}, kad baigti balsavimo periodą.
@@ -394,9 +407,10 @@ lt:
         end_date: Baigiasi
         footer:
           remaining_time:
-            one: "Iki balsavimo pabaigos liko <strong>%{count} valandos %{minutes} minutės </strong>."
-            other: "Iki balsavimo pabaigos liko <strong>%{count} valandos %{minutes} minutės</strong>."
-            zero: "Iki balsavimo pabaigos liko <strong>%{minutes} minutės </strong>."
+            one: "Iki balsavimo liko <strong>%{count} valandos %{minutes} minutės</strong>."
+            few: "Iki balsavimo liko <strong>%{count} valandos %{minutes} minutės</strong>."
+            many: "Iki balsavimo liko <strong>%{count} valandos %{minutes} minutės</strong>."
+            other: "Iki balsavimo liko <strong>%{count} valandos %{minutes} minutės</strong>."
           view: Peržiūrėti
           vote: Balsuoti
         label:
@@ -459,9 +473,9 @@ lt:
         filters:
           active: Aktyvūs
           all: Visi
+          date: Data
           finished: Užbaigta
           search: Ieškoti
-          state: Būsena
           upcoming: Artėjantys
         filters_small_view:
           close_modal: Uždaryti modalinį langą
@@ -479,8 +493,9 @@ lt:
           title: Rinkimų rezultatai
           votes:
             one: "%{count} balsas"
+            few: "%{count} balsai"
+            many: "%{count} balsai"
             other: "%{count} balsai"
-            zero: "%{count} balsų"
         show:
           action_button:
             change_vote: Pakeisti balsą
@@ -570,7 +585,7 @@ lt:
             title: Atkurti %{election} rinkimų raktus
             upload_election_keys: Įkelti rinkimų raktus
             upload_icon: Ikona indikuojanti parsisiuntimo veiksmą
-          tally_steps:
+          tally_started_steps:
             back: Atgal
             description: Šių rinkimų rezultatai skaičiuojami Skelbimų lentoje. Norint užbaigti šį procesą, būtinas jūsų, kaip Patikėtinio, dalyvavimas.
             keys:
@@ -620,14 +635,14 @@ lt:
               generate_legend_3: Įsitikinkite, kad kompiuteryje nėra rinkmenos kopijos.
               generate_legend_4: Padarykite kitą rinkmenos kopiją ir laikykite ją labai saugioje vietoje.
               submit: Pateikti
-              submit_legend: Atlikę visus aukščiau aprašytus veiksmus, užbaikite procesą siųsdami viešojo identifikavimo raktą į Decidim serverį.
+              submit_legend: Įgyvendinus visus anksčiau paaiškintus žingsnius, baikite procesą išsiųsdami viešo atpažinimo raktą į serverį.
               submit_title: Įkelti viešo atpažinimo raktą
               title: Patikėtinių atpažinimo raktai
               upload: Įkelkite atpažinimo raktus
               upload_error:
                 invalid_format: Įkelta rinkmena neturi atpažinimo rakto.
                 invalid_key: Atpažinimo raktai negali būti įkelti.
-                invalid_public_key: Atpažinimo raktai įkeltoje rinkmenoje nesutampa su viešu apažinimo raktu Decidim platformoje.
+                invalid_public_key: Atpažinimo raktai įkeltoje rinkmenoje nesutampa su viešu apažinimo raktu.
               upload_legend: Serveris turi atpažinimo raktus, tačiau naršyklė jų neturi. Turite importuoti atpažinimo raktų rinkimeną į kompiuterį iš atsarginės saugyklos kurią sukūrėte sugeneravę raktus.
             not_supported_browser_description: Regis naudojate patikėtinio rolei netinkamą naršyklę. Įsitikinkite, kad naršyklė atnaujinta arba pabandykite naudoti kitas naršykles.
             not_supported_browser_title: Atnaujinkite naršyklę
@@ -670,10 +685,6 @@ lt:
         failed:
           header: Balsavimas nepavyko
           lead: Jūsų balsas nebuvo įskaičiuotas!
-          modal:
-            close: Uždaryti
-            communication_lost: Deja, bet panašu, kad ryšys su balsavimo serveriu (Skelbimų Lenta) - prarastas. <br>Gali būti, kad taip yra dėl interneto ryšio arba serverio apkrovos. <br>Pabandykite vėliau arba susisiekite su serverių prižiūrėtojais.
-            title: Įvyko klaida
           text: Įvyko klaida. Bandykite dar kartą.
           try_again: Bandykite dar kartą
         header:
@@ -701,7 +712,7 @@ lt:
           create_account: Sukurti paskyrą
           description: Ar norite susikurti naują paskyrą šioje platformoje? Galėsite dalyvauti procesuose ir būti aktyvi(-us) organizacijos narė(-ys).
           no_account: Ne, ačiū.
-          title: Naujas Decidim vartotojas?
+          title: Pirmą kartą platformoje?
         update:
           error: Atnaujinant balso būseną iškilo problema. Prašau pabandykite iš naujo.
         verify:
@@ -712,9 +723,10 @@ lt:
             header: Balsas nerastas!
             info: Balso kodas nebuvo rastas %{link} balsadėžėje. Pabandykite iš naujo.
           form:
-            back: Atgal į Decidim
+            back: Atgal į platformą
             submit: Patikrinti
             vote_identifier: 'Atpažinimo kodas:'
+            vote_identifier_help: Šis identifikatorius Jums buvo duotas po balsavimo.
           header:
             title: Patikrinkite savo balsą
           success:
@@ -1035,6 +1047,7 @@ lt:
             introductory_image: Įvadinis paveikslėlis
             promoted: Paremta
             select_a_voting_type: Pasirinkite balsavimo tipą
+            show_check_census_help: Ar rodyti "Ar galiu balsuoti?" nuorodą viešų balsavimų meniu
             slug: Nuorodos dalis
             slug_help: 'Nuorodos priedėliai nukreipia į šią konkretų balsavimą. Priedėliai sudaromi iš raidžių, skaičių, brukšnių ir turi prasidėti nuo raidės. Pavyzdys: %{url}'
             title: Pavadinimas
@@ -1083,7 +1096,7 @@ lt:
               invalid: Kuriant surašymą kilo problema. Pabandykite dar kartą vėliau.
               invalid_csv_header: Trūksta CSV antraščių, arba jos nėra teisingos - prašome atidžiai perskaityti instrukcijas
             creating_data:
-              info_message: "<strong>Prašome palaukti</strong>, aprodota %{processed_count} iš %{raw_count} eilučių iš %{file} failo."
+              info_message: "<strong>Prašome palaukti</strong>, aprodota %{processed_count} iš %{raw_count} eilučių iš %{file} failo (tai gali užtrukti kelias minutes)."
             delete:
               button: Pašalinti visus surašymo duomenis
               confirm: Pašalinus visus surašymo duomenis, veiksmo nebus galima anuliuoti. Ar tikrai norite tęsti?
@@ -1098,9 +1111,11 @@ lt:
               launch_error: Pradedant prieigos kodų eksportą kilo problema
               launch_success: Prieigos kodų eksportas prasidėjo. Neužilgo gausite el. laišką į %{email}
             exporting_access_codes:
-              info_message: "<strong>Prašome palaukti</strong>, eskportas ruošiamas ir neužilgo jį gausite į %{email}"
+              info_message: "<strong>Prašome palaukti</strong>, eskportas ruošiamas ir neužilgo gausite kodus į %{email}."
             freeze:
               callout: Surašymas užšaldytas ir negali būti pakeistas.
+              help_html: |
+                Surašymo duomenys buvo įkelti - kodai sugeneruoti ir sėkmingai eksportuoti.<br><strong>Esate pasiruošę pradėti rinkimus</strong><br>Naudokite eksportuota CSV su individualiais kodais, kad juos išdalinti surašytiems asmenims arba aktyvuokite "Ar galiu balsuoti" skiltį, kad bet kas galėtų surasti savo kodą.
             generate_access_codes:
               button: Generuoti balsavimo prieigos kodus
               callout: Dabar galite sugeneruoti prieigos kodus. Atsižvelkite į tai, kad sugeneravus prieigos kodus nebegalėsite pakeisti surašymo.
@@ -1109,8 +1124,9 @@ lt:
               info_message_warn: Prašome patikrinti ar netrūksta duomenų, nes %{data_count} įrašai buvo sukurti ir įkeltas failas file %{file} turėjo %{raw_count} eilučių.
               launch_error: Pradedant prieigos kodų generavimą kilo problema
               launch_success: Kodų generavimas pradėtas.
+              start_over: Prašome pašalinti turimą surašymą ir pradėkite iš naujo su deramu CSV failu ir teisingomis eilutėmis.
             generating_access_codes:
-              info_message: "<strong>Prašome palaukti</strong>, balsavimo prieigos kodai yra generuojami..."
+              info_message: "<strong>Prašome palaukti</strong>, balsavimo prieigos kodai yra generuojami (tai gali užtrukti kelias minutes)..."
             new:
               file_help:
                 explanation: 'Failo gairės:'
@@ -1229,17 +1245,18 @@ lt:
         in_person_votes:
           complete_voting:
             available_answers: 'Galimi atsakymai:'
-            census_verified: Dalyvis dar nebalsavo.
+            census_verified: Šis dalyvis iki šiol fiziškai nebalsavo.
+            census_verified_with_online_vote: Šis dalyvis jau balsavo internetu. Jeigu dalyvis nuspręs balsuoti fiziškai, prieš tai pateiktas balsas bus anuliuotas ir šis taps galutiniu balsu.
             complete_voting: Užbaigti balsavimą
             identify_another: Identifikuoti kitą dalyvį
-            questions_title: 'Ji turi teisę balsuoti šiais klausimais:'
-            questions_title_voted: 'Dalyvis jau balsavo internetu ir turi teisę balsuoti šiais klausimais:'
+            questions_title: 'Jie turi teisę balsuoti šiais klausimais:'
+            questions_title_voted: 'Šis dalyvis jau balsavo internetu ir turi galimybė balsuoti šiais klausimais:'
             voted: Dalyvis prabalsavo
           create:
             error: Balsavimas nebuvo užregistruotas. Prašome bandyti dar kartą.
           in_person_form:
             census_not_present: Šis dalyvis nėra įskaičiuotas į surašymą.
-            census_not_present_description: Ji turi kreiptis į surašymo skundų biurą arba susisiekti su pagalbos centru.
+            census_not_present_description: Jie privalo kreiptis į surašymo skundų biurą arba susisiekti su klientų pagalba.
             date_of_birth: Gimimo data
             day: Diena
             day_placeholder: DD
@@ -1361,9 +1378,9 @@ lt:
         filters:
           active: Aktyvūs
           all: Visi
+          date: Data
           finished: Užbaigta
           search: Ieškoti
-          state: Būsena
           upcoming: Artėjantys
         filters_small_view:
           close_modal: Uždaryti modalinį langą

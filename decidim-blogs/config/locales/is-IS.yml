@@ -1,4 +1,5 @@
-is-IS:
+---
+is:
   decidim:
     blogs:
       actions:
@@ -8,8 +9,6 @@ is-IS:
         title: Aðgerðir
       admin:
         models:
-          components:
-            body: Líkami
           post:
             name: Post
         posts:
@@ -30,7 +29,6 @@ is-IS:
             author: Höfundur
             body: Líkami
             created_at: Búið til á
-            title: titill
       posts:
         sidebar_blog:
           comments: athugasemdir

@@ -1,3 +1,4 @@
+---
 sv:
   activemodel:
     attributes:
@@ -42,10 +43,6 @@ sv:
           valuator_role_id: Värderarens namn
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Ogiltig dokumenttyp. Godkända format är: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -439,6 +436,7 @@ sv:
             accepted: Accepterat
             answer_proposal: Svara
             evaluating: Utvärderas
+            not_answered: Ej besvarade
             rejected: Avvisat
             title: Svar på förslaget %{title}
         proposal_notes:
@@ -576,9 +574,9 @@ sv:
           all: Alla
         filter_origin_values:
           all: Alla
-          citizens: Medborgare
           meetings: Möten
           official: Officiella
+          participants: Deltagare
           user_groups: Grupper
         filter_scope_values:
           all: Alla
@@ -640,6 +638,7 @@ sv:
           filter_by: Filtrera efter
           unfold: Veckla ut
         new:
+          add_file: Lägg till fil
           send: Fortsätt
         new_collaborative_draft_button:
           new_collaborative_draft: Nytt gemensamt utkast
@@ -750,12 +749,10 @@ sv:
           description: Koordinaterna uppdateras när du klickar på knappen 'Förhandsgranska'. Adressen ändras dock inte.
           instructions: Nu kan du flytta markören på kartan.
         edit:
-          add_documents: Dokument
-          add_images: Bild
+          add_documents: Lägga till dokument
           attachment_legend: "(Frivilligt) Lägg till en bilaga"
           back: Tillbaka
-          delete_document: Radera dokument
-          delete_image: Radera bild
+          edit_documents: Ändra dokument
           gallery_legend: "(Frivilligt) Lägg till en bild"
           select_a_category: Välj en kategori
           send: Skicka

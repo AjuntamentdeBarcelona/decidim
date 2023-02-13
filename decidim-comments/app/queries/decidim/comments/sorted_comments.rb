@@ -3,7 +3,7 @@
 module Decidim
   module Comments
     # A class used to find comments for a commentable resource
-    class SortedComments < Rectify::Query
+    class SortedComments < Decidim::Query
       attr_reader :commentable
 
       # Syntactic sugar to initialize the class and return the queried objects.
@@ -34,8 +34,6 @@ module Decidim
                 .includes(:author, :user_group, :up_votes, :down_votes)
 
         case @options[:order_by]
-        when "older"
-          order_by_older(scope)
         when "recent"
           order_by_recent(scope)
         when "best_rated"

@@ -1,3 +1,4 @@
+---
 uk:
   activemodel:
     attributes:
@@ -223,7 +224,6 @@ uk:
       dashboard:
         show:
           view_more_logs: Переглянути інші журнали
-          welcome: Ласкаво просимо до адмін-панелі Десідім!
       exports:
         export_as: "%{name} як %{export_format}"
         notice: Зараз відбувається збереження у вигляді файлу. Ви отримаєте електронного листа після його завершення.
@@ -457,6 +457,9 @@ uk:
         edit:
           active_content_blocks: Блоки діючого вмісту
           inactive_content_blocks: Блоки недіючого вмісту
+      organization_homepage_content_blocks:
+        edit:
+          update: Оновити
       participatory_space_private_users:
         create:
           error: При спробі додати приватного учасника до цього простору співучасті сталася помилка.
@@ -557,7 +560,6 @@ uk:
           role: Роль
         new:
           create: Запросити
-          title: Запросити учасника в якості адміністратора
       users_statistics:
         users_count:
           admins: Адміністратори
@@ -579,10 +581,10 @@ uk:
       models:
         moderation:
           fields:
+            created_at: Дата створення
             hidden_at: 'Приховано:'
             report_count: Кількість
             reported_content_url: Веб-адреса оскарженого вмісту
-            reports: Скарги
             visit_url: Відвідайте веб-адресу
   errors:
     messages:

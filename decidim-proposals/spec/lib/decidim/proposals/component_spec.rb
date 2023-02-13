@@ -12,7 +12,7 @@ describe "Proposals component" do # rubocop:disable RSpec/DescribeClass
       it "destroys the component" do
         expect do
           Decidim::Admin::DestroyComponent.call(component, current_user)
-        end.to change { Decidim::Component.count }.by(-1)
+        end.to change(Decidim::Component, :count).by(-1)
 
         expect(component).to be_destroyed
       end
@@ -94,14 +94,14 @@ describe "Proposals component" do # rubocop:disable RSpec/DescribeClass
       let(:stats_name) { :endorsements_count }
 
       before do
-        # rubocop:disable FactoryBot/CreateList
+        # rubocop:disable RSpec/FactoryBot/CreateList
         2.times do
           create(:endorsement, resource: proposal, author: build(:user, organization: organization))
         end
         3.times do
           create(:endorsement, resource: hidden_proposal, author: build(:user, organization: organization))
         end
-        # rubocop:enable FactoryBot/CreateList
+        # rubocop:enable RSpec/FactoryBot/CreateList
       end
 
       it "counts the endorsements from visible proposals" do

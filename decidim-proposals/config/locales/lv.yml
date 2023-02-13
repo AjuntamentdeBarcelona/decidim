@@ -1,3 +1,4 @@
+---
 lv:
   activemodel:
     attributes:
@@ -36,10 +37,6 @@ lv:
           valuator_role_id: Vērtētāja vārds
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Nederīgs dokumenta tips. Pieņemtie formāti ir: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -484,7 +481,6 @@ lv:
           all: Visi
         filter_origin_values:
           all: Visi
-          citizens: Pilsoņi
           meetings: Sanāksmes
           official: Oficiālā
           user_groups: Grupas
@@ -652,7 +648,6 @@ lv:
             one: "%{count} priekšlikums"
             other: "%{count} priekšlikumi"
         edit:
-          add_documents: Dokumenti
           attachment_legend: "(Pēc izvēles) Pievienojiet pielikumu"
           back: Atpakaļ
           select_a_category: Lūdzu, izvēlieties kategoriju

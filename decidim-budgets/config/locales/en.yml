@@ -48,6 +48,7 @@ en:
         import: Import proposals to projects
         new: New %{name}
         preview: Preview
+        send_voting_reminders: Send voting reminders
         title: Actions
       admin:
         budgets:
@@ -89,16 +90,44 @@ en:
             title: Edit project
             update: Update
           index:
+            actions: Actions
+            cancel: Cancel
+            change_category: Change category
+            change_scope: Change scope
+            change_selected: Change selected state
+            deselect_implementation: Unselect from implementation
             finished_orders: Finished votes
             pending_orders: Pending votes
+            select_for_implementation: Select for implementation
             selected: Selected
             title: Projects
+            update: Update
+            update_scope_button: Update scope
           new:
             create: Create
             title: New project
           update:
             invalid: There was a problem updating this project
             success: Project successfully updated
+          update_category:
+            invalid: 'These projects already had the %{subject_name} category: %{projects}.'
+            select_a_category: Please select a category
+            select_a_project: Please select a project
+            success: 'Projects successfully updated to the %{subject_name} category: %{projects}.'
+          update_scope:
+            invalid: 'These projects already had the %{subject_name} scope: %{projects}.'
+            select_a_project: Please select a project
+            select_a_scope: Please select a scope
+            success: 'Projects successfully updated to the %{subject_name} scope: %{projects}.'
+          update_selected:
+            invalid:
+              selected: 'These projects were already selected for implementation: %{projects}.'
+              unselected: 'These projects were already unselected from implementation: %{projects}.'
+            select_a_project: Please select a project
+            select_a_selection: Please select an implementation state
+            success:
+              selected: 'These projects were successfully selected for implementation: %{projects}.'
+              unselected: 'These projects were successfully unselected from implementation: %{projects}.'
         proposals_imports:
           create:
             invalid: There was a problem importing the proposals into projects
@@ -111,6 +140,12 @@ en:
             origin_component_id: Origin component
             select_component: Please select a component
             title: Import proposals
+        reminders:
+          orders:
+            description: Users will receive an email with links to the budgets where they have pending order.
+            title:
+              one: You are about to send an email reminder to %{count} user
+              other: You are about to send an email reminder to %{count} users
       admin_log:
         budget:
           create: "%{user_name} created the %{resource_name} budget in the %{space_name} space"
@@ -146,6 +181,8 @@ en:
         show: See projects
         vote: Vote
         voted_on: You've voted on %{links}
+      last_activity:
+        new_vote_at_html: "<span>New budgeting vote at %{link}</span>"
       limit_announcement:
         cant_vote: You can't vote on this budget. <a href="%{landing_path}">Try on another budget</a>.
         limit_reached: You have active votes in %{links}. To vote on this budget you must <a href="%{landing_path}">delete your vote and start over</a>.
@@ -159,6 +196,7 @@ en:
           fields:
             category: Category
             id: ID
+            scope: Scope
             title: Title
       order_summary_mailer:
         order_summary:
@@ -234,6 +272,8 @@ en:
           filter: Filter
           filter_by: Filter by
           unfold: Unfold
+        index:
+          view_project: View project
         order_progress:
           vote: Vote
         order_selected_projects:
@@ -257,7 +297,7 @@ en:
           votes:
             one: vote
             other: votes
-          you_voted: You voted this
+          you_voted: You voted for this
         project_budget_button:
           add: Add to your vote
           add_descriptive: Add project %{resource_name} to your vote
@@ -267,6 +307,15 @@ en:
         show:
           budget: Budget
           view_all_projects: View all projects
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Areas where you have an unfinished vote:'
+          email_intro: You have started the participatory budgeting vote, but have not completed it.
+          email_link: Go to continue voting
+          email_outro: Please remember to complete the vote. To vote, you must first select the proposal or proposals you want to vote on and then confirm your vote with the "Vote" button.
+          email_subject:
+            one: You have an unfinished vote in the participatory budgeting vote
+            other: You have unfinished votes in the participatory budgeting vote
     components:
       budgets:
         actions:
@@ -282,6 +331,7 @@ en:
               errors:
                 budget_voting_rule_only_one: Only one voting rule must be enabled
                 budget_voting_rule_required: One voting rule is required
+            geocoding_enabled: Geocoding enabled
             landing_page_content: Budgets landing page
             landing_page_instructions: Budgets landing page instructions
             more_information_modal: More information modal

@@ -1,5 +1,12 @@
+---
 ja:
   activemodel:
+    attributes:
+      post:
+        body: 本文
+        decidim_author_id: 作成者
+        published_at: 公開時刻
+        title: タイトル
     models:
       decidim/blogs/create_post_event: 新しいブログ投稿
   activerecord:
@@ -9,16 +16,14 @@ ja:
   decidim:
     blogs:
       actions:
+        author_id: 次のように投稿を作成
         confirm_destroy: この投稿を削除してもよろしいですか？
         destroy: 削除
         edit: 編集
         new: 新規投稿
         title: アクション
-        user_group_id: 次のように投稿を作成
       admin:
         models:
-          components:
-            body: 本文
           post:
             name: 投稿
         posts:
@@ -38,6 +43,11 @@ ja:
           update:
             invalid: 投稿の保存中に問題が発生しました。
             success: 投稿を保存しました
+      admin_log:
+        post:
+          create: "%{user_name} が %{space_name} でブログ投稿 %{resource_name} を作成しました"
+          delete: "%{user_name} がブログ投稿 %{resource_name} を %{space_name} から削除しました"
+          update: "%{user_name} が %{space_name} のブログ投稿 %{resource_name} を更新しました"
       last_activity:
         new_post_at_html: "<span> %{link}に新しい投稿</span>"
       models:
@@ -46,6 +56,7 @@ ja:
             author: 作成者
             body: 本文
             created_at: 作成日時
+            official_blog_post: 公式ポスト
             title: タイトル
       posts:
         show:
@@ -59,8 +70,10 @@ ja:
     components:
       blogs:
         actions:
+          comment: コメント
           create: 作成
           destroy: 削除
+          endorse: オススメ
           update: 更新
         name: ブログ
         settings:

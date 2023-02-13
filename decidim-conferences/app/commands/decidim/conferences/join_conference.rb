@@ -3,7 +3,7 @@
 module Decidim
   module Conferences
     # This command is executed when the user joins a conference.
-    class JoinConference < Rectify::Command
+    class JoinConference < Decidim::Command
       # Initializes a JoinConference Command.
       #
       # conference - The current instance of the conference to be joined.
@@ -24,8 +24,6 @@ module Decidim
         return broadcast(:ok) if already_joined_conference?
 
         conference.with_lock do
-          return broadcast(:invalid) unless can_join_conference?
-
           create_registration
           create_meetings_registrations
           accept_invitation

@@ -3,7 +3,7 @@
 module Decidim
   module Meetings
     # This command is executed when the user joins a meeting.
-    class JoinMeeting < Rectify::Command
+    class JoinMeeting < Decidim::Command
       # Initializes a JoinMeeting Command.
       #
       # meeting - The current instance of the meeting to be joined.
@@ -21,12 +21,11 @@ module Decidim
       #
       # Broadcasts :ok if successful, :invalid otherwise.
       def call
+        return broadcast(:invalid) unless can_join_meeting?
+        return broadcast(:invalid_form) unless registration_form.valid?
+        return broadcast(:invalid) if answer_questionnaire == :invalid
+
         meeting.with_lock do
-          return broadcast(:invalid) unless can_join_meeting?
-          return broadcast(:invalid_form) unless registration_form.valid?
-
-          return broadcast(:invalid) if answer_questionnaire == :invalid
-
           create_registration
           accept_invitation
           send_email_confirmation
@@ -132,7 +131,7 @@ module Decidim
       end
 
       def questionnaire?
-        registration_form.model_name == "Questionnaire"
+        registration_form.model_name == "questionnaire"
       end
     end
   end

@@ -83,7 +83,7 @@ describe "Initiatives", type: :system do
         let!(:closed_initiative) do
           create(:initiative, :discarded, organization: organization)
         end
-        let(:base_initiative) {}
+        let(:base_initiative) { nil }
 
         before do
           visit decidim_initiatives.initiatives_path
@@ -138,6 +138,19 @@ describe "Initiatives", type: :system do
         within "#initiative_#{initiative.id}" do
           expect(page).to have_selector(".card__image")
         end
+      end
+    end
+  end
+
+  context "when there are more than 20 initiatives" do
+    before do
+      create_list(:initiative, 21, organization: organization)
+      visit decidim_initiatives.initiatives_path
+    end
+
+    it "shows the correct initiatives count" do
+      within "#initiatives-count" do
+        expect(page).to have_content("21")
       end
     end
   end

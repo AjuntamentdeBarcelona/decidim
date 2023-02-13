@@ -1,3 +1,4 @@
+---
 ca:
   activemodel:
     attributes:
@@ -251,9 +252,9 @@ ca:
       filters:
         active: Actiu
         all: Totes
+        date: Data
         finished: Acabat
         search: Cerca
-        state: Estat
         upcoming: Proper
       filters_small_view:
         close_modal: Tanca la finestra

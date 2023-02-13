@@ -2,7 +2,7 @@
 
 module Decidim
   # This command updates the user's account.
-  class UpdateAccount < Rectify::Command
+  class UpdateAccount < Decidim::Command
     # Updates a user's account.
     #
     # user - The user to be updated.
@@ -24,7 +24,9 @@ module Decidim
         notify_followers
         broadcast(:ok, @user.unconfirmed_email.present?)
       else
-        @form.errors.add :avatar, @user.errors[:avatar] if @user.errors.has_key? :avatar
+        [:avatar, :password, :password_confirmation].each do |key|
+          @form.errors.add key, @user.errors[key] if @user.errors.has_key? key
+        end
         broadcast(:invalid)
       end
     end
@@ -42,7 +44,7 @@ module Decidim
 
     def update_avatar
       if @form.avatar.present?
-        @user.avatar = @form.avatar
+        @user.avatar.attach(@form.avatar)
       elsif @form.remove_avatar
         @user.avatar = nil
       end

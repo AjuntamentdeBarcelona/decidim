@@ -315,10 +315,8 @@ describe "ProfileConversations", type: :system do
           visit_profile_inbox
           expect(page).to have_content("New conversation")
           click_button "New conversation"
-          expect(page).to have_selector(".js-multiple-mentions")
-          find(".js-multiple-mentions").fill_in with: "@"
-          page.execute_script('$(".js-multiple-mentions")[0].dispatchEvent(new Event("keydown"));$(".js-multiple-mentions")[0].dispatchEvent(new Event("keyup"));')
-          expect(page).to have_selector(".tribute-container .disabled-tribute-element")
+          find("#add_conversation_users").fill_in with: "@#{interlocutor2.nickname}"
+          expect(page).to have_selector("#autoComplete_list_1 li.disabled", wait: 2)
         end
       end
 
@@ -334,7 +332,7 @@ describe "ProfileConversations", type: :system do
 
         it "enables submit button after selecting interlocutor" do
           find("#add_conversation_users").fill_in with: "@#{interlocutor.nickname}"
-          find(".tribute-item.User").click
+          find("#autoComplete_result_0").click
           expect(page).to have_button("Next", disabled: false)
         end
       end

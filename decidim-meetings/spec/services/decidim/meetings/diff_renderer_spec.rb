@@ -7,7 +7,7 @@ describe Decidim::Meetings::DiffRenderer, versioning: true do
   let!(:old_values) { meeting.attributes }
   let(:version) { meeting.versions.last }
 
-  let!(:start_time) { Time.zone.now - 1.day }
+  let!(:start_time) { 1.day.ago }
   let!(:end_time) { Time.zone.now }
   let!(:user_group) { create :user_group, organization: meeting.organization }
   let!(:scope) { create(:scope, organization: meeting.organization) }
@@ -85,7 +85,7 @@ describe Decidim::Meetings::DiffRenderer, versioning: true do
         end_time: :date,
         decidim_scope_id: :scope
       }
-      types = subject.map { |attribute, data| [attribute.to_sym, data[:type]] }.to_h
+      types = subject.to_h { |attribute, data| [attribute.to_sym, data[:type]] }
       expect(types).to eq expected_types
     end
 
@@ -98,11 +98,11 @@ describe Decidim::Meetings::DiffRenderer, versioning: true do
         location_en: "Location (English)",
         location_hints_ca: "Location hints (Català)",
         location_hints_en: "Location hints (English)",
-        start_time: "Start Time",
-        end_time: "End Time",
+        start_time: "Start time",
+        end_time: "End time",
         decidim_scope_id: "Scope"
       }
-      labels = subject.map { |attribute, data| [attribute.to_sym, data[:label]] }.to_h
+      labels = subject.to_h { |attribute, data| [attribute.to_sym, data[:label]] }
       expect(labels).to eq expected_labels
     end
 
@@ -128,11 +128,11 @@ describe Decidim::Meetings::DiffRenderer, versioning: true do
           location_en: "Location (English)",
           location_hints_ca: "Location hints (ca)",
           location_hints_en: "Location hints (English)",
-          start_time: "Start Time",
-          end_time: "End Time",
+          start_time: "Start time",
+          end_time: "End time",
           decidim_scope_id: "Scope"
         }
-        labels = subject.map { |attribute, data| [attribute.to_sym, data[:label]] }.to_h
+        labels = subject.to_h { |attribute, data| [attribute.to_sym, data[:label]] }
         expect(labels).to eq expected_labels
       end
     end

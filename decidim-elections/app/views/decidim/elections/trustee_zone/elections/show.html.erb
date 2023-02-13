@@ -20,6 +20,7 @@
 
   <%= render "decidim/elections/shared/broken_promises_modal" %>
 
-  <%= javascript_pack_tag "decidim_elections_trustee_#{current_step}" %>
-
+  <% content_for :js_content do %>
+    <%= javascript_pack_tag "decidim_elections_trustee_#{current_step}" %>
+  <% end %>
 <% end %>

@@ -13,12 +13,12 @@ shared_examples "admin manages proposal answer imports" do
 
     it "returns error without a file" do
       click_button "Import"
-      expect(page).to have_content("There was a problem during the import")
+      expect(page).to have_content("There's an error in this field")
     end
 
     it "adds proposal answers after succesfully import" do
       File.write(json_file, JSON.pretty_generate(answers))
-      attach_file(:import_file, json_file)
+      dynamically_attach_file(:import_file, json_file)
 
       expect(Decidim::Proposals::Admin::NotifyProposalAnswer).to receive(:call).exactly(amount).times
 
@@ -35,7 +35,7 @@ shared_examples "admin manages proposal answer imports" do
 
     it "doesnt accept file without required headers" do
       File.write(json_file, JSON.pretty_generate(missing_answers))
-      attach_file(:import_file, json_file)
+      dynamically_attach_file(:import_file, json_file)
       click_button "Import"
       expect(page).to have_content("Missing column answer/en. Please check that the file contains required columns.")
     end
@@ -57,7 +57,7 @@ shared_examples "admin manages proposal answer imports" do
 
       it "adds proposal answers after succesfully import" do
         File.write(json_file, JSON.pretty_generate(answers))
-        attach_file(:import_file, json_file)
+        dynamically_attach_file(:import_file, json_file)
 
         expect(Decidim::Proposals::Admin::NotifyProposalAnswer).to receive(:call).exactly(amount).times
 

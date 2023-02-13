@@ -1,3 +1,4 @@
+---
 lv:
   activemodel:
     attributes:
@@ -258,7 +259,6 @@ lv:
         all: Visi
         finished: Pabeigtas
         search: Meklēt
-        state: Statuss
         upcoming: Gaidāmās
       filters_small_view:
         close_modal: Aizvērt logu

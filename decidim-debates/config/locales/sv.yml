@@ -1,3 +1,4 @@
+---
 sv:
   activemodel:
     attributes:
@@ -10,6 +11,7 @@ sv:
         end_time: Slutar vid
         information_updates: Informationsuppdateringar
         instructions: Deltagaranvisningar
+        scope_id: Omfång
         start_time: Börjar vid
         title: Titel
         user_group_id: Skapa debatt som
@@ -115,11 +117,11 @@ sv:
           all: Alla
           category: Kategori
           category_prompt: Välj en kategori
-          citizens: Medborgare
           commented: Kommenterade
           my_debates: Mina debatter
           official: Officiell
           origin: Ursprung
+          participants: Deltagare
           scope: Omfång
           search: Sök
           state: Status

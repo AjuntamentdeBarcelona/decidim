@@ -2,7 +2,7 @@
 
 module Decidim
   # A command with all the business logic to unendorse a resource, both as a user or as a user_group.
-  class UnendorseResource < Rectify::Command
+  class UnendorseResource < Decidim::Command
     # Public: Initializes the command.
     #
     # resource     - A Decidim::Endorsable object.
@@ -31,7 +31,7 @@ module Decidim
       query = if @current_group.present?
                 @resource.endorsements.where(decidim_user_group_id: @current_group&.id)
               else
-                @resource.endorsements.where(author: @current_user)
+                @resource.endorsements.where(author: @current_user, decidim_user_group_id: nil)
               end
       query.destroy_all
     end

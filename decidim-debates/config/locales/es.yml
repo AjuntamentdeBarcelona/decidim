@@ -1,3 +1,4 @@
+---
 es:
   activemodel:
     attributes:
@@ -118,11 +119,11 @@ es:
           all: Todos
           category: Categoría
           category_prompt: Selecciona una categoría
-          citizens: Ciudadanía
           commented: Comentado
           my_debates: Mis debates
           official: Oficial
           origin: Origen
+          participants: Participantes
           scope: Ámbito
           search: Buscar
           state: Estado

@@ -1,3 +1,4 @@
+---
 tr:
   activemodel:
     attributes:
@@ -41,10 +42,6 @@ tr:
           valuator_role_id: Bilirkişi adı
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Geçersiz doküman tipi. Kabul edilen formatlar: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -518,7 +515,6 @@ tr:
           all: Tümü
         filter_origin_values:
           all: Tümü
-          citizens: Vatandaşlar
           meetings: Toplantılar
           official: Resmi
           user_groups: Gruplar
@@ -688,12 +684,8 @@ tr:
             one: "%{count} teklif"
             other: "%{count} teklif"
         edit:
-          add_documents: Dokümanlar
-          add_images: Dosya
           attachment_legend: "(İsteğe bağlı) Bir ek ekleyin"
           back: Geri
-          delete_document: Doküman Sil
-          delete_image: Resmi sil
           gallery_legend: "(İsteğe bağlı) Teklif kartına bir resim ekleyin"
           select_a_category: Lütfen bir kategori seçin
           send: Gönder

@@ -1,3 +1,4 @@
+---
 ar:
   activemodel:
     attributes:
@@ -10,34 +11,41 @@ ar:
         organization: المنظمة
         plural: صيغة الجمع
       attachment:
-        attachment_collection_id: المجلد
+        attachment_collection_id: الحافظة
         description: الوصف
         file: ملف
         title: المُرفق أو اسم الصورة
+        weight: موضع الطلب
       attachment_collection:
         description: الوصف
         name: اسم
+        weight: موضع الطلب
       category:
         description: الوصف
         name: اسم
-        parent_id: الأبوين
+        parent_id: الأصل
+        weight: موضع الطلب
       component:
         name: اسم
-        published_at: نشرت في
+        published_at: نشر في
         weight: موضع الطلب
-      id: هوية شخصية
+      external_domain:
+        value: القيمة
+      help_section:
+        content: المحتوى
+      id: المعرف ID
       import:
-        user_group_id: إنشاء واردات ك
+        user_group_id: إنشاء الاستيرادات ك
       newsletter:
-        body: المحتوى
+        body: النص
         subject: الموضوع
       organization:
         admin_terms_of_use_body: نص شروط الاستخدام للمدير
         alert_color: تنبيه
         available_authorizations: التراخيص المتاحة
         badges_enabled: تمكين الشارات
-        comments_max_length: الحد الأقصى لطول التعليقات (اترك 0 لاستعمال للقيمة الافتراضية)
-        cta_button_path: دعوة إلى العمل مسار زر
+        comments_max_length: الحد الأقصى لطول التعليقات (اترك 0 لاستعمال القيمة الافتراضية)
+        cta_button_path: مسار زر دعوة إلى العمل call to action
         cta_button_text: نص زر Call To Action
         customize_welcome_notification: تخصيص إشعار الترحيب
         default_locale: اللغة الافتراضية
@@ -153,7 +161,7 @@ ar:
         reject: رفض
         share: مشاركة
         user:
-          new: مستخدم جديد
+          new: مدير جديد
         verify: التحقق
       admin_terms_of_use:
         accept:
@@ -309,7 +317,7 @@ ar:
       dashboard:
         show:
           view_more_logs: عرض المزيد من السجلات
-          welcome: مرحبًا بكم في لوحة إدارة Decidim.
+          welcome: أهلا بك على اللوح الإداري.
       domain_whitelist:
         form:
           domain_too_short: نطاق الدومين قصير جداً
@@ -743,8 +751,17 @@ ar:
         create:
           invalid: حدثت مشكلة في قراءة ملف CSV.
         new:
+          destroy:
+            button: حذف جميع المشاركين الخاصين
+            confirm: هل أنت متأكد من أنك تريد حذف جميع المشاركين الخاصين؟ لا يمكن التراجع عن هذا الإجراء، ولن تتمكن من استرجاعهم.
+            empty: ليس لديك أي مشاركين خاصين.
+            explanation: لديك %{count} مشاركين خاصين.
+            title: حذف جميع المشاركين الخاصين
           title: حمّل ملف CSV الخاص بك
           upload: حمّل
+      reminders:
+        new:
+          submit: إرسال
       resource_permissions:
         edit:
           submit: خضع
@@ -789,6 +806,7 @@ ar:
       shared:
         gallery:
           delete_image: احذف الصورة
+          edit_images: تعديل الصورة
       static_page_topics:
         create:
           error: كانت هناك مشكلة في إنشاء موضوع جديد.
@@ -846,7 +864,7 @@ ar:
         static_pages: صفحات
         statistics: النشاط
         user_groups: المجموعات
-        users: المشاركون
+        users: المدراء
       user_group:
         csv_verify:
           invalid: حدثت مشكلة في قراءة ملف CSV.
@@ -882,7 +900,7 @@ ar:
           role: وظيفة
         new:
           create: دعا
-          title: دعوة مشارك كمسؤول
+          title: دعوة مدير جديد
       users_statistics:
         users_count:
           admins: المدراء
@@ -928,7 +946,7 @@ ar:
             report_count: عد
             reportable_type: النوع
             reported_content_url: تم الإبلاغ عن عنوان URL للمحتوى
-            reports: تقارير
+            reports: التقارير
             visit_url: زيارة العنوان الشبكي
         report:
           fields:
@@ -941,8 +959,6 @@ ar:
   layouts:
     decidim:
       admin:
-        global_moderations:
-          title: مُشرف عام
         newsletters:
           title: النشرات الإخبارية
         settings:

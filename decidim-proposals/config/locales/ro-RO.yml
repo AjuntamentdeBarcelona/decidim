@@ -1,3 +1,4 @@
+---
 ro:
   activemodel:
     attributes:
@@ -42,10 +43,6 @@ ro:
           valuator_role_id: Numele evaluatorului
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Tip de document invalid. Formatele acceptate sunt: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -583,9 +580,9 @@ ro:
           all: Toate
         filter_origin_values:
           all: Toate
-          citizens: Cetățeni
           meetings: Întâlniri
           official: Oficial
+          participants: Participanți
           user_groups: Grupuri
         filter_scope_values:
           all: Toate
@@ -760,12 +757,8 @@ ro:
           description: Coordonatele vor fi actualizate când apeși pe butonul 'previzualizează'. Cu toate acestea, adresa nu se schimbă.
           instructions: Poți muta punctul de pe hartă.
         edit:
-          add_documents: Documente
-          add_images: Fişier
           attachment_legend: "(Opțional) Adaugă un atașament"
           back: Înapoi
-          delete_document: Șterge documentul
-          delete_image: Șterge imaginea
           gallery_legend: "(Opțional) Adaugă o imagine la cardul de propunere"
           select_a_category: Te rugăm selectează o categorie
           send: Trimite

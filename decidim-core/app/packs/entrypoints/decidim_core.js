@@ -14,7 +14,6 @@ import "src/decidim/vendor/foundation-datepicker"
 import "src/decidim/foundation_datepicker_locales"
 import "src/decidim/vendor/modernizr"
 import "src/decidim/vendor/social-share-button"
-import "social-share-button"
 
 import "src/decidim/input_tags"
 import "src/decidim/input_hashtags"
@@ -57,7 +56,9 @@ import "src/decidim/start_conversation_dialog"
 import "src/decidim/notifications"
 import "src/decidim/identity_selector_dialog"
 import "src/decidim/gallery"
+import "src/decidim/direct_uploads/upload_field"
 import "src/decidim/back_to_list"
+import "src/decidim/data_consent"
 
 // CSS
 import "entrypoints/decidim_core.scss"
@@ -70,4 +71,3 @@ require.context("../images", true)
 
 // This needs to be loaded after confirm dialog to bind properly
 Rails.start()
-

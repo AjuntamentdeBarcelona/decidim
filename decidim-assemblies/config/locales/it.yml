@@ -1,3 +1,4 @@
+---
 it:
   activemodel:
     attributes:
@@ -68,12 +69,6 @@ it:
         email: E-mail
         name: Nome
         role: Ruolo
-    errors:
-      models:
-        assembly:
-          attributes:
-            document:
-              invalid_document_type: 'Tipo di documento non valido. I formati accettati sono: %{valid_mime_types}'
   activerecord:
     models:
       decidim/assembly:
@@ -270,7 +265,6 @@ it:
             duration_help: Se la durata di questa assemblea è limitata, selezionare la data di fine. Altrimenti, apparirà come indefinita.
             filters: Filtri
             images: Immagini
-            included_at_help: Seleziona la data in cui questa assemblea è stata aggiunto a Decidim. Non deve necessariamente essere uguale alla data di creazione.
             metadata: Metadati
             other: Altro
             select_a_created_by: Seleziona un creatore

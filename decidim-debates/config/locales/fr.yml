@@ -1,3 +1,4 @@
+---
 fr:
   activemodel:
     attributes:
@@ -10,7 +11,7 @@ fr:
         end_time: Prend fin à
         information_updates: Informations mises à jour
         instructions: Instructions pour participer
-        scope_id: Périmètre d'application
+        scope_id: Secteur
         start_time: Commence à
         title: Titre
         user_group_id: Créer un débat en tant que
@@ -118,11 +119,11 @@ fr:
           all: Tout
           category: Catégorie
           category_prompt: Choisir une catégorie
-          citizens: Citoyenne
           commented: Commenté
           my_debates: Mes débats
           official: Officielle
           origin: Origine
+          participants: Participants
           scope: Secteur
           search: Rechercher
           state: Statut

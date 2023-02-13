@@ -1,3 +1,4 @@
+---
 sv:
   activemodel:
     attributes:
@@ -6,7 +7,7 @@ sv:
         description: Beskrivning
         title: Titel
         total_budget: Total budget
-        weight: Vikt
+        weight: Ordning
       project:
         budget_amount: Belopp
         decidim_category_id: Kategori
@@ -87,10 +88,15 @@ sv:
             title: Redigera projekt
             update: Uppdatera
           index:
+            actions: Åtgärder
+            cancel: Avbryt
+            change_category: Ändra kategori
             finished_orders: Avslutade omröstningar
             pending_orders: Pågående omröstningar
             selected: Valda
             title: Projekt
+            update: Uppdatera
+            update_scope_button: Uppdatera omfång
           new:
             create: Skapa
             title: Nytt projekt
@@ -107,6 +113,12 @@ sv:
             no_components: Det finns inga andra förslagskomponenter med förslag i deltagarutrymmet som kan importeras till projekt.
             select_component: Välj en komponent
             title: Importera förslag
+        reminders:
+          orders:
+            description: Användarna kommer få ett e-post med länkar till budgetar de har börjat rösta i.
+            title:
+              one: Du är på väg att skicka ett e-postpåminnelse till %{count} användare
+              other: Du är på väg att skicka ett e-postpåminnelse till %{count} användare
       admin_log:
         budget:
           create: "%{user_name} skapade budgeten %{resource_name} i utrymmet %{space_name}"
@@ -138,6 +150,8 @@ sv:
         show: Visa projekt
         vote: Rösta
         voted_on: Du har röstat på %{links}
+      last_activity:
+        new_vote_at_html: "<span>Ny omröstning på %{link}</span>"
       limit_announcement:
         cant_vote: Du kan inte rösta på denna budget. <a href="%{landing_path}">Pröva en annan budget</a>.
         limit_reached: Du har aktiva röster i %{links}. För att rösta måste du <a href="%{landing_path}">ta bort din röst och börja om</a>.
@@ -151,6 +165,7 @@ sv:
           fields:
             category: Kategori
             id: ID
+            scope: Omfång
             title: Titel
       order_summary_mailer:
         order_summary:
@@ -167,10 +182,13 @@ sv:
           title: Bekräfta röst
         budget_excess:
           budget_excess:
+            description: Detta projekt överstiger den maximala budgeten och kan inte tilläggas. Du måste först ta bort ett projekt innan du lägger till ett nytt.
             title: Maximal budget överskriden
           close: Stäng
+          description: Detta projekt överstiger den maximala budgeten och kan inte tilläggas. Du måste först ta bort ett projekt innan du lägger till ett nytt.
           ok: OK
           projects_excess:
+            description: Du har valt för många projekt. Du måste först ta bort ett projekt innan du lägger till ett nytt.
             title: Maximalt antal projekt överskridet
         budget_summary:
           are_you_sure: Vill du dra tillbaka din röst?
@@ -220,6 +238,8 @@ sv:
           filter: Filtrera
           filter_by: Filtrera efter
           unfold: Veckla ut
+        index:
+          view_project: Visa projektet
         order_progress:
           vote: Rösta
         order_selected_projects:
@@ -243,7 +263,6 @@ sv:
           votes:
             one: röst
             other: röster
-          you_voted: Det här är din röst
         project_budget_button:
           add: Lägg till i din röst
           add_descriptive: Lägg till projekt %{resource_name} till din röst
@@ -253,6 +272,15 @@ sv:
         show:
           budget: Budget
           view_all_projects: Visa alla projekt
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Områden där du inte har skickat din röst:'
+          email_intro: Du har börjat rösta i medborgarbudgeten men inte skickat den.
+          email_link: Rösta klart
+          email_outro: Kom ihåg att slutföra omröstningen. För att rösta måste du först välja ett eller flera förslag som du vill rösta för och bekräfta din röst med knappen "Rösta".
+          email_subject:
+            one: Du har börjat rösta i medborgarbudgeten men glömt skicka din röst
+            other: Du har börjat rösta i medborgarbudgeten men glömt skicka dina röster
     components:
       budgets:
         actions:

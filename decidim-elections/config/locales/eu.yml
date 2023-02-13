@@ -1,3 +1,4 @@
+---
 eu:
   activemodel:
     attributes:
@@ -11,6 +12,16 @@ eu:
         end_time: Bozketaren amaiera-data
         start_time: Bozketaren hasiera-data
         title: Izenburua
+      monitoring_committee_member:
+        email: Helbide elektronikoa
+        name: Izena
+      polling_officer:
+        email: Helbide elektronikoa
+        name: Izena
+      polling_station:
+        address: Helbidea
+        location: Kokapena
+        title: Izenburua
       question:
         max_selections: Gehieneko aukera kopurua
         min_selections: Aurreko bat ere ez
@@ -18,6 +29,7 @@ eu:
       voting:
         end_time: Bozketaren amaiera-data
         start_time: Bozketaren hasiera-data
+        title: Izenburua
     errors:
       models:
         answer:
@@ -181,6 +193,9 @@ eu:
         exports:
           elections: Bozketak
           feedback_form_answers: Erantzunen feedbacka
+        mailers:
+          trustee_mailer:
+            body: "< p>Kaixo %{user_name}, </p><p> %{resource_name}-an sartu zaituzte, konfiantzazko gisa.< p>"
         menu:
           trustees: Bermatzaileak
         models:
@@ -275,10 +290,6 @@ eu:
             selected: Hautatua
             submit: Bidali
             title: Argitaratutako emaitzak
-          tally:
-            continue: Jarraitu
-            mark_as_missing: Marka desagertu da
-            title: Zenbatzeko prozesua
           tally_ended:
             answer: Erantzuna
             not_selected: Ez hautatua
@@ -288,6 +299,8 @@ eu:
             submit: Argitaratu emaitzak
             success: 'Emaitzak argitaratzeko eskaera zuzen bidali da hona: Iragarki Taula'
             title: Kalkulatutako emaitzak
+          tally_started:
+            mark_as_missing: Marka desagertu da
           vote:
             errors:
               time_after: Bozketa oraindik ez dago martxan. (%{end_time}) amaierako ordura arte itxaron behar duzu bozketaldia amaitzeko.
@@ -339,10 +352,6 @@ eu:
           upcoming: Hurrengoak
         end_date: Amaitu
         footer:
-          remaining_time:
-            one: "<strong>%{count} ordu %{minutes} minutu </strong> geratzen da bozkatzeko."
-            other: "<strong>%{count} ordu %{minutes} minutu </strong> geratzen da bozkatzeko."
-            zero: "<strong>%{minutes} ordu minutu </strong> geratzen da bozkatzeko."
           view: Ikusi
           vote: Eman botoa
         label:
@@ -405,7 +414,6 @@ eu:
           all: Guztiak
           finished: Amaituta
           search: Bilatu
-          state: Egoera
           upcoming: Hurrengoak
         filters_small_view:
           close_modal: Itxi leihoa
@@ -422,9 +430,8 @@ eu:
           selected: Hautatua
           title: Hautaketaren emaitzak
           votes:
-            one: "%{count} boto"
+            one: "Boto %{count}"
             other: "%{count} boto"
-            zero: "%{count} boto"
         show:
           action_button:
             change_vote: Aldatu zure botoa
@@ -514,24 +521,13 @@ eu:
             title: Berriztu gakoak %{election} aukerarako
             upload_election_keys: Igo aukeraren gakoak
             upload_icon: Ikonoak deskargatzeko ekintza adierazten du
-          tally_steps:
-            back: Atzera
+          tally_started_steps:
             description: Aukera horren emaitzak Iragarki Taulan kalkulatzen ari dira. Prozesu hori osatzeko, bermatzaile gisa parte hartu behar duzu.
             keys:
               end_tally: Zenbaketa amaituta
               tally:
                 cast: Zenbaketa bidaltzea
                 share: Zenbaketa partekatzea
-            list:
-              status: Egoera
-              task: Eginkizuna
-            process_warning: Prozesua hasi ondoren, ez duzu orrialde honetatik atera behar prozesua amaitu arte. Zenbait minutu beharko ditu, bermatzaile guztiek konektatuta egon behar baitute hura osatzeko.
-            start: Hasi
-            start_icon: Ikonoak hasteko botoia adierazten du aukera bateko gakoak sortzen hasteko
-            status:
-              completed: Osatuta
-              pending: Zain
-              processing: Prozesatzen
             title: Zenbaketa %{election} aukerarako
           update:
             error: Aukeraketaren egoera ez zen eguneratu.
@@ -539,7 +535,7 @@ eu:
         menu:
           trustee_zone: Bermatzailearen gunea
         no_bulletin_board:
-          body: Iragarki Taula bat behar da, atal honetarako konfiguratua. Jarri harremanetan administratzailearekin xehetasun gehiago izateko.
+          body: Atal honetarako iragarki-taula konfiguratu bat behar da. Deitu administratzaileari xehetasun gehiago izateko.
           title: Sentitzen dugu, Iragarki Taula oraindik ez dago konfiguratuta.
         trustees:
           show:
@@ -564,15 +560,12 @@ eu:
               generate_legend_3: Ziurtatu zure ekipoak ez duela fitxategiaren kopiarik (adibidez, egiaztatu Deskargak eta Mahaigaina karpetak).
               generate_legend_4: Egin beste kopia bat kanpoko beste gailu batean, eta gorde oso leku seguruan.
               submit: Bidali
-              submit_legend: Aurretik azaldutako urrats guztiak jarraitu ondoren, osatu prozesua identifikazio publikoaren gakoa bidaliz Decidimen zerbitzarian.
               submit_title: Bidali identifikatzeko gako publikoa
               title: Bermatzailearen identifikazio-gakoak
               upload: Igo zure identifikazio-gakoak
               upload_error:
                 invalid_format: Igotako artxiboak ez du identifikazio-gakorik.
                 invalid_key: Ezin dira kargatu identifikazio-gakoak igotako artxiboan.
-                invalid_public_key: Igotako artxiboko identifikazio-gakoak ez datoz bat Decidimek gordetako identifikazio publikoaren identifikazio-gakoarekin.
-              upload_legend: Decidimek zure identifikazio-gako publikoak ditu, baina zure nabigatzaileak oraindik ez ditu. Sortu ondoren egin zenuen segurtasun-kopiatik ordenagailura inportatu behar duzu zure identifikazio-gakoen fitxategia.
             not_supported_browser_description: Dirudienez, berme-emaile gisa erabili ezin den nabigatzaile bat erabiltzen ari zara. Ziurtatu nabigatzailearen bertsio berriena erabiltzen ari zarela, edo saiatu nabigatzaile ezagunenetako edozein erabiltzen, zure zereginak bermatzaile gisa bete ahal izateko.
             not_supported_browser_title: Eguneratu nabigatzailea bermatzaile gisa aritzeko
             trustee_role_description: Plataforma honetan egindako bozketa batzuen bermatzaile gisa izendatu zaituzte.
@@ -613,8 +606,6 @@ eu:
         failed:
           header: Boto okerra
           lead: Ez duzu eman botoa!
-          modal:
-            close: Itxi
           text: Zerbait txarto irten da, mesedez, saiatu berriro.
           try_again: Saiatu berriro
         header:
@@ -640,9 +631,7 @@ eu:
         onboarding_modal:
           close: Itxi leihoa
           create_account: Sortu Kontua
-          description: Kontu berri bat sortu nahi duzu Decidime-en? Horrela, prozesuetan parte hartuko duzu eta erakundearen parte aktiboa izango zara.
           no_account: Ez, eskerrik asko.
-          title: Berria zara Decidim-en?
         update:
           error: Arazo bat izan da botoaren egoera eguneratzean. Saiatu berriro.
         verify:
@@ -653,7 +642,6 @@ eu:
             header: Botoa ez da aurkitu!
             info: Botoaren kodea ez da aurkitu %{link} hautestontzian, saiatu berriro.
           form:
-            back: Itzuli Decidim-era
             submit: Egiaztatu
             vote_identifier: 'Kode identifikatzailea:'
           header:
@@ -1013,8 +1001,6 @@ eu:
             create:
               invalid: Arazo bai izan da errolda igotzean, mesedez, saiatu berriro geroago.
               invalid_csv_header: CSV goiburuak galdu dira edo ez dira zuzenak - mesedez, irakurri arretaz jarraibideak
-            creating_data:
-              info_message: "<strong>Mesedez itxaron</strong>, %{processed_count} prozesatuak %{raw_count} tik %{file} fitxeroko ilara."
             delete:
               button: Ezabatu erroldako datu guztiak
             destroy:
@@ -1026,8 +1012,6 @@ eu:
               confirm: Sartzeko kodeak behin baino ezin dituzu esportatu. Ziurtatu <strong>%{email}</strong> posta elektronikoan sarbidea duzula.
               launch_error: Arazoa sartzeko kodeak esportatzen hastean
               launch_success: 'Sartzeko kodeen esportazioa hasi egin da. Laster posta elektroniko bat jasoko duzu hemen: %{email}'
-            exporting_access_codes:
-              info_message: "<strong>Mesedez, itxaron</strong>, esportazioa prestatzen ari da, laster jasoko duzu hemen %{email}"
             freeze:
               callout: Errolda itxita dago eta ezin da aldatu.
             generate_access_codes:
@@ -1038,8 +1022,6 @@ eu:
               info_message_warn: Mesedez, egiaztatu daturik ez dela falta, %{data_count} erregistro sortu baitira, baina igo den (%{file}) fitxategiak %{raw_count} ilara zituen.
               launch_error: Arazo bat izan da sartzeko kodeak sortzean
               launch_success: Kodeak sortzen hasi da.
-            generating_access_codes:
-              info_message: "<strong>Mesedez, itxaron</strong>, bozketan sartzeko kodeak sortzen ari dira..."
             new:
               file_help:
                 explanation: 'Jarraibideak artxiborako:'
@@ -1153,11 +1135,9 @@ eu:
         in_person_votes:
           complete_voting:
             available_answers: 'Erantzun eskuragarriak:'
-            census_verified: Parte-hartzaileak oraindik ez du botoa eman.
             complete_voting: Osatu bozketa
             identify_another: Identifikatu beste parte-hartzaile bat
             questions_title: 'Botoa emateko eskubidea du ondoko galdera hauetan:'
-            questions_title_voted: 'Parte-hartzaileak dagoeneko lineako botoa eman du eta botoa emateko eskubidea du ondoko galdera hauetan:'
             voted: Parte-hartzaileak botoa eman du
           create:
             error: Botoa ez da erregistratu. Mesedez, saiatu berriro.
@@ -1280,7 +1260,6 @@ eu:
           all: Guztiak
           finished: Amaituta
           search: Bilatu
-          state: Egoera
           upcoming: Hurrengoak
         filters_small_view:
           close_modal: Itxi leihoa

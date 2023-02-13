@@ -6,12 +6,13 @@ require "decidim/core/test/shared_examples/has_contextual_help"
 describe "Assemblies", type: :system do
   let(:organization) { create(:organization) }
   let(:show_statistics) { true }
+  let(:base_description) { { en: "Description", ca: "Descripció", es: "Descripción" } }
   let(:base_assembly) do
     create(
       :assembly,
       :with_type,
       organization: organization,
-      description: { en: "Description", ca: "Descripció", es: "Descripción" },
+      description: base_description,
       short_description: { en: "Short description", ca: "Descripció curta", es: "Descripción corta" },
       show_statistics: show_statistics
     )
@@ -156,7 +157,7 @@ describe "Assemblies", type: :system do
       let(:target_path) { decidim_assemblies.assembly_path(assembly) }
     end
 
-    context "and requesting the assebly path" do
+    context "and requesting the assembly path" do
       before do
         visit decidim_assemblies.assembly_path(assembly)
       end
@@ -180,6 +181,8 @@ describe "Assemblies", type: :system do
       it_behaves_like "has attachments" do
         let(:attached_to) { assembly }
       end
+
+      it_behaves_like "has embedded video in description", :base_description
 
       context "when the assembly has some components" do
         it "shows the components" do
@@ -233,6 +236,34 @@ describe "Assemblies", type: :system do
         it "shows the children assemblies by weigth" do
           expect(page).to have_selector("#assemblies-grid .row .column:first-child", text: child_assembly.title[:en])
           expect(page).to have_selector("#assemblies-grid .row .column:last-child", text: second_child_assembly.title[:en])
+        end
+
+        context "when child assembly has a meeting" do
+          let(:meetings_component) { create(:meeting_component, :published, participatory_space: child_assembly) }
+
+          context "with unpublished meeting" do
+            let!(:meeting) { create(:meeting, :upcoming, component: meetings_component) }
+
+            it "is not displaying the widget" do
+              visit decidim_assemblies.assembly_path(assembly)
+
+              within("#assemblies-grid") do
+                expect(page).not_to have_content("Upcoming meeting")
+              end
+            end
+          end
+
+          context "with published meeting" do
+            let!(:meeting) { create(:meeting, :upcoming, :published, component: meetings_component) }
+
+            it "is displaying the widget" do
+              visit decidim_assemblies.assembly_path(assembly)
+
+              within("#assemblies-grid") do
+                expect(page).to have_content("Upcoming meeting")
+              end
+            end
+          end
         end
       end
 

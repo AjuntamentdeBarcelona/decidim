@@ -1,3 +1,4 @@
+---
 ro:
   activemodel:
     attributes:
@@ -14,17 +15,24 @@ ro:
         description: Descriere
         file: Fişier
         title: Numele fișierului sau al imaginii atașate
+        weight: Poziție
       attachment_collection:
         description: Descriere
         name: Nume
+        weight: Poziție
       category:
         description: Descriere
         name: Nume
         parent_id: Categoria mamă
+        weight: Poziție
       component:
         name: Nume
         published_at: Publicat în
-        weight: Ordinea în poziționare
+        weight: Poziție
+      external_domain:
+        value: Valoare
+      help_section:
+        content: Conținut
       id: ID
       import:
         user_group_id: Creează importuri ca
@@ -92,6 +100,9 @@ ro:
         welcome_notification_body: Conținutul notificării de bun venit
         welcome_notification_subject: Subiectul notificării de bun venit
         youtube_handler: Responsabil YouTube
+      participatory_space_private_user:
+        email: E-mail
+        name: Nume
       scope:
         code: Cod
         name: Nume
@@ -113,12 +124,13 @@ ro:
         show_in_footer: Afișează în subsol
         slug: URL slug
         title: Titlu
-        weight: Ordinea în poziționare
+        topic_id: Subiect
+        weight: Poziție
       static_page_topic:
         description: Descriere
         show_in_footer: Afișează în subsol
         title: Titlu
-        weight: Ordinea în poziționare
+        weight: Poziție
       user_group_csv_verification:
         file: Fişier
     errors:
@@ -133,6 +145,14 @@ ro:
               allowed_file_content_types: Fișier invalid
             official_img_header:
               allowed_file_content_types: Fișier invalid
+        participatory_space_private_user_csv_import:
+          attributes:
+            file:
+              malformed: Fişier de import malformat, vă rugăm să citiţi instrucţiunile cu atenţie şi asiguraţi-vă că fişierul este codificat UTF-8.
+        user_group_csv_verification:
+          attributes:
+            file:
+              malformed: Fişier de import malformat, vă rugăm să citiţi instrucţiunile cu atenţie şi asiguraţi-vă că fişierul este codificat UTF-8.
       new_import:
         attributes:
           file:
@@ -177,7 +197,7 @@ ro:
         reject: Respinge
         share: Distribuie
         user:
-          new: Utilizator nou
+          new: Administrator nou
         verify: Verifică
       admin_terms_of_use:
         accept:
@@ -260,6 +280,8 @@ ro:
         update:
           error: A apărut o eroare la actualizarea acestui atașament.
           success: Atașamentul a fost actualizat cu succes.
+      attachments_privacy_warning:
+        message: Fiți precaut atunci când lucrați cu atașamente într-un spațiu privat. Orice participant poate distribui acest document altora.
       autocomplete:
         no_results: Nu a fost găsit niciun rezultat
         search_prompt: Tastați cel puțin trei caractere pentru a căuta
@@ -342,7 +364,7 @@ ro:
       dashboard:
         show:
           view_more_logs: Afișează mai multe înregistrări
-          welcome: Bine ați venit în Panoul de administrare Decidim.
+          welcome: Bine ați venit în Panoul de administrare.
       domain_whitelist:
         form:
           domain_too_short: Domeniul e prea scurt
@@ -839,9 +861,24 @@ ro:
           invalid: A apărut o problemă la citirea fișierului CSV.
           success: Fișier-ul CSV a fost încărcat cu succes, trimitem un e-mail de invitație participanților. Acest lucru ar putea dura puțin timp.
         new:
+          destroy:
+            button: Șterge toți participanții privați
+            confirm: Sunteți sigur că doriți să ștergeți toți participanții privați? Această acțiune nu poate fi anulată, și nu îi veți putea recupera.
+            empty: Nu aveți niciun participant privat.
+            explanation: Aveți %{count} participanți privați.
+            title: Ștergere participanți privați
           explanation: 'Încărcă fişierul tău CSV. Trebuie să aibă două coloane cu e-mail în prima coloană a fișierului și numele în ultima coloană (e-mail, numele) pentru utilizatorii pe care doriţi să îi adăugaţi în spaţiul participativ, fără antet. Evită folosirea caracterelor invalide, cum ar fi `<>?%&^*#@()[]=+:;"{}\<unk> ` în numele utilizatorului.'
           title: Încarcă fișierul tău CSV
           upload: Încarcă
+      reminders:
+        create:
+          error: A apărut o eroare la crearea de memento-uri.
+          success:
+            one: "I se va reaminti utilizatorului."
+            few: "Se va reaminti celor %{count} utilizatori."
+            other: "Se va reaminti celor %{count} utilizatori."
+        new:
+          submit: Trimite
       resource_permissions:
         edit:
           submit: Trimite
@@ -899,6 +936,7 @@ ro:
         gallery:
           add_images: Adaugă imagini
           delete_image: Șterge imaginea
+          edit_images: Editare imagini
           gallery_legend: Adaugă o galerie de imagini (opțional)
       static_page_topics:
         create:
@@ -959,7 +997,7 @@ ro:
         static_pages: Pagini
         statistics: Activitate
         user_groups: Grupuri
-        users: Participanți
+        users: Administratori
       user_group:
         csv_verify:
           invalid: A apărut o problemă la citirea fișierului CSV.
@@ -995,7 +1033,7 @@ ro:
           role: Rol
         new:
           create: Invită
-          title: Invită participantul ca administrator
+          title: Invită un administrator nou
       users_statistics:
         users_count:
           admins: Administratori
@@ -1047,6 +1085,7 @@ ro:
             hidden_at: Ascuns la
             participatory_space: Spațiu participativ
             report_count: Număr
+            reportable_id: ID
             reportable_type: Tip
             reported_content_url: URL-ul conținutului raportat
             reports: Rapoarte
@@ -1063,7 +1102,7 @@ ro:
     decidim:
       admin:
         global_moderations:
-          title: Moderare globală
+          title: Moderări globale
         newsletters:
           title: Buletine informative
         settings:

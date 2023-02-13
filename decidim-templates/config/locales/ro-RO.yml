@@ -1,3 +1,4 @@
+---
 ro:
   activemodel:
     attributes:
@@ -63,5 +64,11 @@ ro:
             current_step: Pasul %{step}
             of_total_steps: din %{total_steps}
             tos_agreement: Prin participare accepți Termenii și condițiile sale de utilizare
+      admin_log:
+        template:
+          create: "%{user_name} a creat șablonul chestionarului %{resource_name}"
+          delete: "%{user_name} a șters șablonul chestionarului %{resource_name}"
+          duplicate: "%{user_name} a duplicat șablonul chestionarului %{resource_name}"
+          update: "%{user_name} a actualizat șablonul chestionarului %{resource_name}"
       template_types:
         questionnaires: Chestionare

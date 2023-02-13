@@ -58,6 +58,7 @@ FactoryBot.define do
     end
 
     organization { conference.organization }
+    admin_terms_accepted_at { Time.current }
 
     after(:create) do |user, evaluator|
       create :conference_user_role,
@@ -73,6 +74,7 @@ FactoryBot.define do
     end
 
     organization { conference.organization }
+    admin_terms_accepted_at { Time.current }
 
     after(:create) do |user, evaluator|
       create :conference_user_role,
@@ -88,6 +90,7 @@ FactoryBot.define do
     end
 
     organization { conference.organization }
+    admin_terms_accepted_at { Time.current }
 
     after(:create) do |user, evaluator|
       create :conference_user_role,
@@ -103,6 +106,7 @@ FactoryBot.define do
     end
 
     organization { conference.organization }
+    admin_terms_accepted_at { Time.current }
 
     after(:create) do |user, evaluator|
       create :conference_user_role,
@@ -210,7 +214,7 @@ FactoryBot.define do
   factory :conference_invite, class: "Decidim::Conferences::ConferenceInvite" do
     conference
     user
-    sent_at { Time.current - 1.day }
+    sent_at { 1.day.ago }
     accepted_at { nil }
     rejected_at { nil }
     registration_type

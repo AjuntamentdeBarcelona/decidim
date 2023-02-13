@@ -157,9 +157,9 @@ module Decidim::Meetings
     it "properly maps services from model" do
       meeting = create(:meeting, :with_services, services: services)
 
-      services = described_class.from_model(meeting).services
-      expect(services).to all be_an(Admin::MeetingServiceForm)
-      expect(services.map(&:title_en)).to eq(services.map(&:title_en))
+      local_services = described_class.from_model(meeting).services
+      expect(local_services).to all be_an(Admin::MeetingServiceForm)
+      expect(local_services.map(&:title_en)).to eq(services.map { |s| s["title"]["en"] })
     end
 
     it "properly maps category id from model" do
@@ -213,13 +213,6 @@ module Decidim::Meetings
 
     describe "when registration type of meeting is missing" do
       let(:registration_type) { nil }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    describe "when registration type is on this platform and available slots are missing" do
-      let(:available_slots) { nil }
-      let(:registration_type) { "on_this_platform" }
 
       it { is_expected.not_to be_valid }
     end

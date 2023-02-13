@@ -2,18 +2,21 @@
 
 module Decidim
   module Admin
-    class UpdateExternalDomainWhitelist < Rectify::Command
+    class UpdateExternalDomainWhitelist < Decidim::Command
       attr_reader :form, :organization
 
-      def initialize(form, organization)
+      def initialize(form, organization, user)
         @form = form
         @organization = organization
+        @user = user
       end
 
       def call
         return broadcast(:invalid) if form.invalid?
 
-        save_domains!
+        Decidim.traceability.perform_action!("update_external_domain", @organization, @user) do
+          save_domains!
+        end
 
         broadcast(:ok)
       end

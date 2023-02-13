@@ -1,3 +1,4 @@
+---
 ca:
   activemodel:
     attributes:
@@ -74,7 +75,8 @@ ca:
     'true': 'Sí'
   carrierwave:
     errors:
-      image_too_big: La imatge és massa gran
+      file_resolution_too_large: La resolució de l'arxiu és massa gran
+      file_size_too_large: La mida del fitxer és massa gran
       not_inside_organization: L'arxiu no està relacionat amb cap organització
   date:
     formats:
@@ -110,7 +112,6 @@ ca:
       x_seconds:
         one: fa 1 segon
         other: "fa %{count} segons"
-        zero: ara mateix
   decidim:
     accessibility:
       external_link: Enllaç extern
@@ -119,9 +120,6 @@ ca:
       skip_button: Vés al contingut principal
     account:
       blocked: Aquest compte ha estat bloquejat degut a una violació dels Termes i Condicions d'ús
-      data_portability_export:
-        file_no_exists: L'arxiu no existeix
-        notice: La descàrrega de les teves dades està en curs. Rebràs un correu electrònic quan estigui completa.
       delete:
         alert: Aquesta acció no es pot desfer. Si esborres el teu compte no podràs entrar amb les teves credencials. L'eliminació del teu compte tindrà com a resultat l'anonimització de les teves contribucions. Continuaràs podent crear un nou compte, però aquestes contribucions no estaran associades a ell.
         confirm:
@@ -133,8 +131,21 @@ ca:
       destroy:
         error: S'ha produït un error en eliminar el teu compte.
         success: El teu compte s'ha eliminat correctament.
+      download_your_data_export:
+        file_no_exists: L'arxiu no existeix
+        notice: La descàrrega de les teves dades està en curs. Rebràs un correu electrònic quan estigui completa.
+      email_change:
+        body1: Hem enviat un correu a %{unconfirmed_email} per a verificar la teva nova adreça de correu electrònic.
+        body2: Cal que et reenviem el correu de verificació? %{resend_link} o %{cancel_link}.
+        cancel: cancel·lar
+        cancel_error: No s'ha pogut cancel·lar el canvi de correu electrònic.
+        cancel_successfully: Canvi de correu electrònic cancel·lat amb èxit.
+        resend_error: No s'ha pogut reenviar el correu de confirmació.
+        resend_successfully: Correu de confirmació reenviat amb èxit a %{unconfirmed_email}
+        send_again: Tornar a enviar
+        title: Verificació del canvi de correu electrònic
       show:
-        available_locales_helper: Tria l'idioma que vols utilitzar per a navegar i rebre notificacions a Decidim
+        available_locales_helper: Tria l'idioma que en que vols navegar i rebre notificacions de la plataforma
         change_password: Canvia la contrasenya
         update_account: Actualitzar compte
       update:
@@ -144,16 +155,44 @@ ca:
     admin:
       actions:
         cancel: Cancel·lar
+      password_change:
+        alert: Has de canviar la teva contrasenya per a poder seguir endavant
+        notification: Les usuàries amb rol d'administració han de canviar la seva contrasenya cada %{days} dies.
     admin_log:
       area:
         create: "%{user_name} ha creat l'àrea %{resource_name}"
         delete: "%{user_name} ha eliminat l'àrea %{resource_name}"
         update: "%{user_name} ha actualitzat l'àrea %{resource_name}"
+      area_type:
+        create: "%{user_name} ha creat el tipus d'àrea %{resource_name}"
+        delete: "%{user_name} ha eliminat el tipus d'àrea %{resource_name}"
+        update: "%{user_name} ha actualitzat el tipus d'àrea %{resource_name}"
+      attachment:
+        create: "%{user_name} ha creat l'adjunt %{resource_name}"
+        delete: "%{user_name} ha eliminat l'adjunt %{resource_name}"
+        update: "%{user_name} ha actualitzat l'adjunt %{resource_name}"
+      attachment_collection:
+        create: "%{user_name} ha creat la col·lecció d'adjunts %{resource_name}"
+        delete: "%{user_name} ha eliminat la col·lecció d'adjunts %{resource_name}"
+        update: "%{user_name} ha actualitzat la col·lecció d'adjunts %{resource_name}"
+      category:
+        create: "%{user_name} ha afegit la categoria %{resource_name} a l'espai %{space_name}"
+        delete: "%{user_name} ha eliminat la categoria %{resource_name} de l'espai %{space_name}"
+        update: "%{user_name} ha actualitzat la categoria %{resource_name} de l'espai %{space_name}"
       component:
         create: "%{user_name} ha afegit el component %{resource_name} a l'espai %{space_name}"
         delete: "%{user_name} ha eliminat el component %{resource_name} de l'espai %{space_name}"
+        export_component: "%{user_name} ha exportat %{resource_name}%{component_name} de %{space_name} com %{format_name}"
         publish: "%{user_name} ha publicat el component %{resource_name} a l'espai %{space_name}"
         unpublish: "%{user_name} ha despublicat el component %{resource_name} de l'espai %{space_name}"
+        update_permissions_with_space: "%{user_name} ha actualitzat els permisos de %{resource_name} a %{space_name}"
+      contextual_help_section:
+        update: "%{user_name} ha actualitzat la secció d'ajuda %{resource_name}"
+      helpers:
+        answers: respostes
+        comments: comentaris
+        projects: projectes
+        results: resultats
       impersonation_log:
         manage: "%{user_name} ha gestionat a %{resource_name} perquè %{reason}"
       moderation:
@@ -170,6 +209,7 @@ ca:
         update: "%{user_name} ha actualitzat la aplicació d'OAuth %{resource_name}"
       organization:
         update: "%{user_name} ha actualitzat la configuració de l'organització"
+        update_external_domain: "%{user_name} ha actualitzat els dominis externs de l'organització"
       participatory_space_private_user:
         create: "%{user_name} ha convidat %{resource_name} com a participant privada"
         create_via_csv: "%{user_name} ha convidat %{resource_name} via CSV per a ser participant privada"
@@ -181,6 +221,10 @@ ca:
         delete_with_parent: "%{user_name} ha suprimit l'àmbit %{resource_name} dins l'àmbit %{parent_scope}"
         update: "%{user_name} ha actualitzat l'àmbit %{resource_name}"
         update_with_parent: "%{user_name} ha actualitzat l'àmbit %{resource_name} dins l'àmbit %{parent_scope}"
+      scope_type:
+        create: "%{user_name} ha creat el tipus d'àmbit %{resource_name}"
+        delete: "%{user_name} ha eliminat el tipus d'àmbit %{resource_name}"
+        update: "%{user_name} ha actualitzat el tipus d'àmbit %{resource_name}"
       static_page:
         create: "%{user_name} ha creat la pàgina estàtica %{resource_name}"
         delete: "%{user_name} ha esborrat la pàgina estàtica %{resource_name}"
@@ -196,7 +240,9 @@ ca:
         unblock: "%{user_name} ha desbloquejat a la usuària %{resource_name}"
         unofficialize: "%{user_name} ha desoficialitzat la participant %{resource_name}"
       user_group:
+        block: "%{user_name} ha bloquejat al grup d'usuàries %{resource_name}"
         reject: "%{user_name} ha rebutjat la verificació del grup %{resource_name}"
+        unblock: "%{user_name} ha desbloquejat al grup d'usuàries %{resource_name}"
         verify: "%{user_name} ha verificat el grup %{resource_name}"
         verify_via_csv: "%{user_name} ha verificat el grup %{resource_name} a través d'un fitxer CSV"
       user_moderation:
@@ -230,7 +276,7 @@ ca:
         success: L'esborrany d'esmena s'ha eliminat correctament.
       edit_draft:
         discard: Descarta aquest esborrany
-        discard_confirmation: Estàs segur de que vols descartar l'esborrany d'aquesta esmena?
+        discard_confirmation: Segur que vols descartar l'esborrany d'aquesta esmena?
         send: Vista prèvia
         title: Edita l'esborrany d'esmena
       emendation:
@@ -304,6 +350,7 @@ ca:
       endorsements:
         one: adhesió
         other: adhesions
+      official_author: Oficial
     authorization_handlers:
       another_dummy_authorization_handler:
         explanation: Verifica't introduint un número de passaport que comenci per "A"
@@ -370,7 +417,7 @@ ca:
           request_confirmation_instructions: Sol·licita instruccions de confirmació
           title: Confirma el teu correu electrònic
       show:
-        close_modal: Tancar el modal
+        close_modal: Tanca modal
     block_user_mailer:
       notify:
         body_1: El teu compte ha estat bloquejat.
@@ -394,6 +441,7 @@ ca:
           debate: Debat
           initiative: Iniciativa
           meeting: Trobada
+          order: Votació pressupostària
           post: Publicar
           proposal: Proposta
           question: Pregunta
@@ -408,8 +456,8 @@ ca:
             amendments_enabled: Esmenes habilitades
             comments_enabled: Comentaris habilitats
             comments_max_length: Longitud màxima dels comentaris
-            dummy_global_attribute_1: Atribut de prova 1
-            dummy_global_attribute_2: Atribut de prova 2
+            dummy_global_attribute1: Atribut de prova 1
+            dummy_global_attribute2: Atribut de prova 2
             dummy_global_translatable_text: Text traduïble de proves
             enable_pads_creation: Habilitar la creació de pads
             resources_permissions_enabled: Permisos de recursos habilitats
@@ -421,8 +469,8 @@ ca:
             amendment_reaction_enabled: Reacció a esmenes habilitada
             amendments_visibility: Visibilitat de les esmenes
             comments_blocked: Comentaris bloquejats
-            dummy_step_attribute_1: Atribut de fase de prova 1
-            dummy_step_attribute_2: Atribut de fase de prova 2
+            dummy_step_attribute1: Atribut de fase de prova 1
+            dummy_step_attribute2: Atribut de fase de prova 2
             dummy_step_translatable_text: Text de fase traduïble de proves
     contact: Contacte
     content_blocks:
@@ -466,13 +514,6 @@ ca:
       actions:
         login_before_access: Si us plau, identifica't amb el teu compte abans d'accedir
         unauthorized: No tens permís per realitzar aquesta acció
-    data_portability:
-      export:
-        ready: Llest
-      show:
-        download_data: Descarrega't les dades
-        download_data_description: S'enviarà un arxiu amb tota la informació associada al teu compte a <strong>%{user_email}</strong>. Aquest correu electrònic contindrà un arxiu .zip i una contrasenya per obrir-lo.<br/><br/>Per a descomprimir l'arxiu, necessitaràs <a href="https://www.7-zip.org/">7-Zip</a> (per a Windows) o <a href="https://www.keka.io/">Keka</a> (per a MacOS). Si uses Linux, la majoria de les vegades ho tindràs instal·lat per defecte. Si no, pots utilitzar <a href="https://gitlab.gnome.org/GNOME/file-roller">File Roller</a> o <a href="https://peazip.github.io">PeaZip</a>).
-        request_data: Sol·licita dades
     datepicker:
       help_text: 'Format esperat: %{datepicker_format}'
     devise:
@@ -491,7 +532,6 @@ ca:
           newsletter: Vull rebre un butlletí ocasional amb informació rellevant
           newsletter_title: Permís de contacte
           nickname_help: El teu àlies a %{organization}. Només pot contenir lletres, números, '-' and '_'.
-          password_help: "%{minimun_characters} caràcters mínim, no ha de ser massa comú (per exemple 123456) i ha de ser diferent del teu nom d'usuari i la teva adreça de correu electrònic."
           sign_in: Entra
           sign_up: Registra't
           sign_up_as:
@@ -516,9 +556,9 @@ ca:
             close_modal: Tanca modal
             uncheck: Deixa desmarcada
           notice: |-
-            <p>Hola, estàs segura que no vols rebre un butlletí?<br>
-            Si us plau, torna a marcar la casella de selecció de butlletí a continuació.<br>
-            Per a nosaltres és molt important que rebeu correus electrònics ocasionals per fer avisos importants, sempre podeu canviar-lo a la pàgina de configuració de les notificacions.</p>
+            <p>Hola, segur que no vols rebre un butlletí?<br>
+            Si us plau, pren en consideració marcar la casella de selecció de butlletí a continuació.<br>
+            Per a nosaltres és molt important que rebis correus electrònics ocasionals per fer avisos importants, sempre pots canviar-ho a la pàgina de configuració de les notificacions.</p>
             <p>Si no marques la casella, pot ser que et falti informació rellevant sobre noves oportunitats de participació dins de la plataforma.<br>
             Si encara vols evitar rebre butlletins, entenem perfectament la teva decisió.</p>
             <p>Gràcies per llegir això.</p>
@@ -540,6 +580,13 @@ ca:
           this_application_will_not_be_able_to: 'Aquesta aplicació no podrà:'
           update_profile: Actualitza el teu perfil
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> vol utilitzar el teu compte"
+    download_your_data:
+      export:
+        ready: Llest
+      show:
+        download_data: Descarrega't les dades
+        download_data_description: S'enviarà un arxiu amb tota la informació associada al teu compte a <strong>%{user_email}</strong>. Aquest correu electrònic contindrà un arxiu .zip i una contrasenya per obrir-lo.<br/><br/>Per a descomprimir l'arxiu, necessitaràs <a href="https://www.7-zip.org/">7-Zip</a> (per a Windows) o <a href="https://www.keka.io/">Keka</a> (per a MacOS). Si uses Linux, la majoria de les vegades ho tindràs instal·lat per defecte. Si no, pots utilitzar <a href="https://gitlab.gnome.org/GNOME/file-roller">File Roller</a> o <a href="https://peazip.github.io">PeaZip</a>).
+        request_data: Sol·licita dades
     editor_images:
       create:
         error: S'ha produït un error en pujar la imatge
@@ -683,13 +730,15 @@ ca:
           email_outro: Has rebut aquesta notificació perquè ets una de les administradores de la plataforma.
           email_subject: Un grup d'usuàries ha actualitzat el seu perfil
           notification_title: El grup d'usuàries %{user_group_name} ha actualitzat el seu perfil perdent-ne la verificació. Pots tornar a verificar-lo a través del <a href="%{groups_admin_path}"> taulell d'administració</a>.
+      nickname_event:
+        notification_body: S'ha corregit la manera en que es fan servir els àlies per a que no n'hi hagi de duplicats, per fer-ho ja no distingueix les majúscules de les minúscules. <br/> El teu àlies es va crear més tard que un altre d'igual, així que se t'ha renombrat automàticament. Pot modificar el teu àlies des de la <a href="%{link_to_account_settings}">configuració del teu compte</a>.
       notification_event:
         notification_title: S'ha produït un esdeveniment a <a href="%{resource_path}">%{resource_title}</a>.
       reports:
         resource_hidden:
           email_intro: Una administradora ha eliminat el teu %{resource_type} degut a que has estat reportada com a %{report_reasons}.
           email_outro: Has rebut aquesta notificació perquè ets autora d'un contingut eliminat.
-          email_subject: S'ha eliminat el teu %{resource_type}
+          email_subject: S'ha eliminat el/la teu/teva %{resource_type}
           notification_title: |-
             Una administradora ha eliminat el teu %{resource_type} degut a que has estat reportada com a %{report_reasons}..</br>
             <i>%{resource_content}</i>
@@ -710,7 +759,7 @@ ca:
           email_subject: "S'ha oficialitzat a %{name}"
           notification_title: La participant %{name} (%{nickname}) ha estat oficialitzada.
     export_mailer:
-      data_portability_export:
+      download_your_data_export:
         click_button: 'Fes clic en el següent enllaç per descarregar les teves dades.<br/>L''arxiu estarà disponible fins %{date}.<br/>Necessitaràs <a href="https://www.7-zip.org/">7-Zip</a> (per a Windows), <a href="https://www.keka.io/en/">Keka</a> (per a MacOS) o <a href="https://peazip.github.io">PeaZip</a> (per a Linux) per obrir-lo. Contrasenya: %{password}'
         download: Descarregar
       export:
@@ -750,7 +799,6 @@ ca:
         button: Deixar de seguir
         error: S'ha produït un error en deixar de seguir aquest recurs.
     forms:
-      current_file: Fitxer actual
       current_image: Imatge actual
       default_image: Imatge predeterminada
       errors:
@@ -762,15 +810,41 @@ ca:
         file:
           explanation: 'Instruccions per a l''arxiu:'
           message_1: Ha de ser una imatge o un document.
-          message_2: Per a les imatges, utilitza preferentment imatges apaïsades, el servei retalla la imatge. Per als arxius CSV, el separador entre columnes ha de ser una coma (",")
+          message_2: Per a les imatges, fes servir imatges apaïsades preferiblement, el servei retalla la imatge.
+        icon:
+          explanation: 'Instruccions per a la icona:'
+          message_1: Ha de ser una imatge quadrada.
+          message_2: La mida recomanada per a aquesta imatge és 512x512.
         image:
           explanation: 'Instruccions per a la imatge:'
           message_1: Preferiblement una imatge apaïsada que no tingui cap text.
           message_2: El servei retalla la imatge.
       file_validation:
         allowed_file_extensions: 'Tipus de fitxers admesos: %{extensions}'
+        max_file_dimension: 'Mides máximes de l''arxiu: %{resolution} pixels'
         max_file_size: 'Mida màxima del fitxer:%{megabytes}MB'
-      remove_this_file: Eliminar aquest arxiu
+      files:
+        extension_allowlist: 'Formats acceptats: %{extensions}'
+      upload:
+        labels:
+          add_attachment: Afegir adjunt
+          add_file: Afegir fitxer
+          add_image: Afegir imatge
+          cancel: Cancel·lar
+          edit_image: Editar imatge
+          error: Error!
+          file_size_too_large: 'L''arxiu és massa gran! Pes d''arxiu màxim: %{megabytes}MB'
+          remove: Eliminar
+          replace: Reemplaçar
+          save: Desar
+          title: Títol
+          title_required: Un títol és necessari!
+          uploaded: Pujat
+          validating: Validant...
+          validation_error: Error de validació!
+      upload_help:
+        dropzone: Arrossegar-hi arxius o fer clic per a pujar-los
+        explanation: Guia per a %{attribute}
     gamification:
       all_badges_link: Veure totes les insígnies disponibles.
       badges:
@@ -794,7 +868,7 @@ ca:
       reached_top: Has arribat al màxim nivell d'aquesta insígnia.
     group_admins:
       actions:
-        are_you_sure: Segura? Això no eliminarà la participant del grup.
+        are_you_sure: Segur? Això no eliminarà la participant del grup.
         demote_admin: Elimina l'administradora
       demote:
         error: S'ha produït un error en eliminar aquesta participant de la llista d'administradores
@@ -823,7 +897,7 @@ ca:
         error: S'ha produït un error en acceptar aquesta sol·licitud d'incorporació al grup
         success: Sol·licitud acceptada correctament
       actions:
-        are_you_sure: Estàs segur?
+        are_you_sure: Segur?
         promote_to_admin: Fer administrador
         remove_from_group: Eliminar participant
       index:
@@ -840,7 +914,7 @@ ca:
         success: La participant s'ha eliminat correctament del grup
     groups:
       actions:
-        are_you_sure: Estàs segur?
+        are_you_sure: Segur?
       create:
         error: S'ha produït un errot en crear el grup
         success: Grup creat correctament
@@ -859,6 +933,7 @@ ca:
         success: La sol·licitud per a formar-ne part s'ha enviat correctament. Una administradora revisarà la teva sol·licitud abans d'acceptar-te al grup.
       leave:
         error: S'ha produït un error en abandonar el grup
+        last_admin: No et pots esborrar tu mateixa d'aquest grup perquè n'ets la darrera administradora. Fes a una altra membre administradora per a poder abandonar aquest grup.
         success: El grup s'ha abandonat correctament.
       members:
         accept_or_reject_join_requests: 'Les següents participants han sol·licitat unir-se a aquest grup. Accepta o rebutja les seves sol·licituds:'
@@ -871,7 +946,7 @@ ca:
       no_user_groups: Encara no pertanys a cap grup.
       roles:
         admin: Administradora
-        creator: Creadora
+        creator: Administradora
         member: Membre
       update:
         error: S'ha produït un error en actualitzar el grup
@@ -896,7 +971,7 @@ ca:
         body_1: Estàs a punt de visitar un enllaç extern i et recomanem que siguis prudent pel que fa als continguts en pàgines externes.
         body_2: Assegura't que l'enllaç que visitaràs és d'un lloc segur abans de seguir.
         cancel: Cancel·lar
-        close_modal: Tancar finestra
+        close_modal: Tanca modal
         proceed: Continuar
         title: Obrir enllaç extern
     log:
@@ -905,9 +980,12 @@ ca:
         create_with_space: "%{user_name} ha creat %{resource_name} a %{space_name}"
         delete: "%{user_name} ha eliminat %{resource_name}"
         delete_with_space: "%{user_name} ha eliminat %{resource_name} en %{space_name}"
+        publish_with_space: "%{user_name} ha publicat %{resource_name} en %{space_name}"
         unknown_action: "%{user_name} ha realitzat una acció a %{resource_name}"
         unknown_action_with_space: "%{user_name} ha realitzat una acció a %{resource_name} en %{space_name}"
+        unpublish_with_space: "%{user_name} ha despublicat %{resource_name} en %{space_name}"
         update: "%{user_name} ha actualitzat %{resource_name}"
+        update_permissions_with_space: "%{user_name} ha actualitzat els permisos de %{resource_name} a %{space_name}"
         update_with_space: "%{user_name} ha actualitzat %{resource_name} a %{space_name}"
       value_types:
         area_presenter:
@@ -1028,7 +1106,7 @@ ca:
     newsletter_mailer:
       newsletter:
         note: Has rebut aquest correu electrònic perquè estàs subscrita a butlletins de notícies a %{organization_name}. Pots canviar la configuració a la teva <a href="%{link}">pàgina de notificacions</a>.
-        see_on_website: No pots veure correctament aquest correu electrònic? Veu la seva <a href="%{link}" target="_blank"> versió web</a>.
+        see_on_website: No pots veure correctament aquest correu electrònic? Veu la seva <<a href="%{link}" target="_blank" class="see-on-website">versió web</a>.
         unsubscribe: Per desactivar la recepció d'aquest tipus de correu electrònic, <a href="%{link}" target="_blank" class="unsubscribe">dona't de baixa</a>.
     newsletter_templates:
       basic_only_text:
@@ -1080,23 +1158,47 @@ ca:
       no_notifications: Encara no hi ha notificacions.
       show:
         missing_event: Vaja, aquesta notificació pertany a un element que ja no està disponible. Pots descartar-la.
+    notifications_digest_mailer:
+      header:
+        daily: Resum diari de notificacions
+        weekly: Resum setmanal de notificacions
+      hello: Hola %{name},
+      intro:
+        daily: 'Aquestes són les notificacions del darrer dia basades en l''activitat que segueixes:'
+        weekly: 'Aquestes són les notificacions de la darrera setmana basades en l''activitat que segueixes:'
+      outro: Has rebut aquestes notificacions perquè segueixes aquest contingut o les seves autores. Pots deixar de seguir-les des de les seves respectives pàgines.
+      see_more: Veure més notificacions
+      subject: Aquest és el teu correu resum
     notifications_settings:
       show:
         administrators: Administradores
         allow_public_contact: Permetre que qualsevol participant m'envïi missatges directes, encara que no la segueixi.
+        allow_push_notifications: Mostrar notificacions emergents per a saber que passa mentre no estàs a la plataforma. Pots deshabilitar-les en qualsevol moment.
         direct_messages: Rebre missatges directes de qualsevol
-        email_on_moderations: Vull rebre un correu electrònic cada cop que es reporti quelcom per moderació.
-        email_on_notification: Vull rebre un correu electrònic cada vegada que rebi una notificació.
+        email_on_moderations: Vull rebre un correu electrònic cada cop que es reporti algo o a algú per moderació.
         everything_followed: Tot el que segueixo
         newsletter_notifications: Vull rebre butlletins informatius
         newsletters: Butlletins informatius
+        notification_settings:
+          close_meeting_reminder: Vull rebre un correu electrònic recordatori de trobades passades amb informes sense publicar
+        notifications_sending_frequencies:
+          daily: Diàriament
+          none: Cap
+          real_time: En temps real
+          weekly: Setmanalment
+        notifications_sending_frequency: Amb quina freqüència vols rebre el correu de notificacions?
         own_activity: La meva pròpia activitat, com quan algú fa comentaris a la meva proposta o em menciona
+        push_notifications: Notificacions emergents
+        push_notifications_reminder: Per rebre notificacions de la plataforma, primer les has de permetre a la configuració del teu navegador.
         receive_notifications_about: Vull rebre notificacions
-        send_notifications_by_email: Enviar notificacions per correu electrònic
         update_notifications_settings: Guardar canvis
       update:
         error: S'ha produït un error en actualitzar la configuració de les notificacions.
         success: La configuració de les notificacions s'ha actualitzat correctament.
+    offline:
+      show:
+        message: Sembla que estàs desconnectada. Torna a intentar-ho més tard, si us plau.
+        retry: Torna-ho a provar
     open_data:
       not_available_yet: Els fitxers Open Data encara no estan disponibles, torna-ho a provar d'aquí a uns minuts.
     own_user_groups:
@@ -1150,7 +1252,7 @@ ca:
           agreement: Estic d'acord amb aquests termes
           legend: Accepto els termes i condicions
         refuse:
-          modal_body: Si no acceptes, no podràs utilitzar la plataforma, pots <a href="%{data_portability_path}">descarregar les teves dades</a> i / o <a href="%{delete_path}">esborrar el teu compte de</a>.
+          modal_body: Si no acceptes, no podràs utilitzar la plataforma, pots <a href="%{download_your_data_path}">descarregar les teves dades</a> i/o <a href="%{delete_path}">esborrar el teu compte de</a>.
           modal_btn_continue: Acceptar els termes i continuar
           modal_btn_exit: Ho revisaré més tard
           modal_button: Rebutjar els termes
@@ -1162,6 +1264,10 @@ ca:
           title: 'Obligatori: revisa l''actualització dels nostres Termes de Servei'
     participatory_space_private_users:
       not_allowed: No tens permís per visualitzar aquest contingut
+    passwords:
+      update:
+        error: Hi ha hagut un problema en actualitzar la contrasenya
+        success: La contrasenya s'ha actualitzat correctament
     profile:
       deleted: Participant eliminada
       inaccessible_message: Aquest perfil és inaccessible degut a la violació dels Termes i Condicions d'ús!
@@ -1306,6 +1412,8 @@ ca:
         close_modal: Tancar el modal
         please_sign_in: Si us plau, inicia sessió
         sign_up: Registra't
+      mentions_modal:
+        remove_recipient: Eliminar destinatària %{name}
       participatory_space_filters:
         filters:
           areas: Àrees
@@ -1393,6 +1501,7 @@ ca:
       notify:
         body_1: La usuària %{user} ha estat reportada per %{token}
         body_2: 'Motiu: %{reason}'
+        details: Detalls proporcionats per la usuària
         greetings: Salutacions,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: Hola %{admin},
         subject: Una nova usuària ha estat reportada a %{organization_name}
@@ -1453,7 +1562,7 @@ ca:
     invitations:
       edit:
         header: Acabar de crear el teu compte
-        nickname_help: El teu àlies a %{organization}.
+        nickname_help: El teu àlies a %{organization}. Només pot contenir lletres, números, '-' i '_'.
         submit_button: Desa
         subtitle: Si acceptes la invitació, si us plau, estableix el teu àlies i contrasenya.
       invitation_removed: S'ha eliminat la teva invitació.
@@ -1519,10 +1628,11 @@ ca:
     passwords:
       edit:
         change_my_password: Canvia la meva contrasenya
-        change_your_password: Canvia la teva contrasenya
         confirm_new_password: Confirmar la nova contrasenya
         new_password: Nova contrasenya
         password_help: "%{minimun_characters} caràcters mínim, no ha de ser massa comú (per exemple 123456) i ha de ser diferent del teu nom d'usuari i la teva adreça de correu electrònic."
+        password_help_admin: "%{minimun_characters} caràcters mínim, no ha de ser massa comú (per exemple 123456) i ha de ser diferent del teu àlies, de la teva adreça de correu electrònic i de les teves antigues contrasenyes."
+        title: Canvi de contrasenya
       new:
         forgot_your_password: Has oblidat la teva contrasenya?
         send_me_reset_password_instructions: Envia'm les instruccions per restablir la contrasenya
@@ -1570,6 +1680,7 @@ ca:
       public: La teva informació pública.
   errors:
     messages:
+      allowed_file_content_types: 'només s''accepten arxius amb les següents extensions: %{types}'
       already_confirmed: ja s'ha confirmat, si us plau intenta iniciar la sessió
       confirmation_period_expired: s'ha de confirmar dins de %{period}, si us plau sol·licita'n un de nou
       content_type_allowlist_error: el tipus de fitxer no és vàlid
@@ -1587,7 +1698,7 @@ ca:
         other: 'S''han produït múltiples errors en processar la vostra sol·licitud:'
       too_many_marks: Estàs fent servir massa signes de puntuació consecutius (p. ex. i?)
       too_much_caps: Estàs utilitzant massa lletres majúscules (més del 25% del text)
-      too_short: És massa curt (menys %{count} caràcters)
+      too_short: és massa curt (menys %{count} caràcters)
   forms:
     correct_errors: Hi ha errors al formulari, si us plau corregeix-los per continuar.
     length_validator:
@@ -1601,14 +1712,60 @@ ca:
     timestamp_error_message: Ho sentim, has estat massa ràpid! Si us plau, torna a enviar-ho.
   layouts:
     decidim:
-      cookie_warning:
-        description_html: Aquest lloc web fa servir cookies pròpies i de tercers per millorar l’experiència de navegació, i oferir continguts i serveis d’interès. En continuar la navegació entenem que acceptes la nostra política de cookies. Per a més informació consulta %{link}.
-        link_label: aquí
-        ok: Hi estic d'acord
+      data_consent:
+        details:
+          columns:
+            description: Descripció
+            name: Nom
+            service: Servei
+            type: Tipus
+          items:
+            _session_id:
+              description: Permet als llocs web recordar a la usuària dins d'un lloc web quan es mou entre pàgines web.
+              service: Aquesta pàgina web
+            decidim-consent:
+              description: Emmagatzema informació sobre les galetes permeses per la usuària en aquesta pàgina web.
+              service: Aquesta pàgina web
+            pwaInstallPromptSeen:
+              description: Guarda l'estat si la notificació d'instal·lació de l'aplicació web progressiva (PWA) ja ha estat vista per la usuària.
+              service: Aquesta pàgina web
+          types:
+            cookie: Galeta
+            local_storage: Emmagatzematge local
+        dialog:
+          accept_all: Acceptar totes
+          accept_only_essential: Acceptar només les essencials
+          description: Utilitzem galetes en el nostre lloc web per a millorar el rendiment i el contingut d'aquest. Les galetes ens permeten oferir una experiència d'usuari i uns continguts més personalitzats des dels nostres canals de xarxes socials.
+          settings: Configuració
+          title: Informació sobre les galetes que es fan servir a aquesta pàgina web
+        modal:
+          accept_all: Acceptar totes
+          accept_only_essential: Acceptar només les essencials
+          analytics:
+            description: Aquestes galetes s'utilitzen per a mesurar i analitzar l'audiència del lloc web per a ajudar a millorar-lo.
+            title: Analítiques i estadístiques
+          description: Fem servir galetes per assegurar les funcionalitats bàsiques del lloc web i per a millorar la teva experiència en línia. Pots configurar i acceptar l'ús de galetes, i modificar les teves opcions de consentiment en qualsevol moment.
+          essential:
+            description: Aquestes galetes permeten la funcionalitat clau del lloc web i ajuden a mantenir a les seves usuàries segures. Es guarden automàticament al navegador i no es poden desactivar.
+            title: Essencials
+          marketing:
+            description: Aquestes galetes recullen informació sobre com fas servir el lloc web i es poden fer servir per a proporcionar-te un servei més personalitzat en els diferents espais en què participes.
+            title: Màrqueting
+          preferences:
+            description: Aquestes galetes permeten que el lloc web recordi les opcions que s'han triat en el passat a aquest lloc web per tal de proporcionar una experiència més personalitzada a les usuàries.
+            title: Preferències
+          save_settings: Guardar configuració
+          title: Configuració de les galetes
+          toggle: Canviar %{consent_category}
+        warning:
+          all_categories: totes les galetes
+          change_settings: Canviar la configuració de les galetes
+          consent_required: Cal que habilitis %{categories} per veure aquest contingut.
       edit_link:
         edit: Edita
       footer:
         cc_by_license: Amb llicència Creative Commons
+        data_consent_settings: Configuració de les galetes
         decidim_logo: Logo Decidim
         download_open_data: Descarrega els fitxers de dades obertes
         made_with_open_source: Web creada amb <a target="_blank" href="https://github.com/decidim/decidim">programari lliure</a>.
@@ -1628,6 +1785,8 @@ ca:
       notifications_dashboard:
         mark_all_as_read: Marcar tot com a llegit
         mark_as_read: Marcar com a llegit
+      offline_banner:
+        cache_version_page: Ostres! La teva xarxa està desconnectada. El que estàs veient és una versió prèvia de la pàgina desada a la memòria cau i que podria no estar actualitzada.
       social_media_links:
         facebook: "%{organization} a Facebook"
         github: "%{organization} a GitHub"
@@ -1639,6 +1798,8 @@ ca:
         continue_session: Continuar la sessió
         sign_out: Tancar sessió
         title: Vols continuar amb la sessió?
+      upload_modal:
+        close_modal: Tancar finestra
       user_menu:
         account: 'Compte d''usuària: %{name}'
         admin_dashboard: Tauler d'administració
@@ -1671,6 +1832,7 @@ ca:
     nickname_included_in_password: és massa semblant al teu àlies
     not_enough_unique_characters: no té prou caràcters únics
     password_not_allowed: no està permès
+    password_repeated: no pots reutilitzar una antiga contrasenya
     password_too_common: és massa comú
     password_too_long: és massa llarg
     password_too_short: és massa curt
@@ -1712,8 +1874,8 @@ ca:
         mailer:
           invitation_instructions:
             accept_until_format: "%B %d, %Y %I:%M %p"
-      long: "%d de %B, %Y %H:%M"
-      long_dashed: "%d-%m-%Y %H:%M:%S"
+      long: "%B %d, %Y %H:%M"
+      long_dashed: "%A-%m-%d %H:%M:%S"
       short: "%d/%m/%Y %H:%M"
       time_of_day: "%H:%M"
   versions:

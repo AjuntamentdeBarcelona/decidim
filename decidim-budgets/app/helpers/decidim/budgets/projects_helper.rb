@@ -5,6 +5,8 @@ module Decidim
     # A helper to render order and budgets actions
     module ProjectsHelper
       include ActiveSupport::NumberHelper
+      include Decidim::ApplicationHelper
+      include Decidim::MapHelper
 
       # Render a budget as a currency
       #
@@ -81,6 +83,32 @@ module Decidim
         else
           t(".vote_threshold_percent_rule.description", minimum_budget: budget_to_currency(current_order.minimum_budget))
         end
+      end
+
+      # Serialize a collection of geocoded projects to be used by the dynamic map component
+      #
+      # geocoded_projects - A collection of geocoded projects
+      def projects_data_for_map(geocoded_projects)
+        geocoded_projects.map do |project|
+          project_data_for_map(project)
+        end
+      end
+
+      def project_data_for_map(project)
+        project
+          .slice(:latitude, :longitude, :address)
+          .merge(
+            title: decidim_html_escape(translated_attribute(project.title)),
+            description: html_truncate(decidim_sanitize_editor(translated_attribute(project.description)), length: 100),
+            icon: icon("project", width: 40, height: 70, remove_icon_class: true),
+            link: ::Decidim::ResourceLocatorPresenter.new([project.budget, project]).path
+          )
+      end
+
+      def has_position?(project)
+        return if project.address.blank?
+
+        project.latitude.present? && project.longitude.present?
       end
     end
   end

@@ -106,7 +106,8 @@ module Decidim
             "allowed_file_extensions" => {
               "default" => %w(jpg jpeg gif png bmp pdf rtf txt),
               "admin" => %w(jpg jpeg gif png bmp pdf doc docx xls xlsx ppt pptx ppx rtf txt odt ott odf otg ods ots),
-              "image" => %w(jpg jpeg gif png bmp ico)
+              "image" => %w(jpg jpeg gif png bmp),
+              "favicon" => %w(png)
             },
             "allowed_content_types" => {
               "default" => %w(
@@ -129,8 +130,8 @@ module Decidim
               )
             },
             "maximum_file_size" => {
-              "default" => 10,
-              "avatar" => 5
+              "default" => 10.0,
+              "avatar" => 5.0
             }
           }
         }
@@ -148,7 +149,7 @@ module Decidim
       # all configurations have values even when the organization settings do
       # not define them.
       super(
-        keys_map.map do |config, method|
+        keys_map.to_h do |config, method|
           [
             config.to_s,
             generate_config(
@@ -156,7 +157,7 @@ module Decidim
               self.class.default(config)
             )
           ]
-        end.to_h
+        end
       )
 
       keys_map.keys.each do |config|
@@ -190,10 +191,10 @@ module Decidim
     # @return [OpenStruct] The configuration struct.
     def generate_config(hash, default = {})
       OpenStruct.new(
-        default.deep_merge(hash).map do |key, value|
+        default.deep_merge(hash).to_h do |key, value|
           value = generate_config(value) if value.is_a?(Hash)
           [key, value]
-        end.to_h
+        end
       )
     end
 

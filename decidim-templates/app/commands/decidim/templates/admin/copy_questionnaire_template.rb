@@ -4,14 +4,15 @@ module Decidim
   module Templates
     # A command with all the business logic when duplicating a questionnaire template
     module Admin
-      class CopyQuestionnaireTemplate < Rectify::Command
+      class CopyQuestionnaireTemplate < Decidim::Command
         include Decidim::Templates::Admin::QuestionnaireCopier
 
         # Public: Initializes the command.
         #
         # template - A template we want to duplicate
-        def initialize(template)
+        def initialize(template, user)
           @template = template
+          @user = user
         end
 
         # Executes the command. Broadcasts these events:
@@ -23,9 +24,11 @@ module Decidim
         def call
           return broadcast(:invalid) unless @template.valid?
 
-          Template.transaction do
-            copy_template
-            copy_questionnaire_questions(@template.templatable, @copied_template.templatable)
+          Decidim.traceability.perform_action!("duplicate", @template, @user) do
+            Template.transaction do
+              copy_template
+              copy_questionnaire_questions(@template.templatable, @copied_template.templatable)
+            end
           end
 
           broadcast(:ok, @copied_template)

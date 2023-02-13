@@ -60,7 +60,7 @@ describe Decidim::Verifications::AuthorizationsBeforeDate do
   end
 
   shared_examples_for "a correct usage of the query" do
-    subject { described_class.new(parameters).query }
+    subject { described_class.new(**parameters).query }
 
     it { is_expected.to match_array(expectation) }
     it { is_expected.not_to include(external_organization_authorization) }
@@ -215,24 +215,6 @@ describe Decidim::Verifications::AuthorizationsBeforeDate do
 
       let(:expectation) do
         [
-          granted_managed
-        ]
-      end
-    end
-  end
-
-  describe "when granted only, not impersonated" do
-    it_behaves_like "a correct usage of the query" do
-      let(:parameters) do
-        { organization: organization, date: prev_month, granted: true }
-      end
-
-      let(:expectation) do
-        [
-          granted_now,
-          granted_prev_week,
-          granted_prev_month,
-          granted_prev_year,
           granted_managed
         ]
       end

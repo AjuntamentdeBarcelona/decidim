@@ -160,7 +160,7 @@ describe "Decidim::Api::QueryType" do
       let!(:other_post) { create(:post, created_at: 2.weeks.ago, updated_at: 1.week.ago, component: current_component) }
       let(:edges) { response["participatoryProcess"]["components"].first["posts"]["edges"] }
 
-      context "when ordered by " do
+      context "when ordered by" do
         context "with createdAt" do
           let(:criteria) { "order: { createdAt: \"asc\" }" }
 
@@ -212,12 +212,6 @@ describe "Decidim::Api::QueryType" do
           let(:criteria) { "filter: { createdSince: \"#{1.week.ago.to_date}\" } " }
 
           it { expect(edges).to eq([{ "node" => { "id" => post.id.to_s } }]) }
-        end
-
-        context "with updatedBefore" do
-          let(:criteria) { "filter: { updatedBefore: \"#{post.created_at.to_date}\" } " }
-
-          it { expect(edges).to eq([{ "node" => { "id" => other_post.id.to_s } }]) }
         end
 
         context "with updatedBefore" do

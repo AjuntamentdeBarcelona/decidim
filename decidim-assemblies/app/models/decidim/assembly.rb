@@ -34,6 +34,8 @@ module Decidim
     include Decidim::Searchable
     include Decidim::HasUploadValidations
     include Decidim::TranslatableResource
+    include Decidim::HasArea
+    include Decidim::FilterableResource
 
     SOCIAL_HANDLERS = [:twitter, :facebook, :instagram, :youtube, :github].freeze
     CREATED_BY = %w(city_council public others).freeze
@@ -146,7 +148,7 @@ module Decidim
     end
 
     def user_roles(role_name = nil)
-      roles = Decidim::AssemblyUserRole.where(assembly: self)
+      roles = Decidim::AssemblyUserRole.where(assembly: self_and_ancestors)
       return roles if role_name.blank?
 
       roles.where(role: role_name)
@@ -154,6 +156,10 @@ module Decidim
 
     def attachment_context
       :admin
+    end
+
+    def self.ransackable_scopes(_auth_object = nil)
+      [:with_area, :with_scope]
     end
 
     private
@@ -208,8 +214,8 @@ module Decidim
     # rubocop:enable Rails/SkipsModelValidations
 
     # Allow ransacker to search for a key in a hstore column (`title`.`en`)
-    ransacker :title do |parent|
-      Arel::Nodes::InfixOperation.new("->>", parent.table[:title], Arel::Nodes.build_quoted(I18n.locale.to_s))
-    end
+    ransacker_i18n :title
+
+    ransack_alias :type_id, :decidim_assemblies_type_id
   end
 end

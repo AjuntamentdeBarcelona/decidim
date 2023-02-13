@@ -1,3 +1,4 @@
+---
 lv:
   activemodel:
     attributes:
@@ -66,7 +67,6 @@ lv:
           all: Visi
           category: Kategorija
           category_prompt: Izvēlieties kategoriju
-          citizens: Pilsoņi
           official: Oficiālā
           origin: Izcelsme
           search: Meklēt

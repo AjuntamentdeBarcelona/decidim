@@ -13,7 +13,7 @@ module Decidim
     before_action :ensure_profile_holder
     before_action :ensure_profile_holder_is_a_group, only: [:members]
     before_action :ensure_profile_holder_is_a_user, only: [:groups, :following]
-    before_action :ensure_user_not_blocked, only: [:following, :followers, :badges]
+    before_action :ensure_user_not_blocked
 
     def show
       return redirect_to profile_timeline_path(nickname: params[:nickname]) if profile_holder == current_user
@@ -83,7 +83,7 @@ module Decidim
     def profile_holder
       return if params[:nickname].blank?
 
-      @profile_holder ||= Decidim::UserBaseEntity.find_by(nickname: params[:nickname], organization: current_organization)
+      @profile_holder ||= Decidim::UserBaseEntity.find_by("LOWER(nickname) = ? AND decidim_organization_id = ?", params[:nickname].downcase, current_organization.id)
     end
   end
 end

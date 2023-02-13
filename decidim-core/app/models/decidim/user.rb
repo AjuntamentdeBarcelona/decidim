@@ -5,15 +5,15 @@ require "devise/models/decidim_newsletterable"
 require "valid_email2"
 
 module Decidim
-  # A User is a citizen that wants to join the platform to participate.
+  # A User is a participant that wants to join the platform to engage.
   class User < UserBaseEntity
-    include Decidim::DataPortability
+    include Decidim::DownloadYourData
     include Decidim::Searchable
     include Decidim::ActsAsAuthor
     include Decidim::UserReportable
     include Decidim::Traceable
 
-    REGEXP_NICKNAME = /\A[\w\-]+\z/.freeze
+    REGEXP_NICKNAME = /\A[\w\-]+\z/
 
     class Roles
       def self.all
@@ -34,8 +34,7 @@ module Decidim
     has_many :user_groups, through: :memberships, class_name: "Decidim::UserGroup", foreign_key: :decidim_user_group_id
     has_many :access_grants, class_name: "Doorkeeper::AccessGrant", foreign_key: :resource_owner_id, dependent: :destroy
     has_many :access_tokens, class_name: "Doorkeeper::AccessToken", foreign_key: :resource_owner_id, dependent: :destroy
-
-    has_one :blocking, class_name: "Decidim::UserBlock", foreign_key: :id, primary_key: :block_id, dependent: :destroy
+    has_many :reminders, foreign_key: "decidim_user_id", class_name: "Decidim::Reminder", dependent: :destroy
 
     validates :name, presence: true, unless: -> { deleted? }
     validates :nickname,
@@ -50,7 +49,7 @@ module Decidim
 
     validate :all_roles_are_valid
 
-    has_one_attached :data_portability_file
+    has_one_attached :download_your_data_file
 
     scope :not_deleted, -> { where(deleted_at: nil) }
 
@@ -81,12 +80,14 @@ module Decidim
                         # scope_id: :decidim_scope_id,
                         organization_id: :decidim_organization_id,
                         A: :name,
+                        B: :nickname,
                         datetime: :created_at
                       },
                       index_on_create: ->(user) { !(user.deleted? || user.blocked?) },
                       index_on_update: ->(user) { !(user.deleted? || user.blocked?) })
 
     before_save :ensure_encrypted_password
+    before_save :save_password_change
 
     def user_invited?
       invitation_token_changed? && invitation_accepted_at_changed?
@@ -186,10 +187,10 @@ module Decidim
     end
 
     def self.export_serializer
-      Decidim::DataPortabilitySerializers::DataPortabilityUserSerializer
+      Decidim::DownloadYourDataSerializers::DownloadYourDataUserSerializer
     end
 
-    def self.data_portability_images(user)
+    def self.download_your_data_images(user)
       user_collection(user).map(&:avatar)
     end
 
@@ -255,6 +256,18 @@ module Decidim
       Arel.sql(%{("decidim_users"."last_sign_in_at")::text})
     end
 
+    def notifications_subscriptions
+      notification_settings.fetch("subscriptions", {})
+    end
+
+    def needs_password_update?
+      return false unless admin?
+      return false unless Decidim.config.admin_password_strong
+      return true if password_updated_at.blank?
+
+      password_updated_at < Decidim.config.admin_password_expiration_days.days.ago
+    end
+
     protected
 
     # Overrides devise email required validation.
@@ -301,6 +314,19 @@ module Decidim
 
     def ensure_encrypted_password
       restore_encrypted_password! if will_save_change_to_encrypted_password? && encrypted_password.blank?
+    end
+
+    def save_password_change
+      return unless persisted?
+      return unless encrypted_password_changed?
+      return unless admin?
+      return unless Decidim.config.admin_password_strong
+
+      # We don't want to run validations here because that could lead to an endless validation loop.
+      # rubocop:disable Rails/SkipsModelValidations
+      update_column(:password_updated_at, Time.current)
+      update_column(:previous_passwords, [encrypted_password_was, *previous_passwords].first(Decidim.config.admin_password_repetition_times))
+      # rubocop:enable Rails/SkipsModelValidations
     end
   end
 end

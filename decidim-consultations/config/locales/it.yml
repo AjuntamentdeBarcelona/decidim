@@ -1,3 +1,4 @@
+---
 it:
   activemodel:
     attributes:
@@ -253,7 +254,6 @@ it:
         all: Tutti
         finished: Finito
         search: Ricerca
-        state: Stato
         upcoming: Prossime
       filters_small_view:
         close_modal: Chiudi la finestra

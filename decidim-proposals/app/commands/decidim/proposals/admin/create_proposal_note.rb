@@ -4,7 +4,7 @@ module Decidim
   module Proposals
     module Admin
       # A command with all the business logic when an admin creates a private note proposal.
-      class CreateProposalNote < Rectify::Command
+      class CreateProposalNote < Decidim::Command
         # Public: Initializes the command.
         #
         # form         - A form object with the params.
@@ -59,7 +59,7 @@ module Decidim
             affected_users: affected_users
           }
 
-          Decidim::EventsManager.publish(data)
+          Decidim::EventsManager.publish(**data)
         end
       end
     end

@@ -4,7 +4,7 @@ require "spec_helper"
 
 describe Decidim do
   it "has a version number" do
-    expect(described_class.version).not_to be nil
+    expect(described_class.version).not_to be_nil
   end
 
   describe ".seed!" do
@@ -27,12 +27,12 @@ describe Decidim do
       expect(other_railties).not_to include(receive(:load_seed))
 
       manifests = [double(name: "Component A"), double(name: "Component B")]
-      expect(described_class).to receive(:participatory_space_manifests).and_return(manifests)
+      allow(described_class).to receive(:participatory_space_manifests).and_return(manifests)
 
       expect(manifests).to all(receive(:seed!).once)
 
       application = double(railties: (decidim_railties + other_railties))
-      expect(Rails).to receive(:application).and_return application
+      allow(Rails).to receive(:application).and_return application
 
       described_class.seed!
     end
@@ -53,14 +53,14 @@ describe Decidim do
     end
 
     it "returns false for the test environment" do
-      expect(described_class.force_ssl).to eq(false)
+      expect(described_class.force_ssl).to be(false)
     end
 
     context "when the Rails.env is set to production" do
       let(:rails_env) { "production" }
 
       it "returns true" do
-        expect(described_class.force_ssl).to eq(true)
+        expect(described_class.force_ssl).to be(true)
       end
     end
 
@@ -68,7 +68,7 @@ describe Decidim do
       let(:rails_env) { "production_foo" }
 
       it "returns true" do
-        expect(described_class.force_ssl).to eq(true)
+        expect(described_class.force_ssl).to be(true)
       end
     end
 
@@ -76,7 +76,7 @@ describe Decidim do
       let(:rails_env) { "staging" }
 
       it "returns true" do
-        expect(described_class.force_ssl).to eq(true)
+        expect(described_class.force_ssl).to be(true)
       end
     end
 
@@ -84,7 +84,60 @@ describe Decidim do
       let(:rails_env) { "staging_foo" }
 
       it "returns true" do
-        expect(described_class.force_ssl).to eq(true)
+        expect(described_class.force_ssl).to be(true)
+      end
+    end
+  end
+
+  describe ".module_installed?" do
+    subject { described_class.module_installed?(mod) }
+
+    context "with default configurations" do
+      %w(
+        accountability
+        admin
+        api
+        assemblies
+        blogs
+        budgets
+        comments
+        core
+        debates
+        forms
+        generators
+        meetings
+        pages
+        participatory_processes
+        proposals
+        sortitions
+        surveys
+        system
+        templates
+        verifications
+        conferences
+        consultations
+        elections
+        initiatives
+        templates
+      ).each do |decidim_gem|
+        context decidim_gem do
+          let(:mod) { decidim_gem }
+
+          it { is_expected.to be(true) }
+        end
+      end
+    end
+
+    context "when the module is needed but does not define a module load file" do
+      let(:mod) { :foo }
+
+      before do
+        allow(Decidim::DependencyResolver.instance).to receive(:needed?).with("decidim-#{mod}").and_return(true)
+      end
+
+      it "does not raise an exception and returns false" do
+        expect { subject }.not_to raise_error
+        expect(subject).to be(false)
       end
     end
   end

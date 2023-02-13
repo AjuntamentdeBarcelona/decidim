@@ -1,10 +1,15 @@
+---
 ca:
   activemodel:
     attributes:
       initiative:
+        answer: Resposta
+        answer_url: URL de la resposta
         area_id: Àrea
+        decidim_scope_id: Àmbit
         decidim_user_group_id: Autoria
         description: Descripció
+        hashtag: Etiqueta (hashtag)
         offline_votes: Signatures presencials
         offline_votes_for_scope: Signatures presencials per a %{scope_name}
         scope_id: Àmbit
@@ -17,6 +22,7 @@ ca:
           online: Digital
         state: Estat
         title: Títol
+        type_id: Tipus
       initiatives_committee_member:
         user: Membre del comitè
       initiatives_settings:
@@ -27,6 +33,7 @@ ca:
         banner_image: Imatge del bàner
         child_scope_threshold_enabled: Activar signatures per subàmbit
         collect_user_extra_fields: Recopilar les dades personals de la participant amb la signatura
+        comments_enabled: Habilitar comentaris
         custom_signature_end_date_enabled: Permet a les autores triar la fi del període de recollida de signatures
         description: Descripció
         document_number_authorization_handler: Autorització per verificar el número de document en les signatures
@@ -39,6 +46,9 @@ ca:
         title: Títol
         undo_online_signatures_enabled: Permetre a les participants desfer les seves signatures digitals
         validate_sms_code_on_votes: Afegeix el pas de validació mitjançant SMS al procés de signatura
+      initiatives_type_scope:
+        decidim_scopes_id: Àmbits
+        supports_required: Es requereixen suports
       initiatives_vote:
         date_of_birth: Data de naixement
         document_number: Número de document
@@ -88,12 +98,17 @@ ca:
             label: Tipus
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Cercar %{collection} per títol, descripció, ID o autoria.
+      initiatives_settings:
+        update:
+          error: S'ha produït un error
+          success: La configuració de les iniciatives s'ha actualitzat correctament
       menu:
         attachments: Adjunts
         committee_members: Membres de la comissió
         components: Components
         information: Informació
         initiatives: Iniciatives
+        initiatives_settings: Configuració
         initiatives_types: Tipus d'iniciatives
         moderations: Moderacions
       models:
@@ -203,7 +218,7 @@ ca:
         committee_requests:
           index:
             approve: Aprova
-            confirm_revoke: Estàs segur?
+            confirm_revoke: Segur?
             invite_to_committee_help: Comparteix aquest enllaç per convidar altres persones al comitè promotor
             no_members_yet: No hi ha membres al comitè promotor
             revoke: Revocar
@@ -220,8 +235,8 @@ ca:
         initiatives:
           edit:
             accept: Accepta la iniciativa
-            confirm: Estàs segur?
-            confirm_send_to_technical_validation: N'estàs segura?
+            confirm: Segur?
+            confirm_send_to_technical_validation: Segur?
             discard: Descarta la iniciativa
             export_pdf_signatures: Exporta PDF de signatures
             export_votes: Exportar signatures
@@ -245,6 +260,16 @@ ca:
           update:
             error: S'ha produït un error
             success: La iniciativa ciutadana s'ha actualitzat correctament
+        initiatives_settings:
+          edit:
+            update: Actualitzar
+          form:
+            comments: Més comentades
+            date: Més recents
+            publication_date: Publicada més recentment
+            random: Aleatori
+            signatures: Més signades
+            title: Configuració d'iniciatives
         initiatives_type_scopes:
           create:
             error: S'ha produït un error
@@ -253,7 +278,7 @@ ca:
             success: L'àmbit s'ha eliminat correctament
           edit:
             back: Torna
-            confirm_destroy: N'estàs segur?
+            confirm_destroy: Segur?
             destroy: Suprimeix
             title: Edita l'àmbit del tipus d'iniciativa
             update: Actualitza
@@ -271,12 +296,12 @@ ca:
           destroy:
             success: S'ha eliminat correctament el tipus d'iniciativa
           edit:
-            confirm_destroy: N'estàs segur?
+            confirm_destroy: Segur?
             destroy: Suprimeix
             update: Actualitza
           form:
             authorizations: Configuració de l'autorització
-            child_scope_threshold_enabled_help: 'Aquest ajust de configuració no admet les votacions sense connexió, habilita els subàmbits i funciona amb un gestor d''autoritzacions que associa un àmbit a la participant, assegureu-vos de seleccionar aquesta autorització, més avall a la configuració d''autoritzacions. Per a que funcioni, els àmbits han de configurar-se de forma jerárquica: 1 Pare - N fills. Per a més informació sobre com funciona aquesta configuració, <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">veure aquest enllaç</a>.'
+            child_scope_threshold_enabled_help: 'Aquest ajust de configuració no admet les votacions sense connexió. Habilita els subàmbits i funciona amb un gestor d''autoritzacions que associa un àmbit a la participant. Assegura''t de seleccionar aquesta autorització, més avall a la configuració d''autoritzacions. Per a que funcioni, els àmbits han de configurar-se de forma jerárquica: 1 Pare - N fills. Per a més informació sobre com funciona aquesta configuració, <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">veure la documentació sobre l''administració d''iniciatives</a>.'
             only_global_scope_enabled_help: Marca aquesta casella si has habilitat "Activar signatures per subàmbit" i vas configurar l'àmbit global com l'àmbit principal. En habilitar aquesta casella, la selecció del tipus d'iniciativa s'ometrà en l'assistent de creació d'iniciatives. Per a més informació sobre com funciona aquesta configuració, consulta aquest <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">enllaç</a>.
             options: Opcions
             title: Informació general
@@ -294,6 +319,12 @@ ca:
           send_to_technical_validation: "%{user_name} ha enviat la iniciativa %{resource_name} a la validació tècnica"
           unpublish: "%{user_name} ha descartat la iniciativa %{resource_name}"
           update: "%{user_name} ha actualitzat la iniciativa %{resource_name}"
+        initiatives_settings:
+          update: "%{user_name} ha actualitzat la configuració de les iniciatives"
+        initiatives_type:
+          create: "%{user_name} ha creat el tipus d'iniciativa %{resource_name}"
+          delete: "%{user_name} ha esborrat el tipus d'iniciativa %{resource_name}"
+          update: "%{user_name} ha actualitzat el tipus d'iniciativa %{resource_name}"
       admin_states:
         accepted: Ha aconseguit les signatures necessàries
         created: Creada
@@ -375,7 +406,7 @@ ca:
       edit:
         accept: Accepta la iniciativa
         back: Tornar
-        confirm: N'estàs segura?
+        confirm: Segur?
         discard: Descarta la iniciativa
         export_pdf_signatures: Exporta PDF de signatures
         export_votes: Exportar signatures
@@ -448,7 +479,7 @@ ca:
             other: i %{count} persones més
         committee_members:
           approve: Aprova
-          confirm_revoke: N'estàs segura?
+          confirm_revoke: Segur?
           invite_to_committee_help: Comparteix aquest enllaç per convidar altres persones a la comissió promotora
           no_members_yet: No hi ha membres a la comissió promotora
           revoke: Revocar
@@ -520,7 +551,7 @@ ca:
           initiative_rejected_reason: Aquesta iniciativa ha estat rebutjada per falta de signatures.
         show:
           any_vote_method: Aquesta iniciativa recull signatures digitals i presencials.
-          confirm: Estàs a punt d'enviar la iniciativa perquè una administradora la revisi i la publiqui. Un cop publicada no la podràs editar. N'estàs segura?
+          confirm: Estàs a punt d'enviar la iniciativa perquè una administradora la revisi i la publiqui. Un cop publicada no la podràs editar. Segur?
           edit: Editar
           follow_description: Rebre una notificació quan hi hagi novetats sobre aquesta iniciativa
           offline_method: Aquesta iniciativa només recull signatures presencials.
@@ -567,6 +598,8 @@ ca:
           published: Publicada
           rejected: No ha aconseguit les signatures
           validating: Validació tècnica
+      signature_interval:
+        title: Període de recollida de signatures
       states:
         accepted: Acceptat
         expired: Vençut

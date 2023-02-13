@@ -430,7 +430,7 @@ describe "Meeting registrations", type: :system do
         it "shows validation pending if not validated" do
           visit_meeting
 
-          expect(registration.validated_at).to be(nil)
+          expect(registration.validated_at).to be_nil
           expect(page).to have_content("VALIDATION PENDING")
         end
       end
@@ -443,7 +443,7 @@ describe "Meeting registrations", type: :system do
         it "shows validation pending if not validated" do
           visit_meeting
 
-          expect(registration.validated_at).to be(nil)
+          expect(registration.validated_at).to be_nil
           expect(page).to have_no_content("VALIDATION PENDING")
         end
       end
@@ -457,7 +457,7 @@ describe "Meeting registrations", type: :system do
           registration.update validated_at: Time.current
           visit_meeting
 
-          expect(registration.validated_at).not_to be(nil)
+          expect(registration.validated_at).not_to be_nil
           expect(page).to have_content("VALIDATED")
         end
       end
@@ -471,7 +471,7 @@ describe "Meeting registrations", type: :system do
           registration.update validated_at: Time.current
           visit_meeting
 
-          expect(registration.validated_at).not_to be(nil)
+          expect(registration.validated_at).not_to be_nil
           expect(page).to have_no_content("VALIDATED")
         end
       end

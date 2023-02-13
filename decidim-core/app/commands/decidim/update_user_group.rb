@@ -2,7 +2,7 @@
 
 module Decidim
   # A command with all the business logic to update a user group profile.
-  class UpdateUserGroup < Rectify::Command
+  class UpdateUserGroup < Decidim::Command
     # Public: Initializes the command.
     #
     # form - A form object with the params.
@@ -60,7 +60,7 @@ module Decidim
         affected_users: Decidim::User.org_admins_except_me(form.current_user)
       }
 
-      Decidim::EventsManager.publish(data)
+      Decidim::EventsManager.publish(**data)
     end
   end
 end

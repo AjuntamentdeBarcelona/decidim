@@ -1,3 +1,4 @@
+---
 id:
   activemodel:
     attributes:
@@ -32,10 +33,6 @@ id:
         keep_authors: Simpan penulis asli
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Jenis dokumen tidak valid. Format yang diterima adalah: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -390,7 +387,6 @@ id:
           all: Semua
         filter_origin_values:
           all: Semua
-          citizens: Warga
           meetings: Rapat
           official: Resmi
           user_groups: Grup Pengguna

@@ -3,10 +3,13 @@
 require "decidim/core/engine"
 require "decidim/core/api"
 require "decidim/core/version"
+
 # Decidim configuration.
 module Decidim
+  autoload :Env, "decidim/env"
   autoload :Deprecations, "decidim/deprecations"
   autoload :ActsAsAuthor, "decidim/acts_as_author"
+  autoload :ActsAsTree, "decidim/acts_as_tree"
   autoload :TranslatableAttributes, "decidim/translatable_attributes"
   autoload :TranslatableResource, "decidim/translatable_resource"
   autoload :JsonbAttributes, "decidim/jsonb_attributes"
@@ -14,6 +17,7 @@ module Decidim
   autoload :AuthorizationFormBuilder, "decidim/authorization_form_builder"
   autoload :FilterFormBuilder, "decidim/filter_form_builder"
   autoload :ComponentManifest, "decidim/component_manifest"
+  autoload :NotificationSettingManifest, "decidim/notification_setting_manifest"
   autoload :ParticipatorySpaceManifest, "decidim/participatory_space_manifest"
   autoload :ResourceManifest, "decidim/resource_manifest"
   autoload :Resourceable, "decidim/resourceable"
@@ -43,7 +47,6 @@ module Decidim
   autoload :FriendlyDates, "decidim/friendly_dates"
   autoload :Nicknamizable, "decidim/nicknamizable"
   autoload :HasReference, "decidim/has_reference"
-  autoload :Attributes, "decidim/attributes"
   autoload :StatsRegistry, "decidim/stats_registry"
   autoload :Exporters, "decidim/exporters"
   autoload :FileZipper, "decidim/file_zipper"
@@ -51,7 +54,9 @@ module Decidim
   autoload :MenuItem, "decidim/menu_item"
   autoload :MenuRegistry, "decidim/menu_registry"
   autoload :ManifestRegistry, "decidim/manifest_registry"
+  autoload :AssetRouter, "decidim/asset_router"
   autoload :EngineRouter, "decidim/engine_router"
+  autoload :UrlOptionResolver, "decidim/url_option_resolver"
   autoload :Events, "decidim/events"
   autoload :ViewHooks, "decidim/view_hooks"
   autoload :ContentBlockRegistry, "decidim/content_block_registry"
@@ -64,6 +69,7 @@ module Decidim
   autoload :NewsletterEncryptor, "decidim/newsletter_encryptor"
   autoload :NewsletterParticipant, "decidim/newsletter_participant"
   autoload :Searchable, "decidim/searchable"
+  autoload :FilterableResource, "decidim/filterable_resource"
   autoload :SearchResourceFieldsMapper, "decidim/search_resource_fields_mapper"
   autoload :QueryExtensions, "decidim/query_extensions"
   autoload :ParticipatorySpaceResourceable, "decidim/participatory_space_resourceable"
@@ -71,9 +77,9 @@ module Decidim
   autoload :ViewModel, "decidim/view_model"
   autoload :FingerprintCalculator, "decidim/fingerprint_calculator"
   autoload :Fingerprintable, "decidim/fingerprintable"
-  autoload :DataPortability, "decidim/data_portability"
-  autoload :DataPortabilitySerializers, "decidim/data_portability_serializers"
-  autoload :DataPortabilityExporter, "decidim/data_portability_exporter"
+  autoload :DownloadYourData, "decidim/download_your_data"
+  autoload :DownloadYourDataSerializers, "decidim/download_your_data_serializers"
+  autoload :DownloadYourDataExporter, "decidim/download_your_data_exporter"
   autoload :Amendable, "decidim/amendable"
   autoload :Gamification, "decidim/gamification"
   autoload :Hashtag, "decidim/hashtag"
@@ -96,7 +102,18 @@ module Decidim
   autoload :RecordEncryptor, "decidim/record_encryptor"
   autoload :AttachmentAttributes, "decidim/attachment_attributes"
   autoload :CarrierWaveMigratorService, "decidim/carrier_wave_migrator_service"
+  autoload :ReminderRegistry, "decidim/reminder_registry"
+  autoload :ReminderManifest, "decidim/reminder_manifest"
+  autoload :ManifestMessages, "decidim/manifest_messages"
   autoload :CommonPasswords, "decidim/common_passwords"
+  autoload :HasArea, "decidim/has_area"
+  autoload :AttributeObject, "decidim/attribute_object"
+  autoload :Query, "decidim/query"
+  autoload :Command, "decidim/command"
+  autoload :EventRecorder, "decidim/event_recorder"
+  autoload :ControllerHelpers, "decidim/controller_helpers"
+  autoload :ProcessesFileLocally, "decidim/processes_file_locally"
+  autoload :DependencyResolver, "decidim/dependency_resolver"
 
   include ActiveSupport::Configurable
   # Loads seeds from all engines.
@@ -259,8 +276,8 @@ module Decidim
     true
   end
 
-  # Time that data portability files are available in server
-  config_accessor :data_portability_expiry_time do
+  # Time that download your data files are available in server
+  config_accessor :download_your_data_expiry_time do
     7.days
   end
 
@@ -380,10 +397,51 @@ module Decidim
     1_000
   end
 
-  # Defines the name of the cookie used to check if the user allows Decidim to
-  # set cookies.
+  # Defines the name of the cookie used to check if the user has given consent
+  # to store local data in their browser.
   config_accessor :consent_cookie_name do
-    "decidim-cc"
+    "decidim-consent"
+  end
+
+  # Defines data consent categories. Note that when adding an item you need to
+  # add following i18n entries also (change 'foo' with the name of the data
+  # which can be a cookie for instance).
+  #
+  # layouts.decidim.data_consent.details.items.foo.service
+  # layouts.decidim.data_consent.details.items.foo.description
+  config_accessor :consent_categories do
+    [
+      {
+        slug: "essential",
+        mandatory: true,
+        items: [
+          {
+            type: "cookie",
+            name: "_session_id"
+          },
+          {
+            type: "cookie",
+            name: Decidim.consent_cookie_name
+          },
+          {
+            type: "local_storage",
+            name: "pwaInstallPromptSeen"
+          }
+        ]
+      },
+      {
+        slug: "preferences",
+        mandatory: false
+      },
+      {
+        slug: "analytics",
+        mandatory: false
+      },
+      {
+        slug: "marketing",
+        mandatory: false
+      }
+    ]
   end
 
   # Blacklisted passwords. Array may contain strings and regex entries.
@@ -391,11 +449,33 @@ module Decidim
     []
   end
 
+  # Defines if admins are required to have stronger passwords than other users
+  config_accessor :admin_password_strong do
+    true
+  end
+
+  config_accessor :admin_password_expiration_days do
+    90
+  end
+
+  config_accessor :admin_password_min_length do
+    15
+  end
+
+  config_accessor :admin_password_repetition_times do
+    5
+  end
+
   # This is an internal key that allow us to properly configure the caching key separator. This is useful for redis cache store
   # as it creates some namespaces within the cached data.
   # use `config.cache_key_separator = ":"` in your initializer to have namespaced data
   config_accessor :cache_key_separator do
     "/"
+  end
+
+  # Enable/Disable the service worker
+  config_accessor :service_worker_enabled do
+    Rails.env.exclude?("development")
   end
 
   # Public: Registers a global engine. This method is intended to be used
@@ -471,6 +551,10 @@ module Decidim
     resource_registry.register(name, &block)
   end
 
+  def self.notification_settings(name, &block)
+    notification_settings_registry.register(name, &block)
+  end
+
   # Public: Finds all registered resource manifests via the `register_component`
   # method.
   #
@@ -534,9 +618,17 @@ module Decidim
     @participatory_space_registry ||= ManifestRegistry.new(:participatory_spaces)
   end
 
+  def self.reminders_registry
+    @reminders_registry ||= ReminderRegistry.new
+  end
+
   # Public: Stores the registry of resource spaces
   def self.resource_registry
     @resource_registry ||= ManifestRegistry.new(:resources)
+  end
+
+  def self.notification_settings_registry
+    @notification_settings_registry ||= ManifestRegistry.new(:notification_settings)
   end
 
   # Public: Stores the registry for user permissions
@@ -594,13 +686,12 @@ module Decidim
   #         organization or a model responding to the `organization` method.
   #
   def self.organization_settings(model)
-    organization = begin
-      if model.is_a?(Decidim::Organization)
-        model
-      elsif model.respond_to?(:organization) && model.organization.present?
-        model.organization
-      end
-    end
+    organization = if model.is_a?(Decidim::Organization)
+                     model
+                   elsif model.respond_to?(:organization) && model.organization.present?
+                     model.organization
+                   end
+
     return Decidim::OrganizationSettings.defaults unless organization
 
     Decidim::OrganizationSettings.for(organization)
@@ -624,5 +715,47 @@ module Decidim
 
   def self.register_assets_path(path)
     Rails.autoloaders.main.ignore(path) if Rails.configuration.autoloader == :zeitwerk
+  end
+
+  # Checks if a particular decidim gem is installed and needed by this
+  # particular instance. Preferrably this happens through bundler by inspecting
+  # the Gemfile of the instance but when Decidim is used without bundler, this
+  # will check:
+  # 1. If the gem is globally available or not in the loaded specs, i.e. the
+  #    gems available in the gem install directory/directories.
+  # 2. If the gem has been required through `require "decidim/foo"`.
+  #
+  # Using bundler is suggested as it will provide more accurate results
+  # regarding what is actually needed. It will resolve all the gems listed in
+  # the Gemfile and also their dependencies which provides us accurate
+  # information whether a gem is needed by the instance or not.
+  #
+  # Note that using something like defined?(Decidim::Foo) will not work because
+  # the way the Decidim handles version definitions for each gem. After the gems
+  # are loaded, this would always return true because the version definition
+  # files of each module define that module which means it is available at
+  # runtime if the gem is installed in the gem load path. In some situations it
+  # can be installed there through other projects or through the command line
+  # even if the instance does not require that module or even through
+  # installing gems from git sources or from file paths.
+  #
+  # When a gem is reported as "needed" by the dependency resolver, this will
+  # also require that module ensuring its availability for the initialization
+  # code.
+  #
+  # @param mod [Symbol, String] The module name to check, e.g. `:proposals`.
+  # @return [Boolean] A boolean indicating whether the module is installed.
+  def self.module_installed?(mod)
+    return false unless Decidim::DependencyResolver.instance.needed?("decidim-#{mod}")
+
+    # The dependency may not be automatically loaded through the Gemfile if the
+    # user lists e.g. "decidim-core" and "decidim-budgets" in it. In this
+    # situation, "decidim-comments" is also needed because it is a dependency
+    # for "decidim-budgets".
+    require "decidim/#{mod}"
+
+    true
+  rescue LoadError
+    false
   end
 end

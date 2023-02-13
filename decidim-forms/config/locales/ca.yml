@@ -1,3 +1,4 @@
+---
 ca:
   activemodel:
     attributes:
@@ -121,17 +122,17 @@ ca:
           update:
             invalid: S'ha produït un error en desar el formulari.
             success: Formulari desat correctament.
+      admin_log:
+        questionnaire:
+          update: "%{user_name} ha actualitzat el qüestionari %{resource_name}"
       errors:
         answer:
           body: El camp no pot estar en blanc
-      files:
-        extension_allowlist: 'Formats d''arxiu acceptats:'
       images:
         dimensions: "%{width} x %{height} px"
-        dimensions_info: 'Aquesta imatge medirà:'
         processors:
-          resize_and_pad: Redimensionat i ajustat a
-          resize_to_fit: Redimensionada per ajustar-la
+          resize_and_pad: Aquesta imatge serà redimensionada i ajustada a %{dimensions}.
+          resize_to_fit: Aquesta imatge serà redimensionada per ajustar-se a %{dimensions}.
       question_types:
         files: Arxius
         long_answer: Resposta llarga
@@ -174,7 +175,7 @@ ca:
           tos_agreement: En participar acceptes els Termes i condicions d'ús
       step_navigation:
         show:
-          are_you_sure: Aquesta acció no es pot desfer i no podràs editar les teves respostes. Estàs segura?
+          are_you_sure: Aquesta acció no es pot desfer i no podràs editar les teves respostes. Segur?
           back: Enrere
           continue: Continuar
           submit: Enviar respostes

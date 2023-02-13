@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic to invite users to join a conference.
       #
-      class InviteUserToJoinConference < Rectify::Command
+      class InviteUserToJoinConference < Decidim::Command
         # Public: Initializes the command.
         #
         # form         - A form object with the params.
@@ -86,16 +86,14 @@ module Decidim
         end
 
         def user
-          @user ||= begin
-            if form.existing_user
-              form.user
-            else
-              Decidim::User.find_or_initialize_by(
-                organization: form.current_organization,
-                email: form.email.downcase
-              )
-            end
-          end
+          @user ||= if form.existing_user
+                      form.user
+                    else
+                      Decidim::User.find_or_initialize_by(
+                        organization: form.current_organization,
+                        email: form.email.downcase
+                      )
+                    end
         end
 
         def invite_user_to_sign_up

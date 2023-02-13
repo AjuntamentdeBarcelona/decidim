@@ -1,3 +1,4 @@
+---
 "no":
   activemodel:
     attributes:
@@ -104,6 +105,12 @@
             no_components: Det er ingen andre forslag komponenter i dette deltaker området å importere forslagene inn i prosjekter.
             select_component: Velg en komponent
             title: Importer forslag
+        reminders:
+          orders:
+            description: Brukere vil motta en e-post med lenker til de budsjettene som de har ventende.
+            title:
+              one: Du er i ferd med å sende en e-postpåminnelse til %{count} bruker
+              other: Du er i ferd med å sende en e-postpåminnelse til %{count} brukere
       admin_log:
         budget:
           create: "%{user_name} opprettet %{resource_name} budsjettet i rommet %{space_name}"
@@ -240,7 +247,6 @@
           votes:
             one: stem
             other: stemmer
-          you_voted: Du stemte dette
         project_budget_button:
           add: Legg til i stemmen din
           add_descriptive: Legg til prosjektet %{resource_name} til din stemme
@@ -250,6 +256,15 @@
         show:
           budget: Budsjett
           view_all_projects: Vis alle prosjekter
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Områder hvor du har en uferdig stemme:'
+          email_intro: Du har startet på det deltakende budsjettet, men er ikke ferdig.
+          email_link: Fortsett for å fortsatt stemme
+          email_outro: Husk å fullføre stemmingen. For å stemme, må du først velge forslaget eller forslagene du ønsker å stemme på, og deretter bekrefte stemmen din med "Stemme"-knappen.
+          email_subject:
+            one: Du har en uferdig stemme i deltakende budsjettavstemming
+            other: Du har uferdige stemmer i deltakende budsjettavstemming
     components:
       budgets:
         actions:

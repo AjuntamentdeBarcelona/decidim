@@ -34,7 +34,7 @@ describe "Explore projects", :slow, type: :system do
       it "allows searching by text" do
         visit_budget
         within ".filters__search" do
-          fill_in "filter[search_text]", with: translated(project.title)
+          fill_in "filter[search_text_cont]", with: translated(project.title)
 
           find(".button").click
         end
@@ -45,6 +45,23 @@ describe "Explore projects", :slow, type: :system do
         end
       end
 
+      it "updates the current URL with the text filter" do
+        create(:project, budget: budget, title: { en: "Foobar project" })
+        create(:project, budget: budget, title: { en: "Another project" })
+        visit_budget
+
+        within "form.new_filter" do
+          fill_in("filter[search_text_cont]", with: "foobar")
+          click_button "Search"
+        end
+
+        expect(page).not_to have_content("Another project")
+        expect(page).to have_content("Foobar project")
+
+        filter_params = CGI.parse(URI.parse(page.current_url).query)
+        expect(filter_params["filter[search_text_cont]"]).to eq(["foobar"])
+      end
+
       it "allows filtering by scope" do
         scope = create(:scope, organization: organization)
         project.scope = scope
@@ -52,7 +69,7 @@ describe "Explore projects", :slow, type: :system do
 
         visit_budget
 
-        within ".scope_id_check_boxes_tree_filter" do
+        within ".with_any_scope_check_boxes_tree_filter" do
           uncheck "All"
           check translated(scope.name)
         end
@@ -70,7 +87,7 @@ describe "Explore projects", :slow, type: :system do
 
         visit_budget
 
-        within ".category_id_check_boxes_tree_filter" do
+        within ".with_any_category_check_boxes_tree_filter" do
           uncheck "All"
           check translated(category.name)
         end
@@ -88,7 +105,7 @@ describe "Explore projects", :slow, type: :system do
 
         visit_budget
 
-        within ".category_id_check_boxes_tree_filter" do
+        within ".with_any_category_check_boxes_tree_filter" do
           uncheck "All"
           check translated(category.name)
         end
@@ -122,7 +139,7 @@ describe "Explore projects", :slow, type: :system do
 
           visit_budget
 
-          within ".status_check_boxes_tree_filter" do
+          within ".with_any_status_check_boxes_tree_filter" do
             uncheck "Selected"
           end
 

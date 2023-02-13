@@ -108,15 +108,34 @@ describe "Explore debates", type: :system do
     end
 
     context "when filtering" do
+      context "when filtering by text" do
+        it "updates the current URL" do
+          create(:debate, component: component, title: { en: "Foobar debate" })
+          create(:debate, component: component, title: { en: "Another debate" })
+          visit_component
+
+          within "form.new_filter" do
+            fill_in("filter[search_text_cont]", with: "foobar")
+            click_button "Search"
+          end
+
+          expect(page).not_to have_content("Another debate")
+          expect(page).to have_content("Foobar debate")
+
+          filter_params = CGI.parse(URI.parse(page.current_url).query)
+          expect(filter_params["filter[search_text_cont]"]).to eq(["foobar"])
+        end
+      end
+
       context "when filtering by origin" do
         context "with 'official' origin" do
           let!(:debates) { create_list(:debate, 2, component: component, skip_injection: true) }
 
           it "lists the filtered debates" do
-            create(:debate, :citizen_author, component: component, skip_injection: true)
+            create(:debate, :participant_author, component: component, skip_injection: true)
             visit_component
 
-            within ".filters .origin_check_boxes_tree_filter" do
+            within ".filters .with_any_origin_check_boxes_tree_filter" do
               uncheck "All"
               check "Official"
             end
@@ -126,16 +145,16 @@ describe "Explore debates", type: :system do
           end
         end
 
-        context "with 'citizens' origin" do
-          let!(:debates) { create_list(:debate, 2, :citizen_author, component: component, skip_injection: true) }
+        context "with 'participants' origin" do
+          let!(:debates) { create_list(:debate, 2, :participant_author, component: component, skip_injection: true) }
 
           it "lists the filtered debates" do
             create(:debate, component: component, skip_injection: true)
             visit_component
 
-            within ".filters .origin_check_boxes_tree_filter" do
+            within ".filters .with_any_origin_check_boxes_tree_filter" do
               uncheck "All"
-              check "Citizens"
+              check "Participants"
             end
 
             expect(page).to have_css(".card--debate", count: 2)
@@ -152,7 +171,7 @@ describe "Explore debates", type: :system do
 
         visit_component
 
-        within ".scope_id_check_boxes_tree_filter" do
+        within ".with_any_scope_check_boxes_tree_filter" do
           check "All"
           uncheck "All"
           check translated(scope.name)
@@ -172,7 +191,7 @@ describe "Explore debates", type: :system do
         end
 
         it "can be filtered by category" do
-          within ".filters .category_id_check_boxes_tree_filter" do
+          within ".filters .with_any_category_check_boxes_tree_filter" do
             uncheck "All"
             check category.name[I18n.locale.to_s]
           end
@@ -180,8 +199,8 @@ describe "Explore debates", type: :system do
           expect(page).to have_css(".card--debate", count: 1)
         end
 
-        it "works with 'back to list' link " do
-          within ".filters .category_id_check_boxes_tree_filter" do
+        it "works with 'back to list' link" do
+          within ".filters .with_any_category_check_boxes_tree_filter" do
             uncheck "All"
             check category.name[I18n.locale.to_s]
           end

@@ -5,7 +5,7 @@ module Decidim
     # A command with all the business logic when creating a new organization in
     # the system. It creates the organization and invites the admin to the
     # system.
-    class RegisterOrganization < Rectify::Command
+    class RegisterOrganization < Decidim::Command
       # Public: Initializes the command.
       #
       # form - A form object with the params.
@@ -24,6 +24,7 @@ module Decidim
 
         @organization = nil
         invite_form = nil
+        invitation_failed = false
 
         transaction do
           @organization = create_organization
@@ -31,8 +32,10 @@ module Decidim
           PopulateHelp.call(@organization)
           CreateDefaultContentBlocks.call(@organization)
           invite_form = invite_user_form(@organization)
-          return broadcast(:invalid) if invite_form.invalid?
+          invitation_failed = invite_form.invalid?
         end
+        return broadcast(:invalid) if invitation_failed
+
         Decidim::InviteUser.call(invite_form) if @organization && invite_form
 
         broadcast(:ok)

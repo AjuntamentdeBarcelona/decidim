@@ -1,3 +1,4 @@
+---
 "no":
   activemodel:
     attributes:
@@ -39,10 +40,6 @@
         keep_authors: Behold originale forfattere
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Ugyldig dokumenttype. Godkjente formater er: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -536,7 +533,6 @@
           all: Alle
         filter_origin_values:
           all: Alle
-          citizens: Borgere
           meetings: Møter
           official: Offisiell
           user_groups: Grupper
@@ -699,7 +695,6 @@
             one: "%{count} forslag"
             other: "%{count} forslag"
         edit:
-          add_documents: Dokumenter
           attachment_legend: "(Valgfritt) Legg til et vedlegg"
           back: Tilbake
           select_a_category: Velg en kategori

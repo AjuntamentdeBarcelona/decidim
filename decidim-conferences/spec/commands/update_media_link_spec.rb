@@ -17,10 +17,10 @@ module Decidim::Conferences
         current_user: current_user,
         title: { en: "New title" },
         attributes: {
-          title: { en: "New title" },
-          weight: media_link.weight,
-          link: media_link.link,
-          date: 7.days.from_now
+          "title" => { en: "New title" },
+          "weight" => media_link.weight,
+          "link" => media_link.link,
+          "date" => 7.days.from_now
         }
       )
     end
@@ -41,7 +41,7 @@ module Decidim::Conferences
         end.to change { media_link.reload && media_link.title }.from(media_link.title).to("en" => "New title", "machine_translations" => kind_of(Hash))
       end
 
-      it "broadcasts  ok" do
+      it "broadcasts ok" do
         expect { subject.call }.to broadcast(:ok)
       end
 

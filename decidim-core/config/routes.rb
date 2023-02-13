@@ -3,6 +3,8 @@
 Decidim::Core::Engine.routes.draw do
   mount Decidim::Api::Engine => "/api"
 
+  get "/offline", to: "offline#show"
+
   devise_for :users,
              class_name: "Decidim::User",
              module: :devise,
@@ -47,6 +49,8 @@ Decidim::Core::Engine.routes.draw do
     post "omniauth_registrations" => "devise/omniauth_registrations#create"
   end
 
+  resource :manifest, only: [:show]
+
   resource :locale, only: [:create]
 
   Decidim.participatory_space_manifests.each do |manifest|
@@ -61,9 +65,16 @@ Decidim::Core::Engine.routes.draw do
   end
 
   authenticate(:user) do
+    devise_scope :user do
+      get "change_password" => "devise/passwords"
+      put "apply_password" => "devise/passwords"
+    end
+
     resource :account, only: [:show, :update, :destroy], controller: "account" do
       member do
         get :delete
+        post :resend_confirmation_instructions
+        post :cancel_email_change
       end
     end
     resources :conversations, only: [:new, :create, :index, :show, :update], controller: "messaging/conversations"
@@ -78,13 +89,14 @@ Decidim::Core::Engine.routes.draw do
 
     get "/newsletters_opt_in/:token", to: "newsletters_opt_in#update", as: :newsletters_opt_in
 
-    resource :data_portability, only: [:show], controller: "data_portability" do
+    resource :download_your_data, only: [:show], controller: "download_your_data" do
       member do
         post :export
         get :download_file
       end
     end
 
+    resources :notifications_subscriptions, param: :auth, only: [:create, :destroy]
     resource :user_interests, only: [:show, :update]
 
     get "/authorization_modals/:authorization_action/f/:component_id(/:resource_name/:resource_id)", to: "authorization_modals#show", as: :authorization_modal
@@ -141,7 +153,6 @@ Decidim::Core::Engine.routes.draw do
   get "/scopes/picker", to: "scopes#picker", as: :scopes_picker
 
   get "/static_map", to: "static_map#show", as: :static_map
-  get "/cookies/accept", to: "cookie_policy#accept", as: :accept_cookies
   put "/pages/terms-and-conditions/accept", to: "tos#accept_tos", as: :accept_tos
 
   match "/404", to: "errors#not_found", via: :all
@@ -184,7 +195,11 @@ Decidim::Core::Engine.routes.draw do
     get :unsubscribe, on: :collection
   end
 
+  resources :upload_validations, only: [:create]
+
   resources :last_activities, only: [:index]
+
+  resources :short_links, only: [:index, :show], path: "s"
 
   use_doorkeeper do
     skip_controllers :applications, :authorized_applications

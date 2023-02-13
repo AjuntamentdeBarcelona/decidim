@@ -1,3 +1,4 @@
+---
 ar:
   activemodel:
     attributes:
@@ -270,9 +271,9 @@ ar:
       filters:
         active: نشيط
         all: الكل
+        date: التاريخ
         finished: تم الانتهاء من
         search: بحث
-        state: الحالة
         upcoming: القادمة
       filters_small_view:
         close_modal: أغلق النافذة

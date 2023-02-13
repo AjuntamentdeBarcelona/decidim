@@ -1,3 +1,4 @@
+---
 zh-CN:
   activemodel:
     attributes:
@@ -38,10 +39,6 @@ zh-CN:
           valuator_role_id: 值名称
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: '无效的文档类型。接受的格式为： %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -498,7 +495,6 @@ zh-CN:
           all: 所有的
         filter_origin_values:
           all: 所有的
-          citizens: Citizens
           meetings: 会议
           official: 官方的
           user_groups: 群組
@@ -662,12 +658,8 @@ zh-CN:
           proposals_count:
             other: "%{count} 个提议"
         edit:
-          add_documents: www.un.org/webcast
-          add_images: 文件
           attachment_legend: "(可选) 添加附件"
           back: 后退
-          delete_document: 删除文档
-          delete_image: 删除图像
           gallery_legend: "(可选) 添加图像到提案卡"
           select_a_category: 请选择一个类别
           send: 发送

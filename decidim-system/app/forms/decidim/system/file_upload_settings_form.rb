@@ -10,34 +10,31 @@ module Decidim
 
       mimic :organization_file_uploads
 
-      attribute :allowed_file_extensions, Hash[Symbol => String]
-      attribute :allowed_content_types, Hash[Symbol => String]
-      attribute :maximum_file_size, Hash[Symbol => Float]
+      attribute(:allowed_file_extensions, { Symbol => String })
+      attribute(:allowed_content_types, { Symbol => String })
+      attribute(:maximum_file_size, { Symbol => Float })
 
       def map_model(settings_hash)
-        settings_hash = begin
-          if settings_hash.is_a?(Hash)
-            default_settings.deep_merge(settings_hash.deep_stringify_keys)
-          else
-            default_settings
-          end
-        end
+        settings_hash = if settings_hash.is_a?(Hash)
+                          default_settings.deep_merge(settings_hash.deep_stringify_keys)
+                        else
+                          default_settings
+                        end
 
-        attribute_set.each do |attr|
-          key = attr.name.to_s
-          next unless settings_hash.has_key?(key)
+        csv_attributes.each do |attr|
+          next unless settings_hash.has_key?(attr.to_s)
 
           # For the view, the array values need to be in comma separated format
           # in order for them to work correctly with the tags inputs.
-          value = Rectify::FormAttribute.new(attr).value_from(
-            settings_hash[key]
-          )
+          value = settings_hash[attr.to_s]
           value.each do |k, v|
             value[k] = v.join(",") if v.is_a?(Array)
           end
 
-          self[key] = value
+          send("#{attr}=", value)
         end
+
+        self.maximum_file_size = settings_hash["maximum_file_size"]
       end
 
       # This turns the attributes passed from the view into the final
@@ -46,8 +43,7 @@ module Decidim
       # the view layer. Before we save those attributes, they need to be
       # converted into arrays which is what this method does.
       def final
-        csv_attributes = [:allowed_file_extensions, :allowed_content_types]
-        attributes.tap do |attr|
+        to_h.tap do |attr|
           csv_attributes.each do |key|
             attr[key] = csv_array_setting(attr[key])
           end
@@ -58,6 +54,10 @@ module Decidim
 
       def default_settings
         Decidim::OrganizationSettings.default(:upload)
+      end
+
+      def csv_attributes
+        @csv_attributes ||= [:allowed_file_extensions, :allowed_content_types]
       end
 
       def csv_array_setting(original)

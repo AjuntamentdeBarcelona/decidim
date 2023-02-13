@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     attributes:
@@ -117,11 +118,11 @@ hu:
           all: Összes
           category: Kategória
           category_prompt: Válassz kategóriát
-          citizens: Állampolgárok
           commented: Hozzászólással rendelkezik
           my_debates: Vitáim
           official: Hivatalos
           origin: Kiindulópont
+          participants: Résztvevők
           scope: Hatókör
           search: Keresés
           state: Állapot

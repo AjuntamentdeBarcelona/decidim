@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     attributes:
@@ -250,9 +251,9 @@ hu:
       filters:
         active: Aktív
         all: Összes
+        date: Dátum
         finished: Befejezett
         search: Keresés
-        state: Állapot
         upcoming: Közelgő
       filters_small_view:
         close_modal: Ablak bezárása

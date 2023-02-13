@@ -1,3 +1,4 @@
+---
 de:
   activemodel:
     attributes:
@@ -73,7 +74,8 @@ de:
     'true': 'Ja'
   carrierwave:
     errors:
-      image_too_big: Das Bild ist zu groß
+      file_resolution_too_large: Die Datei-Auflösung ist zu groß
+      file_size_too_large: Datei ist zu groß
       not_inside_organization: Die Datei ist keiner Organisation hinzugefügt
   date:
     formats:
@@ -107,9 +109,8 @@ de:
         one: Vor 1 Minute
         other: "Vor %{count} Minuten"
       x_seconds:
-        one: vor 1 Sekunde
+        one: Vor 1 Sekunde
         other: "Vor %{count} Sekunden"
-        zero: sofort
   decidim:
     accessibility:
       external_link: Externer Link
@@ -118,9 +119,6 @@ de:
       skip_button: Zu Hauptinhalten überspringen
     account:
       blocked: Dieses Konto wurde wegen Verletzung der Allgemeinen Geschäftsbedingungen gesperrt
-      data_portability_export:
-        file_no_exists: Diese Datei existiert nicht
-        notice: Ihre Daten werden gerade bereitgestellt. Sie erhalten nach Fertigstellung eine E-Mail.
       delete:
         alert: Diese Aktion kann nicht rückgängig gemacht werden. Wenn Sie Ihr Konto löschen, können Sie sich nicht mehr einloggen. Mit der Löschung ihres Accounts werden all Ihre Beiträge anonymisiert. Sie können später wieder ein neues Konto erstellen, aber diese Beiträge werden nicht mehr mit dem neuen Konto verknüpft sein.
         confirm:
@@ -132,8 +130,20 @@ de:
       destroy:
         error: Beim Löschen Ihres Kontos ist ein Fehler aufgetreten.
         success: Ihr Konto wurde erfolgreich gelöscht.
+      download_your_data_export:
+        file_no_exists: Diese Datei existiert nicht
+        notice: Ihre Daten werden gerade bereitgestellt. Sie erhalten nach Fertigstellung eine E-Mail.
+      email_change:
+        body1: Wir haben eine E-Mail an %{unconfirmed_email} gesendet, um Ihre neue E-Mail-Adresse zu verifizieren.
+        body2: Möchten Sie die Verifizierungs-E-Mail erneut senden? %{resend_link} oder %{cancel_link}.
+        cancel: stornieren
+        cancel_error: Die Änderung der E-Mail-Adresse konnte nicht storniert werden.
+        cancel_successfully: Die Änderung der E-Mail-Adresse wurde erfolgreich storniert.
+        resend_error: Bestätigungs-E-Mail konnte nicht erneut gesendet werden.
+        resend_successfully: Die Bestätigungs-E-Mail wurde erfolgreich an %{unconfirmed_email} gesendet
+        send_again: Erneut senden
       show:
-        available_locales_helper: Wählen Sie die Sprache aus, die Sie verwenden möchten, um in Decidim zu surfen und Benachrichtigungen zu erhalten
+        available_locales_helper: Wählen Sie die Sprache aus, in der Sie Decidim verwenden und Benachrichtigungen erhalten möchten
         change_password: Passwort ändern
         update_account: Konto aktualisieren
       update:
@@ -143,16 +153,44 @@ de:
     admin:
       actions:
         cancel: Stornieren
+      password_change:
+        alert: Sie müssen Ihr Passwort ändern, um fortzufahren
+        notification: Administratoren müssen ihr Passwort alle %{days} Tage ändern.
     admin_log:
       area:
         create: "%{user_name} hat den Bereich %{resource_name} erstellt"
         delete: "%{user_name} hat den Bereich %{resource_name} gelöscht"
         update: "%{user_name} hat den Bereich %{resource_name} aktualisiert"
+      area_type:
+        create: "%{user_name} hat den Bereichstyp %{resource_name} erstellt"
+        delete: "%{user_name} hat den Bereichstyp %{resource_name} gelöscht"
+        update: "%{user_name} hat den Bereichstyp %{resource_name} aktualisiert"
+      attachment:
+        create: "%{user_name} hat den Anhang %{resource_name} erstellt"
+        delete: "%{user_name} hat den Anhang %{resource_name} gelöscht"
+        update: "%{user_name} hat den Anhang %{resource_name} aktualisiert"
+      attachment_collection:
+        create: "%{user_name} hat den Ordner %{resource_name} erstellt"
+        delete: "%{user_name} hat den Ordner %{resource_name} gelöscht"
+        update: "%{user_name} hat den Ordner %{resource_name} aktualisiert"
+      category:
+        create: "%{user_name} hat die Kategorie %{resource_name} im Bereich %{space_name} hinzugefügt"
+        delete: "%{user_name} hat die Kategorie %{resource_name} im Bereich %{space_name} gelöscht"
+        update: "%{user_name} hat die Kategorie %{resource_name} im Bereich %{space_name} aktualisiert"
       component:
         create: "%{user_name} hat die Komponente %{resource_name} zu %{space_name} hinzugefügt"
         delete: "%{user_name} hat die Komponente %{resource_name} aus %{space_name} entfernt"
+        export_component: "%{user_name} hat %{resource_name} %{component_name} in %{space_name} als %{format_name} exportiert"
         publish: "%{user_name} hat die Komponente %{resource_name} in %{space_name} veröffentlicht"
         unpublish: "%{user_name} hat die Komponente %{resource_name} in %{space_name} auf \"unveröffentlicht\" gesetzt"
+        update_permissions_with_space: "%{user_name} hat die Berechtigungen für %{resource_name} in %{space_name} aktualisiert"
+      contextual_help_section:
+        update: "%{user_name} hat den Hilfebereich %{resource_name} aktualisiert"
+      helpers:
+        answers: antworten
+        comments: kommentare
+        projects: projekte
+        results: ergebnisse
       impersonation_log:
         manage: "%{user_name} hat %{resource_name} verwaltet, weil %{reason}"
       moderation:
@@ -306,6 +344,7 @@ de:
       endorsements:
         one: Befürwortung
         other: Befürwortungen
+      official_author: Offiziell
     authorization_handlers:
       another_dummy_authorization_handler:
         explanation: Lassen Sie sich verifizieren, indem Sie eine Reisepassnummer eingeben, die mit "A" beginnt
@@ -408,8 +447,8 @@ de:
             amendments_enabled: Änderungen aktiviert
             comments_enabled: Kommentare aktiviert
             comments_max_length: Maximallänge der Kommentare
-            dummy_global_attribute_1: Dummy-Attribut 1
-            dummy_global_attribute_2: Dummy-Attribut 2
+            dummy_global_attribute1: Dummy-Attribut 1
+            dummy_global_attribute2: Dummy-Attribut 2
             dummy_global_translatable_text: Übersetzbarer Blindtext
             enable_pads_creation: Aktivieren Sie die Pads-Erstellung
             resources_permissions_enabled: Ressourcenberechtigungen aktiviert
@@ -421,8 +460,8 @@ de:
             amendment_reaction_enabled: Reaktionen auf Änderungen aktiviert
             amendments_visibility: Sichtbarkeit der Änderungsvorschläge
             comments_blocked: Kommentare blockiert
-            dummy_step_attribute_1: Dummy-Schritt-Attribut 1
-            dummy_step_attribute_2: Dummy-Schritt-Attribut 2
+            dummy_step_attribute1: Dummy-Schritt-Attribut 1
+            dummy_step_attribute2: Dummy-Schritt-Attribut 2
             dummy_step_translatable_text: Übersetzbarer Blindtext des Schritts
     contact: Kontakt
     content_blocks:
@@ -466,13 +505,6 @@ de:
       actions:
         login_before_access: Bitte melden Sie sich mit Ihrem Konto an, um auf diese Seite zuzugreifen
         unauthorized: Sie sind nicht berechtigt, diese Aktion auszuführen
-    data_portability:
-      export:
-        ready: Bereit
-      show:
-        download_data: Daten herunterladen
-        download_data_description: Eine Datei, die alle mit Ihrem Konto verknüpften Informationen enthält, wird an <strong>%{user_email}</strong> gesendet. Diese E-Mail enthält eine .zip-Datei und ein Passwort, um sie zu öffnen.<br/><br/>Um die Datei zu entpacken, benötigen Sie <a href="https://www.7-zip.org/">7-Zip</a> (für Windows) oder <a href="https://www.keka.io/">Keka</a> (für MacOS). Wenn Sie Linux verwenden, wird es meistens standardmäßig installiert. Wenn nicht, können Sie <a href="https://gitlab.gnome.org/GNOME/file-roller">File Roller</a> oder <a href="https://peazip.github.io">PeaZip</a> verwenden.
-        request_data: Daten anfordern
     datepicker:
       help_text: 'Erwartetes Format: %{datepicker_format}'
     devise:
@@ -491,7 +523,6 @@ de:
           newsletter: Gelegentlich einen Newsletter mit relevanten Informationen erhalten
           newsletter_title: Kontakterlaubnis
           nickname_help: Ihr Pseudonym in %{organization}. Kann nur Buchstaben, Zahlen, '-' und '_' enthalten.
-          password_help: "Mindestens %{minimun_characters} Zeichen, nicht zu gewöhnlich (z. B. 123456) und darf nicht Ihr Benutzername oder Ihre E-Mail-Adresse sein."
           sign_in: Anmelden
           sign_up: Registrieren
           sign_up_as:
@@ -540,6 +571,13 @@ de:
           this_application_will_not_be_able_to: 'Diese Anwendung kann nicht:'
           update_profile: Profil aktualisieren
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> möchte Ihr Konto verwenden"
+    download_your_data:
+      export:
+        ready: Bereit
+      show:
+        download_data: Daten herunterladen
+        download_data_description: Eine Datei, die alle mit Ihrem Konto verknüpften Informationen enthält, wird an <strong>%{user_email}</strong> gesendet. Diese E-Mail enthält eine .zip-Datei und ein Passwort, um sie zu öffnen.<br/><br/>Um die Datei zu entpacken, benötigen Sie <a href="https://www.7-zip.org/">7-Zip</a> (für Windows) oder <a href="https://www.keka.io/">Keka</a> (für MacOS). Wenn Sie Linux verwenden, wird es meistens standardmäßig installiert. Wenn nicht, können Sie <a href="https://gitlab.gnome.org/GNOME/file-roller">File Roller</a> oder <a href="https://peazip.github.io">PeaZip</a> verwenden.
+        request_data: Daten anfordern
     editor_images:
       create:
         error: Fehler beim Hochladen des Bildes
@@ -710,7 +748,7 @@ de:
           email_subject: "%{name} wurde offiziell bestätigt"
           notification_title: Teilnehmer %{name} (%{nickname}) wurde offiziell bestätigt.
     export_mailer:
-      data_portability_export:
+      download_your_data_export:
         click_button: 'Klicken Sie auf den Link, um Ihre Daten herunterzuladen.<br/>Die Datei steht bis zum %{date} zur Verfügung.<br/>Sie benötigen <a href="https://www.7-zip.org/">7-Zip</a> (für Windows), <a href="https://www.keka.io/en/">Keka</a> (für MacOS) oder <a href="https://peazip.github.io">PeaZip</a> (für Linux) um die Datei zu öffnen. Passwort: %{password}'
         download: Herunterladen
       export:
@@ -750,7 +788,6 @@ de:
         button: Entfolgen
         error: Beim Entfolgen dieser Ressource ist ein Fehler aufgetreten.
     forms:
-      current_file: Aktuelle Datei
       current_image: Aktuelles Bild
       default_image: Standardbild
       errors:
@@ -762,15 +799,39 @@ de:
         file:
           explanation: 'Anleitung für Datei:'
           message_1: Muss ein Bild oder ein Dokument sein.
-          message_2: Für Bilder, verwenden Sie vorzugsweise Landschaftsbilder, der Dienst erzeugt das Bild. Für CSV-Dateien muss der Trenner zwischen Spalten ein Komma (",") sein
+          message_2: Verwenden Sie für Bilder vorzugsweise das Querformat, der Dienst beschneidet das Bild.
+        icon:
+          explanation: 'Hinweise für das Bild:'
+          message_1: Muss ein quadratisches Bild sein.
+          message_2: Die empfohlene Größe für dieses Bild ist 512x512 Pixel.
         image:
           explanation: 'Anleitung für Bild:'
           message_1: Vorzugsweise ein Querformat ohne Text.
           message_2: Der Dienst schneidet die Datei zu.
       file_validation:
         allowed_file_extensions: 'Erlaubte Dateiendungen: %{extensions}'
+        max_file_dimension: 'Maximale Dateigröße: %{resolution} Pixel'
         max_file_size: 'Maximale Dateigröße: %{megabytes}MB'
-      remove_this_file: Diese Datei entfernen
+      upload:
+        labels:
+          add_attachment: Anhang hinzufügen
+          add_file: Datei hinzufügen
+          add_image: Bild hinzufügen
+          cancel: Abbrechen
+          edit_image: Bild bearbeiten
+          error: Fehler!
+          file_size_too_large: 'Datei ist zu groß! Maximale Dateigröße: %{megabytes}MB'
+          remove: Entfernen
+          replace: Ersetzen
+          save: Speichern
+          title: Titel
+          title_required: Titel ist erforderlich!
+          uploaded: Hochgeladen
+          validating: Wird validiert...
+          validation_error: Validierungsfehler!
+      upload_help:
+        dropzone: Zum Hochladen hier klicken oder Dateien hierher ziehen
+        explanation: Anleitung für %{attribute}
     gamification:
       all_badges_link: Sieh dir alle verfügbaren Abzeichen an.
       badges:
@@ -859,6 +920,7 @@ de:
         success: Join-Anforderung wurde erfolgreich erstellt. Ein Administrator überprüft Ihre Anfrage, bevor er Sie für die Gruppe akzeptiert.
       leave:
         error: Es gab ein Problem, die Gruppe zu verlassen
+        last_admin: Sie können sich nicht von dieser Gruppe entfernen, da Sie der letzte Administrator sind. Machen Sie ein anderes Mitglied zum Administrator, um die Gruppe zu verlassen.
         success: Gruppe erfolgreich verlassen.
       members:
         accept_or_reject_join_requests: 'Die folgenden Benutzer haben sich angemeldet, um dieser Gruppe beizutreten. Akzeptieren oder ablehnen ihrer Anfragen:'
@@ -871,7 +933,7 @@ de:
       no_user_groups: Gehört noch keiner Gruppe an.
       roles:
         admin: Administrator
-        creator: Schöpfer
+        creator: Administrator
         member: Mitglied
       update:
         error: Beim Aktualisieren der Gruppe ist ein Problem aufgetreten
@@ -896,7 +958,7 @@ de:
         body_1: Sie sind dabei einen externen Link zu besuchen und wir möchten, dass Sie hinsichtlich der Inhalte auf der externen Seite vorsichtig sind.
         body_2: Bitte überprüfen Sie den Link und stellen Sie sicher, dass es sich um eine vertrauenswürdige Seite handelt, bevor Sie fortfahren.
         cancel: Abbrechen
-        close_modal: Dialog schließen
+        close_modal: Modal schließen
         proceed: Fortfahren
         title: Externen Link öffnen
     log:
@@ -905,9 +967,11 @@ de:
         create_with_space: "%{user_name} hat %{resource_name} in %{space_name} erstellt"
         delete: "%{user_name} hat %{resource_name} gelöscht"
         delete_with_space: "%{user_name} hat %{resource_name} in %{space_name} gelöscht"
+        publish_with_space: "%{user_name} veröffentlichte %{resource_name} in %{space_name}"
         unknown_action: "%{user_name} hat eine Aktion an %{resource_name} ausgeführt"
         unknown_action_with_space: "%{user_name} hat eine Aktion an %{resource_name} in %{space_name} ausgeführt"
         update: "%{user_name} hat %{resource_name} aktualisiert"
+        update_permissions_with_space: "%{user_name} hat die Berechtigungen für %{resource_name} in %{space_name} aktualisiert"
         update_with_space: "%{user_name} hat %{resource_name} in %{space_name} aktualisiert"
       value_types:
         area_presenter:
@@ -1028,7 +1092,6 @@ de:
     newsletter_mailer:
       newsletter:
         note: Sie haben diese E-Mail erhalten, weil Sie Newsletter auf %{organization_name}abonniert haben. Sie können Ihre Einstellungen auf Ihrer ändern <a href="%{link}">Benachrichtigungen Seite</a>.
-        see_on_website: Kann diese E-Mail nicht korrekt angezeigt werden? Klicken Sie bitte hier <a href="%{link}" target="_blank">website</a>.
         unsubscribe: Um den Empfang dieser Art von E-Mail zu deaktivieren, <a href="%{link}" target="_blank" class="unsubscribe">Abbestellen</a>.
     newsletter_templates:
       basic_only_text:
@@ -1078,23 +1141,41 @@ de:
       no_notifications: Noch keine Benachrichtigungen
       show:
         missing_event: Hoppla, diese Benachrichtigung gehört zu einem Artikel, der nicht mehr verfügbar ist. Du kannst sie verwerfen.
+    notifications_digest_mailer:
+      header:
+        daily: Tägliche Zusammenfassung
+        weekly: Wöchentliche Zusammenfassung
+      hello: Hallo %{name}
+      see_more: Weitere Benachrichtigungen ansehen
+      subject: Dies ist deine E-Mail-Zusammenfassung
     notifications_settings:
       show:
         administrators: Administratoren
         allow_public_contact: Allen erlauben, mir Direktnachrichten zu senden, selbst wenn ich ihnen nicht folge.
+        allow_push_notifications: Erhalten Sie Push-Benachrichtigungen, um herauszufinden, was vor sich geht, wenn Sie nicht auf der Plattform sind. Sie können diese jederzeit ausschalten.
         direct_messages: Direktnachrichten von allen erhalten
-        email_on_moderations: Ich möchte eine E-Mail erhalten, wenn etwas zur Moderation gemeldet wird.
-        email_on_notification: Ich möchte jedes Mal eine E-Mail erhalten, wenn ich eine Benachrichtigung erhalte.
+        email_on_moderations: Ich möchte jedes Mal, wenn etwas oder jemand zur Moderation gemeldet wird, eine E-Mail erhalten.
         everything_followed: Alles was ich folge
         newsletter_notifications: Ich möchte Newsletter erhalten
         newsletters: Newsletter
+        notifications_sending_frequencies:
+          daily: Täglich
+          none: Keine
+          real_time: In Echtzeit
+          weekly: Wöchentlich
+        notifications_sending_frequency: Wie oft möchten Sie die Benachrichtigungs-E-Mail erhalten?
         own_activity: Meine eigene Tätigkeit, etwa wenn sich jemand in meinem Vorschlag äußert oder mich erwähnt
+        push_notifications: Push-Benachrichtigungen
+        push_notifications_reminder: Um Benachrichtigungen von der Plattform zu erhalten, müssen Sie diese zuerst in den Browser-Einstellungen zulassen.
         receive_notifications_about: Ich möchte Benachrichtigungen erhalten über
-        send_notifications_by_email: Senden Sie Benachrichtigungen per E-Mail
         update_notifications_settings: Änderungen speichern
       update:
         error: Beim Aktualisieren der Benachrichtigungseinstellungen ist ein Fehler aufgetreten.
         success: Ihre Benachrichtigungseinstellungen wurden erfolgreich aktualisiert.
+    offline:
+      show:
+        message: Es sieht so aus, als ob du momentan offline bist. Bitte versuche es später erneut.
+        retry: Wiederholen
     open_data:
       not_available_yet: Die Open Data-Dateien sind noch nicht verfügbar. Bitte versuchen Sie es in einigen Minuten erneut.
     own_user_groups:
@@ -1148,7 +1229,7 @@ de:
           agreement: Ich stimme diesen Bedingungen zu
           legend: Stimme den Nutzungsbedingungen zu
         refuse:
-          modal_body: Wenn Sie sich weigern, werden Sie nicht in der Lage sein , die Plattform zu nutzen, können Sie <a href="%{data_portability_path}">laden Sie Ihre Daten</a> und / oder <a href="%{delete_path}">Ihr Konto löschen</a>.
+          modal_body: Wenn Sie Ihre Zustimmung nicht erteilen, werden Sie nicht in der Lage sein, die Plattform zu nutzen; Sie können <a href="%{download_your_data_path}">Ihre Daten herunterladen</a> und/oder <a href="%{delete_path}">Ihr Konto löschen</a>.
           modal_btn_continue: Bedingungen akzeptieren und fortfahren
           modal_btn_exit: Ich werde es später überprüfen
           modal_button: Bedingungen ablehnen
@@ -1160,6 +1241,10 @@ de:
           title: 'Erforderlich: Überprüfen Sie die Aktualisierungen unserer Nutzungsbedingungen'
     participatory_space_private_users:
       not_allowed: Sie dürfen diesen Inhalt nicht sehen
+    passwords:
+      update:
+        error: Es gab ein Problem bei der Aktualisierung des Passwortes
+        success: Passwort erfolgreich aktualisiert
     profile:
       deleted: Teilnehmer gelöscht
       inaccessible_message: Dieses Profil ist wegen Verletzung der Nutzungsbedingungen nicht zugänglich!
@@ -1304,6 +1389,8 @@ de:
         close_modal: Modal schließen
         please_sign_in: Bitte einloggen
         sign_up: Registrieren
+      mentions_modal:
+        remove_recipient: Empfänger %{name} entfernen
       participatory_space_filters:
         filters:
           areas: Bereiche
@@ -1342,9 +1429,6 @@ de:
       help_text: "<strong>Warnung:</strong> Inhalt könnte automatisch übersetzt werden und nicht 100% korrekt sein."
       show_original: Originaltext anzeigen
       show_translated: Automatisch übersetzter Text anzeigen
-    user_activity:
-      index:
-        no_activities_warning: Dieser Benutzer hat noch keine Aktivität gehabt.
     user_contact_disabled: Dieser Teilnehmer akzeptiert keine Direktnachrichten.
     user_conversations:
       create:
@@ -1391,6 +1475,7 @@ de:
       notify:
         body_1: Benutzer %{user} wurde von %{token} gemeldet
         body_2: 'Grund: %{reason}'
+        details: Vom Nutzer übermittelte Details
         greetings: Grüße,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: Hallo %{admin},
         subject: Ein neuer Benutzer wurde in %{organization_name} gemeldet
@@ -1451,7 +1536,6 @@ de:
     invitations:
       edit:
         header: Beenden Sie die Erstellung Ihres Kontos
-        nickname_help: Ihre eindeutige ID in %{organization}.
         submit_button: Speichern
         subtitle: Wenn Sie die Einladung annehmen, geben Sie bitte Ihren Benutzernamen und Ihr Passwort ein.
       invitation_removed: Ihre Einladung wurde entfernt.
@@ -1518,10 +1602,10 @@ de:
     passwords:
       edit:
         change_my_password: Ändere mein Passwort
-        change_your_password: Ändern Sie Ihr Passwort
         confirm_new_password: Bestätige neues Passwort
         new_password: Neues Passwort
         password_help: "Mindestens %{minimun_characters} Zeichen, nicht zu gewöhnlich (z. B. 123456) und darf nicht Ihr Benutzername oder Ihre E-Mail-Adresse sein."
+        title: Passwort ändern
       new:
         forgot_your_password: Haben Sie Ihr Passwort vergessen?
         send_me_reset_password_instructions: Senden Sie mir das Passwort zurück
@@ -1599,14 +1683,53 @@ de:
     timestamp_error_message: Entschuldigung, das war zu schnell! Bitte erneut einreichen
   layouts:
     decidim:
-      cookie_warning:
-        description_html: Diese Seite verwendet Cookies. Indem Sie die Seite weiter durchsuchen, stimmen Sie der Verwendung von Cookies zu. Erfahren Sie mehr darüber %{link}.
-        link_label: Hier
-        ok: Ich stimme zu
+      data_consent:
+        details:
+          columns:
+            description: Beschreibung
+            name: Name
+            service: Service
+          items:
+            _session_id:
+              description: Ermöglicht es Websites, sich an Benutzer zu erinnern, wenn diese verschiedene Seiten aufrufen.
+              service: Diese Website
+            decidim-consent:
+              description: Speichert Informationen über die vom Benutzer erlaubten Cookies auf dieser Website.
+              service: Diese Website
+            pwaInstallPromptSeen:
+              service: Diese Website
+          types:
+            cookie: Cookie
+            local_storage: Lokaler Speicher
+        dialog:
+          accept_all: Alle akzeptieren
+          accept_only_essential: Nur essentielle Cookies akzeptieren
+          description: Wir verwenden Cookies auf unserer Website, um die Leistung und den Inhalt der Website zu verbessern. Die Cookies ermöglichen uns, Ihnen eine individuellere Nutzererfahrung und Social-Media-Kanäle zu bieten.
+          settings: Einstellungen
+          title: Informationen über die auf dieser Website verwendeten Cookies
+        modal:
+          accept_all: Alle akzeptieren
+          accept_only_essential: Nur essentielle Cookies akzeptieren
+          analytics:
+            title: Analysen und Statistiken
+          essential:
+            title: Notwendige
+          marketing:
+            title: Marketing
+          preferences:
+            title: Präferenzen
+          save_settings: Einstellungen speichern
+          title: Cookie Einstellungen
+          toggle: '%{consent_category} umschalten'
+        warning:
+          all_categories: alle Cookies
+          change_settings: Cookie Einstellungen ändern
+          consent_required: Sie müssen %{categories} aktivieren, um diesen Inhalt sehen zu können.
       edit_link:
         edit: Bearbeiten
       footer:
         cc_by_license: Creative Commons Lizenz
+        data_consent_settings: Cookie Einstellungen
         decidim_logo: Decidim-Logo
         download_open_data: Open Data Dateien herunterladen
         made_with_open_source: Website mit <a target="_blank" href="https://github.com/decidim/decidim">freier Software erstellt</a>.
@@ -1626,6 +1749,8 @@ de:
       notifications_dashboard:
         mark_all_as_read: Alles als gelesen markieren
         mark_as_read: Als gelesen markieren
+      offline_banner:
+        cache_version_page: Hoppla! Ihr Netzwerk ist offline. Dies ist eine zuvor gecachte Version der Seite, die Sie besuchen, möglicherweise ist der Inhalt nicht aktuell.
       social_media_links:
         facebook: "%{organization} auf Facebook"
         github: "%{organization} auf GitHub"
@@ -1637,6 +1762,8 @@ de:
         continue_session: Sitzung fortsetzen
         sign_out: Ausloggen
         title: Möchten Sie ihre Sitzung fortsetzen?
+      upload_modal:
+        close_modal: Modal schließen
       user_menu:
         account: 'Benutzerkonto: %{name}'
         admin_dashboard: Admin-Dashboard
@@ -1669,6 +1796,7 @@ de:
     nickname_included_in_password: ist Ihrem Nicknamen zu ähnlich
     not_enough_unique_characters: hat nicht genug eindeutige Zeichen
     password_not_allowed: ist nicht erlaubt
+    password_repeated: ein früheres Passwort kann nicht wieder verwendet werden
     password_too_common: ist zu allgemein
     password_too_long: es ist zu lang
     password_too_short: ist zu kurz

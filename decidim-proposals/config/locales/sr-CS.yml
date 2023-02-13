@@ -1,3 +1,4 @@
+---
 sr:
   activemodel:
     attributes:
@@ -109,8 +110,6 @@ sr:
             valuator: Procenjivač
             valuators: Procenjivači
       proposals:
-        edit:
-          add_documents: Dokumenti
         show:
           back_to_list: Nazad na listu
           estimated_cost: Procenjen trošak

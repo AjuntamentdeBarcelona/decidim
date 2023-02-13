@@ -3,12 +3,13 @@
 module Decidim
   module Admin
     # A command with all the business logic when creating an area type.
-    class CreateAreaType < Rectify::Command
+    class CreateAreaType < Decidim::Command
       # Public: Initializes the command.
       #
       # form - A form object with the params.
-      def initialize(form)
+      def initialize(form, user)
         @form = form
+        @user = user
       end
 
       # Executes the command. Broadcasts these events:
@@ -29,7 +30,9 @@ module Decidim
       attr_reader :form
 
       def create_area_type
-        AreaType.create!(
+        Decidim.traceability.create!(
+          AreaType,
+          @user,
           name: form.name,
           organization: form.organization,
           plural: form.plural

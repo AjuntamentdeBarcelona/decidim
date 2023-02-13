@@ -1,3 +1,4 @@
+---
 de:
   activemodel:
     attributes:
@@ -251,9 +252,9 @@ de:
       filters:
         active: Aktiv
         all: Alle
+        date: Datum
         finished: Fertig
         search: Suche
-        state: Zustand
         upcoming: Bevorstehende
       filters_small_view:
         close_modal: Fenster schließen

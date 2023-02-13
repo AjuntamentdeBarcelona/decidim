@@ -24,6 +24,12 @@ en:
       postal_letter_postage:
         full_address: Full address
         verification_code: Verification code
+    errors:
+      models:
+        census_data:
+          attributes:
+            file:
+              malformed: Malformed import file, please read through the instructions carefully and make sure the file is UTF-8 encoded.
   decidim:
     admin:
       menu:
@@ -192,7 +198,7 @@ en:
               verification_number: 'Verification #%{n}'
           rejections:
             create:
-              success: Verification rejected. Participant will be prompted to amend her documents
+              success: Verification rejected. Participant will be prompted to amend their documents
         authorizations:
           choose:
             choose_a_type: 'Please select how you want to be verified:'

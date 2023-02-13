@@ -4,9 +4,10 @@ require "spec_helper"
 
 module Decidim::Assemblies
   describe Admin::CopyAssembly do
-    subject { described_class.new(form, assembly) }
+    subject { described_class.new(form, assembly, user) }
 
     let(:organization) { create :organization }
+    let(:user) { create :user, organization: organization }
     let(:scope) { create :scope, organization: organization }
     let(:errors) { double.as_null_object }
     let!(:assembly) { create :assembly }
@@ -42,7 +43,7 @@ module Decidim::Assemblies
 
     context "when everything is ok" do
       it "duplicates an assembly" do
-        expect { subject.call }.to change { Decidim::Assembly.count }.by(1)
+        expect { subject.call }.to change(Decidim::Assembly, :count).by(1)
 
         old_assembly = Decidim::Assembly.first
         new_assembly = Decidim::Assembly.last
@@ -67,13 +68,25 @@ module Decidim::Assemblies
       it "broadcasts ok" do
         expect { subject.call }.to broadcast(:ok)
       end
+
+      it "traces the action", versioning: true do
+        expect(Decidim.traceability)
+          .to receive(:perform_action!)
+          .with("duplicate", Decidim::Assembly, user)
+          .and_call_original
+
+        expect { subject.call }.to change(Decidim::ActionLog, :count)
+        action_log = Decidim::ActionLog.last
+        expect(action_log.action).to eq("duplicate")
+        expect(action_log.version).to be_present
+      end
     end
 
     context "when copy_categories exists" do
       let(:copy_categories) { true }
 
       it "duplicates a assembly and the categories" do
-        expect { subject.call }.to change { Decidim::Category.count }.by(1)
+        expect { subject.call }.to change(Decidim::Category, :count).by(1)
         expect(Decidim::Category.unscoped.distinct.pluck(:decidim_participatory_space_id).count).to eq 2
 
         old_assembly_category = Decidim::Category.unscoped.first
@@ -91,17 +104,17 @@ module Decidim::Assemblies
       it "duplicates an assembly and the components" do
         dummy_hook = proc {}
         component.manifest.on :copy, &dummy_hook
-        expect(dummy_hook).to receive(:call).with(new_component: an_instance_of(Decidim::Component), old_component: component)
+        expect(dummy_hook).to receive(:call).with({ new_component: an_instance_of(Decidim::Component), old_component: component })
 
-        expect { subject.call }.to change { Decidim::Component.count }.by(1)
+        expect { subject.call }.to change(Decidim::Component, :count).by(1)
 
         last_assembly = Decidim::Assembly.last
         last_component = Decidim::Component.all.reorder(:id).last
 
         expect(last_component.participatory_space).to eq(last_assembly)
         expect(last_component.name).to eq(component.name)
-        expect(last_component.settings.attributes.except(:dummy_global_translatable_text)).to eq(component.settings.attributes.except(:dummy_global_translatable_text))
-        expect(last_component.settings.attributes[:dummy_global_translatable_text]).to include(component.settings.attributes[:dummy_global_translatable_text])
+        expect(last_component.settings.attributes.except("dummy_global_translatable_text")).to eq(component.settings.attributes.except("dummy_global_translatable_text"))
+        expect(last_component.settings.attributes["dummy_global_translatable_text"]).to include(component.settings.attributes["dummy_global_translatable_text"])
         expect(last_component.step_settings.keys).to eq(component.step_settings.keys)
         expect(last_component.step_settings.values).to eq(component.step_settings.values)
       end
@@ -121,7 +134,7 @@ module Decidim::Assemblies
         let!(:assembly) { create :assembly, parent: assembly_parent, organization: organization }
 
         it "duplicates an assembly" do
-          expect { subject.call }.to change { Decidim::Assembly.count }.by(1)
+          expect { subject.call }.to change(Decidim::Assembly, :count).by(1)
 
           old_assembly = Decidim::Assembly.find_by(id: assembly.id)
           new_assembly = Decidim::Assembly.last

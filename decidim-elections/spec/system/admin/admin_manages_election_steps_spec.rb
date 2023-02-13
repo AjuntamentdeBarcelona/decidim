@@ -163,10 +163,10 @@ describe "Admin manages election steps", :slow, type: :system do
     end
 
     context "with vote statistics" do
-      let!(:user_1) { create :user, :confirmed }
-      let!(:user_2) { create :user, :confirmed }
-      let!(:user_1_votes) { create_list :vote, 3, election: election, status: "accepted", voter_id: "voter_#{user_1.id}" }
-      let!(:user_2_votes) { create :vote, election: election, status: "accepted", voter_id: "voter_#{user_2.id}" }
+      let!(:user1) { create :user, :confirmed }
+      let!(:user2) { create :user, :confirmed }
+      let!(:user1_votes) { create_list :vote, 3, election: election, status: "accepted", voter_id: "voter_#{user1.id}" }
+      let!(:user2_votes) { create :vote, election: election, status: "accepted", voter_id: "voter_#{user2.id}" }
 
       it "shows votes and unique voters" do
         visit_steps_page
@@ -227,14 +227,14 @@ describe "Admin manages election steps", :slow, type: :system do
         expect(page).to have_content("Processing...")
       end
 
-      within ".form.tally" do
+      within ".form.tally_started" do
         expect(page).to have_content("Tally process")
       end
     end
   end
 
   describe "report missing trustee" do
-    let(:election) { create :election, :bb_test, :tally, component: current_component }
+    let(:election) { create :election, :bb_test, :tally_started, component: current_component }
     let(:trustee) { election.trustees.first }
 
     it "marks the trustee as missing" do

@@ -13,6 +13,7 @@ module Decidim
 
       helper Decidim::WidgetUrlsHelper
       helper Decidim::ResourceVersionsHelper
+      helper Decidim::ShortLinkHelper
 
       helper_method :meetings, :meeting, :registration, :search
 
@@ -41,13 +42,13 @@ module Decidim
       end
 
       def index
-        return unless search.results.blank? && params.dig("filter", "date") != %w(past)
+        return unless search.result.blank? && params.dig("filter", "date") != %w(past)
 
-        @past_meetings = search_klass.new(search_params.merge(date: %w(past)))
+        @past_meetings ||= search_with(filter_params.merge(with_any_date: %w(past)))
 
-        if @past_meetings.results.present?
+        if @past_meetings.result.present?
           params[:filter] ||= {}
-          params[:filter][:date] = %w(past)
+          params[:filter][:with_any_date] = %w(past)
           @forced_past_meetings = true
           @search = @past_meetings
         end
@@ -108,16 +109,21 @@ module Decidim
       end
 
       def meetings
-        is_past_meetings = params.dig("filter", "date")&.include?("past")
-        @meetings ||= paginate(search.results.order(start_time: is_past_meetings ? :desc : :asc))
+        is_past_meetings = params.dig("filter", "with_any_date")&.include?("past")
+        @meetings ||= paginate(search.result.order(start_time: is_past_meetings ? :desc : :asc))
       end
 
       def registration
         @registration ||= meeting.registrations.find_by(user: current_user)
       end
 
-      def search_klass
-        MeetingSearch
+      def search_collection
+        Meeting.where(component: current_component).published.not_hidden.visible_for(current_user).with_availability(
+          filter_params[:with_availability]
+        ).includes(
+          :component,
+          attachments: :file_attachment
+        )
       end
 
       def meeting_form
@@ -126,14 +132,15 @@ module Decidim
 
       def default_filter_params
         {
-          search_text: "",
-          date: "upcoming",
+          search_text_cont: "",
+          with_any_date: "upcoming",
           activity: "all",
-          scope_id: default_filter_scope_params,
-          category_id: default_filter_category_params,
-          state: nil,
-          origin: default_filter_origin_params,
-          type: default_filter_type_params
+          with_availability: "",
+          with_any_scope: default_filter_scope_params,
+          with_any_category: default_filter_category_params,
+          with_any_state: nil,
+          with_any_origin: default_filter_origin_params,
+          with_any_type: default_filter_type_params
         }
       end
     end

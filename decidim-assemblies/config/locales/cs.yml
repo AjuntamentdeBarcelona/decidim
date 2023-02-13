@@ -1,9 +1,13 @@
+---
 cs:
   activemodel:
     attributes:
       assemblies_setting:
         enable_organization_chart: Povolit schéma organizace
+      assemblies_type:
+        title: Název
       assembly:
+        announcement: Oznámení
         area_id: Oblast
         assembly_type: Typ shromáždění
         assembly_type_other: Typ shromáždění ostatní
@@ -22,12 +26,16 @@ cs:
         decidim_scope_id: Oblast působnosti
         description: Popis
         developer_group: Skupina promotérů
+        document: Dokument
         domain: Doména
         duration: Doba trvání
         facebook: Facebook
         github: GitHub
         hashtag: Hashtag
         hero_image: Obrázek na hlavní stránce
+        import_attachments: Importovat přílohy
+        import_categories: Importovat kategorie
+        import_components: Importovat komponenty
         included_at: Zahrnuty v
         instagram: Instagram
         internal_organisation: Vnitřní organizace
@@ -64,6 +72,7 @@ cs:
         non_user_avatar: Avatar
         position: Pozice
         user_id: Uživatel
+        weight: Pozice v řazení
       assembly_user_role:
         email: E-mail
         name: Název
@@ -73,7 +82,7 @@ cs:
         assembly:
           attributes:
             document:
-              invalid_document_type: 'Neplatný typ dokumentu. Přijatelné formáty jsou: %{valid_mime_types}'
+              allowed_file_content_types: 'Neplatný typ dokumentu. Jsou povoleny pouze soubory s následujícími příponami: %{types}'
   activerecord:
     models:
       decidim/assembly:
@@ -248,6 +257,9 @@ cs:
     admin_log:
       assembly:
         create: "%{user_name} vytvořil %{resource_name} shromáždění"
+        duplicate: "%{user_name} zkopíroval shromáždění %{resource_name}"
+        export: "%{user_name} exportoval shromáždění %{resource_name}"
+        import: "%{user_name} importoval shromáždění %{resource_name}"
         publish: "%{user_name} publikoval %{resource_name} shromáždění"
         unpublish: "%{user_name} odebral %{resource_name} shromáždění"
         update: "%{user_name} aktualizoval shromáždění %{resource_name}"
@@ -276,7 +288,7 @@ cs:
             duration_help: Pokud je doba trvání tohoto shromáždění omezená, zvolte konečné datum, jinak se objeví jako neurčitá.
             filters: Filtry
             images: Obrázky
-            included_at_help: Vyberte datum, kdy bylo toto shromáždění přidáno do aplikace Decidim. Nemusí to být nutně stejné jako datum vytvoření.
+            included_at_help: Vyberte datum, kdy byla tato sestava přidána na platformu. Nemusí být nutně stejné jako datum vytvoření.
             metadata: Metadata
             other: Ostatní
             select_a_created_by: Vybrat vytvořeno od

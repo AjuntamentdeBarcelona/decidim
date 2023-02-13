@@ -3,7 +3,7 @@
 module Decidim
   module Admin
     # Delivers the newsletter to its recipients.
-    class DeliverNewsletter < Rectify::Command
+    class DeliverNewsletter < Decidim::Command
       # Initializes the command.
       #
       # newsletter - The newsletter to deliver.
@@ -16,12 +16,12 @@ module Decidim
       end
 
       def call
-        @newsletter.with_lock do
-          return broadcast(:invalid) if @form.send_to_all_users && !@user.admin?
-          return broadcast(:invalid) unless @form.valid?
-          return broadcast(:invalid) if @newsletter.sent?
-          return broadcast(:no_recipients) if recipients.blank?
+        return broadcast(:invalid) if @form.send_to_all_users && !@user.admin?
+        return broadcast(:invalid) unless @form.valid?
+        return broadcast(:invalid) if @newsletter.sent?
+        return broadcast(:no_recipients) if recipients.blank?
 
+        @newsletter.with_lock do
           send_newsletter!
         end
 

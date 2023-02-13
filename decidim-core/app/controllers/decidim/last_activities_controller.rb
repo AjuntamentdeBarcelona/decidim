@@ -16,7 +16,7 @@ module Decidim
     def resource_types
       return @resource_types if defined?(@resource_types)
 
-      @resource_types = search.resource_types.sort_by do |klass|
+      @resource_types = ActionLog.public_resource_types.sort_by do |klass|
         klass.constantize.model_name.human
       end
 
@@ -28,19 +28,21 @@ module Decidim
     end
 
     def activities
-      @activities ||= paginate(search.results)
+      @activities ||= paginate(search.result)
     end
 
-    def search_klass
-      HomeActivitySearch
-    end
-
-    def context_params
-      { organization: current_organization }
+    def search_collection
+      ActionLog
+        .where(
+          organization: current_organization,
+          visibility: %w(public-only all)
+        )
+        .with_new_resource_type("all")
+        .order(created_at: :desc)
     end
 
     def default_filter_params
-      { resource_type: "all" }
+      { with_resource_type: "all" }
     end
   end
 end

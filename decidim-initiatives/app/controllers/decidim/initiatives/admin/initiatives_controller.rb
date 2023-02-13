@@ -110,7 +110,7 @@ module Decidim
               redirect_to EngineRouter.main_proxy(current_initiative).initiatives_path(initiative_slug: nil), flash: {
                 notice: I18n.t(
                   "success",
-                  scope: %w(decidim initiatives admin initiatives edit)
+                  scope: "decidim.initiatives.admin.initiatives.edit"
                 )
               }
             end
@@ -158,7 +158,8 @@ module Decidim
           output = render_to_string(
             pdf: "votes_#{current_initiative.id}",
             layout: "decidim/admin/initiatives_votes",
-            template: "decidim/initiatives/admin/initiatives/export_pdf_signatures.pdf.erb"
+            template: "decidim/initiatives/admin/initiatives/export_pdf_signatures",
+            format: [:pdf]
           )
           output = pdf_signature_service.new(pdf: output).signed_pdf if pdf_signature_service
 

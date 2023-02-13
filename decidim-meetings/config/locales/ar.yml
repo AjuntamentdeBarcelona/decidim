@@ -1,10 +1,7 @@
+---
 ar:
   activemodel:
     attributes:
-      agenda:
-        description: وصف
-        duration: المدة الزمنية
-        title: عنوان
       close_meeting:
         attendees_count: عدد الحضور
         attending_organizations: قائمة المنظمات التي حضرت
@@ -18,7 +15,6 @@ ar:
         decidim_category_id: الفئة
         decidim_scope_id: نطاق
         description: وصف
-        end_time: وقت النهاية
         location: موقعك
         location_hints: تلميحات الموقع
         organizer_id: منظم
@@ -26,7 +22,6 @@ ar:
         registration_form_enabled: تم تمكين نموذج التسجيل
         registration_terms: شروط التسجيل
         registrations_enabled: تم تمكين التسجيلات
-        start_time: وقت البدء
         title: عنوان
         transparent: شفاف
     errors:
@@ -76,11 +71,10 @@ ar:
         meetings:
           category_id_eq:
             label: الفئة
-          origin_eq:
+          with_any_origin:
             values:
-              citizen: المواطن
               user_group: مجموعات المستخدمين
-          type_eq:
+          with_any_type:
             label: نوع الاجتماع
             values:
               in_person: وجهًا لوجه
@@ -251,8 +245,6 @@ ar:
             success: تم حذف الاجتماع بنجاح
           edit:
             update: تحديث
-          form:
-            registration_email_help: سيظهر هذا النص في منتصف البريد الإلكتروني الخاص بتأكيد التسجيل مباشرة بعد رمز التسجيل.
           index:
             title: اجتماعات
           new:
@@ -282,6 +274,7 @@ ar:
           form:
             available_slots_help: اتركه إلى 0 إذا كان لديك فتحات غير محدودة المتاحة.
             invites: دعوات
+            registration_email_help: سيظهر هذا النص في منتصف البريد الإلكتروني الخاص بتأكيد التسجيل مباشرة بعد رمز التسجيل.
             registration_form: إستمارة تسجيل
             registrations_count:
               zero: كان هناك %{count} التسجيلات.
@@ -344,8 +337,6 @@ ar:
         filters:
           category: الفئة
           date: تاريخ
-          origin_values:
-            citizens: المواطنون
           search: بحث
         filters_small_view:
           close_modal: إغلاق مشروط

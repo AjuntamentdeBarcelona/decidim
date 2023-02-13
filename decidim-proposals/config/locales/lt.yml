@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -42,10 +43,6 @@ lt:
           valuator_role_id: Vertintojo vardas ir pavardė
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Netinkamas dokumento tipas. Priimtini formatai: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -606,9 +603,9 @@ lt:
           all: Visi
         filter_origin_values:
           all: Visi
-          citizens: Piliečiai
           meetings: Susitikimai
           official: Oficialūs
+          participants: Dalyviai
           user_groups: Grupės
         filter_scope_values:
           all: Visi
@@ -672,6 +669,8 @@ lt:
           filter_by: Filtruoti pagal
           unfold: Išskleisti
         new:
+          add_file: Pridėti failą
+          edit_file: Redaguoti failą
           send: Tęsti
         new_collaborative_draft_button:
           new_collaborative_draft: Naujas bendrasis projektas
@@ -786,12 +785,12 @@ lt:
           description: Koordinatės bus atnaujintos paspaudus mygtuką „Peržiūrėti“. Tačiau adresas nesikeičia.
           instructions: Galite perkelti tašką žemėlapyje.
         edit:
-          add_documents: Dokumentai
-          add_images: Rinkmena
+          add_documents: Pridėti dokumentus
+          add_image: Pridėti paveikslėlį
           attachment_legend: "(Neprivaloma) Pridėti priedą"
           back: Atgal
-          delete_document: Ištrinti Dokumentą
-          delete_image: Pašalinti Paveikslėlį
+          edit_documents: Redaguoti dokumentus
+          edit_image: Redaguoti atvaizdą
           gallery_legend: "(Neprivaloma) Pridėkite vaizdą prie pasiūlymo kortelės"
           select_a_category: Pasirinkite kategoriją
           send: Siųsti

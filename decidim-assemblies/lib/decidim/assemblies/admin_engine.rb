@@ -53,6 +53,7 @@ module Decidim
             resources :imports, only: [:new, :create] do
               get :example, on: :collection
             end
+            resources :reminders, only: [:new, :create]
           end
 
           resources :moderations do
@@ -69,7 +70,9 @@ module Decidim
               post :resend_invitation, to: "participatory_space_private_users#resend_invitation"
             end
             collection do
-              resource :participatory_space_private_users_csv_import, only: [:new, :create], path: "csv_import"
+              resource :participatory_space_private_users_csv_imports, only: [:new, :create], path: "csv_import" do
+                delete :destroy_all
+              end
             end
           end
         end

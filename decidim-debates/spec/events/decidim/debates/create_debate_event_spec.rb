@@ -7,7 +7,7 @@ describe Decidim::Debates::CreateDebateEvent do
 
   include_context "when a simple event"
 
-  let(:resource) { create :debate, :citizen_author, title: { en: "It's my debate" } }
+  let(:resource) { create :debate, :participant_author, title: { en: "It's my debate" } }
   let(:space) { resource.participatory_space }
   let(:event_name) { "decidim.events.debates.debate_created" }
   let(:space_path) { resource_locator(space).path }
@@ -82,7 +82,7 @@ describe Decidim::Debates::CreateDebateEvent do
       it "is generated correctly" do
         expect(subject.email_outro)
           .to eq("You have received this notification because you are following the #{translated(space.title)} participatory space. " \
-          "You can stop receiving notifications following the previous link.")
+                 "You can stop receiving notifications following the previous link.")
       end
     end
 

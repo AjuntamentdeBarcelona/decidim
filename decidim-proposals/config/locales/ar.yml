@@ -1,3 +1,4 @@
+---
 ar:
   activemodel:
     attributes:
@@ -36,10 +37,6 @@ ar:
           valuator_role_id: اسم المُقيِّم
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'نوع المستند غير صالح. التنسيقات المقبولة هي: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -431,7 +428,6 @@ ar:
           all: الكل
         filter_origin_values:
           all: الكل
-          citizens: المواطنون
           meetings: اجتماعات
           official: الرسمية
           user_groups: المجموعات
@@ -608,12 +604,8 @@ ar:
             many: "%{count} مقترحات"
             other: "%{count} مقترحات"
         edit:
-          add_documents: المستندات
-          add_images: ملف
           attachment_legend: "(اختياري) إضافة مرفق"
           back: الى الخلف
-          delete_document: حذف المستند
-          delete_image: حذف الصورة
           select_a_category: الرجاء تحديد الفئة
           send: إرسال
           title: تعديل الاقتراح

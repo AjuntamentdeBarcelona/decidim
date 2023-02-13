@@ -1,10 +1,7 @@
+---
 it:
   activemodel:
     attributes:
-      agenda:
-        description: Descrizione
-        duration: Durata
-        title: Titolo
       close_meeting:
         attendees_count: Numero di partecipanti
         attending_organizations: Elenco delle organizzazioni partecipanti
@@ -22,7 +19,6 @@ it:
         decidim_scope_id: Visibilità
         decidim_user_group_id: Gruppo di utenti
         description: Descrizione
-        end_time: Orario fine
         id: ID
         location: Luogo
         location_hints: Informazione sul luogo
@@ -35,8 +31,6 @@ it:
         registration_terms: Termini di registrazione
         registration_url: URL di iscrizione
         registrations_enabled: Registrazioni abilitate
-        show_embedded_iframe: Mostra iframe incorporato per questo URL
-        start_time: Orario inizio
         title: Titolo
         transparent: Trasparente
         type_of_meeting: Tipo
@@ -85,19 +79,15 @@ it:
             values:
               'false': Conclusi
               'true': Prossimi
-          origin_eq:
-            label: Origine
-            values:
-              citizen: Cittadina
-              official: Ufficiale
-              user_group: Gruppi di utenti
           scope_id_eq:
             label: Ambito
-          type_eq:
+          with_any_origin:
+            values:
+              user_group: Gruppi di utenti
+          with_any_type:
             label: Tipologia di incontro
             values:
               in_person: Fisiche
-              online: Online
       meeting_copies:
         create:
           error: C'era un errore en duplicazione di questo incontro.
@@ -292,12 +282,10 @@ it:
             update: Modifica
           form:
             address_help: 'Indirizzo: usato da Geocoder per trovare la posizione'
-            available_slots_help: Lasciare a 0 se disponi di slot illimitati
             disclaimer: 'Disclaimer: Utilizzando un sistema di registrazione esterno, sei consapevole che gli organizzatori di %{organization} non sono responsabili per i dati forniti dagli utenti al servizio esterno.'
             location_help: 'Posizione: messaggio diretto agli utenti che riporta il luogo dell''incontro'
             location_hints_help: 'Suggerimenti: informazioni aggiuntive. Esempio: il pavimento dell''edificio se si tratta di una riunione di persona o la password di riunione se si tratta di una riunione online con accesso ristretto.'
             online_meeting_url_help: 'Link: permette ai partecipanti di connettersi direttamente alla tua riunione'
-            registration_email_help: Questo testo apparirà nel mezzo dell'email di conferma della registrazione. Subito dopo il codice di registrazione.
             registration_url_help: 'Link: consentire ai partecipanti di accedere al servizio esterno che stai utilizzando per le iscrizioni'
             select_a_meeting_type: Seleziona un tipo di riunione
             select_a_registration_type: Seleziona un tipo di registrazione
@@ -343,6 +331,7 @@ it:
             available_slots_help: Lasciare a 0 se disponi di slot illimitati.
             invites: Inviti
             recommendation_message: Per motivi di privacy, ti consigliamo di eliminare questo modulo di iscrizione quando non ne hai più bisogno. Per impostazione predefinita, questo avverrà 3 mesi dopo la fine della riunione.
+            registration_email_help: Questo testo apparirà nel mezzo dell'email di conferma della registrazione. Subito dopo il codice di registrazione.
             registration_form: Formulario di registrazione
             registrations_count:
               one: C'è stata %{count} registrazione.
@@ -437,8 +426,8 @@ it:
           origin: Origine
           origin_values:
             all: Tutte
-            citizens: Cittadini
             official: Ufficiale
+            participants: Utenti
             user_groups: Gruppi
           scope: Ambito
           search: Cerca

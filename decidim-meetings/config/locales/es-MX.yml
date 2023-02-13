@@ -1,10 +1,7 @@
+---
 es-MX:
   activemodel:
     attributes:
-      agenda:
-        description: Descripción
-        duration: Duración
-        title: Título
       close_meeting:
         attendees_count: Número de asistentes
         attending_organizations: Lista de organizaciones que han participado
@@ -22,8 +19,9 @@ es-MX:
         decidim_scope_id: Ámbito
         decidim_user_group_id: Grupo de usuarias
         description: Descripción
-        end_time: Hora de finalización
+        end_time: Día y hora de finalización
         id: ID
+        iframe_embed_type: Visualización de la sala de videoconferencia
         location: Ubicación
         location_hints: Pistas de ubicación
         online_meeting_url: URL del encuentro online
@@ -33,13 +31,26 @@ es-MX:
         registration_email_custom_content: Contenido personalizado del email de inscripción
         registration_form_enabled: Formulario de inscripción habilitado
         registration_terms: Términos y condiciones de inscripción
+        registration_type: Tipo de inscripción
         registration_url: URL de inscripción
         registrations_enabled: Inscripciones abiertas
-        show_embedded_iframe: Mostrar iframe incrustado para esta URL
-        start_time: Hora de inicio
+        reserved_slots: Plazas reservadas para este encuentro
+        start_time: Día y hora de inicio
         title: Título
         transparent: Transparente
         type_of_meeting: Tipo
+      meeting_agenda:
+        title: Título
+        visible: Visible
+      meeting_agenda_items:
+        description: Descripción
+        duration: Duración
+        title: Título
+      meeting_registration_invite:
+        email: Correo electrónico
+        name: Nombre
+      validate_registration_code:
+        code: Código
     errors:
       models:
         meeting:
@@ -89,15 +100,15 @@ es-MX:
             values:
               'false': Pasados
               'true': Próximos
-          origin_eq:
-            label: Origen
-            values:
-              citizen: Ciudadanía
-              official: Oficial
-              user_group: Grupos
           scope_id_eq:
             label: Ámbito
-          type_eq:
+          with_any_origin:
+            label: Origen
+            values:
+              official: Oficial
+              participants: Participante
+              user_group: Grupos
+          with_any_type:
             label: Tipo de encuentro
             values:
               hybrid: Híbrido
@@ -282,9 +293,6 @@ es-MX:
           edit:
             close: Cerrar
             title: Cerrar encuentro
-        meeting_copies:
-          form:
-            select_a_meeting_type: Por favor, selecciona un tipo de encuentro
         meetings:
           close:
             invalid: Ha habido un problema al cerrar este encuentro
@@ -303,17 +311,15 @@ es-MX:
             update: Actualizar
           form:
             address_help: 'Dirección: usada por Geocoder para encontrar la ubicación'
-            available_slots_help: Déjalo a 0 si tienes espacio ilimitado disponible
             disclaimer: 'Descargo de responsabilidad: Mediante el uso de un sistema de inscripción externo, aceptas que los organizadores de %{organization} no son responsables de los datos proporcionados por los usuarios al servicio externo.'
             location_help: 'Ubicación: mensaje dirigido a las participantes indicando el lugar donde reunirse'
             location_hints_help: 'Consejos de ubicación: información adicional. Ejemplo: la planta del edificio si se trata de un encuentro presencial, o la contraseña de la sala si se trata de un encuentro online con acceso restringido.'
             online_meeting_url_help: 'Enlace: permitir a las participantes conectarse directamente a tu encuentro'
-            registration_email_help: Este texto aparecerá en medio del correo de confirmación de inscripción. Justo después del código de inscripción.
             registration_url_help: 'Enlace: permitir a las participantes ir al servicio externo que estás utilizando para las inscripciones'
             select_a_meeting_type: Por favor, selecciona un tipo de encuentro
             select_a_registration_type: Por favor, seleccione un tipo de inscripción
             select_an_iframe_access_level: Por favor, seleccione un nivel de acceso iframe
-            show_embedded_iframe_help: Sólo unos pocos servicios se pueden incrustar en un encuentro o evento en vivo (YouTube, Twitch y Jitsi)
+            show_embedded_iframe_help: 'Solo unos pocos servicios permiten incrustar en reuniones o eventos en vivo desde los siguientes dominios: %{domains}'
           index:
             title: Encuentros
           new:
@@ -356,6 +362,7 @@ es-MX:
             available_slots_help: Déjalo a 0 si tiene inscripciones ilimitadas.
             invites: Invitaciones
             recommendation_message: Por razones de privacidad te recomendamos que elimines este formulario de inscripción cuando ya no lo necesites. Por defecto, esto es 3 meses después de que la reunión haya finalizado.
+            registration_email_help: Este texto aparecerá en medio del correo de confirmación de inscripción. Justo después del código de inscripción.
             registration_form: Formulario de inscripción
             registrations_count:
               one: Ha habido %{count} inscripción.
@@ -383,6 +390,8 @@ es-MX:
           value_types:
             organizer_presenter:
               not_found: 'El organizador no se encontró en la base de datos (ID: %{id})'
+        questionnaire:
+          update: "%{user_name} ha actualizado el cuestionario del encuentro %{meeting_name}"
       application_helper:
         filter_category_values:
           all: Todas
@@ -393,7 +402,19 @@ es-MX:
       calendar_modal:
         calendar_url: URL del calendario
         close_window: Cerrar ventana
+        copy_calendar_url: Copiar
+        copy_calendar_url_clarification: Copiar la URL del calendario al portapapeles
+        copy_calendar_url_copied: '¡Copiado!'
+        copy_calendar_url_description: Puedes ver todas las reuniones publicadas en tu aplicación o proveedor de calendario. Copia y pega esta URL en tu calendario usando la opción "Añadir nuevo calendario desde una URL".
+        copy_calendar_url_explanation: Ten en cuenta que estás exportando una selección de encuentros, ya que hay filtros activos. Si deseas exportarlos todos, primero elimina todos los filtros.
+        copy_calendar_url_message: Se ha copiado el enlace al portapapeles correctamente.
         export_calendar: Exportar calendario
+      close_meeting_reminder_mailer:
+        close_meeting_reminder:
+          body: El encuentro <a href="%{meeting_path}">"%{meeting_title}"</a> está pendiente de cerrarse. Por favor, agrega un informe de la reunión usando el botón "Cerrar encuentro".
+          greetings: Hola,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
+          hello: Hola %{username},
+          subject: Ahora puedes cerrar el encuentro con un informe en la plataforma %{organization_name}
       conference_venues: Sedes de las jornadas
       content_blocks:
         upcoming_meetings:
@@ -468,8 +489,8 @@ es-MX:
           origin: Origen
           origin_values:
             all: Todos
-            citizens: Ciudadanos
             official: Oficial
+            participants: Participantes
             user_groups: Grupos
           scope: Ámbito
           search: Buscar
@@ -497,7 +518,7 @@ es-MX:
           select_a_meeting_type: Por favor, selecciona un tipo de encuentro
           select_a_registration_type: Por favor, selecciona un tipo de inscripción
           select_an_iframe_access_level: Por favor, selecciona un nivel de acceso iframe
-          show_embedded_iframe_help: Sólo unos pocos servicios se pueden incrustar en un encuentro o evento en vivo (YouTube, Twitch y Jitsi)
+          show_embedded_iframe_help: 'Solo unos pocos servicios permiten incrustar en reuniones o eventos en vivo desde los siguientes dominios: %{domains}'
         index:
           click_here: Ver todos los encuentros
           new_meeting: Nuevo encuentro

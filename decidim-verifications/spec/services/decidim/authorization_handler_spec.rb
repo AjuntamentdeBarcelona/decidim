@@ -10,7 +10,7 @@ module Decidim
     describe "form_attributes" do
       subject { handler.form_attributes }
 
-      it { is_expected.to match_array([:handler_name]) }
+      it { is_expected.to match_array(["handler_name"]) }
       it { is_expected.not_to match_array([:id, :user]) }
     end
 
@@ -47,21 +47,21 @@ module Decidim
       context "when the handler does not exist" do
         let(:name) { "decidim/foo" }
 
-        it { is_expected.to eq(nil) }
+        it { is_expected.to be_nil }
       end
 
       context "when the handler exists" do
         context "when the handler is not valid" do
           let(:name) { "decidim/authorization_handler" }
 
-          it { is_expected.to eq(nil) }
+          it { is_expected.to be_nil }
         end
 
         context "when the handler is valid" do
           let(:name) { "dummy_authorization_handler" }
 
           context "when the handler is not configured", with_authorization_workflows: [] do
-            it { is_expected.to eq(nil) }
+            it { is_expected.to be_nil }
           end
 
           context "when the handler is configured" do

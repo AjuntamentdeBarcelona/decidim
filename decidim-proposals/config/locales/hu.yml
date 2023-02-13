@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     attributes:
@@ -36,10 +37,6 @@ hu:
           valuator_role_id: Értékelő neve
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Érvénytelen dokumentumtípus. Az elfogadott formátumok: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -502,9 +499,9 @@ hu:
           all: Minden
         filter_origin_values:
           all: Minden
-          citizens: Állampolgárok
           meetings: Találkozók
           official: Hivatalos
+          participants: Résztvevők
           user_groups: Felhasználói csoportok
         filter_scope_values:
           all: Minden
@@ -566,6 +563,8 @@ hu:
           filter_by: 'Szűrés ez alapján:'
           unfold: Kibont
         new:
+          add_file: Fájl hozzáadása
+          edit_file: Fájl szerkesztése
           send: Tovább
         new_collaborative_draft_button:
           new_collaborative_draft: Új közös vázlat
@@ -668,12 +667,12 @@ hu:
             one: "%{count} javaslat"
             other: "%{count} javaslatot"
         edit:
-          add_documents: Dokumentumok
-          add_images: Fájl
+          add_documents: Dokumentum hozzáadása
+          add_image: Kép hozzáadása
           attachment_legend: "(Nem kötelező) Melléklet hozzáadása"
           back: Vissza
-          delete_document: Dokumentum törlése
-          delete_image: Kép törlése
+          edit_documents: Dokumentum szerkesztése
+          edit_image: Kép szerkesztése
           select_a_category: Válassz kategóriát
           send: Küldés
           title: Javaslat szerkesztése

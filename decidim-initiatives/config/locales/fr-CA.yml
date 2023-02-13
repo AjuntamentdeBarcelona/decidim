@@ -1,10 +1,15 @@
+---
 fr-CA:
   activemodel:
     attributes:
       initiative:
+        answer: Réponse
+        answer_url: URL de la réponse
         area_id: Périmètre d'assemblée
+        decidim_scope_id: Secteur
         decidim_user_group_id: Auteur
         description: Description
+        hashtag: Hashtag
         offline_votes: Votes en présentiel
         offline_votes_for_scope: Signatures en personne pour %{scope_name}
         scope_id: Secteur
@@ -17,6 +22,7 @@ fr-CA:
           online: En ligne
         state: Etat
         title: Titre
+        type_id: Type
       initiatives_committee_member:
         user: Membre du Comité de promotion
       initiatives_settings:
@@ -27,6 +33,7 @@ fr-CA:
         banner_image: Image d'en-tête
         child_scope_threshold_enabled: Activer les signatures de portée enfant
         collect_user_extra_fields: Collecter les données personnelles de l'utilisateur lors de la signature
+        comments_enabled: Activer les commentaires
         custom_signature_end_date_enabled: Permettre aux auteurs de choisir la fin de la période de collecte des signatures
         description: Description
         document_number_authorization_handler: Niveau d'autorisation nécessaire pour signer les initiatives de ce type d'initiative
@@ -39,6 +46,9 @@ fr-CA:
         title: Titre
         undo_online_signatures_enabled: Autoriser les utilisateurs à annuler leurs signatures en ligne
         validate_sms_code_on_votes: Ajouter une étape de validation du code SMS au processus de signature
+      initiatives_type_scope:
+        decidim_scopes_id: Secteurs
+        supports_required: Signatures requises
       initiatives_vote:
         date_of_birth: Date de naissance
         document_number: Numéro de document
@@ -58,9 +68,6 @@ fr-CA:
               title: Le titre ne doit pas être vide
   activerecord:
     models:
-      decidim/initiative:
-        one: Initiative
-        other: Initiatives
       decidim/initiative_comittee:
         one: Comité
         other: Comités
@@ -88,12 +95,17 @@ fr-CA:
             label: Type d'initiative
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Rechercher %{collection} par titre, description, ID ou nom de l'auteur.
+      initiatives_settings:
+        update:
+          error: Une erreur s'est produite
+          success: Les paramètres des initiatives ont bien été mis à jour
       menu:
         attachments: Pièces jointes
         committee_members: Membres de comité
         components: Fonctionnalités
         information: Informations
         initiatives: Pétitions
+        initiatives_settings: Paramètres
         initiatives_types: Types d'initiatives
         moderations: Modérations
       models:
@@ -245,6 +257,16 @@ fr-CA:
           update:
             error: Une erreur est survenue
             success: L'initiative a été mise à jour avec succès
+        initiatives_settings:
+          edit:
+            update: Mettre à jour
+          form:
+            comments: Les plus commentées
+            date: Les plus récentes
+            publication_date: Publiées le plus récemment
+            random: Aléatoire
+            signatures: Les plus signées
+            title: Paramètres des initiatives
         initiatives_type_scopes:
           create:
             error: Une erreur s'est produite
@@ -276,7 +298,7 @@ fr-CA:
             update: Mettre à jour
           form:
             authorizations: Paramètres d'autorisation
-            child_scope_threshold_enabled_help: 'Cette option de configuration ne gère pas les votes hors-ligne, elle permet d''activer des sous-secteurs et fonctionne avec un gestionnaire d''autorisation qui associe un secteur à l''utilisateur. Assurez-vous de sélectionner cette autorisation dans les paramètres d''autorisation ci-dessous. Pour que cela fonctionne, les secteurs doivent être configurées de manière hiérarchique : 1 Parent - N Enfants. Pour plus d''informations sur le fonctionnement de cette configuration, cliquez <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">ici</a>.'
+            child_scope_threshold_enabled_help: 'Cette option de configuration ne prend pas en charge les votes hors-ligne, elle permet d''activer des sous-secteurs et fonctionne avec un gestionnaire d''autorisation qui associe un secteur à l''utilisateur. Assurez-vous de sélectionner cette autorisation dans les paramètres d''autorisation ci-dessous. Pour que cela fonctionne, les secteurs doivent être configurés de manière hiérarchique : 1 Parent - N Enfants. Pour plus d''informations sur le fonctionnement de cette configuration, consultez la <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">documentation sur l''administration des initiatives</a>.'
             only_global_scope_enabled_help: Cochez cette case si vous avez activé "Autoriser les signatures par sous-secteur" et configurer la portée globale comme votre portée parente. En activant cette option, la sélection du type de pétition sera ignorée dans l'assistant de création d'initiative. Pour plus d'informations sur le fonctionnement de cette configuration, voir ce <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">lien</a>.
             options: Paramètres
             title: informations générales
@@ -294,6 +316,12 @@ fr-CA:
           send_to_technical_validation: "%{user_name} a envoyé l'initiative %{resource_name} à la validation technique"
           unpublish: "%{user_name} a dépublié l'initiative %{resource_name}"
           update: "%{user_name} a mis à jour l'initiative %{resource_name}"
+        initiatives_settings:
+          update: "%{user_name} a mis à jour les paramètres des initiatives"
+        initiatives_type:
+          create: "%{user_name} a créé le type de pétition %{resource_name}"
+          delete: "%{user_name} a supprimé le type de pétition %{resource_name}"
+          update: "%{user_name} a mis à jour le type de pétition %{resource_name}"
       admin_states:
         accepted: Assez de signatures
         created: Créée
@@ -567,6 +595,8 @@ fr-CA:
           published: Publié
           rejected: Pas assez de signatures
           validating: Validation technique
+      signature_interval:
+        title: Période de collecte des signatures
       states:
         accepted: Acceptées
         expired: Expirées

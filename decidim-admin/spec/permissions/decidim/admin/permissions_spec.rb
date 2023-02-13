@@ -8,7 +8,7 @@ describe Decidim::Admin::Permissions do
   let(:user) { build :user, :admin, organization: organization }
   let(:organization) { build :organization }
   let(:context) { {} }
-  let(:permission_action) { Decidim::PermissionAction.new(action) }
+  let(:permission_action) { Decidim::PermissionAction.new(**action) }
   let(:registrations_enabled) { true }
   let(:action) do
     { scope: :admin, action: action_name, subject: action_subject }
@@ -43,12 +43,12 @@ describe Decidim::Admin::Permissions do
         { scope: :public, action: :read, subject: :admin_dashboard }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
 
       context "when user is a user manager" do
         let(:user) { build :user, :user_manager }
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
     end
 
@@ -58,7 +58,7 @@ describe Decidim::Admin::Permissions do
   context "when user is not present" do
     let(:user) { nil }
 
-    it { is_expected.to eq false }
+    it { is_expected.to be false }
   end
 
   context "when user is a user manager" do
@@ -90,7 +90,7 @@ describe Decidim::Admin::Permissions do
     let(:action_name) { :read }
     let(:action_subject) { :admin_dashboard }
 
-    it { is_expected.to eq true }
+    it { is_expected.to be true }
   end
 
   describe "admin logs" do
@@ -101,7 +101,7 @@ describe Decidim::Admin::Permissions do
     context "when reading" do
       let(:action_name) { :read }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 
@@ -125,7 +125,7 @@ describe Decidim::Admin::Permissions do
     context "when reading" do
       let(:action_name) { :read }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 
@@ -137,7 +137,7 @@ describe Decidim::Admin::Permissions do
     context "when updating" do
       let(:action_name) { :update }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
 
       context "when page is not present" do
         let(:page) { nil }
@@ -162,12 +162,12 @@ describe Decidim::Admin::Permissions do
       context "when page is not default" do
         let(:page) { build :static_page }
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
     end
 
     context "when any other action" do
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 
@@ -179,7 +179,7 @@ describe Decidim::Admin::Permissions do
     let(:action_subject) { :share_token }
 
     context "when any action" do
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 
@@ -191,7 +191,7 @@ describe Decidim::Admin::Permissions do
       let(:action_name) { :update }
 
       context "when user belongs to organization" do
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when user does not belong to organization" do
@@ -222,7 +222,7 @@ describe Decidim::Admin::Permissions do
       context "when organization available authorizations are empty" do
         let(:authorizations) { [] }
 
-        it { is_expected.to eq false }
+        it { is_expected.to be false }
       end
 
       context "when organization available authorizations are not empty" do
@@ -235,7 +235,7 @@ describe Decidim::Admin::Permissions do
     end
 
     context "when any other action" do
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 
@@ -248,7 +248,7 @@ describe Decidim::Admin::Permissions do
       let(:action_name) { :destroy }
 
       context "when destroying another user" do
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when destroying itself" do
@@ -277,7 +277,7 @@ describe Decidim::Admin::Permissions do
         end
 
         context "when there are no active impersonation logs" do
-          it { is_expected.to eq true }
+          it { is_expected.to be true }
         end
       end
     end
@@ -315,14 +315,14 @@ describe Decidim::Admin::Permissions do
       end
 
       context "when there are no active impersonation logs" do
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
     end
 
     context "when show their email" do
       let(:action_name) { :show_email }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
 
       context "when user is not an admin" do
         let(:user) { build :user, organization: organization }
@@ -332,14 +332,14 @@ describe Decidim::Admin::Permissions do
     end
 
     context "when any other action" do
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 
   shared_examples "can perform any action for" do |action_subject_name|
     let(:action_subject) { action_subject_name }
 
-    it { is_expected.to eq true }
+    it { is_expected.to be true }
   end
 
   it_behaves_like "can perform any action for", :category

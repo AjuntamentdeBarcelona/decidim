@@ -4,16 +4,17 @@ module Decidim
   module Admin
     # A command with all the business logic when updating a category in the
     # system.
-    class UpdateCategory < Rectify::Command
+    class UpdateCategory < Decidim::Command
       attr_reader :category
 
       # Public: Initializes the command.
       #
       # category - the Category to update
       # form - A form object with the params.
-      def initialize(category, form)
+      def initialize(category, form, user)
         @category = category
         @form = form
+        @user = user
       end
 
       # Executes the command. Broadcasts these events:
@@ -34,15 +35,18 @@ module Decidim
       attr_reader :form
 
       def update_category
-        category.update!(attributes)
+        Decidim.traceability.update!(
+          category,
+          @user,
+          attributes
+        )
       end
 
       def attributes
         {
           name: form.name,
           weight: form.weight,
-          parent_id: form.parent_id,
-          description: form.description
+          parent_id: form.parent_id
         }
       end
     end

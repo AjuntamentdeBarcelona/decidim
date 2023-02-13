@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = ["josepjaume@gmail.com", "mrc2407@gmail.com", "oriolgual@gmail.com"]
   s.license = "AGPL-3.0"
   s.homepage = "https://github.com/decidim/decidim"
-  s.required_ruby_version = ">= 2.7"
+  s.required_ruby_version = ">= 3.0"
 
   s.name = "decidim-proposals"
   s.summary = "Decidim proposals module"
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "decidim-comments", Decidim::Proposals.version
   s.add_dependency "decidim-core", Decidim::Proposals.version
-  s.add_dependency "doc2text", "~> 0.4.4"
+  s.add_dependency "doc2text", "~> 0.4.5"
   s.add_dependency "redcarpet", "~> 3.5", ">= 3.5.1"
 
   s.add_development_dependency "decidim-admin", Decidim::Proposals.version

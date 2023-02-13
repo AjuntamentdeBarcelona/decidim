@@ -97,6 +97,13 @@ describe "Participatory Process Groups", type: :system do
       it "has a link to the group url" do
         expect(page).to have_link("www.example.org/external", href: "https://www.example.org/external")
       end
+
+      it_behaves_like "has embedded video in description", :description do
+        before do
+          participatory_process_group.update!(description: description)
+          visit decidim_participatory_processes.participatory_process_group_path(participatory_process_group)
+        end
+      end
     end
 
     context "when the metadata content block is enabled" do
@@ -158,8 +165,8 @@ describe "Participatory Process Groups", type: :system do
     context "when the proposals block is enabled" do
       let!(:proposals_component) { create(:component, :published, participatory_space: process, manifest_name: :proposals) }
       let!(:other_process_proposals_component) { create(:component, :published, participatory_space: other_process, manifest_name: :proposals) }
-      let!(:proposal_1) { create(:proposal, component: proposals_component, title: { en: "First awesome proposal!" }) }
-      let!(:proposal_2) { create(:proposal, component: other_process_proposals_component, title: { en: "Second fabulous proposal!" }) }
+      let!(:proposal1) { create(:proposal, component: proposals_component, title: { en: "First awesome proposal!" }) }
+      let!(:proposal2) { create(:proposal, component: other_process_proposals_component, title: { en: "Second fabulous proposal!" }) }
 
       before do
         create(
@@ -175,15 +182,15 @@ describe "Participatory Process Groups", type: :system do
 
       it "shows cards of proposals from both processes" do
         within("#participatory-process-group-homepage-highlighted-proposals") do
-          expect(page).to have_selector("#proposal_#{proposal_1.id}")
-          expect(page).to have_selector("#proposal_#{proposal_2.id}")
+          expect(page).to have_selector("#proposal_#{proposal1.id}")
+          expect(page).to have_selector("#proposal_#{proposal2.id}")
 
-          within("#proposal_#{proposal_1.id}") do
+          within("#proposal_#{proposal1.id}") do
             expect(page).to have_content "First awesome proposal!"
             expect(page).to have_i18n_content process.title
           end
 
-          within("#proposal_#{proposal_2.id}") do
+          within("#proposal_#{proposal2.id}") do
             expect(page).to have_content "Second fabulous proposal!"
             expect(page).to have_i18n_content other_process.title
           end
@@ -194,8 +201,8 @@ describe "Participatory Process Groups", type: :system do
     context "when the results block is enabled" do
       let!(:accountability_component) { create(:component, :published, participatory_space: process, manifest_name: :accountability) }
       let!(:other_process_accountability_component) { create(:component, :published, participatory_space: other_process, manifest_name: :accountability) }
-      let!(:result_1) { create(:result, component: accountability_component, title: { en: "First awesome result!" }) }
-      let!(:result_2) { create(:result, component: other_process_accountability_component, title: { en: "Second fabulous result!" }) }
+      let!(:result1) { create(:result, component: accountability_component, title: { en: "First awesome result!" }) }
+      let!(:result2) { create(:result, component: other_process_accountability_component, title: { en: "Second fabulous result!" }) }
 
       before do
         create(
@@ -211,15 +218,15 @@ describe "Participatory Process Groups", type: :system do
 
       it "shows cards of results from both processes" do
         within("#participatory-process-group-homepage-highlighted-results") do
-          expect(page).to have_selector("#result_#{result_1.id}")
-          expect(page).to have_selector("#result_#{result_2.id}")
+          expect(page).to have_selector("#result_#{result1.id}")
+          expect(page).to have_selector("#result_#{result2.id}")
 
-          within("#result_#{result_1.id}") do
+          within("#result_#{result1.id}") do
             expect(page).to have_content "First awesome result!"
             expect(page).to have_i18n_content process.title
           end
 
-          within("#result_#{result_2.id}") do
+          within("#result_#{result2.id}") do
             expect(page).to have_content "Second fabulous result!"
             expect(page).to have_i18n_content other_process.title
           end
@@ -229,6 +236,7 @@ describe "Participatory Process Groups", type: :system do
 
     context "when the html block is enabled" do
       before do
+        # rubocop:disable Naming/VariableNumber
         create(
           :content_block,
           organization: organization,
@@ -241,6 +249,7 @@ describe "Participatory Process Groups", type: :system do
             html_content_es: nil
           }
         )
+        # rubocop:enable Naming/VariableNumber
 
         visit decidim_participatory_processes.participatory_process_group_path(participatory_process_group)
       end
@@ -257,8 +266,8 @@ describe "Participatory Process Groups", type: :system do
   context "when the meetings block is enabled" do
     let!(:meetings_component) { create(:component, :published, participatory_space: process, manifest_name: :meetings) }
     let!(:other_process_meetings_component) { create(:component, :published, participatory_space: other_process, manifest_name: :meetings) }
-    let!(:meeting_1) { create(:meeting, :published, component: meetings_component, title: { en: "First awesome meeting!" }) }
-    let!(:meeting_2) { create(:meeting, :published, component: other_process_meetings_component, title: { en: "Second fabulous meeting!" }) }
+    let!(:meeting1) { create(:meeting, :published, component: meetings_component, title: { en: "First awesome meeting!" }) }
+    let!(:meeting2) { create(:meeting, :published, component: other_process_meetings_component, title: { en: "Second fabulous meeting!" }) }
 
     before do
       create(
@@ -526,7 +535,7 @@ describe "Participatory Process Groups", type: :system do
     context "when filtering processes by scope" do
       context "and choosing a scope" do
         before do
-          visit decidim_participatory_processes.participatory_process_group_path(participatory_process_group, filter: { scope_id: scope.id })
+          visit decidim_participatory_processes.participatory_process_group_path(participatory_process_group, filter: { with_scope: scope.id })
         end
 
         it "lists active process belonging to that scope" do
@@ -551,7 +560,7 @@ describe "Participatory Process Groups", type: :system do
     context "when filtering processes by area" do
       context "and choosing a area" do
         before do
-          visit decidim_participatory_processes.participatory_process_group_path(participatory_process_group, filter: { area_id: area.id })
+          visit decidim_participatory_processes.participatory_process_group_path(participatory_process_group, filter: { with_area: area.id })
         end
 
         it "lists active process belonging to that area" do

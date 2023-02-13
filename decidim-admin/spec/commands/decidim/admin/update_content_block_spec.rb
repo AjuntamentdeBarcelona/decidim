@@ -14,7 +14,7 @@ module Decidim::Admin
       }
     end
     let(:uploaded_image) do
-      ActiveStorage::Blob.create_after_upload!(
+      ActiveStorage::Blob.create_and_upload!(
         io: File.open(Decidim::Dev.asset("city.jpeg")),
         filename: "city.jpeg",
         content_type: "image/jpeg"
@@ -54,7 +54,7 @@ module Decidim::Admin
       it "updates the content block settings" do
         subject.call
         content_block.reload
-        expect(content_block.settings.welcome_text[:en]).to eq("My text")
+        expect(content_block.settings.welcome_text["en"]).to eq("My text")
       end
 
       context "when the image does not exist" do
@@ -71,7 +71,7 @@ module Decidim::Admin
 
       context "when the image exists" do
         let(:original_image) do
-          ActiveStorage::Blob.create_after_upload!(
+          ActiveStorage::Blob.create_and_upload!(
             io: File.open(Decidim::Dev.asset("city.jpeg")),
             filename: "city.jpeg",
             content_type: "image/jpeg"

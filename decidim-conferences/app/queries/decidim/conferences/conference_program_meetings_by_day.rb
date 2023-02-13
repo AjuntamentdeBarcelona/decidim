@@ -3,7 +3,7 @@
 module Decidim
   module Conferences
     # This query class filters meetings for component and day
-    class ConferenceProgramMeetingsByDay < Rectify::Query
+    class ConferenceProgramMeetingsByDay < Decidim::Query
       def initialize(component, day, user = nil)
         @component = component
         @day = day
@@ -11,9 +11,9 @@ module Decidim
       end
 
       def query
-        Rectify::Query.merge(
+        Decidim::Query.merge(
           ConferenceProgramMeetings.new(@component, @user)
-        ).query.where(start_time: @day.beginning_of_day..@day.end_of_day).order(start_time: :asc)
+        ).query.where(start_time: @day.all_day).order(start_time: :asc)
       end
     end
   end

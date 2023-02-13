@@ -1,3 +1,4 @@
+---
 ar:
   activemodel:
     attributes:
@@ -87,10 +88,10 @@ ar:
           all: الكل
           category: الفئة
           category_prompt: اختر تصنيف
-          citizens: المواطنين
           my_debates: مناقشاتي
           official: الرسمية
           origin: الأصل
+          participants: المشاركون
           search: بحث
           user_groups: الفِرَق
         filters_small_view:

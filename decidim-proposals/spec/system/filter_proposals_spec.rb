@@ -31,6 +31,25 @@ describe "Filter Proposals", :slow, type: :system do
     end
   end
 
+  context "when filtering proposals by TEXT" do
+    it "updates the current URL" do
+      create(:proposal, component: component, title: { en: "Foobar proposal" })
+      create(:proposal, component: component, title: { en: "Another proposal" })
+      visit_component
+
+      within "form.new_filter" do
+        fill_in("filter[search_text_cont]", with: "foobar")
+        click_button "Search"
+      end
+
+      expect(page).not_to have_content("Another proposal")
+      expect(page).to have_content("Foobar proposal")
+
+      filter_params = CGI.parse(URI.parse(page.current_url).query)
+      expect(filter_params["filter[search_text_cont]"]).to eq(["foobar"])
+    end
+  end
+
   context "when filtering proposals by ORIGIN" do
     context "when official_proposals setting is enabled" do
       before do
@@ -51,7 +70,7 @@ describe "Filter Proposals", :slow, type: :system do
           create(:proposal, component: component, scope: scope)
           visit_component
 
-          within ".filters .origin_check_boxes_tree_filter" do
+          within ".filters .with_any_origin_check_boxes_tree_filter" do
             uncheck "All"
             check "Official"
           end
@@ -61,15 +80,15 @@ describe "Filter Proposals", :slow, type: :system do
         end
       end
 
-      context "with 'citizens' origin" do
+      context "with 'participants' origin" do
         it "lists the filtered proposals" do
           create_list(:proposal, 2, component: component, scope: scope)
           create(:proposal, :official, component: component, scope: scope)
           visit_component
 
-          within ".filters .origin_check_boxes_tree_filter" do
+          within ".filters .with_any_origin_check_boxes_tree_filter" do
             uncheck "All"
-            check "Citizens"
+            check "Participants"
           end
 
           expect(page).to have_css(".card--proposal", count: 2)
@@ -112,7 +131,7 @@ describe "Filter Proposals", :slow, type: :system do
 
     context "when selecting the global scope" do
       it "lists the filtered proposals", :slow do
-        within ".filters .scope_id_check_boxes_tree_filter" do
+        within ".filters .with_any_scope_check_boxes_tree_filter" do
           uncheck "All"
           check "Global"
         end
@@ -124,7 +143,7 @@ describe "Filter Proposals", :slow, type: :system do
 
     context "when selecting one scope" do
       it "lists the filtered proposals", :slow do
-        within ".filters .scope_id_check_boxes_tree_filter" do
+        within ".filters .with_any_scope_check_boxes_tree_filter" do
           uncheck "All"
           check scope.name[I18n.locale.to_s]
         end
@@ -136,7 +155,7 @@ describe "Filter Proposals", :slow, type: :system do
 
     context "when selecting the global scope and another scope" do
       it "lists the filtered proposals", :slow do
-        within ".filters .scope_id_check_boxes_tree_filter" do
+        within ".filters .with_any_scope_check_boxes_tree_filter" do
           uncheck "All"
           check "Global"
           check scope.name[I18n.locale.to_s]
@@ -149,7 +168,7 @@ describe "Filter Proposals", :slow, type: :system do
 
     context "when unselecting the selected scope" do
       it "lists the filtered proposals" do
-        within ".filters .scope_id_check_boxes_tree_filter" do
+        within ".filters .with_any_scope_check_boxes_tree_filter" do
           uncheck "All"
           check scope.name[I18n.locale.to_s]
           check "Global"
@@ -215,7 +234,7 @@ describe "Filter Proposals", :slow, type: :system do
           create(:proposal, :accepted, component: component, scope: scope)
           visit_component
 
-          within ".filters .state_check_boxes_tree_filter" do
+          within ".filters .with_any_state_check_boxes_tree_filter" do
             check "All"
             uncheck "All"
             check "Accepted"
@@ -233,7 +252,7 @@ describe "Filter Proposals", :slow, type: :system do
           create(:proposal, :rejected, component: component, scope: scope)
           visit_component
 
-          within ".filters .state_check_boxes_tree_filter" do
+          within ".filters .with_any_state_check_boxes_tree_filter" do
             check "All"
             uncheck "All"
             check "Rejected"
@@ -257,7 +276,7 @@ describe "Filter Proposals", :slow, type: :system do
           end
 
           it "shows only accepted proposals with published answers" do
-            within ".filters .state_check_boxes_tree_filter" do
+            within ".filters .with_any_state_check_boxes_tree_filter" do
               check "All"
               uncheck "All"
               check "Accepted"
@@ -272,7 +291,7 @@ describe "Filter Proposals", :slow, type: :system do
           end
 
           it "shows accepted proposals with not published answers as not answered" do
-            within ".filters .state_check_boxes_tree_filter" do
+            within ".filters .with_any_state_check_boxes_tree_filter" do
               check "All"
               uncheck "All"
               check "Not answered"
@@ -340,7 +359,7 @@ describe "Filter Proposals", :slow, type: :system do
       it "can be filtered by a category" do
         visit_component
 
-        within ".filters .category_id_check_boxes_tree_filter" do
+        within ".filters .with_any_category_check_boxes_tree_filter" do
           uncheck "All"
           check category.name[I18n.locale.to_s]
         end
@@ -351,7 +370,7 @@ describe "Filter Proposals", :slow, type: :system do
       it "can be filtered by two categories" do
         visit_component
 
-        within ".filters .category_id_check_boxes_tree_filter" do
+        within ".filters .with_any_category_check_boxes_tree_filter" do
           uncheck "All"
           check category.name[I18n.locale.to_s]
           check category2.name[I18n.locale.to_s]
@@ -642,7 +661,7 @@ describe "Filter Proposals", :slow, type: :system do
     end
 
     it "recover filters from initial pages" do
-      within ".filters .state_check_boxes_tree_filter" do
+      within ".filters .with_any_state_check_boxes_tree_filter" do
         check "Rejected"
       end
 
@@ -654,19 +673,19 @@ describe "Filter Proposals", :slow, type: :system do
     end
 
     it "recover filters from previous pages" do
-      within ".filters .state_check_boxes_tree_filter" do
+      within ".filters .with_any_state_check_boxes_tree_filter" do
         check "All"
         uncheck "All"
       end
-      within ".filters .origin_check_boxes_tree_filter" do
+      within ".filters .with_any_origin_check_boxes_tree_filter" do
         uncheck "All"
       end
 
-      within ".filters .origin_check_boxes_tree_filter" do
+      within ".filters .with_any_origin_check_boxes_tree_filter" do
         check "Official"
       end
 
-      within ".filters .state_check_boxes_tree_filter" do
+      within ".filters .with_any_state_check_boxes_tree_filter" do
         check "Accepted"
       end
 
@@ -699,7 +718,7 @@ describe "Filter Proposals", :slow, type: :system do
     it "saves and restores the filtering" do
       expect(page).to have_css(".card.card--proposal", count: 6)
 
-      within ".filters .state_check_boxes_tree_filter" do
+      within ".filters .with_any_state_check_boxes_tree_filter" do
         check "Rejected"
       end
 

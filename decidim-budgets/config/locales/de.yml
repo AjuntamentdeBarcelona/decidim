@@ -1,3 +1,4 @@
+---
 de:
   activemodel:
     attributes:
@@ -6,7 +7,7 @@ de:
         description: Beschreibung
         title: Titel
         total_budget: Gesamtbudget
-        weight: Bestellposition
+        weight: Reihenfolge
       project:
         budget_amount: Höhe des Budgets
         decidim_category_id: Kategorie
@@ -86,16 +87,35 @@ de:
             title: Projekt bearbeiten
             update: Aktualisieren
           index:
+            actions: Aktionen
+            cancel: Abbrechen
+            change_category: Kategorie ändern
+            change_scope: Themenbereich ändern
+            change_selected: Ausgewählten Status ändern
             finished_orders: Abgeschlossene Stimmen
             pending_orders: Ausstehende Stimmen
             selected: Ausgewählt
             title: Projekte
+            update: Aktualisieren
+            update_scope_button: Themenbereich aktualisieren
           new:
             create: Erstellen
             title: Neues Projekt
           update:
             invalid: Beim Aktualisieren dieses Projekts ist ein Problem aufgetreten
             success: Projekt erfolgreich aktualisiert
+          update_category:
+            invalid: 'Diese Projekte gehörten bereits zur Kategorie %{subject_name}: %{projects}.'
+            select_a_category: Bitte wählen Sie eine Kategorie aus
+            select_a_project: Bitte wählen Sie ein Projekt
+            success: 'Die folgenden Projekte wurden erfolgreich zur Kategorie %{subject_name} hinzugefügt: %{projects}.'
+          update_scope:
+            invalid: 'Diese Projekte gehörten bereits zum Themenbereich %{subject_name}: %{projects}.'
+            select_a_project: Bitte wählen Sie ein Projekt
+            select_a_scope: Bitte wählen Sie einen Themenbereich
+            success: 'Die folgenden Projekte wurden erfolgreich zum Themenbereich %{subject_name} hinzugefügt: %{projects}.'
+          update_selected:
+            select_a_project: Bitte wählen Sie ein Projekt
         proposals_imports:
           create:
             invalid: Beim Importieren der Vorschläge in Projekte ist ein Problem aufgetreten
@@ -106,6 +126,12 @@ de:
             no_components: Es gibt keine weiteren Vorschlagskomponenten in diesem partizipativen Raum, um die Vorschläge in Projekte zu importieren.
             select_component: Bitte wählen Sie eine Komponente aus
             title: Vorschläge importieren
+        reminders:
+          orders:
+            description: Benutzer erhalten eine E-Mail mit Links zu den Budgets, in denen sie ausstehende Stimmen haben.
+            title:
+              one: Sie werden eine Erinnerungs-E-Mail an %{count} Benutzer zu senden
+              other: Sie werden eine Erinnerungs-E-Mail an %{count} Benutzer zu senden
       admin_log:
         budget:
           create: "%{user_name} hat das Budget %{resource_name} in %{space_name} erstellt"
@@ -137,6 +163,8 @@ de:
         show: Projekte ansehen
         vote: Abstimmen
         voted_on: Sie haben über %{links} abgestimmt
+      last_activity:
+        new_vote_at_html: "<span>Neue Budgetverteilung unter %{link}</span>"
       limit_announcement:
         cant_vote: Sie können nicht über dieses Budget abstimmen. <a href="%{landing_path}">Versuchen Sie es mit einem anderen Budget</a>.
         limit_reached: Sie haben aktive Stimmen in %{links}. Um über dieses Budget abstimmen zu können, müssen Sie <a href="%{landing_path}">Ihre Stimme löschen und neu </a> beginnen.
@@ -150,6 +178,7 @@ de:
           fields:
             category: Kategorie
             id: ID
+            scope: Themenbereich
             title: Titel
       order_summary_mailer:
         order_summary:
@@ -222,6 +251,8 @@ de:
           filter: Filter
           filter_by: Filtern nach
           unfold: Aufklappen
+        index:
+          view_project: Projekt anzeigen
         order_progress:
           vote: Abstimmung
         order_selected_projects:
@@ -245,7 +276,6 @@ de:
           votes:
             one: Abstimmung
             other: Abstimmungen
-          you_voted: Du hast für dieses gestimmt
         project_budget_button:
           add: Zur Abstimmung hinzufügen
           add_descriptive: Projekt %{resource_name} Ihrer Stimme hinzufügen
@@ -255,6 +285,15 @@ de:
         show:
           budget: Budget
           view_all_projects: Alle Projekte anzeigen
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Bereiche, in denen Sie eine unvollendete Abstimmung haben:'
+          email_intro: Sie haben Ihre begonnene Abstimmung zur Verteilung des partizipativen Budgets noch nicht abgeschlossen.
+          email_link: Mit der Abstimmung fortfahren
+          email_outro: Denken Sie daran, die Abstimmung vollständig abzuschließen. Wählen Sie dazu den gewünschten Vorschlag oder die gewünschten Vorschläge aus, denen Sie Ihre Stimme geben möchten. Bestätigen Sie anschliessend Ihre Auswahl, indem Sie auf "Abstimmen" klicken.
+          email_subject:
+            one: Sie haben Ihre Abstimmung bei der Verteilung des partizipativen Budgets noch nicht abgeschlossen
+            other: Sie haben Ihre Abstimmung bei der Verteilung des partizipativen Budgets noch nicht abgeschlossen
     components:
       budgets:
         actions:
@@ -270,6 +309,7 @@ de:
               errors:
                 budget_voting_rule_only_one: Nur eine Abstimmungsregel kann aktiviert sein
                 budget_voting_rule_required: Es ist eine Abstimmungsregel notwendig
+            geocoding_enabled: Geocoding aktiviert
             landing_page_content: Budgets Landingpage
             more_information_modal: Weitere Informationen
             projects_per_page: Projekte pro Seite

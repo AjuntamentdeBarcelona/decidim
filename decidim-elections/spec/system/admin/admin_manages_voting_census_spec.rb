@@ -5,7 +5,7 @@ require "spec_helper"
 describe "Admin manages polling officers", type: :system do
   include_context "when admin managing a voting"
 
-  let(:csv_file) { Decidim::Dev.test_file("import_voting_census.csv", "text/csv") }
+  let(:csv_file) { upload_test_file(Decidim::Dev.test_file("import_voting_census.csv", "text/csv")) }
 
   before do
     switch_to_host(organization.host)
@@ -21,13 +21,40 @@ describe "Admin manages polling officers", type: :system do
     end
 
     it "uploads a csv" do
+      dynamically_attach_file(:dataset_file, Decidim::Dev.asset("import_voting_census.csv"))
       within ".form.new_census" do
-        attach_file "File", Decidim::Dev.asset("import_voting_census.csv")
-
         find("*[type=submit]").click
       end
 
       expect(page).to have_content("Please wait")
+    end
+  end
+
+  context "when data is invalid" do
+    before do
+      create :dataset, :data_created, voting: voting
+      visit decidim_admin_votings.voting_census_path(voting)
+    end
+
+    it "shows the processed file result" do
+      expect(page).to have_admin_callout("Finished processing")
+      expect(page).not_to have_content("You can now proceed to generate the access codes")
+      expect(page).to have_content("Please delete the current census and start over")
+    end
+
+    it "shows an option to delete the census" do
+      expect(page).to have_link("Delete all census data", count: 2)
+    end
+
+    context "when deleting the census" do
+      it "deletes the census" do
+        within "#wrapper-action-view" do
+          accept_confirm { click_link "Delete all census data" }
+        end
+
+        expect(page).to have_admin_callout("Census data deleted")
+        expect(page).to have_content("There is no census yet")
+      end
     end
   end
 

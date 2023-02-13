@@ -4,8 +4,14 @@ require "spec_helper"
 
 module Decidim
   describe Attributes::LocalizedDate do
-    describe "coerce" do
-      subject { described_class.build(Attributes::LocalizedDate, {}).coerce(value) }
+    describe "#type" do
+      it "returns :\"decidim/attributes/localized_date\"" do
+        expect(subject.type).to be(:"decidim/attributes/localized_date")
+      end
+    end
+
+    describe "#cast" do
+      subject { described_class.new.cast(value) }
 
       context "when given a Date" do
         let(:value) { Date.current }
@@ -40,7 +46,7 @@ module Decidim
           let(:value) { "foo" }
 
           it "returns nil" do
-            expect(subject).to eq(nil)
+            expect(subject).to be_nil
           end
         end
 

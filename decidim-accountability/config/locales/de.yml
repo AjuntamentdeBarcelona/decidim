@@ -1,3 +1,4 @@
+---
 de:
   activemodel:
     attributes:
@@ -21,6 +22,7 @@ de:
       timeline_entry:
         description: Beschreibung
         entry_date: Datum
+        title: Titel
     models:
       decidim/accountability/proposal_linked_event: Vorschlag in einem Ergebnis enthalten
       decidim/accountability/result_progress_updated_event: Ergebnisfortschritt aktualisiert
@@ -48,6 +50,7 @@ de:
           results: Ergebnisse
         import_results:
           new:
+            download_export: Export im CSV-Format herunterladen
             import: Importieren
             title: Ergebnisse von CSV importieren
         imports:
@@ -119,6 +122,14 @@ de:
           create: "%{user_name} hat das Ergebnis %{resource_name} in %{space_name} erstellt"
           delete: "%{user_name} hat das Ergebnis %{resource_name} in %{space_name} gelöscht"
           update: "%{user_name} hat das Ergebnis %{resource_name} in %{space_name} aktualisiert"
+        status:
+          create: "%{user_name} hat den Status %{resource_name} erstellt"
+          delete: "%{user_name} hat den Status %{resource_name} gelöscht"
+          update: "%{user_name} hat den Status %{resource_name} aktualisiert"
+        timeline_entry:
+          create: "%{user_name} hat den Zeiteintrag %{resource_name} erstellt"
+          delete: "%{user_name} hat den Zeiteintrag %{resource_name} gelöscht"
+          update: "%{user_name} hat den Zeiteintrag %{resource_name} aktualisiert"
         value_types:
           parent_presenter:
             not_found: 'Das übergeordnete Objekt wurde nicht in der Datenbank gefunden (ID: %{id})'
@@ -156,8 +167,8 @@ de:
             progress: Fortschritt
         timeline_entry:
           fields:
-            description: Beschreibung
             entry_date: Datum
+            title: Titel
       result_m:
         executed: Ausgeführt
         view: Ansicht

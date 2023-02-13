@@ -19,6 +19,8 @@ module Decidim::Assemblies
         organization: organization
       )
     end
+    let(:related_process_ids) { [participatory_processes.map(&:id)] }
+
     let(:form) do
       instance_double(
         Admin::AssemblyForm,
@@ -47,7 +49,7 @@ module Decidim::Assemblies
         parent: nil,
         private_space: false,
         errors: errors,
-        participatory_processes_ids: participatory_processes.map(&:id),
+        participatory_processes_ids: related_process_ids,
         show_statistics: false,
         purpose_of_action: { en: "purpose of action" },
         composition: { en: "composition of internal working groups" },
@@ -87,15 +89,15 @@ module Decidim::Assemblies
           persisted?: false,
           valid?: false,
           errors: {
-            hero_image: "Image too big",
-            banner_image: "Image too big"
+            hero_image: "File resolution is too large",
+            banner_image: "File resolution is too large"
           }
         ).as_null_object
       end
 
       before do
         allow(Decidim::ActionLogger).to receive(:log).and_return(true)
-        expect(Decidim::Assembly).to receive(:create).and_return(invalid_assembly)
+        allow(Decidim::Assembly).to receive(:create).and_return(invalid_assembly)
       end
 
       it "broadcasts invalid" do
@@ -103,15 +105,15 @@ module Decidim::Assemblies
       end
 
       it "adds errors to the form" do
-        expect(errors).to receive(:add).with(:hero_image, "Image too big")
-        expect(errors).to receive(:add).with(:banner_image, "Image too big")
+        expect(errors).to receive(:add).with(:hero_image, "File resolution is too large")
+        expect(errors).to receive(:add).with(:banner_image, "File resolution is too large")
         subject.call
       end
     end
 
     context "when the uploaded hero image has too large dimensions" do
       let(:hero_image) do
-        ActiveStorage::Blob.create_after_upload!(
+        ActiveStorage::Blob.create_and_upload!(
           io: File.open(Decidim::Dev.asset("5000x5000.png")),
           filename: "5000x5000.png",
           content_type: "image/png"
@@ -137,7 +139,7 @@ module Decidim::Assemblies
 
       it "broadcasts invalid" do
         expect { subject.call }.to broadcast(:invalid)
-        expect(form.errors.messages[:hero_image]).to contain_exactly(["The image is too big"])
+        expect(form.errors.messages[:hero_image]).to contain_exactly("File resolution is too large")
       end
     end
 
@@ -145,7 +147,7 @@ module Decidim::Assemblies
       let(:assembly) { Decidim::Assembly.last }
 
       it "creates an assembly" do
-        expect { subject.call }.to change { Decidim::Assembly.count }.by(1)
+        expect { subject.call }.to change(Decidim::Assembly, :count).by(1)
       end
 
       it "broadcasts ok" do
@@ -180,7 +182,7 @@ module Decidim::Assemblies
         it "assembly type is null" do
           subject.call
 
-          expect(assembly.assembly_type).to eq(nil)
+          expect(assembly.assembly_type).to be_nil
         end
       end
 
@@ -188,6 +190,33 @@ module Decidim::Assemblies
         subject.call
         linked_participatory_processes = assembly.linked_participatory_space_resources(:participatory_processes, "included_participatory_processes")
         expect(linked_participatory_processes).to match_array(participatory_processes)
+      end
+
+      context "when sorting by weight" do
+        let!(:process_one) { create :participatory_process, organization: organization, weight: 2 }
+        let!(:process_two) { create :participatory_process, organization: organization, weight: 1 }
+        let(:related_process_ids) { [process_one.id, process_two.id] }
+
+        it "links processes in right way" do
+          subject.call
+
+          linked_processes = assembly.linked_participatory_space_resources(:participatory_process, "included_participatory_processes")
+          expect(linked_processes.first).to eq(process_two)
+        end
+      end
+
+      context "when linking draft processes" do
+        let!(:process_one) { create :participatory_process, :unpublished, organization: organization, weight: 2 }
+        let!(:process_two) { create :participatory_process, organization: organization, weight: 1 }
+        let(:related_process_ids) { [process_one.id, process_two.id] }
+
+        it "links processes in right way" do
+          subject.call
+
+          linked_processes = assembly.linked_participatory_space_resources(:participatory_process, "included_participatory_processes")
+          expect(linked_processes.size).to eq(1)
+          expect(linked_processes.first).to eq(process_two)
+        end
       end
     end
   end

@@ -1,3 +1,4 @@
+---
 "no":
   activemodel:
     attributes:
@@ -177,7 +178,7 @@
         reject: Avvis
         share: Del
         user:
-          new: Ny bruker
+          new: Ny admin
         verify: Verifiser
       admin_terms_of_use:
         accept:
@@ -259,6 +260,8 @@
         update:
           error: Det oppsto et problem med å oppdatere dette vedlegget.
           success: Vedlegg ble oppdatert.
+      attachments_privacy_warning:
+        message: Vær forsiktig når du arbeider med vedlegg i et privat rom. Alle deltakere kan dele dette dokumentet med andre.
       autocomplete:
         no_results: Ingen resultat funnet
         search_prompt: Skriv minst tre tegn for å søke
@@ -341,7 +344,7 @@
       dashboard:
         show:
           view_more_logs: Vis flere logger
-          welcome: Velkommen til Decidim administrator Panel.
+          welcome: Velkommen til Admin-panelet.
       domain_whitelist:
         form:
           domain_too_short: Domene er for kort
@@ -834,9 +837,23 @@
           invalid: Det oppstod et problem med å lese CSV-filen.
           success: CSV fil lastet opp. Vi sender en invitasjons email til deltakerne. Dette kan ta en stund.
         new:
+          destroy:
+            button: Slett alle private deltakere
+            confirm: Er du sikker på at du vil slette alle private deltakere? Denne handlingen kan ikke angres, du vil ikke kunne gjenopprette dem.
+            empty: Du har ingen private deltakere.
+            explanation: Du har %{count} private deltakere.
+            title: Slett private deltakere
           explanation: 'Last opp din CSV-fil. Det må være to kolonner uten overskrifter, e-post i den første kolonnen og navn i den siste kolonnen (e-post, navn) til brukerne du vil legge til i det deltakende rommet. Unngå å bruke ugyldige tegn som `<>?%&^*#@()[]=+:;"{}\″` med brukernavn.'
           title: Last opp din CSV fil
           upload: Last opp
+      reminders:
+        create:
+          error: Det oppsto et problem med å opprette påminnelser.
+          success:
+            one: "%{count} bruker vil bli påminnet."
+            other: "%{count} brukere vil bli påminnet."
+        new:
+          submit: Send
       resource_permissions:
         edit:
           submit: Send inn
@@ -894,6 +911,7 @@
         gallery:
           add_images: Legg til bilder
           delete_image: Slett bilde
+          edit_images: Rediger bilder
           gallery_legend: Legg til et bildegalleri (valgfritt)
       static_page_topics:
         create:
@@ -954,7 +972,7 @@
         static_pages: Sider
         statistics: Aktivitet
         user_groups: Grupper
-        users: Deltakere
+        users: Administratorer
       user_group:
         csv_verify:
           invalid: Det oppstod et problem med å lese CSV-filen.
@@ -990,7 +1008,7 @@
           role: Rolle
         new:
           create: Inviter
-          title: Inviter deltaker som administrator
+          title: Inviter ny administrator
       users_statistics:
         users_count:
           admins: Adminer

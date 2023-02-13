@@ -1,3 +1,4 @@
+---
 it:
   activemodel:
     attributes:
@@ -271,9 +272,6 @@ it:
             selected: Selezionato
             submit: Invia
             title: Risultati pubblicati
-          tally:
-            continue: Continua
-            title: Conteggio
           tally_ended:
             answer: Risposta
             not_selected: Non selezionato
@@ -346,6 +344,9 @@ it:
           upcoming: Imminente
         end_date: Fine
         footer:
+          remaining_time:
+            one: "<strong>%{count} ora %{minutes} minuti</strong> rimanenti per votare."
+            other: "<strong>%{count} ore %{minutes} minuti</strong> rimanenti per votare."
           view: Visualizza
           vote: Vota
         label:
@@ -408,7 +409,6 @@ it:
           all: Tutti
           finished: Completata
           search: Cerca
-          state: Stato
           upcoming: Imminente
         filters_small_view:
           close_modal: Chiudi finestra
@@ -427,7 +427,6 @@ it:
           votes:
             one: "%{count} voto"
             other: "%{count} voti"
-            zero: "%{count} voti"
         show:
           action_button:
             change_vote: Cambia il tuo voto
@@ -517,24 +516,13 @@ it:
             title: Ripristina le chiavi elettorali per %{election}
             upload_election_keys: Carica chiavi elettorali
             upload_icon: Icona che indica un'azione di download
-          tally_steps:
-            back: Indietro
+          tally_started_steps:
             description: I risultati di queste elezioni sono in fase di elaborazione nel Bulletin Board. Per completare questo processo, è necessaria la tua partecipazione come Garante.
             keys:
               end_tally: Conteggio terminato
               tally:
                 cast: Invio del conteggio
                 share: Condivisione del conteggio
-            list:
-              status: Stato
-              task: Attività
-            process_warning: Una volta avviato il processo, non si dovrebbe uscire da questa pagina fino alla fine dello stesso. Ci vorranno diversi minuti, poiché tutti i Garanti dovrebbero essere collegati per completarlo.
-            start: Avvia
-            start_icon: Icona che indica un pulsante avvia per avviare la generazione delle chiavi elettorali
-            status:
-              completed: Completata
-              pending: In attesa
-              processing: Elaborazione in corso
             title: Conteggio di %{election}
           update:
             error: Lo stato delle elezioni non è stato aggiornato.
@@ -567,15 +555,12 @@ it:
               generate_legend_3: Assicurati che sul computer non ci sia una copia del file (controlla anche le cartelle Download e Desktop).
               generate_legend_4: Fai un'altra copia del file su un altro dispositivo esterno e memorizzarlo in un luogo molto sicuro.
               submit: Invia
-              submit_legend: Dopo aver seguito tutti i passaggi sopra illustrati, completare il processo inviando il codice di identificazione pubblica al server Decidim.
               submit_title: Invia la chiave di identificazione pubblica
               title: Codici di identificazione del Garante
               upload: Carica i tuoi codici di identificazione
               upload_error:
                 invalid_format: Il file caricato non contiene alcun codice di identificazione.
                 invalid_key: I codici di identificazione nel file caricato non possono essere caricati.
-                invalid_public_key: I codici di identificazione nel file caricato non corrispondono a quelli pubblici memorizzati da Decidim.
-              upload_legend: Decidim ha i tuoi codici di identificazione pubblici, ma il tuo browser ancora no. È necessario importare il file con i codici di identificazione sul computer dal backup creato dopo averli generati.
             not_supported_browser_description: Sembra che tu stia usando un browser web che non può essere usato in qualitá di Garante. Assicurati di utilizzare la versione più recente del tuo browser, o prova ad utilizzare uno dei browser più popolari che ti permettano di esercitare il ruolo di Garante.
             not_supported_browser_title: Aggiorna il browser per fungere da Garante
             trustee_role_description: Ti è stato assegnato di ruolo di Garante in alcune delle elezioni che si svolgeranno su questa piattaforma.
@@ -616,8 +601,6 @@ it:
         failed:
           header: Votazione fallita
           lead: Il tuo voto non è stato deposto!
-          modal:
-            close: Chiuso
           text: Qualcosa è andato storto. Riprova di nuovo.
           try_again: Riprova
         header:
@@ -643,9 +626,7 @@ it:
         onboarding_modal:
           close: Chiudi finestra
           create_account: Crea Account
-          description: Vuoi creare un nuovo account in Decidim? Potrai partecipare ai processi ed essere parte attiva dell'organizzazione.
           no_account: No, grazie.
-          title: Nuovo su Decidim?
         update:
           error: Si è verificato un errore durante l'aggiornamento del voto. Si prega di votare di nuovo.
         verify:
@@ -656,7 +637,6 @@ it:
             header: Voto non trovato!
             info: Il codice di voto non è stato trovato nella scheda elettorale %{link}, riprova.
           form:
-            back: Torna su Decidim
             submit: Controlla
             vote_identifier: 'Codice identificativo:'
           header:
@@ -1018,8 +998,6 @@ it:
             create:
               invalid: Si è verificato un errore durante il caricamento del censimento, riprova più tardi.
               invalid_csv_header: Le intestazioni CSV sono mancanti o non corrette - si prega di leggere attentamente le istruzioni
-            creating_data:
-              info_message: "<strong>Attendere</strong>, elaborato %{processed_count} di %{raw_count} righe dal file %{file}."
             delete:
               button: Elimina tutti i dati del censimento
             destroy:
@@ -1031,8 +1009,6 @@ it:
               confirm: Puoi esportare i codici di accesso solo una volta. Assicurati di avere accesso all'indirizzo <strong>%{email}</strong>.
               launch_error: Problema nel lanciare l'esportazione dei codici di accesso
               launch_success: Esportazione codici di accesso avviata. A breve riceverai un'email all'indirizzo %{email}
-            exporting_access_codes:
-              info_message: "<strong>Attendere</strong>, l'esportazione è in fase di preparazione, lo riceverai tra breve all'indirizzo %{email}"
             freeze:
               callout: Il censimento è congelato e non può essere modificato.
             generate_access_codes:
@@ -1043,8 +1019,6 @@ it:
               info_message_warn: Si prega di controllare che non manchino dati, poiché %{data_count} record sono stati creati e il file caricato %{file} aveva %{raw_count} righe.
               launch_error: Problema nel lanciare la generazione di codici di accesso
               launch_success: Generazione di codici lanciata.
-            generating_access_codes:
-              info_message: "<strong>Attendere</strong>, vengono generati i codici di accesso alle votazioni..."
             new:
               file_help:
                 explanation: 'Guida per il file:'
@@ -1161,11 +1135,9 @@ it:
         in_person_votes:
           complete_voting:
             available_answers: 'Risposte disponibili:'
-            census_verified: L'utente non ha ancora votato.
             complete_voting: Completa la votazione
             identify_another: Identificare un altro utente
             questions_title: 'Ha diritto di voto nelle seguenti domande:'
-            questions_title_voted: 'Il partecipante ha già votato online e ha diritto a votare nelle seguenti domande:'
             voted: L'utente ha votato
           create:
             error: La votazione non è stata registrata. Per favore riprova.
@@ -1288,7 +1260,6 @@ it:
           all: Tutti
           finished: Finito
           search: Ricerca
-          state: Stato
           upcoming: Prossimi
         filters_small_view:
           close_modal: Chiudi modalità

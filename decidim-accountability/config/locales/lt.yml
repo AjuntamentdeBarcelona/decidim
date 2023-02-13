@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -21,6 +22,7 @@ lt:
       timeline_entry:
         description: Aprašymas
         entry_date: Data
+        title: Pavadinimas
     models:
       decidim/accountability/proposal_linked_event: Pasiūlymas įtrauktas į rezultatą
       decidim/accountability/result_progress_updated_event: Rezultato progresas atnaujintas
@@ -121,6 +123,14 @@ lt:
           create: "%{user_name} sukūrė rezultatą %{resource_name} erdvėje %{space_name}"
           delete: "%{user_name} pašalino %{resource_name} rezultatą erdvėje %{space_name}"
           update: "%{user_name} atnaujino rezultatą %{resource_name} erdvėje %{space_name}"
+        status:
+          create: "%{user_name} sukūrė %{resource_name} būseną"
+          delete: "%{user_name} pašalino %{resource_name} būseną"
+          update: "%{user_name} atnaujino %{resource_name} būseną"
+        timeline_entry:
+          create: "%{user_name} sukūrė %{resource_name} laiko juostos įrašą"
+          delete: "%{user_name} pašalino %{resource_name} laiko juostos įrašą"
+          update: "%{user_name} atnaujino %{resource_name} laiko juostos įrašą"
         value_types:
           parent_presenter:
             not_found: 'Motininis elementas duomenų bazėje nerastas (ID: %{id})'
@@ -158,8 +168,8 @@ lt:
             progress: Progresas
         timeline_entry:
           fields:
-            description: Aprašymas
             entry_date: Data
+            title: Pavadinimas
       result_m:
         executed: Įvykdyta
         view: Rodymas

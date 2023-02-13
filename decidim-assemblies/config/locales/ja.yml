@@ -1,9 +1,13 @@
+---
 ja:
   activemodel:
     attributes:
       assemblies_setting:
         enable_organization_chart: 組織図を有効化
+      assemblies_type:
+        title: タイトル
       assembly:
+        announcement: お知らせ
         area_id: エリア
         assembly_type: 参加スペース種別
         assembly_type_other: その他（参加スペース）
@@ -22,12 +26,16 @@ ja:
         decidim_scope_id: スコープ
         description: 説明
         developer_group: プロモーターグループ
+        document: ドキュメント
         domain: ドメイン
         duration: 持続期間
         facebook: Facebook
         github: GitHub
         hashtag: ハッシュタグ
         hero_image: ホーム画像
+        import_attachments: 添付ファイルをインポート
+        import_categories: カテゴリをインポート
+        import_components: コンポーネントをインポート
         included_at: 含まれた日
         instagram: Instagram
         internal_organisation: 内部組織
@@ -64,6 +72,7 @@ ja:
         non_user_avatar: アバター
         position: ポジション
         user_id: ユーザー
+        weight: 並び順の位置
       assembly_user_role:
         email: Eメールアドレス
         name: 名前
@@ -73,7 +82,7 @@ ja:
         assembly:
           attributes:
             document:
-              invalid_document_type: '無効なドキュメントの種類です。承認されたフォーマットは次のとおりです: %{valid_mime_types}'
+              allowed_file_content_types: '無効なドキュメントタイプです。次の拡張子を持つファイルのみ許可されます: %{types}'
   activerecord:
     models:
       decidim/assembly:
@@ -239,6 +248,9 @@ ja:
     admin_log:
       assembly:
         create: "%{user_name} が %{resource_name} 参加スペースを作成しました"
+        duplicate: "%{user_name} が %{resource_name} 参加スペースを複製しました"
+        export: "%{user_name} は %{resource_name} 参加スペースをエクスポートしました"
+        import: "%{user_name} が %{resource_name} 参加スペースをインポートしました"
         publish: "%{user_name} が %{resource_name} 参加スペースを公開しました"
         unpublish: "%{user_name} が %{resource_name} 参加スペースを非公開にしました"
         update: "%{user_name} が %{resource_name} 参加スペースを更新しました"
@@ -267,7 +279,7 @@ ja:
             duration_help: この参加スペースの持続時間が限られている場合は、終了日を選択します。それ以外の場合は、不定義として表示されます。
             filters: フィルタ
             images: 画像
-            included_at_help: この参加スペースがDecidimに追加された日付を選択します。必ずしも作成日と同じである必要はありません。
+            included_at_help: この参加スペースがプラットフォームに追加された日付を選択します。必ずしも作成日と同じである必要はありません。
             metadata: メタデータ
             other: その他
             select_a_created_by: 作成者を選択してください

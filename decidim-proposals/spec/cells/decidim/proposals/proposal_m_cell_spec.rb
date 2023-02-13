@@ -10,7 +10,7 @@ module Decidim::Proposals
 
     let(:my_cell) { cell("decidim/proposals/proposal_m", proposal, context: { show_space: show_space }) }
     let(:cell_html) { my_cell.call }
-    let(:created_at) { Time.current - 1.month }
+    let(:created_at) { 1.month.ago }
     let(:published_at) { Time.current }
     let(:component) { create(:proposal_component, :with_attachments_allowed) }
     let!(:proposal) { create(:proposal, component: component, created_at: created_at, published_at: published_at) }
@@ -81,7 +81,7 @@ module Decidim::Proposals
 
         it "renders the first image in the card whatever the order between attachments" do
           expect(subject).to have_css(".card__image")
-          expect(subject.find(".card__image")[:src]).to eq(attachment_2_img.thumbnail_url)
+          expect(subject.find(".card__image")[:src]).to eq(attachment_2_img.reload.thumbnail_url)
         end
       end
     end
@@ -230,19 +230,19 @@ module Decidim::Proposals
       end
 
       context "when the active participatory space step change" do
-        let(:step_1) { create(:participatory_process_step, participatory_process: participatory_process, active: step_1_active) }
+        let(:step1) { create(:participatory_process_step, participatory_process: participatory_process, active: step_1_active) }
         let(:step_1_active) { true }
-        let(:step_2) { create(:participatory_process_step, participatory_process: participatory_process, active: step_2_active) }
+        let(:step2) { create(:participatory_process_step, participatory_process: participatory_process, active: step_2_active) }
         let(:step_2_active) { false }
-        let(:step_3) { create(:participatory_process_step, participatory_process: participatory_process, active: step_3_active) }
+        let(:step3) { create(:participatory_process_step, participatory_process: participatory_process, active: step_3_active) }
         let(:step_3_active) { false }
         let(:component) do
           create(:proposal_component,
                  participatory_space: participatory_process,
                  step_settings: {
-                   step_1.id => { votes_enabled: false },
-                   step_2.id => { votes_enabled: true },
-                   step_3.id => { votes_enabled: false }
+                   step1.id => { votes_enabled: false },
+                   step2.id => { votes_enabled: true },
+                   step3.id => { votes_enabled: false }
                  })
         end
         let(:participatory_process) { create(:participatory_process) }
@@ -251,8 +251,8 @@ module Decidim::Proposals
           it "generates a different hash" do
             old_hash = my_cell.send(:cache_hash)
 
-            step_1.update!(active: false)
-            step_2.update!(active: true)
+            step1.update!(active: false)
+            step2.update!(active: true)
             proposal.reload
 
             expect(my_cell.send(:cache_hash)).not_to eq(old_hash)
@@ -266,8 +266,8 @@ module Decidim::Proposals
           it "generates a different hash" do
             old_hash = my_cell.send(:cache_hash)
 
-            step_2.update!(active: false)
-            step_3.update!(active: true)
+            step2.update!(active: false)
+            step3.update!(active: true)
             proposal.reload
 
             expect(my_cell.send(:cache_hash)).not_to eq(old_hash)

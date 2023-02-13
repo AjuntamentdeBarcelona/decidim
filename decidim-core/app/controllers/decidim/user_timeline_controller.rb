@@ -18,21 +18,19 @@ module Decidim
     private
 
     def user
-      @user ||= Decidim::User.find_by(
-        organization: current_organization,
-        nickname: params[:nickname]
-      )
+      return unless params[:nickname]
+
+      @user ||= current_organization.users.find_by("LOWER(nickname) = ?", params[:nickname].downcase)
     end
 
     def activities
       @activities ||= paginate(
-        ActivitySearch.new(
-          organization: current_organization,
-          resource_type: "all",
+        PublicActivities.new(
+          current_organization,
           scopes: current_user.interested_scopes,
           follows: follows,
           resource_name: filter.resource_type
-        ).run
+        ).query.with_resource_type("all")
       )
     end
 

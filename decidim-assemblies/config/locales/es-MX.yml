@@ -1,9 +1,13 @@
+---
 es-MX:
   activemodel:
     attributes:
       assemblies_setting:
         enable_organization_chart: Habilitar organigrama
+      assemblies_type:
+        title: Título
       assembly:
+        announcement: Aviso
         area_id: Área
         assembly_type: Tipo de montaje
         assembly_type_other: Tipo de montaje otro
@@ -22,12 +26,16 @@ es-MX:
         decidim_scope_id: Ámbito
         description: Descripción
         developer_group: Grupo promotor
+        document: Documento
         domain: Dominio
         duration: Duración
         facebook: Facebook
         github: GitHub
         hashtag: Hashtag
         hero_image: Imagen de portada
+        import_attachments: Importar archivos adjuntos
+        import_categories: Importar categorias
+        import_components: Importar componentes
         included_at: Incluido en
         instagram: Instagram
         internal_organisation: Organización interna
@@ -64,6 +72,7 @@ es-MX:
         non_user_avatar: Avatar
         position: Posición
         user_id: Usuaria
+        weight: Orden de posición
       assembly_user_role:
         email: Correo electrónico
         name: Nombre
@@ -73,7 +82,7 @@ es-MX:
         assembly:
           attributes:
             document:
-              invalid_document_type: 'Tipo de documento invalido. Los formatos que se aceptan son: %{valid_mime_types}'
+              allowed_file_content_types: 'Tipo de documento no válido. Sólo se permiten archivos con las siguientes extensiones: %{types}'
   activerecord:
     models:
       decidim/assembly:
@@ -242,6 +251,9 @@ es-MX:
     admin_log:
       assembly:
         create: "%{user_name} creó la asamblea %{resource_name}"
+        duplicate: "%{user_name} duplicó la asamblea %{resource_name}"
+        export: "%{user_name} exportó la asamblea %{resource_name}"
+        import: "%{user_name} importó la asamblea %{resource_name}"
         publish: "%{user_name} publicó la asamblea %{resource_name}"
         unpublish: "%{user_name} despublicó la asamblea %{resource_name}"
         update: "%{user_name} actualizó la asamblea %{resource_name}"
@@ -270,7 +282,7 @@ es-MX:
             duration_help: Si la duración de esta asamblea es limitada, selecciona la fecha de finalización. De lo contrario, aparecerá como indefinida.
             filters: Filtros
             images: Imágenes
-            included_at_help: Selecciona la fecha en que se agregó este ensamblaje a Decidim. No necesariamente tiene que ser la misma que la fecha de creación.
+            included_at_help: Selecciona la fecha en la que se añadió esta asamblea a la plataforma. No es necesario que sea la misma que la fecha de creación.
             metadata: Metadatos
             other: Otro
             select_a_created_by: Selecciona creada por

@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     attributes:
@@ -24,6 +25,7 @@ hu:
         banner_image: Banner kép
         child_scope_threshold_enabled: A gyermek hatókör aláírásainak engedélyezése
         collect_user_extra_fields: Személyes adatok gyűjtése az aláíráskor
+        comments_enabled: Hozzászólások engedélyezése
         custom_signature_end_date_enabled: Lehetővé teszi a szerzők számára, hogy kiválasszák az aláírásgyűjtési időszak végét
         description: Leírás
         document_number_authorization_handler: A dokumentum számának ellenőrzésének engedélyezése a szavazatokon
@@ -54,9 +56,6 @@ hu:
               title: A cím nem lehet üres
   activerecord:
     models:
-      decidim/initiative:
-        one: Kezdeményezés
-        other: Kezdeményezések
       decidim/initiative_comittee:
         one: Bizottság
         other: Bizottságok
@@ -84,12 +83,17 @@ hu:
             label: Típus
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Keresés a(z) %{collection} elemei között cím, leírás, azonosító vagy szerző alapján.
+      initiatives_settings:
+        update:
+          error: Hiba történt
+          success: A kezdeményezés frissítése sikeres volt
       menu:
         attachments: Csatolmányok
         committee_members: Bizottsági tagok
         components: Elemek
         information: Információ
         initiatives: Kezdeményezések
+        initiatives_settings: Beállítások
         initiatives_types: Kezdeményezések típusa
         moderations: Moderálások
       models:
@@ -241,6 +245,16 @@ hu:
           update:
             error: Hiba történt
             success: Az állampolgári kezdeményezés frissítése sikeres
+        initiatives_settings:
+          edit:
+            update: Frissítés
+          form:
+            comments: Legtöbb hozzászólással
+            date: Legfrissebb
+            publication_date: Legfrissebben közzétett
+            random: Véletlenszerű
+            signatures: Legtöbb aláírással rendelkező
+            title: Kezdeményezések beállításai
         initiatives_type_scopes:
           create:
             error: Hiba történt
@@ -272,7 +286,7 @@ hu:
             update: Frissítés
           form:
             authorizations: Hitelesítési beállítások
-            child_scope_threshold_enabled_help: 'Ez a konfigurációs zászló nem támogatja az offline szavazást, engedélyezi az al-hatóköröket, és egy olyan engedélyezési kezelővel működik, amely egy hatókört társít a felhasználóhoz, győződjön meg róla, hogy ezt az engedélyezést választja ki, az engedélyezési beállításoknál. Ahhoz, hogy működjön, a hatóköröket hierarchikusan kell beállítani : 1 szülő - N gyermek. További információért arról, hogy hogyan működik ez a konfiguráció, lásd ezt a cikket<a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">link</a>.'
+            child_scope_threshold_enabled_help: 'Ez a konfigurációs jelző nem támogatja az offline szavazást. Engedélyezi az altartományokat, és egy olyan engedélyezési kezelővel működik, amely egy tartományt társít a felhasználóhoz. Győződjön meg róla, hogy ezt a jogosultságot választja ki, alább az engedélyezési beállításoknál. A működéséhez a hatóköröket hierarchikusan kell konfigurálni: 1 Szülő - N gyermek. A konfiguráció működéséről bővebb információért lásd a következő oldalon <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">kezdeményezések admin dokumentációs oldalán</a>.'
             only_global_scope_enabled_help: Jelölje be ezt a jelölőnégyzetet, ha engedélyezte a "Gyermek hatókör aláírás" opciót, és a globális hatókörét szülő hatókörként konfigurálta. Ennek engedélyezésével a kezdeményezés típusának kiválasztása kihagyásra kerül a kezdeményezés létrehozására szolgáló varázslóban. A konfiguráció működésével kapcsolatos további információkért lásd ezt a cikket<a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">link</a>.
             options: Opciók
             title: Általános információk
@@ -290,6 +304,12 @@ hu:
           send_to_technical_validation: "%{user_name} elküldte a(z) %{resource_name} kezdeményezést technikai érvényesítésre"
           unpublish: "%{user_name} elvetette a(z) %{resource_name} kezdeményezést"
           update: "%{user_name} frissítette a(z) %{resource_name} kezdeményezést"
+        initiatives_settings:
+          update: "%{user_name} frissítette a kezdeményezések beállításait"
+        initiatives_type:
+          create: "%{user_name} létrehozta a(z) %{resource_name} kezdeményezés típust"
+          delete: "%{user_name} törölte a(z) %{resource_name} kezdeményezés típust"
+          update: "%{user_name} frissítette a(z) %{resource_name} kezdeményezés típust"
       admin_states:
         accepted: Elegendő aláírás
         created: Létrehozva
@@ -563,6 +583,8 @@ hu:
           published: Közzétéve
           rejected: Nincs elegendő aláírás
           validating: Technikai érvényesítés
+      signature_interval:
+        title: Az aláírásgyűjtési időszak
       states:
         accepted: Elfogadva
         expired: Lejárt

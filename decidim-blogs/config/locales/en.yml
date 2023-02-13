@@ -1,6 +1,12 @@
 ---
 en:
   activemodel:
+    attributes:
+      post:
+        body: Body
+        decidim_author_id: Author
+        published_at: Publish time
+        title: Title
     models:
       decidim/blogs/create_post_event: New blog post
   activerecord:
@@ -11,16 +17,14 @@ en:
   decidim:
     blogs:
       actions:
+        author_id: Create post as
         confirm_destroy: Are you sure you want to delete this post?
         destroy: Delete
         edit: Edit
         new: New post
         title: Actions
-        user_group_id: Create post as
       admin:
         models:
-          components:
-            body: Body
           post:
             name: Post
         posts:
@@ -40,6 +44,11 @@ en:
           update:
             invalid: There was a problem saving the post.
             success: Post successfully saved
+      admin_log:
+        post:
+          create: "%{user_name} created the %{resource_name} blog post in %{space_name}"
+          delete: "%{user_name} deleted the %{resource_name} blog post from %{space_name}"
+          update: "%{user_name} updated the %{resource_name} blog post in %{space_name}"
       last_activity:
         new_post_at_html: "<span>New post at %{link}</span>"
       models:
@@ -48,7 +57,8 @@ en:
             author: Author
             body: Body
             created_at: Created at
-            title: title
+            official_blog_post: Official post
+            title: Title
       posts:
         show:
           back: Back to list
@@ -61,8 +71,10 @@ en:
     components:
       blogs:
         actions:
+          comment: Comment
           create: Create
           destroy: Delete
+          endorse: Endorse
           update: Update
         name: Blog
         settings:

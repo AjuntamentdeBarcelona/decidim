@@ -33,7 +33,7 @@ describe Decidim::Search do
 
     it "only returns searchable results" do
       expect(Decidim::Searchable.searchable_resources).not_to have_key(fake_type)
-      described_class.call(term, current_organization, "resource_type" => "") do
+      described_class.call(term, current_organization, "with_resource_type" => "") do
         on(:ok) do |results_by_type|
           expect(results_by_type).not_to have_key(fake_type)
         end
@@ -138,8 +138,8 @@ describe Decidim::Search do
     let(:term) { "black" }
 
     context "when searchables are from the future" do
-      let(:datetime1) { Time.current + 10.seconds }
-      let(:datetime2) { Time.current + 20.seconds }
+      let(:datetime1) { 10.seconds.from_now }
+      let(:datetime2) { 20.seconds.from_now }
 
       it "returns matches sorted by date descendently" do
         described_class.call(term, current_organization) do
@@ -153,8 +153,8 @@ describe Decidim::Search do
     end
 
     context "when searchables are from the past" do
-      let(:datetime1) { Time.current - 1.day }
-      let(:datetime2) { Time.current - 2.days }
+      let(:datetime1) { 1.day.ago }
+      let(:datetime2) { 2.days.ago }
 
       it "returns matches sorted by date descendently" do
         described_class.call(term, current_organization) do
@@ -168,8 +168,8 @@ describe Decidim::Search do
     end
 
     context "when searchables are from the future and the past" do
-      let(:datetime1) { Time.current + 1.day }
-      let(:datetime2) { Time.current - 1.day }
+      let(:datetime1) { 1.day.from_now }
+      let(:datetime2) { 1.day.ago }
 
       it "returns matches sorted by date descendently" do
         described_class.call(term, current_organization) do
@@ -193,7 +193,7 @@ describe Decidim::Search do
       before do
         create_list(:searchable_resource, 5, organization: current_organization, resource_type: resource_type, content_a: "Where's your crown king nothing?")
 
-        # rubocop:disable FactoryBot/CreateList
+        # rubocop:disable RSpec/FactoryBot/CreateList
         3.times do
           create(
             :searchable_resource,
@@ -204,12 +204,12 @@ describe Decidim::Search do
             content_a: "Where's your crown king nothing?"
           )
         end
-        # rubocop:enable FactoryBot/CreateList
+        # rubocop:enable RSpec/FactoryBot/CreateList
       end
 
       context "when resource_type is setted" do
         it "only return resources of the given type" do
-          described_class.call(term, current_organization, "resource_type" => resource_type) do
+          described_class.call(term, current_organization, "with_resource_type" => resource_type) do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:results].count).to eq 5
@@ -224,7 +224,7 @@ describe Decidim::Search do
         end
 
         it "can paginate the resources" do
-          described_class.call(term, current_organization, { "resource_type" => resource_type }, per_page: 2) do
+          described_class.call(term, current_organization, { "with_resource_type" => resource_type }, per_page: 2) do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:results].count).to eq 2
@@ -241,7 +241,7 @@ describe Decidim::Search do
 
       context "when resource_type is blank" do
         it "only returns up to 4 resources of each type" do
-          described_class.call(term, current_organization, "resource_type" => "") do
+          described_class.call(term, current_organization, "with_resource_type" => "") do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:results].count).to eq 4
@@ -256,7 +256,7 @@ describe Decidim::Search do
         end
 
         it "ignores pagination" do
-          described_class.call(term, current_organization, { "resource_type" => "" }, per_page: 2) do
+          described_class.call(term, current_organization, { "with_resource_type" => "" }, per_page: 2) do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:results].count).to eq 4
@@ -283,7 +283,7 @@ describe Decidim::Search do
 
       context "when scope is setted" do
         it "only return resources in the given scope" do
-          described_class.call(term, current_organization, "decidim_scope_id" => scope.id.to_s) do
+          described_class.call(term, current_organization, "decidim_scope_id_eq" => scope.id.to_s) do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:count]).to eq 1
@@ -296,7 +296,7 @@ describe Decidim::Search do
 
       context "when scope is blank" do
         it "does not apply scope filter" do
-          described_class.call(term, current_organization, "decidim_scope_id" => "") do
+          described_class.call(term, current_organization, "decidim_scope_id_eq" => "") do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:results]).not_to be_empty
@@ -336,7 +336,7 @@ describe Decidim::Search do
 
       describe "when selecting active spaces" do
         it "returns data from active spaces" do
-          described_class.call(term, current_organization, "space_state" => "active") do
+          described_class.call(term, current_organization, "with_space_state" => "active") do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:count]).to eq 1
@@ -349,7 +349,7 @@ describe Decidim::Search do
 
       describe "when selecting future spaces" do
         it "returns data from future spaces" do
-          described_class.call(term, current_organization, "space_state" => "future") do
+          described_class.call(term, current_organization, "with_space_state" => "future") do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:count]).to eq 1
@@ -362,7 +362,7 @@ describe Decidim::Search do
 
       describe "when selecting past spaces" do
         it "returns data from past spaces" do
-          described_class.call(term, current_organization, "space_state" => "past") do
+          described_class.call(term, current_organization, "with_space_state" => "past") do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:count]).to eq 1
@@ -375,7 +375,7 @@ describe Decidim::Search do
 
       describe "when no state is selected" do
         it "returns data from all spaces" do
-          described_class.call(term, current_organization, "space_state" => "") do
+          described_class.call(term, current_organization, "with_space_state" => "") do
             on(:ok) do |results_by_type|
               results = results_by_type["Decidim::DummyResources::DummyResource"]
               expect(results[:count]).to eq 3

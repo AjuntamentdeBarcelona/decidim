@@ -1,3 +1,4 @@
+---
 cs:
   activemodel:
     attributes:
@@ -49,6 +50,7 @@ cs:
         import: Importovat návrhy do projektů
         new: Nový %{name}
         preview: Náhled
+        send_voting_reminders: Odeslat připomenutí hlasování
         title: Akce
       admin:
         budgets:
@@ -90,16 +92,44 @@ cs:
             title: Upravit projekt
             update: Aktualizace
           index:
+            actions: Akce
+            cancel: Zrušit
+            change_category: Změnit kategorii
+            change_scope: Změnit rozsah
+            change_selected: Změnit vybraný stav
+            deselect_implementation: Zrušit výběr z implementace
             finished_orders: Dokončené hlasy
             pending_orders: Čeká na hlasování
+            select_for_implementation: Vybrat pro implementaci
             selected: Vybrané
             title: Projekty
+            update: Aktualizovat
+            update_scope_button: Aktualizovat rozsah
           new:
             create: Vytvořit
             title: Nový projekt
           update:
             invalid: Při aktualizaci tohoto projektu došlo k problému
             success: Projekt byl úspěšně aktualizován
+          update_category:
+            invalid: 'Tyto projekty již mají kategorii %{subject_name}: %{projects}.'
+            select_a_category: Vyberte prosím kategorii
+            select_a_project: Vyberte projekt
+            success: 'Projekty byly úspěšně aktualizovány do kategorie %{subject_name}: %{projects}.'
+          update_scope:
+            invalid: 'Tyto projekty již mají rozsah %{subject_name}: %{projects}.'
+            select_a_project: Vyberte projekt
+            select_a_scope: Vyberte prosím rozsah
+            success: 'Projekty byly úspěšně aktualizovány na rozsah %{subject_name}: %{projects}.'
+          update_selected:
+            invalid:
+              selected: 'Tyto projekty již byly vybrány pro implementaci: %{projects}.'
+              unselected: 'Tyto projekty již byly odebrány z implementace: %{projects}.'
+            select_a_project: Vyberte projekt
+            select_a_selection: Vyberte prosím stav implementace
+            success:
+              selected: 'Tyto projekty byly úspěšně vybrány pro implementaci: %{projects}.'
+              unselected: 'Tyto projekty byly úspěšně odebrány z implementace: %{projects}.'
         proposals_imports:
           create:
             invalid: Při importu návrhů do projektů došlo k problému
@@ -112,6 +142,14 @@ cs:
             origin_component_id: Původ komponenty
             select_component: Vyberte součást
             title: Importovat návrhy
+        reminders:
+          orders:
+            description: Uživatelé obdrží e-mail s odkazy na rozpočty, kde se čeká na vyjádření.
+            title:
+              one: Chystáte se odeslat připomenutí e-mailu %{count} uživateli
+              few: Chystáte se odeslat připomenutí e-mailu %{count} uživatelům
+              many: Chystáte se odeslat připomenutí e-mailu %{count} uživatelům
+              other: Chystáte se odeslat připomenutí e-mailu %{count} uživatelům
       admin_log:
         budget:
           create: "%{user_name} vytvořil %{resource_name} rozpočet ve skupině %{space_name}"
@@ -143,6 +181,8 @@ cs:
         show: Zobrazit projekty
         vote: Hlasovat
         voted_on: Hlasovali jste pro %{links}
+      last_activity:
+        new_vote_at_html: "<span>Nové hlasování o rozpočtu v %{link}</span>"
       limit_announcement:
         cant_vote: O tomto rozpočtu nelze hlasovat. <a href="%{landing_path}">Zkuste jiný rozpočet</a>.
         limit_reached: Máte aktivní hlasy v %{links}. Chcete-li hlasovat o tomto rozpočtu, musíte <a href="%{landing_path}">smazat svůj hlas a začít znovu</a>.
@@ -156,6 +196,7 @@ cs:
           fields:
             category: Kategorie
             id: ID
+            scope: Rozsah
             title: Titul
       order_summary_mailer:
         order_summary:
@@ -230,6 +271,8 @@ cs:
           filter: Filtr
           filter_by: Filtrovat podle
           unfold: Rozbalit
+        index:
+          view_project: Zobrazit projekt
         order_progress:
           vote: Hlasovat
         order_selected_projects:
@@ -257,7 +300,7 @@ cs:
             few: hlasy
             many: hlasů
             other: hlasů
-          you_voted: Hlasovali jste
+          you_voted: Hlasoval jste pro toto
         project_budget_button:
           add: Přidat do vašeho hlasování
           add_descriptive: Přidat k hlasování projekt %{resource_name}
@@ -267,6 +310,17 @@ cs:
         show:
           budget: Rozpočet
           view_all_projects: Zobrazit všechny projekty
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Oblasti, kde máte nedokončené hlasování:'
+          email_intro: Zahájili jste hlasování o participačním rozpočtu, ale nedokončili jste ho.
+          email_link: Pokračovat v hlasování
+          email_outro: Nezapomeňte prosím dokončit hlasování. Chcete-li hlasovat, musíte nejprve vybrat návrh nebo návrhy, o kterých chcete hlasovat, a potvrdit svůj hlas pomocí tlačítka "Hlasování".
+          email_subject:
+            one: Máte nedokončené hlasování v participativním rozpočtovém hlasování
+            few: Máte nedokončené hlasování v participativním rozpočtovém hlasování
+            many: Máte nedokončená hlasování v participativním rozpočtovém hlasování
+            other: Máte nedokončené hlasování v participativním rozpočtovém hlasování
     components:
       budgets:
         actions:
@@ -282,6 +336,7 @@ cs:
               errors:
                 budget_voting_rule_only_one: Pouze jedno hlasovací pravidlo musí být povoleno
                 budget_voting_rule_required: Je vyžadováno jedno pravidlo hlasování
+            geocoding_enabled: Geokódování aktivováno
             landing_page_content: Úvodní stránka rozpočtů
             more_information_modal: Více informací
             projects_per_page: Počet projektů na stránku

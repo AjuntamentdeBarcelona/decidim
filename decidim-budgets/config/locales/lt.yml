@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -90,16 +91,34 @@ lt:
             title: Redaguoti projektą
             update: Atnaujinti
           index:
+            actions: Veiksmai
+            cancel: Atšaukti
+            change_category: Keisti kategoriją
+            change_scope: Keisti sritį
             finished_orders: Baigti balsavimai
             pending_orders: Balsai laukiantys patvirtinimo
             selected: Pasirinkta
             title: Projektai
+            update: Atnaujinimas
+            update_scope_button: Atnaujinti sritį
           new:
             create: Sukurti
             title: Naujas projektas
           update:
             invalid: Atnaujinant šį projektą iškilo problema
             success: Projektas atnaujintas
+          update_category:
+            invalid: 'Šie projektai turi %{subject_name} kategoriją: %{projects}.'
+            select_a_category: Pasirinkite kategoriją
+            select_a_project: Pasirinkite projektą
+            success: 'Projektai sėkmingai atnaujinti %{subject_name} kategorijoje: %{projects}.'
+          update_scope:
+            invalid: 'Šie projektai jau turi %{subject_name} sritį: %{projects}.'
+            select_a_project: Pasirinkite projektą
+            select_a_scope: Pasirinkite sritį
+            success: 'Projektai sėkmingai atnaujinti %{subject_name} srityje: %{projects}.'
+          update_selected:
+            select_a_project: Pasirinkite projektą
         proposals_imports:
           create:
             invalid: Importuojant pasiūlymus į projektus kilo problema
@@ -112,6 +131,14 @@ lt:
             origin_component_id: Originalusis komponentas
             select_component: Pasirinkite komponentą
             title: Importuoti pasiūlymus
+        reminders:
+          orders:
+            description: Naudotojai gaus el. laišką su nuorodomis į biudžetus, kuriuose laukiami jų balsai.
+            title:
+              one: Ar tikrai norite išsiųsti priminimą laišku %{count} naudotojui?
+              few: Ar tikrai norite išsiųsti priminimą laišku %{count} naudotojams?
+              many: Ar tikrai norite išsiųsti priminimą laišku %{count} naudotojams?
+              other: Ar tikrai norite išsiųsti priminimą laišku %{count} naudotojams?
       admin_log:
         budget:
           create: "%{user_name} sukūrė %{resource_name} biudžetą %{space_name} erdvėje"
@@ -143,6 +170,8 @@ lt:
         show: Peržiūrėti projektus
         vote: Balsuoti
         voted_on: Jūs balsavote dėl %{links}
+      last_activity:
+        new_vote_at_html: "<span>Naujas biudžeto balsavimas nuorodoje %{link}</span>"
       limit_announcement:
         cant_vote: Negalite balsuoti šito biudžeto. <a href="%{landing_path}"> Pabandykite kitą biudžetą.</a>
         limit_reached: Turite aktyvių balsų %{links}. Tam, kad balsuoti šiame biudžete turite <a href="%{landing_path}"> ištrinti balsus ir pradėti iš naujo</a>.
@@ -156,6 +185,7 @@ lt:
           fields:
             category: Kategorija
             id: ID
+            scope: Apimtis
             title: Pavadinimas
       order_summary_mailer:
         order_summary:
@@ -230,6 +260,8 @@ lt:
           filter: Filtras
           filter_by: Filtruoti pagal
           unfold: Išskleisti
+        index:
+          view_project: Peržiūrėti projektą
         order_progress:
           vote: Balsuoti
         order_selected_projects:
@@ -257,7 +289,6 @@ lt:
             few: balsai
             many: balsai
             other: balsai
-          you_voted: Balsavote už
         project_budget_button:
           add: Pridėti prie balsų
           add_descriptive: Pridėti projektą %{resource_name} prie balsų
@@ -267,6 +298,17 @@ lt:
         show:
           budget: Biudžetas
           view_all_projects: Peržiūrėti visus projektus
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Aplinkos kuriose nebaigėte balsuoti:'
+          email_intro: Pradėjote balsuoti dalyvaujamajame biudžete, tačiau nebaigėte.
+          email_link: Tęsti balsavimą
+          email_outro: Nepamirškite baigti balsavimo. Tam, kad balsuoti, pasirinkite pasiūlymą ar pasiūlymus už kuriuos norite balsuoti ir paspauskite mygtuką "Balsuoti".
+          email_subject:
+            one: Nebaigėte balsuoti dėl dalyvaujamojo biudžeto
+            few: Nebaigėte balsuoti dėl dalyvaujamojo biudžeto
+            many: Nebaigėte balsuoti dėl dalyvaujamojo biudžeto
+            other: Nebaigėte balsuoti dėl dalyvaujamojo biudžeto
     components:
       budgets:
         actions:
@@ -282,6 +324,7 @@ lt:
               errors:
                 budget_voting_rule_only_one: Turi būti įjungta tik viena balsavimo taisyklė
                 budget_voting_rule_required: Būtina viena balsavimo taisyklė
+            geocoding_enabled: Geokodavimas įjungtas
             landing_page_content: Biudžetų numatytasis puslapis
             more_information_modal: Išsamesnės informacijos modalinis langas
             projects_per_page: Projektų skaičius puslapyje

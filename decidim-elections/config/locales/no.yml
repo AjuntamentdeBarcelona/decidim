@@ -1,3 +1,4 @@
+---
 "no":
   activemodel:
     attributes:
@@ -271,15 +272,6 @@
             selected: Valgt
             submit: Send inn
             title: Resultater publisert
-          tally:
-            continue: Fortsett
-            invalid: Kunne ikke rapportere manglende tillitsmann
-            mark_as_missing: Marker som manglende
-            mark_as_missing_description: Alle tillitsmenn bør delta i denne prosessen, men dersom en tillitsmann ikke kan delta i prosessen, kan du merke det som manglende.
-            success: Manglende tillitsmannrapport ble sendt til oppslagstavle
-            tally_completion: Prosessen vil bli fullført når alle tillitsmenn er aktive eller merket som manglende. Minst %{quorum} tillitsmenn er nødvendig for å fullføre prosessen.
-            title: Opptellingsprosess
-            undo_mark_as_missing: En tillitsmann merket som feilaktig merkes som manglende vil kunne delta før prosessen fullføres. De kan fortsette som vanlig og merket for "manglende" vil bli ignorert.
           tally_ended:
             answer: Svar
             not_selected: Ikke valgt
@@ -289,6 +281,13 @@
             submit: Publiser resultater
             success: Forespørsel om publisering av resultater ble sendt til oppslagstavlen
             title: Beregnet resultat
+          tally_started:
+            invalid: Kunne ikke rapportere manglende tillitsmann
+            mark_as_missing: Marker som manglende
+            mark_as_missing_description: Alle tillitsmenn bør delta i denne prosessen, men dersom en tillitsmann ikke kan delta i prosessen, kan du merke det som manglende.
+            success: Manglende tillitsmannrapport ble sendt til oppslagstavle
+            tally_completion: Prosessen vil bli fullført når alle tillitsmenn er aktive eller merket som manglende. Minst %{quorum} tillitsmenn er nødvendig for å fullføre prosessen.
+            undo_mark_as_missing: En tillitsmann merket som feilaktig merkes som manglende vil kunne delta før prosessen fullføres. De kan fortsette som vanlig og merket for "manglende" vil bli ignorert.
           vote:
             errors:
               time_after: Valget pågår enda. Du må vente til det er ferdog (%{end_time}) for å avslutte avstemmingen.
@@ -354,9 +353,8 @@
         end_date: Slutter
         footer:
           remaining_time:
-            one: "<strong>%{count} time %{minutes} minutter</strong> gjenstår for å stemme."
-            other: "<strong>%{count} time %{minutes} minutter</strong> gjenstår for å stemme."
-            zero: "<strong>%{minutes} minutter</strong> gjenstår for å stemme."
+            one: "<strong>%{count} time %{minutes} minutter</strong> gjenstår til å stemme."
+            other: "<strong>%{count} timer %{minutes} minutter</strong> gjenstår til å stemme."
           view: Vis
           vote: Stem
         label:
@@ -422,11 +420,6 @@
           upcoming: Kommende
         filters_small_view:
           close_modal: Lukk dialogboks
-        results:
-          votes:
-            one: "%{count} stemmer"
-            other: "%{count} stemmer"
-            zero: "%{count} stemmer"
         show:
           action_button:
             change_vote: Endre stemmen din
@@ -462,23 +455,13 @@
             title: Gjenopprett valgnøkler for %{election}
             upload_election_keys: Last opp valgnøkler
             upload_icon: Ikon som indikerer en nedlastningshandling
-          tally_steps:
-            back: Tilbake
+          tally_started_steps:
             description: Resultatet av valget utregnes i oppslagstavlen. For å fullføre denne prosessen må du delta som en tillitsmann.
             keys:
               end_tally: Opptelling avsluttet
               tally:
                 cast: Opptelling ferdig
                 share: Opptellingsandel
-            list:
-              task: Oppgave
-            process_warning: Når prosessen er startet, bør du ikke gå ut av denne siden før prosessen er ferdig. Det vil ta flere minutter fordi alle tillitsmenn skal kobles til dette for å fullføre.
-            start: Start
-            start_icon: Ikon som indikerer en startknapp for å starte generering av valgnøklene
-            status:
-              completed: Fullført
-              pending: Ventende
-              processing: Behandler
             title: Opptelling for %{election}
           update:
             error: Valgstatusen ble ikke oppdatert.
@@ -511,15 +494,12 @@
               generate_legend_3: Kontroller at datamaskinen ikke har noen kopi av filen (f.eks. sjekk nedlastingsmappen og skrivebordsmapper).
               generate_legend_4: Lag en annen kopi av filen på en annen ekstern enhet og lagre den på et svært trygt sted.
               submit: Send inn
-              submit_legend: Etter å ha fulgt alle trinnene beskrevet ovenfor, fullfør prosessen med å sende den offentlige identifikasjonsnøkkel til Decidim-serveren.
               submit_title: Send inn den offentlige identifikasjonsnøkkelen
               title: Identifikasjonsnøkler for tillitsmenn
               upload: Last opp dine identifikasjonsnøkler
               upload_error:
                 invalid_format: Den opplastede filen inneholder ikke en identifikasjonsnøkkel.
                 invalid_key: Identifikasjonsnøklene i den opplastede filen kan ikke lastes.
-                invalid_public_key: Identifikasjonsnøklene i den opplastede filen samsvarer ikke med den offentlige identifikasjonnøkkelen lagret av Decidim.
-              upload_legend: Decidim har dine offentlige identifikasjonsnøkler, men din nettleser har den fortsatt ikke. Du må importere filen med identifikasjonsnøkler til datamaskinen fra sikkerhetskopien du opprettet etter de ble generert.
       votes:
         confirm:
           answer: Svar
@@ -535,9 +515,6 @@
           feedback: Gi oss en tilbakemelding
           header: Avstemning bekreftet
           text: 'Du kan sjekke at stemmen din har blitt lagt til i stemmeboksen med følgende identifikator: <strong class="evote__poll-id">%{e_vote_poll_id}</strong>'
-        failed:
-          modal:
-            close: Lukk
         header:
           confirm: Bekreft stemmen din
           confirmed: Avstemning bekreftet
@@ -574,12 +551,6 @@
         menu:
           votings_submenu:
             monitoring_committee: Kontrollgruppe
-      polling_officer_zone:
-        in_person_votes:
-          complete_voting:
-            questions_title: 'Hun har stemmerett i følgende spørsmål:'
-          in_person_form:
-            census_not_present_description: Hun må gå til folketellingskontoret eller ta kontakt med kundestøtten.
       votings:
         login:
           start_voting: Start avstemning

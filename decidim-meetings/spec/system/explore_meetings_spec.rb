@@ -12,6 +12,9 @@ describe "Explore meetings", :slow, type: :system do
   end
 
   before do
+    # Required for the link to be pointing to the correct URL with the server
+    # port since the server port is not defined for the test environment.
+    allow(ActionMailer::Base).to receive(:default_url_options).and_return(port: Capybara.server_port)
     component_scope = create :scope, parent: participatory_process.scope
     component_settings = component["settings"]["global"].merge!(scopes_enabled: true, scope_id: component_scope.id)
     component.update!(settings: component_settings)
@@ -33,7 +36,7 @@ describe "Explore meetings", :slow, type: :system do
 
       it "shows all the upcoming meetings" do
         visit_component
-        within ".date_collection_radio_buttons_filter" do
+        within ".with_any_date_collection_radio_buttons_filter" do
           expect(find("input[value='upcoming']").checked?).to be(true)
         end
 
@@ -122,6 +125,25 @@ describe "Explore meetings", :slow, type: :system do
     end
 
     context "when filtering" do
+      context "when filtering by text" do
+        it "updates the current URL" do
+          create(:meeting, :published, component: component, title: { en: "Foobar meeting" })
+          create(:meeting, :published, component: component, title: { en: "Another meeting" })
+          visit_component
+
+          within "form.new_filter" do
+            fill_in("filter[search_text_cont]", with: "foobar")
+            click_button "Search"
+          end
+
+          expect(page).not_to have_content("Another meeting")
+          expect(page).to have_content("Foobar meeting")
+
+          filter_params = CGI.parse(URI.parse(page.current_url).query)
+          expect(filter_params["filter[search_text_cont]"]).to eq(["foobar"])
+        end
+      end
+
       context "when filtering by origin" do
         let!(:component) do
           create(:meeting_component,
@@ -136,7 +158,7 @@ describe "Explore meetings", :slow, type: :system do
           it "lists the filtered meetings" do
             visit_component
 
-            within ".origin_check_boxes_tree_filter" do
+            within ".with_any_origin_check_boxes_tree_filter" do
               uncheck "All"
               check "Official"
             end
@@ -155,7 +177,7 @@ describe "Explore meetings", :slow, type: :system do
           it "lists the filtered meetings" do
             visit_component
 
-            within ".origin_check_boxes_tree_filter" do
+            within ".with_any_origin_check_boxes_tree_filter" do
               uncheck "All"
               check "Groups"
             end
@@ -169,13 +191,13 @@ describe "Explore meetings", :slow, type: :system do
           end
         end
 
-        context "with 'citizens' origin" do
+        context "with 'participants' origin" do
           it "lists the filtered meetings" do
             visit_component
 
-            within ".origin_check_boxes_tree_filter" do
+            within ".with_any_origin_check_boxes_tree_filter" do
               uncheck "All"
-              check "Citizens"
+              check "Participants"
             end
 
             expect(page).to have_no_content("6 MEETINGS")
@@ -190,7 +212,7 @@ describe "Explore meetings", :slow, type: :system do
         within ".filters" do
           # It seems that there's another field with the same name in another form on page.
           # Because of that we try to select the correct field to set the value and submit the right form
-          find(:css, "#content form.new_filter [name='filter[search_text]']").set(translated(meetings.first.title))
+          find(:css, "#content form.new_filter [name='filter[search_text_cont]']").set(translated(meetings.first.title))
 
           # The form should be auto-submitted when filter box is filled up, but
           # somehow it's not happening. So we workaround that be explicitly
@@ -214,7 +236,7 @@ describe "Explore meetings", :slow, type: :system do
         it "lists filtered meetings" do
           visit_component
 
-          within ".date_collection_radio_buttons_filter" do
+          within ".with_any_date_collection_radio_buttons_filter" do
             choose "Past"
           end
 
@@ -222,7 +244,7 @@ describe "Explore meetings", :slow, type: :system do
           expect(page).to have_content(translated(past_meeting1.title))
           expect(page).not_to have_content(translated(upcoming_meeting1.title))
 
-          within ".date_collection_radio_buttons_filter" do
+          within ".with_any_date_collection_radio_buttons_filter" do
             choose "Upcoming"
           end
 
@@ -231,7 +253,7 @@ describe "Explore meetings", :slow, type: :system do
 
           expect(page).to have_css(".card--meeting", count: 8)
 
-          within ".date_collection_radio_buttons_filter" do
+          within ".with_any_date_collection_radio_buttons_filter" do
             choose "All"
           end
 
@@ -243,7 +265,7 @@ describe "Explore meetings", :slow, type: :system do
         context "when there are multiple past meetings" do
           it "orders them by start date" do
             visit_component
-            within ".date_collection_radio_buttons_filter" do
+            within ".with_any_date_collection_radio_buttons_filter" do
               choose "Past"
             end
 
@@ -258,7 +280,7 @@ describe "Explore meetings", :slow, type: :system do
         context "when there are multiple upcoming meetings" do
           it "orders them by start date" do
             visit_component
-            within ".date_collection_radio_buttons_filter" do
+            within ".with_any_date_collection_radio_buttons_filter" do
               choose "Upcoming"
             end
 
@@ -272,8 +294,8 @@ describe "Explore meetings", :slow, type: :system do
 
         context "when there are multiple meetings" do
           it "orders them by start date" do
-            visit_component
-            within ".date_collection_radio_buttons_filter" do
+            page.visit "#{main_component_path(component)}?per_page=20"
+            within ".with_any_date_collection_radio_buttons_filter" do
               choose "All"
             end
 
@@ -293,7 +315,7 @@ describe "Explore meetings", :slow, type: :system do
         past_meeting = create(:meeting, :published, component: component, start_time: 1.day.ago)
         visit_component
 
-        within ".date_collection_radio_buttons_filter" do
+        within ".with_any_date_collection_radio_buttons_filter" do
           choose "Past"
         end
 
@@ -301,19 +323,19 @@ describe "Explore meetings", :slow, type: :system do
         expect(page).to have_content(translated(past_meeting.title))
 
         filter_params = CGI.parse(URI.parse(page.current_url).query)
-        base_url = "http://#{organization.host}"
+        base_url = "http://#{organization.host}:#{Capybara.server_port}"
 
         click_button "Export calendar"
         expect(page).to have_content("Calendar URL:")
         expect(page).to have_css("#calendarShare", visible: :visible)
-        share_url = nil
+        short_url = nil
         within "#calendarShare" do
-          input = find("input[readonly]")
-          share_url = input.value
-          expect(share_url).to match(%r{^#{base_url}:[0-9]+/processes/#{participatory_process.slug}/f/#{component.id}/calendar$})
+          input = find("input#urlCalendarUrl[readonly]")
+          short_url = input.value
+          expect(short_url).to match(%r{^#{base_url}/s/[a-zA-Z0-9]{10}$})
         end
 
-        visit share_url
+        visit short_url
         expect(page).to have_css(".card--meeting", count: 1)
         expect(page).to have_content(translated(past_meeting.title))
         expect(page).to have_current_path(/^#{main_component_path(component)}/)
@@ -330,7 +352,7 @@ describe "Explore meetings", :slow, type: :system do
 
         visit_component
 
-        within ".scope_id_check_boxes_tree_filter" do
+        within ".with_any_scope_check_boxes_tree_filter" do
           check "All"
           uncheck "All"
           check translated(scope.name)
@@ -347,7 +369,7 @@ describe "Explore meetings", :slow, type: :system do
 
         visit_component
 
-        within ".scope_id_check_boxes_tree_filter" do
+        within ".with_any_scope_check_boxes_tree_filter" do
           check "All"
           uncheck "All"
           check translated(scope.name)
@@ -364,7 +386,7 @@ describe "Explore meetings", :slow, type: :system do
 
     context "when no upcoming meetings scheduled" do
       let!(:meetings) do
-        create_list(:meeting, 2, :published, component: component, start_time: Time.current - 4.days, end_time: Time.current - 2.days)
+        create_list(:meeting, 2, :published, component: component, start_time: 4.days.ago, end_time: 2.days.ago)
       end
 
       it "only shows the past meetings" do

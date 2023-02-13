@@ -1,5 +1,12 @@
+---
 cs:
   activemodel:
+    attributes:
+      post:
+        body: Tělo zprávy
+        decidim_author_id: Autor
+        published_at: Čas zveřejnění
+        title: Název
     models:
       decidim/blogs/create_post_event: Nový blogový příspěvek
   activerecord:
@@ -12,16 +19,14 @@ cs:
   decidim:
     blogs:
       actions:
+        author_id: Vytvořit příspěvek jako
         confirm_destroy: Opravdu chcete tento příspěvek smazat?
         destroy: Smazat
         edit: Upravit
         new: Nový příspěvek
         title: Akce
-        user_group_id: Vytvořit příspěvek jako
       admin:
         models:
-          components:
-            body: Tělo
           post:
             name: Příspěvek
         posts:
@@ -41,6 +46,11 @@ cs:
           update:
             invalid: Při ukládání příspěvku došlo k chybám.
             success: Příspěvek byl úspěšně uložen
+      admin_log:
+        post:
+          create: "%{user_name} vytvořil příspěvek %{resource_name} v %{space_name}"
+          delete: "%{user_name} odstranil příspěvek %{resource_name} z %{space_name}"
+          update: "%{user_name} aktualizoval příspěvek %{resource_name} v %{space_name}"
       last_activity:
         new_post_at_html: "<span>Nový příspěvek v %{link}</span>"
       models:
@@ -49,7 +59,8 @@ cs:
             author: Autor
             body: Tělo
             created_at: Vytvořeno v
-            title: titulek
+            official_blog_post: Oficiální příspěvek
+            title: Název
       posts:
         show:
           back: Zpět na seznam
@@ -62,8 +73,10 @@ cs:
     components:
       blogs:
         actions:
+          comment: Komentář
           create: Vytvořit
           destroy: Smazat
+          endorse: Schválit
           update: Aktualizovat
         name: Blog
         settings:

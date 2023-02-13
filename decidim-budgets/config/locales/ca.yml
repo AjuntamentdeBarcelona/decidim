@@ -1,3 +1,4 @@
+---
 ca:
   activemodel:
     attributes:
@@ -40,13 +41,14 @@ ca:
       actions:
         attachment_collections: Carpetes
         attachments: Adjunts
-        confirm_destroy: Estàs segura que vols eliminar aquest projecte?
+        confirm_destroy: Segur que vols eliminar aquest projecte?
         destroy: Esborrar
         edit: Editar
         edit_projects: Gestionar projectes
         import: Importa propostes a projectes
         new: Nou %{name}
         preview: Previsualitzar
+        send_voting_reminders: Enviar recordatoris de votació
         title: Accions
       admin:
         budgets:
@@ -88,16 +90,44 @@ ca:
             title: Editar projecte
             update: Actualitzar
           index:
+            actions: Accions
+            cancel: Cancel·lar
+            change_category: Canviar categoria
+            change_scope: Canviar àmbit
+            change_selected: Canviar l'estat seleccionat
+            deselect_implementation: No s'ha seleccionat per implementar
             finished_orders: Vots finalitzats
             pending_orders: Vots en procés
+            select_for_implementation: Seleccionat per implementar
             selected: Seleccionat
             title: Projectes
+            update: Actualitzar
+            update_scope_button: Actualitzar àmbit
           new:
             create: Crear
             title: Nou projecte
           update:
             invalid: S'ha produït un error en actualitzar aquest projecte
             success: Projecte actualitzat correctament
+          update_category:
+            invalid: 'Aquestes propostes ja tenien la categoria %{subject_name}: %{projects}.'
+            select_a_category: Si us plau, selecciona una categoria
+            select_a_project: Si us plau, selecciona un projecte
+            success: 'Els projectes s''han actualitzat correctament a la categoria %{subject_name}: %{projects}.'
+          update_scope:
+            invalid: 'Aquests projectes ja estaven assignats a l''àmbit %{subject_name}: %{projects}.'
+            select_a_project: Si us plau, selecciona un projecte
+            select_a_scope: Si us plau, selecciona un àmbit
+            success: 'Els projectes s''han actualitzat correctament a l''àmbit %{subject_name}: %{projects}.'
+          update_selected:
+            invalid:
+              selected: 'Aquests projectes ja han estat seleccionats per a ser implementats: %{projects}.'
+              unselected: 'Aquests projectes han estat deseleccionats de ser implementats: %{projects}.'
+            select_a_project: Si us plau, selecciona un projecte
+            select_a_selection: Si us plau, selecciona un estat d'implementació
+            success:
+              selected: 'Aquests projectes s''han seleccionat correctament per a ser implementats: %{projects}.'
+              unselected: 'Aquests projectes s''han deseleccionat correctament per a ser implementats: %{projects}.'
         proposals_imports:
           create:
             invalid: S'ha produït un error en importar les propostes en projectes
@@ -110,6 +140,12 @@ ca:
             origin_component_id: Component d'origen
             select_component: Selecciona un component
             title: Importar propostes
+        reminders:
+          orders:
+            description: Les usuàries rebran un correu amb els enllaços als pressupostos on tenen "comandes" pendents.
+            title:
+              one: Estàs a punt d'enviar un correu recordatori a %{count} usuària
+              other: Estàs a punt d'enviar un correu recordatori a les usuàries %{count}
       admin_log:
         budget:
           create: "%{user_name} ha creat el pressupost %{resource_name} a l'espai %{space_name}"
@@ -145,6 +181,8 @@ ca:
         show: Mostra els projectes
         vote: Vota
         voted_on: Has votat a %{links}
+      last_activity:
+        new_vote_at_html: "<span>Nova votació pressupostària a %{link}</span>"
       limit_announcement:
         cant_vote: No pots votar a aquests pressupostos. <a href="%{landing_path}"> Prova amb un altre pressupost </a>.
         limit_reached: Tens vots actius a %{links}. Per votar en aquest pressupot has d' <a href="%{landing_path}">esborrar el teu vot i començar de nou</a>.
@@ -158,6 +196,7 @@ ca:
           fields:
             category: Categoria
             id: ID
+            scope: Àmbit
             title: Títol
       order_summary_mailer:
         order_summary:
@@ -233,6 +272,8 @@ ca:
           filter: Filtra
           filter_by: Filtra per
           unfold: Desplegar
+        index:
+          view_project: Veure projecte
         order_progress:
           vote: Vota
         order_selected_projects:
@@ -266,6 +307,15 @@ ca:
         show:
           budget: Pressupost
           view_all_projects: Veure tots els projectes
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Àrees a les quals no has finalitzat el vot:'
+          email_intro: Has iniciat la votació als pressupostos participatius, però no l'has completat.
+          email_link: Ves-hi i segueix votant
+          email_outro: Si us plau, recorda completar el vot. Per votar, primer has de seleccionar la proposta o propostes que vols votar i a després confirmar el teu vot amb el botó "Votar".
+          email_subject:
+            one: Tens un vot no finalitzat a la votació dels pressupostos participatius
+            other: Tens alguns vots no finalitzats a la votació dels pressupostos participatius
     components:
       budgets:
         actions:
@@ -281,6 +331,7 @@ ca:
               errors:
                 budget_voting_rule_only_one: Cal activar com a mínim una norma per a la votació
                 budget_voting_rule_required: Es requereix una norma per a la votació
+            geocoding_enabled: Geolocalització habilitada
             landing_page_content: Pàgina d'inici de pressupostos
             landing_page_instructions: Instruccions per la pàgina d'inici de pressupostos
             more_information_modal: Finestra de "Més informació"

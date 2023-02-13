@@ -1,9 +1,13 @@
+---
 ca:
   activemodel:
     attributes:
       assemblies_setting:
         enable_organization_chart: Habilitar organigrama
+      assemblies_type:
+        title: Títol
       assembly:
+        announcement: Avís
         area_id: Àrea
         assembly_type: Tipus d'assemblea
         assembly_type_other: Altre tipus d'assemblea
@@ -22,12 +26,16 @@ ca:
         decidim_scope_id: Àmbit
         description: Descripció
         developer_group: Grup promotor
+        document: Document
         domain: Domini
         duration: Durada
         facebook: Facebook
         github: GitHub
         hashtag: Hashtag
         hero_image: Imatge de portada
+        import_attachments: Importar arxius adjunts
+        import_categories: Importar categories
+        import_components: Importar components
         included_at: Inclòs a
         instagram: Instagram
         internal_organisation: Organització interna
@@ -64,6 +72,7 @@ ca:
         non_user_avatar: Avatar
         position: Posició
         user_id: Participant o grup
+        weight: Ordre de posició
       assembly_user_role:
         email: Correu electrònic
         name: Nom
@@ -73,7 +82,7 @@ ca:
         assembly:
           attributes:
             document:
-              invalid_document_type: 'Tipus de document invàlid. Els formats que s''accepten són: %{valid_mime_types}'
+              allowed_file_content_types: 'Tipus de document no vàlid. Només s''accepten arxius amb les següents extensions: %{types}'
   activerecord:
     models:
       decidim/assembly:
@@ -242,6 +251,9 @@ ca:
     admin_log:
       assembly:
         create: "%{user_name} ha creat l'assemblea %{resource_name}"
+        duplicate: "%{user_name} ha duplicat la assemblea %{resource_name}"
+        export: "%{user_name} ha exportat l'assemblea %{resource_name}"
+        import: "%{user_name} ha importat l'assemblea %{resource_name}"
         publish: "%{user_name} ha publicat l'assemblea %{resource_name}"
         unpublish: "%{user_name} ha despublicat l'assemblea %{resource_name}"
         update: "%{user_name} ha actualitzat l'assemblea %{resource_name}"
@@ -270,7 +282,7 @@ ca:
             duration_help: Si la durada d'aquesta assemblea és limitada, selecciona la data de finalització. En cas contrari, apareixerà com a indefinida.
             filters: Filtres
             images: Imatges
-            included_at_help: Selecciona la data en què es va afegir aquest assemblea a Decidim. No necessàriament ha de ser la mateixa que la data de creació.
+            included_at_help: Selecciona la data en què es va afegir aquesta assemblea a la plataforma. No necessàriament ha de ser la mateixa que la data de creació.
             metadata: Metadades
             other: Altre
             select_a_created_by: Selecciona una creadora

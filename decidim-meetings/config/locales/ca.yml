@@ -1,10 +1,7 @@
+---
 ca:
   activemodel:
     attributes:
-      agenda:
-        description: Descripció
-        duration: Durada
-        title: Títol
       close_meeting:
         attendees_count: Nombre d'assistents
         attending_organizations: Llista d'organitzacions que han participat
@@ -22,8 +19,9 @@ ca:
         decidim_scope_id: Àmbit
         decidim_user_group_id: Grup d'usuàries
         description: Descripció
-        end_time: Hora de finalització
+        end_time: Dia i hora de finalització
         id: ID
+        iframe_embed_type: Visualització de la sala de videoconferència
         location: Ubicació
         location_hints: Detalls d'ubicació
         online_meeting_url: URL de trobada en línia
@@ -33,13 +31,26 @@ ca:
         registration_email_custom_content: Contingut personalitzat del correu d'inscripció
         registration_form_enabled: Formulari d'inscripcions habilitat
         registration_terms: Termes i condicions d'inscripció
+        registration_type: Tipus d'inscripció
         registration_url: URL d'inscripció
         registrations_enabled: Inscripcions obertes
-        show_embedded_iframe: Mostrar iframe incrustat per aquesta URL
-        start_time: Hora d'inici
+        reserved_slots: Places reservades per aquesta trobada
+        start_time: Dia i hora d'inici
         title: Títol
         transparent: Transparent
         type_of_meeting: Tipus
+      meeting_agenda:
+        title: Títol
+        visible: Visible
+      meeting_agenda_items:
+        description: Descripció
+        duration: Durada
+        title: Títol
+      meeting_registration_invite:
+        email: Correu electrònic
+        name: Nom
+      validate_registration_code:
+        code: Codi
     errors:
       models:
         meeting:
@@ -89,15 +100,15 @@ ca:
             values:
               'false': Passades
               'true': Properes
-          origin_eq:
-            label: Origen
-            values:
-              citizen: Ciutadania
-              official: Oficial
-              user_group: Grups
           scope_id_eq:
             label: Àmbit
-          type_eq:
+          with_any_origin:
+            label: Origen
+            values:
+              official: Oficial
+              participants: Participant
+              user_group: Grups
+          with_any_type:
             label: Tipus de trobada
             values:
               hybrid: Híbrida
@@ -282,9 +293,6 @@ ca:
           edit:
             close: Tancar
             title: Tancar trobada
-        meeting_copies:
-          form:
-            select_a_meeting_type: Si us plau, selecciona un tipus de trobada
         meetings:
           close:
             invalid: S'ha produït un error en tancar aquesta trobada
@@ -303,17 +311,15 @@ ca:
             update: Actualitzar
           form:
             address_help: 'Adreça: que farà servir per Geocoder per a trobar la localització'
-            available_slots_help: Deixa-ho a 0 si les places disponibles són il·limitades
             disclaimer: 'Descàrrec de responsabilitat: en utilitzar un sistema d''inscripcions extern, ets conscient que els organitzadors de %{organization} no són responsables de les dades proporcionades per les usuàries al servei extern.'
             location_help: 'Localització: missatge dirigit a les participants indicant el lloc on trobar-se'
             location_hints_help: 'Detalls d''ubicació: informació addicional. Exemple: la planta de l''edifici si es tracta d''una reunió presencial, o la contrasenya de la reunió si es tracta d''una reunió en línia amb accés restringit.'
             online_meeting_url_help: 'Enllaç: permetre que les participants es connectin directament a la teva trobada'
-            registration_email_help: Aquest text apareixerà enmig del correu de confirmació de la inscripció. Just a sota del codi d'inscripció.
             registration_url_help: 'Enllaç: permetre a les participants anar al servei extern que estàs utilitzant per a les inscripcions'
             select_a_meeting_type: Si us plau selecciona un tipus de trobada
             select_a_registration_type: Si us plau selecciona un tipus d'inscripció
             select_an_iframe_access_level: Si us plau, selecciona el nivell d'accés a l'iframe
-            show_embedded_iframe_help: Només uns quants serveis es poden incrustar a una trobada o esdeveniment en directe (YouTube, Twitch i Jitsi)
+            show_embedded_iframe_help: 'Només uns quants serveis es poden incrustar a una trobada o esdeveniment en directe des dels següents dominis: %{domains}'
           index:
             title: Trobades
           new:
@@ -356,6 +362,7 @@ ca:
             available_slots_help: Deixar a 0 si les inscripcions són il·limitades.
             invites: Invitacions
             recommendation_message: Per raons de privacitat et recomanem que esborris aquest formulari d'inscripció quan ja no el necessitis. Per defecte això és 3 mesos després que la reunió hagi finalitzat.
+            registration_email_help: Aquest text apareixerà enmig del correu de confirmació de la inscripció. Just a sota del codi d'inscripció.
             registration_form: Formulari d'inscripció
             registrations_count:
               one: Hi ha hagut %{count} inscripció.
@@ -383,6 +390,8 @@ ca:
           value_types:
             organizer_presenter:
               not_found: 'L''organitzador no s''ha trobat a la base de dades (identificació: %{id})'
+        questionnaire:
+          update: "%{user_name} ha actualitzat el qüestionari per a la trobada %{meeting_name}"
       application_helper:
         filter_category_values:
           all: Totes
@@ -393,7 +402,19 @@ ca:
       calendar_modal:
         calendar_url: URL del calendari
         close_window: Tanca la finestra
+        copy_calendar_url: Copiar
+        copy_calendar_url_clarification: Copiar l'URL del calendari al porta-retalls
+        copy_calendar_url_copied: Copiat!
+        copy_calendar_url_description: Pots veure totes les reunions publicades a la teva aplicació o preveïdor de calendari. Copia i enganxa aquesta URL al teu calendari fent servir l'opció "Afegir nou calendari des d'una URL".
+        copy_calendar_url_explanation: Tingues en compte que estàs exportant una selecció de reunions, ja que hi ha filtres activats. Si vols exportar-les totes, primer elimina tots els filtres.
+        copy_calendar_url_message: S'ha copiat l'enllaç al porta-retalls correctament.
         export_calendar: Exporta el calendari
+      close_meeting_reminder_mailer:
+        close_meeting_reminder:
+          body: La trobada <a href="%{meeting_path}">"%{meeting_title}"</a> està pendent de tancar-se. Si us plau, afegiu un informe de la reunió fent servir el botó "Tancar trobada".
+          greetings: Hola,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
+          hello: Hola %{username},
+          subject: Ara pots tancar la trobada amb un informe a la plataforma %{organization_name}
       conference_venues: Seus de les jornades
       content_blocks:
         upcoming_meetings:
@@ -468,8 +489,8 @@ ca:
           origin: Origen
           origin_values:
             all: Tots
-            citizens: Ciutadania
             official: Oficial
+            participants: Participants
             user_groups: Grups
           scope: Àmbit
           search: Cerca
@@ -497,7 +518,7 @@ ca:
           select_a_meeting_type: Si us plau selecciona un tipus de trobada
           select_a_registration_type: Si us plau selecciona un tipus d'inscripció
           select_an_iframe_access_level: Si us plau, selecciona el nivell d'accés a l'iframe
-          show_embedded_iframe_help: Només uns quants serveis es poden incrustar a una trobada o esdeveniment en directe (YouTube, Twitch i Jitsi)
+          show_embedded_iframe_help: 'Només uns quants serveis es poden incrustar a una trobada o esdeveniment en directe des dels següents dominis: %{domains}'
         index:
           click_here: Veure totes les trobades
           new_meeting: Nova trobada

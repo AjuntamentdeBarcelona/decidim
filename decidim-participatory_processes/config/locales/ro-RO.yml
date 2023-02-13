@@ -1,3 +1,4 @@
+---
 ro:
   activemodel:
     attributes:
@@ -56,16 +57,12 @@ ro:
         short_description: Descriere scurtă
         start_date: Data de început
         title: Titlu
+      participatory_process_type:
+        title: Titlu
       participatory_process_user_role:
         email: E-mail
         name: Nume
         role: Rol
-    errors:
-      models:
-        participatory_process:
-          attributes:
-            document:
-              invalid_document_type: 'Tip de document invalid. Formatele acceptate sunt: %{valid_mime_types}'
     models:
       decidim/participatory_process_step_activated_event: Etapă activată
       decidim/participatory_process_step_changed_event: Etapă modificată
@@ -140,6 +137,9 @@ ro:
             start_date: Data de început
             title: Titlu
           name: Etapa procesului participativ
+        participatory_process_type:
+          fields:
+            title: Titlu
         participatory_process_user_role:
           fields:
             email: E-mail
@@ -222,6 +222,9 @@ ro:
         update:
           error: A apărut o problemă la actualizarea acestei etape a procesului participativ.
           success: Etapa procesul participativ a fost actualizată cu succes.
+      participatory_process_types:
+        form:
+          title: Titlu
       participatory_process_user_roles:
         create:
           error: A apărut o problemă la adăugarea unui participant pentru acest proces participativ.

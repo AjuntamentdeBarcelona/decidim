@@ -1,3 +1,4 @@
+---
 pl:
   activemodel:
     attributes:
@@ -340,7 +341,7 @@ pl:
       dashboard:
         show:
           view_more_logs: Zobacz więcej logów
-          welcome: Witamy w panelu administracyjnym Decidim.
+          welcome: Witamy w Panelu Administracyjnym.
       domain_whitelist:
         form:
           domain_too_short: Domena jest zbyt krótka
@@ -841,9 +842,22 @@ pl:
           invalid: Wystąpił błąd podczas odczytu pliku CSV.
           success: Plik CSV został pomyślnie wgrany, wysyłamy e-mail z zaproszeniem do uczestników. To może zająć chwilę.
         new:
+          destroy:
+            button: Usuń wszystkich prywatnych uczestników
+            title: Usuń prywatnych uczestników
           explanation: 'Prześlij swój plik CSV. Plik musi składać się z dwóch kolumn: w pierwszej kolumnie adresy e-mail, w drugiej kolumnie imiona (adres e-mail, imię) użytkowników, których chcesz dodać do przestrzeni partycypacyjnej; bez nagłówków. Unikaj używania niepoprawnych znaków takich jak `<>?%&^*#@()[]=+:;"{}\|` w imieniu użytkownika.'
           title: Prześlij swój plik CSV
           upload: Prześlij
+      reminders:
+        create:
+          error: Wystąpił błąd podczas tworzenia przypomnień.
+          success:
+            one: "%{count} użytkownik otrzyma przypomnienie."
+            few: "%{count} użytkowników otrzyma przypomnienie."
+            many: "%{count} użytkowników otrzyma przypomnienie."
+            other: "%{count} użytkowników otrzyma przypomnienie."
+        new:
+          submit: Wyślij
       resource_permissions:
         edit:
           submit: Zatwierdź
@@ -901,6 +915,7 @@ pl:
         gallery:
           add_images: Dodaj obrazy
           delete_image: Usuń obraz
+          edit_images: Edytuj obrazy
           gallery_legend: Dodaj galerię obrazów (opcjonalnie)
       static_page_topics:
         create:
@@ -961,7 +976,7 @@ pl:
         static_pages: Strony
         statistics: Aktywność
         user_groups: Grupy użytkowników
-        users: Użytkownicy
+        users: Administratorzy
       user_group:
         csv_verify:
           invalid: Wystąpił błąd podczas odczytu pliku CSV.
@@ -997,7 +1012,7 @@ pl:
           role: Rola
         new:
           create: Zaproś
-          title: Zaproś użytkownika jako administratora
+          title: Zaproś nowego administratora
       users_statistics:
         users_count:
           admins: Administratorzy

@@ -1,10 +1,7 @@
+---
 lt:
   activemodel:
     attributes:
-      agenda:
-        description: Aprašymas
-        duration: Trukmė
-        title: Pavadinimas
       close_meeting:
         attendees_count: Dalyvių skaičius
         attending_organizations: Dalyvavusių organizacijų sąrašas
@@ -22,7 +19,6 @@ lt:
         decidim_scope_id: Apimtis
         decidim_user_group_id: Naudotojų grupė
         description: Aprašymas
-        end_time: Pabaigos laikas
         id: ID
         location: Vieta
         location_hints: Vietos užuomina
@@ -35,8 +31,6 @@ lt:
         registration_terms: Registracijos sąlygos
         registration_url: Registracijos URL
         registrations_enabled: Registracijos įjungtos
-        show_embedded_iframe: Rodyti šiame URL įterptąjį „iframe“
-        start_time: Pradžios Laikas
         title: Pavadinimas
         transparent: Skaidrus
         type_of_meeting: Tipas
@@ -95,20 +89,20 @@ lt:
             values:
               'false': Praėję
               'true': Artėjantys
-          origin_eq:
-            label: Kilmė
-            values:
-              citizen: Pilietis
-              official: Oficialus
-              user_group: Naudotojų Grupės
           scope_id_eq:
             label: Apimtis
-          type_eq:
+          with_any_origin:
+            label: Kilmė
+            values:
+              official: Oficialūs
+              participants: Dalyvis
+              user_group: Naudotojų Grupės
+          with_any_type:
             label: Susitikimo tipas
             values:
               hybrid: Hibridiniai
               in_person: Fizinis
-              online: Virtualūs
+              online: Internetiniai
       meeting_copies:
         create:
           error: Dubliuojant šį susitikimą iškilo problema.
@@ -290,9 +284,6 @@ lt:
           edit:
             close: Uždaryti
             title: Baigti susirinkimą
-        meeting_copies:
-          form:
-            select_a_meeting_type: Prašome pasirinkti susirinkimo tipą
         meetings:
           close:
             invalid: Užbaigiant šį susirinkimą iškilo problema
@@ -313,17 +304,15 @@ lt:
             update: Atnaujinti
           form:
             address_help: 'Adresas: jį naudoja „Geocoder“, kad rastų vietą'
-            available_slots_help: Jei nėra ribojimų įrašykite 0
             disclaimer: 'Perspėjimas: Naudodami išorinę registracijos sistemą, %{organization} nėra atsakinga už dalyvių duomenų tvarkymą.'
             location_help: 'Vieta: naudotojams skirtas pranešimas, kuriame nurodoma susitikimo vieta'
             location_hints_help: 'Vietos priedėliai: papildoma informacija kaip pvz. buto numeris, iš kurios pusės įeiti ir t. t.'
             online_meeting_url_help: 'Nuoroda: leisti dalyviams tiesiai prisijungti prie susirinkimo'
-            registration_email_help: Šis tekstas bus rodomas registracijos patvirtinimo el. laiško viduryje. Iš karto po registracijos kodo.
             registration_url_help: 'Nuoroda: leisti dalyviams eiti į išorinę registracijos sistemą'
             select_a_meeting_type: Prašome pasirinkti susirinkimo tipą
             select_a_registration_type: Prašome pasirinkti registracijos tipą
             select_an_iframe_access_level: Pasirinkite iframe prieigos lygį
-            show_embedded_iframe_help: Tik kelios paslaugos gali būti integruotos susitikimuose (YouTube, Twitch, Jitsi)
+            show_embedded_iframe_help: 'Tik kelios paslaugos leidžia integruotis susitikimuose iš šių domenų: %{domains}'
           index:
             title: Susirinkimai
           new:
@@ -366,6 +355,7 @@ lt:
             available_slots_help: Jei nėra ribojimų įrašykite 0.
             invites: Pakvietimai
             recommendation_message: Dėl privatumo priežasčių rekomenduojame ištrinti šią įrašo formą, kai jos nebereikės. Pagal numatytuosius parametrus, ji ištrinama praėjus 3 mėnesiams nuo susirinkimo pabaigos.
+            registration_email_help: Šis tekstas bus rodomas registracijos patvirtinimo el. laiško viduryje. Iš karto po registracijos kodo.
             registration_form: Registracijos forma
             registrations_count:
               one: Yra %{count} registracija.
@@ -395,6 +385,8 @@ lt:
           value_types:
             organizer_presenter:
               not_found: 'Organizatorius duomenų bazėje nerastas (ID: %{id})'
+        questionnaire:
+          update: "%{user_name} atnaujino klausimyną %{meeting_name} susirinkimui"
       application_helper:
         filter_category_values:
           all: Visi
@@ -405,7 +397,19 @@ lt:
       calendar_modal:
         calendar_url: Kalendoriaus URL
         close_window: Uždaryti langą
+        copy_calendar_url: Kopijuoti
+        copy_calendar_url_clarification: Kopijuoti kalendoriaus URL į iškarpinę
+        copy_calendar_url_copied: Nukopijuota!
+        copy_calendar_url_description: Kalendoriaus programėlėje galite matyti visus paskelbtus susitikimus. Nukopijuokite ir įklijuokite šį URL į savo kalendorių naudodami parinktį „Pridėti naują kalendorių iš URL“.
+        copy_calendar_url_explanation: Atkreipkite dėmesį, kad eksportuojate pasirinktus susirinkimus (nes yra aktyvių filtrų). Jei norėtumėt eksportuoti viską, pirmiausiai panaikinkite filtrus.
+        copy_calendar_url_message: Nuoroda sėkmingai nukopijuota į iškarpinę.
         export_calendar: Eksportuoti kalendorių
+      close_meeting_reminder_mailer:
+        close_meeting_reminder:
+          body: Susirinkimas<a href="%{meeting_path}">%{meeting_title}</a> laukia būti uždarytas. Prašau pridėkite susirinkimo ataskaitą paspausdami "Uždaryti susirinkimą".
+          greetings: Sveiki, <br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
+          hello: Sveiki %{username},
+          subject: Dabar galite uždaryti susirinkimą su ataskaita %{organization_name} platformoje
       conference_venues: Konferencijos vietos
       content_blocks:
         upcoming_meetings:
@@ -482,8 +486,8 @@ lt:
           origin: Kilmė
           origin_values:
             all: Visi
-            citizens: Piliečiai
             official: Oficialus
+            participants: Dalyviai
             user_groups: Grupės
           scope: Apimtis
           search: Ieškoti
@@ -511,7 +515,7 @@ lt:
           select_a_meeting_type: Pasirinkite susitikimo tipą
           select_a_registration_type: Pasirinkite registracijos tipą
           select_an_iframe_access_level: Pasirinkite iframe prieigos lygį
-          show_embedded_iframe_help: Tik kelios paslaugos gali būti integruotos susitikimuose (YouTube, Twitch, Jitsi)
+          show_embedded_iframe_help: 'Tik kelios paslaugos leidžia įterpti susitikimą ar tiesioginį įvykį iš šių domenų: %{domains}'
         index:
           click_here: Žiūrėti visus susitikimus
           new_meeting: Naujas susitikimas

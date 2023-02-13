@@ -15,6 +15,20 @@ module Decidim
       end)
     end
 
+    def apple_favicon
+      icon_image = current_organization.attached_uploader(:favicon).variant_url(:medium, host: current_organization.host)
+      return unless icon_image
+
+      favicon_link_tag(icon_image, rel: "apple-touch-icon", type: "image/png")
+    end
+
+    def legacy_favicon
+      icon_image = current_organization.attached_uploader(:favicon).variant_url(:small, host: current_organization.host)
+      return unless icon_image
+
+      favicon_link_tag(icon_image.gsub(".png", ".ico"), rel: "icon", sizes: "any", type: nil)
+    end
+
     # Outputs an SVG-based icon.
     #
     # name    - The String with the icon name.
@@ -74,8 +88,11 @@ module Decidim
       classes = _icon_classes(options) + ["external-icon"]
 
       if path.split(".").last == "svg"
+        icon_path = application_path(path)
+        return unless icon_path
+
         attributes = { class: classes.join(" ") }.merge(options)
-        asset = File.read(application_path(path))
+        asset = File.read(icon_path)
         asset.gsub("<svg ", "<svg#{tag_builder.tag_options(attributes)} ").html_safe
       else
         image_pack_tag(path, class: classes.join(" "), style: "display: none")
@@ -83,9 +100,14 @@ module Decidim
     end
 
     def application_path(path)
-      img_path = asset_pack_path(path)
-      img_path = URI(img_path).path if Decidim.cors_enabled
-      Rails.root.join("public/#{img_path}")
+      # Force the path to be returned without the protocol and host even when a
+      # custom asset host has been defined. The host parameter needs to be a
+      # non-nil because otherwise it will be set to the asset host at
+      # ActionView::Helpers::AssetUrlHelper#compute_asset_host.
+      img_path = asset_pack_path(path, host: "", protocol: :relative)
+      Rails.public_path.join(img_path.sub(%r{^/}, ""))
+    rescue ::Webpacker::Manifest::MissingEntryError
+      nil
     end
 
     # Allows to create role attribute according to accessibility rules
@@ -107,7 +129,7 @@ module Decidim
       extra_items = items.slice((max_items + 1)..-1) || []
       active_item = items.find { |item| item[:active] }
 
-      render partial: "decidim/shared/extended_navigation_bar.html", locals: {
+      controller.view_context.render partial: "decidim/shared/extended_navigation_bar", locals: {
         items: items,
         extra_items: extra_items,
         active_item: active_item,

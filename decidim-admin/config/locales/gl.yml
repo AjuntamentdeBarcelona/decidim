@@ -1,3 +1,4 @@
+---
 gl:
   activemodel:
     attributes:
@@ -172,7 +173,7 @@ gl:
         reject: Rexeitar
         share: Compartir
         user:
-          new: Novo usuario
+          new: Novo administrador
         verify: Verifique
       admin_terms_of_use:
         accept:
@@ -251,6 +252,8 @@ gl:
         update:
           error: Produciuse un erro ao actualizar este anexo.
           success: Adxunto actualizado correctamente.
+      attachments_privacy_warning:
+        message: Ten coidado ao traballar con ficheiros anexos nun espazo privado. Calquera participante podería compartir este documento con outra xente.
       autocomplete:
         no_results: Non se atoparon resultados
         search_prompt: Escriba polo menos tres caracteres para buscar
@@ -331,7 +334,7 @@ gl:
       dashboard:
         show:
           view_more_logs: Ver máis rexistros
-          welcome: Benvido ao Panel de administración de decisións.
+          welcome: Benvido/a ao panel de administración.
       domain_whitelist:
         form:
           domain_too_short: Dominio curto de máis
@@ -815,6 +818,14 @@ gl:
           explanation: 'Sube o teu ficheiro CSV. Ten de ter dúas columnas co correo electrónico na primeira e o nome na última (correo, nome) dos usuarios que desexes engadir ao espazo de participación, sen cabeceiras. Evita empregar os seguintes caracteres `<>?%&^*#@()[]=+:;"{}\|` no nome de usuario.'
           title: Sube o teu ficheiro CSV
           upload: Subir
+      reminders:
+        create:
+          error: Produciuse un problema ao crear os recordatorios.
+          success:
+            one: "Lembrarase a %{count} usuario."
+            other: "Lembrarase a %{count} usuarios."
+        new:
+          submit: Enviar
       resource_permissions:
         edit:
           submit: Enviar
@@ -872,6 +883,7 @@ gl:
         gallery:
           add_images: Engadir imaxes
           delete_image: Eliminar imaxe
+          edit_images: Editar imaxes
           gallery_legend: Engadir unha galería de imaxes (opcional)
       static_page_topics:
         create:
@@ -932,7 +944,7 @@ gl:
         static_pages: Páxinas
         statistics: Actividade
         user_groups: Grupos de usuarios
-        users: Participantes
+        users: Administradores
       user_group:
         csv_verify:
           invalid: Produciuse un erro ao ler o ficheiro CSV.
@@ -968,7 +980,7 @@ gl:
           role: Rol
         new:
           create: Invitar
-          title: Convidar ao usuario como administrador
+          title: Convidar a un novo administrador
       users_statistics:
         users_count:
           admins: Administradores

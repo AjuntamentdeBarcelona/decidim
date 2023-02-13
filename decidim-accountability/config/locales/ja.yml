@@ -1,3 +1,4 @@
+---
 ja:
   activemodel:
     attributes:
@@ -21,6 +22,7 @@ ja:
       timeline_entry:
         description: 説明
         entry_date: 日付
+        title: タイトル
     models:
       decidim/accountability/proposal_linked_event: 結果に提案を含めます
       decidim/accountability/result_progress_updated_event: 結果の進捗状況が更新されました
@@ -47,7 +49,29 @@ ja:
           results: 結果
         import_results:
           new:
+            download_export: CSV形式でエクスポートをダウンロード
             import: インポート
+            info: |
+              <p>以下の手順をお勧めします:</p>
+              <ol>
+              <li><a href='%{link_new_status}' target='_blank'>追加したい結果のステータスを作成する</a></li>
+              <li><a href='%{link_new_result}' target='_blank'>インポートを使用する前に、この管理パネルから少なくとも1つの結果を手動で作成し、フォーマットと必要事項をよりよく理解できるようにしてください。</a></li>
+              <li>%{link_export_csv}</li>
+              <li>ローカルで変更します。変更できるのは、CSVの以下の列のみです:
+                <ul>
+                <li><b>category/id:</b> カテゴリのID</li>
+                <li><b>scope/id:</b> スコープのID</li>
+                <li><b>parent/id:</b> 関連する結果の親ID. (オプション)</li>
+                <li><b>title/en:</b> 英語のタイトル これはプラットフォームの言語設定に依存します.</li>
+                <li><b>description/en:</b> 英語の説明. これはプラットフォームの言語設定に依存します.</li>
+                <li><b>start_date:</b> 結果の実行開始日 (YYYY-MM-DD形式)</li>
+                <li><b>end_date:</b> 結果の実行終了日 (YYYY-MM-DD形式)</li>
+                <li><b>status/id:</b> 結果のステータスID</li>
+                <li><b>progress:</b> 進行のパーセンテージ(0 〜 100)</li>
+                <li><b>proposals_ids:</b> 関連する提案の内部ID（カンマ区切り）. 自動的に<span class='attribute-name'>proposal_url</span>に変換されます</li>
+                </ul>
+              </li>
+              </ol>
             title: CSVから結果をインポート
         imports:
           create:
@@ -118,6 +142,14 @@ ja:
           create: "%{user_name} が結果 %{resource_name} を %{space_name} に作成しました"
           delete: "%{user_name} が %{resource_name} の結果 %{space_name} を削除しました"
           update: "%{user_name} の結果 %{resource_name} を %{space_name} に更新しました"
+        status:
+          create: "%{user_name} が %{resource_name} ステータスを作成しました"
+          delete: "%{user_name} が %{resource_name} ステータスを削除しました"
+          update: "%{user_name} が %{resource_name} ステータスを更新しました"
+        timeline_entry:
+          create: "%{user_name} が %{resource_name} タイムラインエントリを作成しました"
+          delete: "%{user_name} が %{resource_name} タイムラインエントリを削除しました"
+          update: "%{user_name} が %{resource_name} タイムラインエントリを更新しました"
         value_types:
           parent_presenter:
             not_found: '親がデータベース上に見つかりませんでした (ID: %{id})'
@@ -155,8 +187,8 @@ ja:
             progress: 進捗状況
         timeline_entry:
           fields:
-            description: 説明
             entry_date: 日付
+            title: タイトル
       result_m:
         executed: 実行日時
         view: 表示

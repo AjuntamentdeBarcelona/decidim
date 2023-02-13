@@ -1,7 +1,9 @@
+---
 ro:
   activemodel:
     attributes:
       initiative:
+        decidim_scope_id: Domeniu de interes
         decidim_user_group_id: Autor
         description: Descriere
         offline_votes: Semnături în persoană
@@ -24,6 +26,7 @@ ro:
         banner_image: Imagine banner
         child_scope_threshold_enabled: Activează semnăturile pentru domeniul de interes copil
         collect_user_extra_fields: Colectarea datelor cu caracter personal ale participantului la semnătură
+        comments_enabled: Comentarii activate
         custom_signature_end_date_enabled: Permite autorilor să aleagă sfârșitul perioadei de colectare a semnăturilor
         description: Descriere
         document_number_authorization_handler: Autorizare pentru verificarea numărului documentului pe semnături
@@ -35,6 +38,8 @@ ro:
         title: Titlu
         undo_online_signatures_enabled: Permite participanților să își anuleze semnăturile online
         validate_sms_code_on_votes: Adaugă etapa validării codului SMS la procesul de semnare
+      initiatives_type_scope:
+        decidim_scopes_id: Domenii de interes
       initiatives_vote:
         date_of_birth: Data naşterii
         document_number: Număr document
@@ -54,10 +59,6 @@ ro:
               title: Titlul nu ar trebui să fie gol
   activerecord:
     models:
-      decidim/initiative:
-        one: Inițiativă
-        few: Initații
-        other: Initații
       decidim/initiative_comittee:
         one: Comitet
         few: Grupuri

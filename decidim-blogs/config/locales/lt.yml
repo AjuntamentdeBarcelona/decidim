@@ -1,5 +1,9 @@
+---
 lt:
   activemodel:
+    attributes:
+      post:
+        published_at: Paskelbimo laikas
     models:
       decidim/blogs/create_post_event: Naujas tinklaraščio įrašas
   activerecord:
@@ -12,16 +16,14 @@ lt:
   decidim:
     blogs:
       actions:
+        author_id: Sukurti įrašą kaip
         confirm_destroy: Ar tikrai norite ištrinti šį įrašą?
         destroy: Ištrinti
         edit: Redaguoti
         new: Naujas įrašas
         title: Veiksmai
-        user_group_id: Sukurti įrašą kaip
       admin:
         models:
-          components:
-            body: Pagrindinė dalis
           post:
             name: Publikacija
         posts:
@@ -41,6 +43,11 @@ lt:
           update:
             invalid: Išsaugant šį įrašą iškilo problema.
             success: Įrašas išsaugotas
+      admin_log:
+        post:
+          create: "%{user_name} sukūrė %{resource_name} tinklaraščio įrašą %{space_name}"
+          delete: "%{user_name} ištrynė %{resource_name} tinklaraščio įrašą iš %{space_name}"
+          update: "%{user_name} atnaujino %{resource_name} tinklaraščio įrašą %{space_name}"
       last_activity:
         new_post_at_html: "<span> Naujas įrašas %{link}</span>"
       models:
@@ -49,7 +56,7 @@ lt:
             author: Autorė(-ius)
             body: Pagrindinė dalis
             created_at: Sukurta
-            title: pavadinimas
+            official_blog_post: Oficiali publikacija
       posts:
         show:
           back: Grįžti į sąrašą

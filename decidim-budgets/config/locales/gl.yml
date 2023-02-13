@@ -1,3 +1,4 @@
+---
 gl:
   activemodel:
     attributes:
@@ -97,6 +98,12 @@ gl:
             create: Importa propostas a proxectos
             no_components: Non existen outros compoñentes de proposta neste espazo participativo para importar as propostas en proxectos.
             select_component: Selecciona un compoñente
+        reminders:
+          orders:
+            description: Os usuarios recibirán un correo coas ligazóns aos orzamentos onde teñen ordes pendentes.
+            title:
+              one: Estás a punto de enviar un correo recordatorio a %{count} usuario
+              other: Estás a punto de enviar un correo recordatorio a %{count} usuarios
       admin_log:
         project:
           create: "%{user_name} creou o proxecto %{resource_name} no espazo %{space_name}"
@@ -203,7 +210,6 @@ gl:
           votes:
             one: voto
             other: votos
-          you_voted: Votaches isto
         project_budget_button:
           add: Engadir ao teu voto
           add_descriptive: Engadir o proxecto %{resource_name} ao teu voto
@@ -213,6 +219,9 @@ gl:
         show:
           budget: Orzamento
           view_all_projects: Ver todos os proxectos
+      vote_reminder_mailer:
+        vote_reminder:
+          email_outro: Por favor, lembra completar a voto. Para votar, tes que seleccionar a proposta ou propostas para as que desexas votar e despois confirmar o teu voto premendo o botón "Votat".
     components:
       budgets:
         actions:

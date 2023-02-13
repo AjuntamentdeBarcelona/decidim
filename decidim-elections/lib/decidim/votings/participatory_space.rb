@@ -51,7 +51,7 @@ Decidim.register_participatory_space(:votings) do |participatory_space|
           Decidim::Faker::Localized.paragraph(sentence_count: 3)
         end,
         scope: n.positive? ? nil : Decidim::Scope.reorder(Arel.sql("RANDOM()")).first,
-        banner_image: ActiveStorage::Blob.create_after_upload!(
+        banner_image: ActiveStorage::Blob.create_and_upload!(
           io: File.open(File.join(seeds_root, "city.jpeg")),
           filename: "banner_image.jpeg",
           content_type: "image/jpeg",
@@ -99,8 +99,8 @@ Decidim.register_participatory_space(:votings) do |participatory_space|
           user.update!(
             name: Faker::Name.name,
             nickname: Faker::Twitter.unique.screen_name,
-            password: "decidim123456",
-            password_confirmation: "decidim123456",
+            password: "decidim123456789",
+            password_confirmation: "decidim123456789",
             organization: organization,
             confirmed_at: Time.current,
             locale: I18n.default_locale,

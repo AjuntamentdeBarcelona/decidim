@@ -5,7 +5,7 @@ module Decidim
     module Admin
       # A command with all the business logic when updating an existing
       # voting in the system.
-      class UpdateVoting < Rectify::Command
+      class UpdateVoting < Decidim::Command
         include ::Decidim::AttachmentAttributesMethods
 
         # Public: Initializes the command.
@@ -67,7 +67,8 @@ module Decidim
             scope: form.scope,
             promoted: form.promoted,
             voting_type: form.voting_type,
-            census_contact_information: form.census_contact_information
+            census_contact_information: form.census_contact_information,
+            show_check_census: form.show_check_census
           }.merge(attachment_attributes(*image_fields))
         end
       end

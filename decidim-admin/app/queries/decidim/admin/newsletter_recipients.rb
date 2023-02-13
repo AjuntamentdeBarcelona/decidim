@@ -4,7 +4,7 @@ module Decidim
   module Admin
     # A class used to find the recipients of the
     # Newsletter depending on the params of the form
-    class NewsletterRecipients < Rectify::Query
+    class NewsletterRecipients < Decidim::Query
       # Syntactic sugar to initialize the class and return the queried objects.
       #
       # form - params to filter the query
@@ -56,7 +56,7 @@ module Decidim
           if type.ids.include?("all")
             object_class.where(organization: @organization)
           else
-            object_class.where(id: type.ids.reject(&:blank?))
+            object_class.where(id: type.ids.compact_blank)
           end
         end.flatten.compact
       end

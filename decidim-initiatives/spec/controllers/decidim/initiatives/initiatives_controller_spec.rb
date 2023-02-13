@@ -20,6 +20,18 @@ describe Decidim::Initiatives::InitiativesController, type: :controller do
       expect(subject.helpers.initiatives).not_to include(created_initiative)
     end
 
+    context "when no order is given" do
+      let(:voted_initiative) { create(:initiative, organization: organization) }
+      let!(:vote) { create(:initiative_user_vote, initiative: voted_initiative) }
+      let!(:initiatives_settings) { create(:initiatives_settings, :most_signed) }
+
+      it "return in the default order" do
+        get :index, params: { order: "most_voted" }
+
+        expect(subject.helpers.initiatives.first).to eq(voted_initiative)
+      end
+    end
+
     context "when order by most_voted" do
       let(:voted_initiative) { create(:initiative, organization: organization) }
       let!(:vote) { create(:initiative_user_vote, initiative: voted_initiative) }
@@ -92,12 +104,16 @@ describe Decidim::Initiatives::InitiativesController, type: :controller do
   end
 
   describe "Edit initiative as promoter" do
+    include ActionView::Helpers::TextHelper
+
     before do
       sign_in created_initiative.author, scope: :user
     end
 
     let(:valid_attributes) do
       attrs = attributes_for(:initiative, organization: organization)
+      attrs[:title] = truncate(translated(attrs[:title]), length: 150, omission: "")
+      attrs[:description] = Decidim::HtmlTruncation.new(translated(attrs[:description]), max_length: 150, tail: "").perform
       attrs[:signature_end_date] = I18n.l(attrs[:signature_end_date], format: :decidim_short)
       attrs[:signature_start_date] = I18n.l(attrs[:signature_start_date], format: :decidim_short)
       attrs[:type_id] = created_initiative.type.id

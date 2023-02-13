@@ -1,3 +1,4 @@
+---
 ga:
   activemodel:
     attributes:
@@ -47,7 +48,6 @@ ga:
           all: Uile
           category: Catagóir
           category_prompt: Roghnaigh catagóir
-          citizens: Saoránaigh
           official: Oifigiúil
           origin: Bunús
           scope: Scóip

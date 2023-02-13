@@ -1,9 +1,13 @@
+---
 fi-pl:
   activemodel:
     attributes:
       assemblies_setting:
         enable_organization_chart: Ota organisaatiokaavio käyttöön
+      assemblies_type:
+        title: Otsikko
       assembly:
+        announcement: Ilmoitus
         area_id: Alue
         assembly_type: Ryhmän tyyppi
         assembly_type_other: Muu ryhmän tyyppi
@@ -22,12 +26,16 @@ fi-pl:
         decidim_scope_id: Teema
         description: Kuvaus
         developer_group: Perustajaryhmä
+        document: Asiakirja
         domain: Toimintaympäristö
         duration: Kesto
         facebook: Facebook
         github: GitHub
         hashtag: Aihetunniste (hashtag)
         hero_image: Etusivun kuva
+        import_attachments: Tuo liitteitä
+        import_categories: Tuo aihepiirejä
+        import_components: Tuo komponentteja
         included_at: Mukana osoitteessa
         instagram: Instagram
         internal_organisation: Sisäinen organisaatio
@@ -64,6 +72,7 @@ fi-pl:
         non_user_avatar: Avatar
         position: Asema
         user_id: Käyttäjä tai ryhmä
+        weight: Järjestysnumero
       assembly_user_role:
         email: Sähköposti
         name: Nimi
@@ -73,7 +82,7 @@ fi-pl:
         assembly:
           attributes:
             document:
-              invalid_document_type: 'Virheellinen asiakirjan muoto. Hyväksytyt tiedostomuodot ovat: %{valid_mime_types}'
+              allowed_file_content_types: 'Virheellinen tiedostomuoto. Ainoastaan seuraavat tiedostomuodot on sallittu: %{types}'
   activerecord:
     models:
       decidim/assembly:
@@ -242,6 +251,9 @@ fi-pl:
     admin_log:
       assembly:
         create: "%{user_name} loi %{resource_name} ryhmän"
+        duplicate: "%{user_name} kopioi ryhmän %{resource_name}"
+        export: "%{user_name} vei ryhmän %{resource_name}"
+        import: "%{user_name} toi ryhmän %{resource_name}"
         publish: "%{user_name} julkaisi %{resource_name} ryhmän"
         unpublish: "%{user_name} lopetti %{resource_name} ryhmän julkaisemisen"
         update: "%{user_name} päivitti %{resource_name} ryhmän"
@@ -270,7 +282,7 @@ fi-pl:
             duration_help: Jos ryhmän kesto on rajoitettu, valitse päättymispäivä. Muussa tapauksessa se näkyy määrittelemättömänä.
             filters: Suodattimet
             images: kuvat
-            included_at_help: Valitse päivämäärä, jolloin ryhmä lisättiin Decidimiin. Sen ei välttämättä tarvitse olla sama kuin luomispäivä.
+            included_at_help: Valitse päivämäärä, jolloin tämä ryhmä lisättiin alustalle. Sen ei välttämättä tarvitse olla sama kuin luontipäivä.
             metadata: metadata
             other: muut
             select_a_created_by: Valitse luoja

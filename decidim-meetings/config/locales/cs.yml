@@ -1,10 +1,7 @@
+---
 cs:
   activemodel:
     attributes:
-      agenda:
-        description: Popis
-        duration: Doba trvání
-        title: Název
       close_meeting:
         attendees_count: Počet účastníků
         attending_organizations: Seznam organizací, které se zúčastnily
@@ -24,6 +21,7 @@ cs:
         description: Popis
         end_time: Čas ukončení
         id: ID
+        iframe_embed_type: Typ vloženého rámu
         location: Umístění
         location_hints: Nápověda k poloze
         online_meeting_url: URL online schůzky
@@ -33,13 +31,26 @@ cs:
         registration_email_custom_content: Přizpůsobený obsah registračního e-mailu
         registration_form_enabled: Registrační formulář je povolen
         registration_terms: Podmínky registrace
+        registration_type: Typ registrace
         registration_url: URL registrace
         registrations_enabled: Registrace povoleny
-        show_embedded_iframe: Zobrazit vložený iframe pro tuto URL
+        reserved_slots: Rezervované sloty pro tuto schůzku
         start_time: Čas zahájení
         title: Název
         transparent: Transparentní
         type_of_meeting: Typ
+      meeting_agenda:
+        title: Název
+        visible: Viditelné
+      meeting_agenda_items:
+        description: Popis
+        duration: Doba trvání
+        title: Název
+      meeting_registration_invite:
+        email: E-mail
+        name: Jméno
+      validate_registration_code:
+        code: Kód
     errors:
       models:
         meeting:
@@ -95,15 +106,15 @@ cs:
             values:
               'false': Minulé
               'true': Nadcházející
-          origin_eq:
-            label: Původ
-            values:
-              citizen: Občané
-              official: Úředník
-              user_group: Skupiny uživatelů
           scope_id_eq:
             label: Oblast působnosti
-          type_eq:
+          with_any_origin:
+            label: Původ
+            values:
+              official: Úředník
+              participants: Účastník
+              user_group: Skupiny uživatelů
+          with_any_type:
             label: Typ schůzky
             values:
               hybrid: Hybridní
@@ -290,9 +301,6 @@ cs:
           edit:
             close: Zavřít
             title: Zavřete schůzku
-        meeting_copies:
-          form:
-            select_a_meeting_type: Vyberte prosím typ schůzky
         meetings:
           close:
             invalid: Při setkání došlo k problému
@@ -313,17 +321,15 @@ cs:
             update: Aktualizace
           form:
             address_help: 'Adresa: použita Geocoderem k nalezení polohy'
-            available_slots_help: Ponechte 0, pokud máte k dispozici neomezený počet slotů
             disclaimer: 'Prohlášení o zřeknutí: Použitím externího registračního systému jste si vědomi toho, že organizátoři %{organization} nejsou odpovědní za data poskytovaná uživateli externí službě.'
             location_help: 'Poloha: zpráva určená uživatelům, kteří předávají místo, aby se setkali'
             location_hints_help: 'Upřesnění k místu: dodatečné informace. Příklad: patro budovy, pokud se jedná o osobní schůzku, nebo vstupní heslo pro schůzku, pokud se jedná o schůzku s omezeným přístupem.'
             online_meeting_url_help: 'Odkaz: Umožnit účastníkům připojení přímo k vaší schůzce'
-            registration_email_help: Tento text se zobrazí uprostřed potvrzení registračním e-mailem. Hned za registračním kódem.
             registration_url_help: 'Odkaz: umožnit účastníkům jít na externí službu, kterou používáte pro registrace'
             select_a_meeting_type: Vyberte prosím typ schůzky
             select_a_registration_type: Vyberte prosím typ registrace
             select_an_iframe_access_level: Vyberte prosím úroveň přístupu iframe
-            show_embedded_iframe_help: Pouze pár služeb umožňuje vložení do schůzky nebo živé události (YouTube, Twitch a Jitsi)
+            show_embedded_iframe_help: 'Pouze pár služeb umožňuje vložení do schůzky nebo živé události z následujících domén: %{domains}'
           index:
             title: Setkání
           new:
@@ -366,6 +372,7 @@ cs:
             available_slots_help: Nechte to na 0, pokud máte k dispozici neomezené sloty.
             invites: Pozvánky
             recommendation_message: Z důvodu ochrany osobních údajů doporučujeme odstranit tento nadepsaný formulář, když jej již nepotřebujete. Ve výchozím nastavení je to 3 měsíce po ukončení schůzky.
+            registration_email_help: Tento text se zobrazí uprostřed potvrzení registračním e-mailem. Hned za registračním kódem.
             registration_form: Registrační formulář
             registrations_count:
               one: Byla zde registrace %{count}.
@@ -395,6 +402,8 @@ cs:
           value_types:
             organizer_presenter:
               not_found: 'Organizátor nebyl nalezen v databázi (ID: %{id})'
+        questionnaire:
+          update: "%{user_name} aktualizoval dotazník pro schůzku %{meeting_name}"
       application_helper:
         filter_category_values:
           all: Vše
@@ -405,7 +414,19 @@ cs:
       calendar_modal:
         calendar_url: Adresa URL kalendáře
         close_window: Zavřete okno
+        copy_calendar_url: Kopírovat
+        copy_calendar_url_clarification: Kopírovat URL kalendáře do schránky
+        copy_calendar_url_copied: Zkopírováno!
+        copy_calendar_url_description: Všechny zveřejněné schůzky můžete vidět v aplikaci nebo poskytovateli kalendáře. Zkopírujte a vložte tuto URL do kalendáře pomocí možnosti "Přidat nový kalendář z URL".
+        copy_calendar_url_explanation: Vezměte prosím na vědomí, že exportujete výběr schůzek, protože existují aktivní filtry. Pokud si přejete exportovat všechny, resetujte nejprve všechny filtry.
+        copy_calendar_url_message: URL byla úspěšně zkopírována do schránky.
         export_calendar: Exportovat kalendář
+      close_meeting_reminder_mailer:
+        close_meeting_reminder:
+          body: Schůzka <a href="%{meeting_path}">"%{meeting_title}"</a> čeká na ukončení. Přidejte prosím zprávu o schůzce pomocí tlačítka "Zavřít schůzku".
+          greetings: Dobrý den,<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
+          hello: Dobrý den %{username},
+          subject: Nyní můžete svou schůzku uzavřít se zprávou o platformě %{organization_name}
       conference_venues: Konferenční prostory
       content_blocks:
         upcoming_meetings:
@@ -482,8 +503,8 @@ cs:
           origin: Původ
           origin_values:
             all: Vše
-            citizens: Občané
             official: Úředník
+            participants: Účastníci
             user_groups: Skupiny
           scope: Oblast působnosti
           search: Vyhledávání
@@ -511,7 +532,7 @@ cs:
           select_a_meeting_type: Vyberte prosím typ schůzky
           select_a_registration_type: Vyberte prosím typ registrace
           select_an_iframe_access_level: Vyberte prosím úroveň přístupu iframe
-          show_embedded_iframe_help: Pouze pár služeb umožňuje vložení do schůzky nebo živé události (YouTube, Twitch a Jitsi)
+          show_embedded_iframe_help: 'Pouze pár služeb umožňuje vložení do schůzky nebo živé události z následujících domén: %{domains}'
         index:
           click_here: Zobrazit všechny schůzky
           new_meeting: Nová schůzka

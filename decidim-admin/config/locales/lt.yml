@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -177,7 +178,7 @@ lt:
         reject: Atmesti
         share: Dalintis
         user:
-          new: Naujas naudotojas
+          new: Naujas administratorius
         verify: Patikrinti
       admin_terms_of_use:
         accept:
@@ -259,6 +260,8 @@ lt:
         update:
           error: Atnaujinant šį priedą iškilo problema.
           success: Priedas atnaujintas.
+      attachments_privacy_warning:
+        message: Elkitės atsargiai su priedais privačiose aplinkose. Bet koks dalyvis gali pasidalinti dokumentais su kitais.
       autocomplete:
         no_results: Rezultatų nerasta
         search_prompt: Įveskite bent tris raides paieškai pradėti
@@ -341,7 +344,7 @@ lt:
       dashboard:
         show:
           view_more_logs: Peržiūrėti daugiau ataskaitų
-          welcome: '„Decidim“ administratoriaus sritis.'
+          welcome: Sveiki atvykę į administratorių puslapį.
       domain_whitelist:
         form:
           domain_too_short: Domenas per trumpas
@@ -842,9 +845,25 @@ lt:
           invalid: Skaitant CSV rinkmeną iškilo problema.
           success: CSV dokumentas įkeltas sėkmingai, dalyviai kviečiami e. laišku - tai gali užtrukti.
         new:
+          destroy:
+            button: Ištrinti visus privačius dalyvius
+            confirm: Ar tikrai norite ištrinti visus privačius dalyvius? Atlikus šį veiksmą nebebus įmanoma sugražinti šių dalyvių į platformą.
+            empty: Neturite privačių dalyvių.
+            explanation: Turite %{count} privačių dalyvių.
+            title: Ištrinti privačius dalyvius
           explanation: 'Įkelkite CSV dokumentą. Jis turi turėti du stulpelius su naudotojų el. paštu pirmajame ir vardu paskutiniąjame. Dokumente neturėtų būti laukų pavadinimų ir šių simbolių naudotojų varduose "<>?%&^*#@()[]=+:;"{}\|".'
           title: Įkelkite CSV dokumentą
           upload: Įkelti
+      reminders:
+        create:
+          error: Kuriant priminimus iškilo problema.
+          success:
+            one: "%{count} naudotojui bus priminta."
+            few: "%{count} naudotojams bus priminta."
+            many: "%{count} naudotojų bus priminta."
+            other: "%{count} naudotojams bus priminta."
+        new:
+          submit: Siųsti
       resource_permissions:
         edit:
           submit: Pateikti
@@ -902,6 +921,7 @@ lt:
         gallery:
           add_images: Pridėti paveikslėlių
           delete_image: Pašalinti paveikslėlį
+          edit_images: Redaguoti paveikslėlį
           gallery_legend: Pridėti paveikslėlių galeriją (Neprivaloma)
       static_page_topics:
         create:
@@ -962,7 +982,7 @@ lt:
         static_pages: Puslapiai
         statistics: Veikla
         user_groups: Grupės
-        users: Dalyviai
+        users: Administratoriai
       user_group:
         csv_verify:
           invalid: Skaitant CSV rinkmeną iškilo problema.
@@ -998,7 +1018,7 @@ lt:
           role: Rolė
         new:
           create: Pakviesti
-          title: Kviesti dalyvį kaip administratorių
+          title: Pakviesti naują administratorių
       users_statistics:
         users_count:
           admins: Administratoriai

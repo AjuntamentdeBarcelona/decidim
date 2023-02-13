@@ -6,7 +6,7 @@ module Decidim
       module Admin
         # A command with the business logic to create census data for a
         # organization.
-        class CreateCensusData < Rectify::Command
+        class CreateCensusData < Decidim::Command
           def initialize(form, organization)
             @form = form
             @organization = organization
@@ -20,8 +20,11 @@ module Decidim
           def call
             return broadcast(:invalid) unless @form.file
 
+            data = @form.data
+            return broadcast(:invalid) unless data
+
             # rubocop:disable Rails/SkipsModelValidations
-            CsvDatum.insert_all(@organization, @form.data.values)
+            CsvDatum.insert_all(@organization, data.values)
             # rubocop:enable Rails/SkipsModelValidations
             RemoveDuplicatesJob.perform_later(@organization)
 

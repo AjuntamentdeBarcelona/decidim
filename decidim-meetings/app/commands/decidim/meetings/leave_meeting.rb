@@ -3,7 +3,7 @@
 module Decidim
   module Meetings
     # This command is executed when the user leaves a meeting.
-    class LeaveMeeting < Rectify::Command
+    class LeaveMeeting < Decidim::Command
       # Initializes a LeaveMeeting Command.
       #
       # meeting - The current instance of the meeting to be left.
@@ -18,9 +18,9 @@ module Decidim
       #
       # Broadcasts :ok if successful, :invalid otherwise.
       def call
-        @meeting.with_lock do
-          return broadcast(:invalid) unless registration
+        return broadcast(:invalid) unless registration
 
+        @meeting.with_lock do
           destroy_registration
           destroy_questionnaire_answers
           decrement_score

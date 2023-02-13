@@ -1,3 +1,4 @@
+---
 tr:
   activemodel:
     attributes:
@@ -74,7 +75,6 @@ tr:
           index:
             title: Sıralama
           new:
-            confirm: Bir sonraki düğmeye basıldığında Decidim, tarih ve saati (saniyenin kesinliği ile) kaydedecek ve zar rulosuyla birlikte, bu bilgi rastgele bir seçim oluşturmak için kullanılacak. İşlem geri alınamaz, düğme tıklandıktan sonra bu çekilişin sonucu yayınlanacak, bu forma girilen verilerle birlikte değiştirilemez, lütfen içeriği dikkatlice kontrol edin
             create: Oluştur
             title: Yeni sıralama
           show:

@@ -19,7 +19,7 @@ module Decidim
         attribute :signature_start_date, Decidim::Attributes::LocalizedDate
         attribute :signature_end_date, Decidim::Attributes::LocalizedDate
         attribute :hashtag, String
-        attribute :offline_votes, Hash[Symbol => Integer]
+        attribute :offline_votes, Hash
         attribute :state, String
         attribute :attachment, AttachmentForm
 
@@ -47,7 +47,7 @@ module Decidim
         def signature_type_updatable?
           @signature_type_updatable ||= begin
             state ||= context.initiative.state
-            state == "validating" && context.current_user.admin? || state == "created"
+            (state == "validating" && context.current_user.admin?) || state == "created"
           end
         end
 
@@ -74,7 +74,7 @@ module Decidim
         # Private: set the in-person signatures to zero for every scope
         def zero_offine_votes_with_scopes_names(model)
           model.votable_initiative_type_scopes.each_with_object({}) do |initiative_scope_type, all_votes|
-            all_votes[initiative_scope_type.decidim_scopes_id&.to_s&.to_sym || "global"] = [0, initiative_scope_type.scope_name]
+            all_votes[initiative_scope_type.decidim_scopes_id || "global"] = [0, initiative_scope_type.scope_name]
           end
         end
 
@@ -83,7 +83,7 @@ module Decidim
           model.offline_votes.delete("total")
           model.offline_votes.each_with_object({}) do |(decidim_scope_id, votes), all_votes|
             scope_name = model.votable_initiative_type_scopes.find do |initiative_scope_type|
-              initiative_scope_type.global_scope? && decidim_scope_id == "global" ||
+              (initiative_scope_type.global_scope? && decidim_scope_id == "global") ||
                 initiative_scope_type.decidim_scopes_id == decidim_scope_id.to_i
             end.scope_name
 

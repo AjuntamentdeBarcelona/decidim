@@ -1,3 +1,4 @@
+---
 pt:
   activemodel:
     attributes:
@@ -42,10 +43,6 @@ pt:
           valuator_role_id: Nome do avaliador
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Tipo de documento inválido. Os formatos aceites são: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -560,7 +557,6 @@ pt:
           all: Todos
         filter_origin_values:
           all: Todos
-          citizens: Cidadãos
           meetings: Reuniões
           official: Oficial
           user_groups: Grupos
@@ -734,12 +730,8 @@ pt:
           description: As coordenadas serão actualizadas quando clicar no botão ‘pré-visualização’. No entanto, o endereço não será alterado.
           instructions: Pode mover o ponto no mapa.
         edit:
-          add_documents: Documentos
-          add_images: Ficheiro
           attachment_legend: "(Opcional) Adicione um anexo"
           back: Voltar
-          delete_document: Apagar Documento
-          delete_image: Apagar Imagem
           gallery_legend: "(Opcional) Adicionar uma imagem ao cartão da proposta"
           select_a_category: Por favor selecione uma categoria
           send: Enviar

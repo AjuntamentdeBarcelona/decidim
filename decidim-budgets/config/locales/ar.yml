@@ -1,3 +1,4 @@
+---
 ar:
   activemodel:
     attributes:
@@ -60,6 +61,9 @@ ar:
             title: تحرير المشروع
             update: تحديث
           index:
+            actions: الإجراءات
+            cancel: إلغاء
+            change_category: تغيير الفئة
             finished_orders: الانتهاء من الأصوات
             pending_orders: في انتظار الأصوات
             title: مشاريع

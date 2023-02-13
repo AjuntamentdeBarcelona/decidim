@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -121,17 +122,17 @@ lt:
           update:
             invalid: Išsaugant šią formą iškilo problema.
             success: Forma sėkmingai išsaugota.
+      admin_log:
+        questionnaire:
+          update: "%{user_name} atnaujino %{resource_name} klausimyną"
       errors:
         answer:
           body: Pagrindinė dalis negali būti tuščia
-      files:
-        extension_allowlist: 'Priimtini formatai:'
       images:
         dimensions: "%{width} x %{height} px"
-        dimensions_info: 'Šis vaizdas bus:'
         processors:
-          resize_and_pad: Pakeisto dydžio ir užpildytas iki
-          resize_to_fit: Pakeistas dydis, kad tilptų
+          resize_and_pad: Paveikslėlio dydis buvo pakeistas į %{dimensions}.
+          resize_to_fit: Paveikslėlio dydis buvo pakeistas į %{dimensions}.
       question_types:
         files: Dokumentai
         long_answer: Ilgas atsakymas

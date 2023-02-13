@@ -1,3 +1,4 @@
+---
 el:
   activemodel:
     attributes:
@@ -38,10 +39,6 @@ el:
           valuator_role_id: Όνομα εκτιμητή
     errors:
       models:
-        participatory_text:
-          attributes:
-            document:
-              invalid_document_type: 'Μη έγκυρος τύπος εγγράφου. Οι αποδεκτές μορφές είναι: %{valid_mime_types}'
         proposal:
           attributes:
             add_documents:
@@ -486,7 +483,6 @@ el:
           all: Όλα
         filter_origin_values:
           all: Όλα
-          citizens: Πολίτες
           meetings: Συσκέψεις
           official: Επίσημη
           user_groups: Ομάδες
@@ -653,7 +649,6 @@ el:
             one: "%{count} πρόταση"
             other: "%{count} προτάσεις"
         edit:
-          add_documents: Έγγραφα
           attachment_legend: "(Προαιρετικά) Προσθήκη συνημμένου"
           back: Πίσω
           select_a_category: Επιλέξτε μια κατηγορία

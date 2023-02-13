@@ -1,3 +1,4 @@
+---
 de:
   activemodel:
     attributes:
@@ -16,8 +17,15 @@ de:
         min_selections: Nichts davon
         title: Titel
       voting:
+        banner_image: Kopf-Bild
+        census_contact_information: Kontaktinformation des Zensus
+        description: Beschreibung
         end_time: Abstimmung endet
+        promoted: Hervorgehoben
+        scope_id: Themenbereich
         start_time: Abstimmung beginnt
+        title: Titel
+        voting_type: Art der Abstimmung
     errors:
       models:
         answer:
@@ -34,6 +42,10 @@ de:
               cant_be_changed: kann nicht geändert werden
             public_key:
               cant_be_changed: kann nicht geändert werden
+        voting:
+          attributes:
+            voting_type:
+              inclusion: "%{value} ist kein gültiger Abstimmungstyp"
   activerecord:
     errors:
       models:
@@ -275,15 +287,6 @@ de:
             selected: Ausgewählt
             submit: Absenden
             title: Ergebnisse veröffentlicht
-          tally:
-            continue: Fortfahren
-            invalid: Es ist ein Problem beim Melden des Stimmenzählers aufgetreten
-            mark_as_missing: Als fehlend markieren
-            mark_as_missing_description: Alle Wahlhelfer sollten an diesem Prozess teilnehmen. Wenn ein Wahlhelfer nicht am Prozess teilnehmen kann, können Sie ihn als fehlend markieren.
-            success: Eine Meldung über das Fehlen des Wahlhelfers wurde erfolgreich ans Forum gesendet
-            tally_completion: Der Prozess wird abgeschlossen, wenn alle Wahlhelfer aktiv sind oder als fehlend markiert wurden. Mindestens %{quorum} Wahlhelfer sind erforderlich, um den Prozess abzuschließen.
-            title: Stimmenzählung
-            undo_mark_as_missing: Ein Wahlhelfer, der versehentlich als fehlend markiert wurde, kann vor Abschluss des Prozesses teilnehmen. Sie können wie gewohnt fortfahren und die fehlend-Markierung wird ignoriert.
           tally_ended:
             answer: Antwort
             not_selected: Nicht ausgewählt
@@ -293,6 +296,15 @@ de:
             submit: Resultate veröffentlichen
             success: Die Anfrage zur Veröffentlichung der Resultate wurde erfolgreich ans Bulletin Board gesendet
             title: Berechnete Ergebnisse
+          tally_started:
+            continue: Fortfahren
+            invalid: Es ist ein Problem beim Melden des Stimmenzählers aufgetreten
+            mark_as_missing: Als fehlend markieren
+            mark_as_missing_description: Alle Wahlhelfer sollten an diesem Prozess teilnehmen. Wenn ein Wahlhelfer nicht am Prozess teilnehmen kann, können Sie ihn als fehlend markieren.
+            success: Eine Meldung über das Fehlen des Wahlhelfers wurde erfolgreich ans Forum gesendet
+            tally_completion: Der Prozess wird abgeschlossen, wenn alle Wahlhelfer aktiv sind oder als fehlend markiert wurden. Mindestens %{quorum} Wahlhelfer sind erforderlich, um den Prozess abzuschließen.
+            title: Stimmenzähl-Prozess
+            undo_mark_as_missing: Ein Wahlhelfer, der versehentlich als fehlend markiert wurde, kann vor Abschluss des Prozesses teilnehmen. Sie können wie gewohnt fortfahren und die fehlend-Markierung wird ignoriert.
           vote:
             errors:
               time_after: Die Wahl läuft noch. Sie müssen bis zum Ende (%{end_time}) warten, um die Abstimmungsperiode zu schließen.
@@ -351,7 +363,6 @@ de:
           remaining_time:
             one: "<strong>%{count} Stunde %{minutes} Minuten</strong> verbleiben zur Abstimmung."
             other: "<strong>%{count} Stunden %{minutes} Minuten</strong> verbleiben zur Abstimmung."
-            zero: "<strong>%{minutes} Minuten</strong> verbleibend zur Abstimmung."
           view: Ansicht
           vote: Abstimmung
         label:
@@ -412,9 +423,9 @@ de:
         filters:
           active: Aktiv
           all: Alle
+          date: Datum
           finished: Abgeschlossen
           search: Suche
-          state: Status
           upcoming: Anstehend
         filters_small_view:
           close_modal: Dialog schließen
@@ -433,7 +444,6 @@ de:
           votes:
             one: "%{count} Stimme"
             other: "%{count} Stimmen"
-            zero: "%{count} Stimmen"
         show:
           action_button:
             change_vote: Stimme ändern
@@ -522,7 +532,7 @@ de:
             title: Wahl-Schlüssel für %{election} wiederherstellen
             upload_election_keys: Wahl-Schlüssel hochladen
             upload_icon: Symbol, das eine Download-Aktion anzeigt
-          tally_steps:
+          tally_started_steps:
             back: Zurück
             description: Die Ergebnisse dieser Wahl werden im Bulletin Board berechnet. Um diesen Prozess abzuschließen ist Ihre Teilnahme als Wahlhelfer erforderlich.
             keys:
@@ -534,12 +544,10 @@ de:
               status: Status
               task: Aufgabe
             process_warning: Sobald der Prozess gestartet ist, sollten Sie diese Seite nicht verlassen, bis der Prozess endet. Dies kann einige Minuten dauern, da alle Wahlhelfer verbunden sein müssen um den Prozess abzuschliessen.
-            start: Start
-            start_icon: Symbol, das einen Startknopf anzeigt, um die Erzeugung der Wahl-Schlüssel zu starten
+            start: Starten
             status:
               completed: Abgeschlossen
               pending: Ausstehend
-              processing: In Verarbeitung
             title: Stimmenzählung für %{election}
           update:
             error: Der Wahlstatus wurde nicht aktualisiert.
@@ -572,15 +580,12 @@ de:
               generate_legend_3: Stellen Sie sicher, dass Ihr Computer keine Kopie der Datei hat (z.B. überprüfen Sie die Download- und Desktop-Ordner).
               generate_legend_4: Machen Sie eine weitere Kopie der Datei auf einem anderen externen Gerät und speichern Sie sie an einem sehr sicheren Ort.
               submit: Einreichen
-              submit_legend: Nachdem Sie alle oben beschriebenen Schritte befolgt haben, führen Sie den Prozess durch, der den öffentlichen Identifikationsschlüssel an den Decidim-Server sendet.
               submit_title: Öffentlichen Identifikationsschlüssel einreichen
               title: Wahlhelfer-Identifikationsschlüssel
               upload: Lade deine Identifikationsschlüssel hoch
               upload_error:
                 invalid_format: Die hochgeladene Datei enthält keinen Identifikationsschlüssel.
                 invalid_key: Die Identifikationsschlüssel in der hochgeladenen Datei können nicht geladen werden.
-                invalid_public_key: Die Identifikationsschlüssel in der hochgeladenen Datei stimmen nicht mit dem öffentlichen Identifikationsschlüssel überein, der von Decidim gespeichert wird.
-              upload_legend: Decidim hat Ihren öffentlichen Identifikationsschlüssel, aber Ihr Browser hat ihn immer noch nicht. Sie müssen die Datei mit Ihren Identifikationsschlüssel aus dem Backup auf Ihren Computer importieren, das Sie nach der Generierung erstellt haben.
             not_supported_browser_description: Es sieht so aus, als ob Sie einen Webbrowser verwenden, der als Wahlhelfer nicht verwendet werden kann. Stellen Sie sicher, dass Sie die neueste Version Ihres Browsers verwenden, oder versuchen Sie, einen der üblichen Browser zu verwenden, um Ihre Wahlhelfer-Aufgaben zu erfüllen.
             not_supported_browser_title: Browser aktualisieren, um als Wahlhelfer zu agieren
             trustee_role_description: Sie wurden beauftragt, bei einigen der auf dieser Plattform gehaltenen Wahlen als Wahlhelfer zu agieren.
@@ -614,10 +619,6 @@ de:
         failed:
           header: Abstimmung fehlgeschlagen
           lead: Ihre Stimme wurde nicht abgegeben!
-          modal:
-            close: Schließen
-            communication_lost: Leider scheint die Kommunikation mit dem Abstimmungsserver (Bulletin Board) unterbrochen.<br>Möglicherweise ist die Internetverbindung gestört oder der Server ist überlastet.<br>Bitte versuche es später noch einmal oder kontaktiere den Support, falls das Problem weiterhin besteht.
-            title: Etwas ist schiefgelaufen
           text: Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.
           try_again: Erneut versuchen
         header:
@@ -641,9 +642,8 @@ de:
         onboarding_modal:
           close: Dialog schließen
           create_account: Konto erstellen
-          description: Möchten Sie ein neues Konto in Decidim erstellen? Sie können an den Prozessen teilnehmen und aktiv an der Organisation teilnehmen.
           no_account: Nein, danke.
-          title: Neu bei Decidim?
+          title: Neu auf dieser Plattform?
         verify:
           content:
             heading: Stimme verifizieren
@@ -652,7 +652,6 @@ de:
             header: Stimme nicht gefunden!
             info: Diese Kennung wurde nicht in der Wahlurne %{link} gefunden. Versuchen Sie es erneut.
           form:
-            back: Zurück zu Decidim
             submit: Überprüfen
             vote_identifier: 'Kennung:'
           header:
@@ -965,6 +964,7 @@ de:
             banner_image: Kopf-Bild
             promoted: Hervorgehoben
             select_a_voting_type: Bitte einen Abstimmungs-Typ auswählen
+            show_check_census_help: Soll der Link "Kann ich abstimmen?" im Menü "öffentliche Abstimmung" angezeigt werden
             slug: URL-Segment
             slug_help: 'URL-Slugs werden zum Generieren der URLs verwendet, die auf diese Abstimmung verweisen. Akzeptiert nur Buchstaben, Zahlen und Bindestriche und muss mit einem Buchstaben beginnen. Beispiel: %{url}'
             title: Titel
@@ -993,8 +993,6 @@ de:
           census:
             create:
               invalid: Beim Hochladen der Erhebung ist ein Problem aufgetreten, bitte versuchen Sie es später erneut.
-            creating_data:
-              info_message: "<strong>Bitte warten</strong>, %{processed_count} von %{raw_count} Zeilen aus der Datei %{file} wurden verarbeitet."
             delete:
               button: Alle Erhebungsdaten löschen
             destroy:
@@ -1007,8 +1005,6 @@ de:
               file_not_exist: Diese Datei existiert nicht
               launch_error: Beim Starten des Zugangscode-Exports ist ein Problem aufgetreten
               launch_success: Der Zugangscode-Export wurde gestartet. Sie werden in Kürze eine E-Mail an %{email} erhalten
-            exporting_access_codes:
-              info_message: "<strong>Bitte warten</strong>, der Export wird gerade vorbereitet. Sie werden ihn in Kürze an %{email} erhalten"
             freeze:
               callout: Die Erhebung ist geschlossen und kann nicht verändert werden.
             generate_access_codes:
@@ -1019,8 +1015,6 @@ de:
               info_message_warn: Bitte überprüfen Sie, dass keine Daten fehlen, denn es wurden %{data_count} Datensätze erstellt und die hochgeladene Datei %{file} enthielt %{raw_count} Zeilen.
               launch_error: Problem beim Starten der Zugangscodes Generierung
               launch_success: Codegenerierung gestartet.
-            generating_access_codes:
-              info_message: "<strong>Bitte warten Sie</strong>, die Stimmzugriffscodes werden generiert..."
             new:
               file_help:
                 explanation: 'Hinweise für die Datei:'
@@ -1136,11 +1130,11 @@ de:
         in_person_votes:
           complete_voting:
             available_answers: 'Verfügbare Antworten:'
-            census_verified: Der Teilnehmer hat noch nicht abgestimmt.
+            census_verified: Dieser Benutzer hat noch nicht persönlich gewählt.
+            census_verified_with_online_vote: Dieser Teilnehmer hat bereits online abgestimmt. Wenn er persönlich abstimmt, wird die vorherigen Abstimmung ungültig und dies wird die endgültige Abstimmung sein.
             complete_voting: Abstimmung abschliessen
             identify_another: Einen anderen Teilnehmer identifizieren
             questions_title: 'Er hat das Recht, bei folgenden Anfragen abzustimmen:'
-            questions_title_voted: 'Der Teilnehmer hat bereits online abgestimmt und kann bei folgenden Fragen abstimmen:'
             voted: Der Teilnehmer hat abgestimmt
           create:
             error: Die Stimme wurde nicht registriert. Bitte versuchen Sie es erneut.
@@ -1263,9 +1257,9 @@ de:
         filters:
           active: Aktiv
           all: Alle
+          date: Datum
           finished: Abgeschlossen
           search: Suchen
-          state: Status
           upcoming: Zukünftig
         filters_small_view:
           close_modal: Dialog schließen

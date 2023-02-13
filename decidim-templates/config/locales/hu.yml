@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     attributes:
@@ -62,5 +63,11 @@ hu:
             current_step: Lépés %{step}
             of_total_steps: 'ennyiből: %{total_steps}'
             tos_agreement: A részvétellel elfogadja az Általános Szerződési Feltételeket
+      admin_log:
+        template:
+          create: "%{user_name} létrehozta a(z) %{resource_name} kérdőív sablont"
+          delete: "%{user_name} törölte a(z) %{resource_name} kérdőív sablont"
+          duplicate: "%{user_name} duplikálta a(z) %{resource_name} kérdőív sablont"
+          update: "%{user_name} frissítette a(z) %{resource_name} kérdőív sablont"
       template_types:
         questionnaires: Kérdőívek

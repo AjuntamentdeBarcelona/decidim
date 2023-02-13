@@ -1,3 +1,4 @@
+---
 lb:
   activemodel:
     attributes:
@@ -68,12 +69,6 @@ lb:
         email: Email
         name: Name
         role: Rolle
-    errors:
-      models:
-        assembly:
-          attributes:
-            document:
-              invalid_document_type: 'Ungültiger Dokumenttyp. Zulässige Formate sind: %{valid_mime_types}'
   activerecord:
     models:
       decidim/assembly:

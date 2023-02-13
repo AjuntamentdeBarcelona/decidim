@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -121,11 +122,11 @@ lt:
           all: Visos
           category: Kategorija
           category_prompt: Pasirinkite kategoriją
-          citizens: Piliečiai
           commented: Komentuota
           my_debates: Mano diskusijos
           official: Oficialūs
           origin: Kilmė
+          participants: Dalyviai
           scope: Apimtis
           search: Ieškoti
           state: Būsena

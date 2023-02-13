@@ -1,3 +1,4 @@
+---
 es-MX:
   activemodel:
     attributes:
@@ -45,7 +46,7 @@ es-MX:
         participatory_text:
           attributes:
             document:
-              invalid_document_type: 'Tipo de documento no válido. Los formatos aceptados son: %{valid_mime_types}'
+              allowed_file_content_types: 'Tipo de documento no válido. Sólo se permiten archivos con las siguientes extensiones: %{types}'
         proposal:
           attributes:
             add_documents:
@@ -609,9 +610,9 @@ es-MX:
           all: Todos
         filter_origin_values:
           all: Todos
-          citizens: Ciudadanía
           meetings: Encuentros
           official: Oficial
+          participants: Participantes
           user_groups: Grupos de Usuarios
         filter_scope_values:
           all: Todos
@@ -674,6 +675,8 @@ es-MX:
           filter_by: Filtrado por
           unfold: Desplegar
         new:
+          add_file: Añadir archivo
+          edit_file: Editar fichero
           send: Continuar
         new_collaborative_draft_button:
           new_collaborative_draft: Nuevo borrador colaborativo
@@ -784,12 +787,12 @@ es-MX:
           description: Las coordenadas se actualizarán cuando hagas clic en el botón 'previsualizar'. Sin embargo, la dirección no cambia.
           instructions: Puedes mover la ubicación en el mapa.
         edit:
-          add_documents: Documentos
-          add_images: Archivo
+          add_documents: Añadir documentos
+          add_image: Añadir imagen
           attachment_legend: "(Opcional) Agregar un archivo adjunto"
           back: Atrás
-          delete_document: Borrar Documento
-          delete_image: Borrar imagen
+          edit_documents: Editar documentos
+          edit_image: Editar imagen
           gallery_legend: "(Opcional) Añadir una imagen a la tarjeta de propuesta"
           select_a_category: Por favor, selecciona una categoría
           send: Enviar

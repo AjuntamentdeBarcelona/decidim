@@ -1,3 +1,4 @@
+---
 ja:
   activemodel:
     attributes:
@@ -70,7 +71,8 @@ ja:
     'true': 'はい'
   carrierwave:
     errors:
-      image_too_big: 画像が大きすぎます
+      file_resolution_too_large: ファイルの解像度の値が大きすぎます
+      file_size_too_large: ファイルサイズが大きすぎます
       not_inside_organization: ファイルはどの組織にも添付されていません
   date:
     formats:
@@ -97,9 +99,7 @@ ja:
       x_minutes:
         other: "%{count} 分前"
       x_seconds:
-        one: 1 秒前
         other: "%{count} 秒前"
-        zero: たった今
   decidim:
     accessibility:
       external_link: 外部リンク
@@ -108,9 +108,6 @@ ja:
       skip_button: メインコンテンツにスキップ
     account:
       blocked: このアカウントは利用規約違反によりブロックされています
-      data_portability_export:
-        file_no_exists: ファイルが存在しません
-        notice: データのダウンロードは現在進行中です。完了するとメールが届きます。
       delete:
         alert: この操作は元に戻せません。アカウントを削除すると、ログインできなくなります。 アカウントを削除すると、あなたの貢献が匿名化されます。 引き続き新しいアカウントを作成することはできますが、これらの貢献は関連付けられません。
         confirm:
@@ -122,8 +119,21 @@ ja:
       destroy:
         error: アカウントの削除中に問題が発生しました。
         success: アカウントが正常に削除されました。
+      download_your_data_export:
+        file_no_exists: ファイルが存在しません
+        notice: データのダウンロードは現在進行中です。完了するとメールが届きます。
+      email_change:
+        body1: 新しいメールアドレスを確認するため、 %{unconfirmed_email} にメールを送信しました。
+        body2: 確認メールをもう一度送信する必要がありますか？ %{resend_link} または %{cancel_link}
+        cancel: キャンセル
+        cancel_error: メールの変更をキャンセルできませんでした。
+        cancel_successfully: メールの変更が正常にキャンセルされました。
+        resend_error: 確認メールを再送信できませんでした。
+        resend_successfully: '%{unconfirmed_email} に確認メールが再送信されました'
+        send_again: 再送信
+        title: メールアドレスの変更確認
       show:
-        available_locales_helper: Decidimからの通知を閲覧および受信するために使用する言語を選択します
+        available_locales_helper: プラットフォーム上での通知と表示に使用する言語を選択してください
         change_password: パスワードの変更
         update_account: アカウントを更新
       update:
@@ -133,16 +143,44 @@ ja:
     admin:
       actions:
         cancel: キャンセル
+      password_change:
+        alert: 先に進むにはパスワードを変更する必要があります
+        notification: 管理者ユーザーは、 %{days} 日ごとにパスワードを変更する必要があります。
     admin_log:
       area:
         create: "%{user_name} が %{resource_name} 領域を作成しました"
         delete: "%{user_name} が %{resource_name} エリアを削除しました"
         update: "%{user_name} が %{resource_name} エリアを更新しました"
+      area_type:
+        create: "%{user_name} が %{resource_name} エリアタイプを作成しました"
+        delete: "%{user_name} が %{resource_name} エリアタイプを削除しました"
+        update: "%{user_name} は %{resource_name} エリアタイプを更新しました"
+      attachment:
+        create: "%{user_name} が %{resource_name} 添付ファイルを作成しました"
+        delete: "%{user_name} が %{resource_name} 添付ファイルを削除しました"
+        update: "%{user_name} が %{resource_name} 添付ファイルを更新しました"
+      attachment_collection:
+        create: "%{user_name} が %{resource_name} 添付ファイルコレクションを作成しました"
+        delete: "%{user_name} が %{resource_name} 添付ファイルコレクションを削除しました"
+        update: "%{user_name} が %{resource_name} 添付ファイルコレクションを更新しました"
+      category:
+        create: "%{user_name} が %{resource_name} カテゴリを %{space_name} スペースに追加しました"
+        delete: "%{user_name} が %{resource_name} スペースから %{space_name} カテゴリを削除しました"
+        update: "%{user_name} が %{resource_name} スペースの %{space_name} カテゴリを更新しました"
       component:
         create: "%{user_name} は、 %{resource_name} コンポーネントを %{space_name} スペースに追加しました"
         delete: "%{user_name} が %{resource_name} スペースから %{space_name} コンポーネントを削除しました"
+        export_component: "%{user_name} は%{space_name} の %{resource_name} %{component_name} を %{format_name} としてエクスポートしました"
         publish: "%{user_name} が %{resource_name} スペースで %{space_name} コンポーネントを公開しました"
         unpublish: "%{user_name} は %{resource_name} スペースから %{space_name} コンポーネントを非公開にしました"
+        update_permissions_with_space: "%{user_name} が %{resource_name} の %{space_name} の権限を更新しました"
+      contextual_help_section:
+        update: "%{user_name} が %{resource_name} ヘルプセクションを更新しました"
+      helpers:
+        answers: 回答
+        comments: コメント
+        projects: プロジェクト
+        results: 結果
       impersonation_log:
         manage: "%{user_name} は %{reason} により %{resource_name} を管理しています。"
       moderation:
@@ -159,6 +197,7 @@ ja:
         update: "%{user_name} が %{resource_name} OAuth アプリケーションを更新しました"
       organization:
         update: "%{user_name} が組織設定を更新しました"
+        update_external_domain: "%{user_name} が組織の外部ドメインを更新しました"
       participatory_space_private_user:
         create: "%{user_name} が %{resource_name} をプライベート参加者に招待しました"
         create_via_csv: "%{user_name} が %{resource_name} をCSV経由でプライベート参加者に招待しました"
@@ -170,6 +209,10 @@ ja:
         delete_with_parent: "%{user_name} が %{resource_name} スコープ内の %{parent_scope} スコープを削除しました"
         update: "%{user_name} は %{resource_name} のスコープを更新しました"
         update_with_parent: "%{user_name} が %{resource_name} スコープ内の %{parent_scope} スコープを更新しました"
+      scope_type:
+        create: "%{user_name} が %{resource_name} スコープタイプを作成しました"
+        delete: "%{user_name} が %{resource_name} のスコープタイプを削除しました"
+        update: "%{user_name} は %{resource_name} スコープタイプを更新しました"
       static_page:
         create: "%{user_name} が %{resource_name} の静的ページを作成しました"
         delete: "%{user_name} が %{resource_name} の静的ページを削除しました"
@@ -185,7 +228,9 @@ ja:
         unblock: "%{user_name} さんが %{resource_name} さんのブロックを解除しました"
         unofficialize: "%{user_name} が参加者 %{resource_name} を非公式にしました"
       user_group:
+        block: "%{user_name} がユーザーグループ %{resource_name} をブロックしました"
         reject: "%{user_name} が %{resource_name} グループの確認を拒否しました"
+        unblock: "%{user_name} がユーザーグループ %{resource_name} のブロックを解除しました"
         verify: "%{user_name} がグループ %{resource_name} を確認しました"
         verify_via_csv: "%{user_name} がCSVファイルを介してグループ %{resource_name} を確認しました"
       user_moderation:
@@ -293,6 +338,7 @@ ja:
         other: コメント
       endorsements:
         other: オススメ
+      official_author: 公式
     authorization_handlers:
       another_dummy_authorization_handler:
         explanation: '「A」で始まるパスポート番号を入力して確認する'
@@ -359,7 +405,7 @@ ja:
           request_confirmation_instructions: 確認手順をリクエストする
           title: メールアドレスを確認してください
       show:
-        close_modal: ウィンドウを閉じる
+        close_modal: モーダルを閉じる
     block_user_mailer:
       notify:
         body_1: あなたのアカウントはブロックされました。
@@ -382,6 +428,7 @@ ja:
           debate: ディベート
           initiative: イニシアチブ
           meeting: ミーティング
+          order: 予算投票
           post: 投稿
           proposal: 提案
           question: 質問
@@ -396,8 +443,8 @@ ja:
             amendments_enabled: 修正を有効にする
             comments_enabled: コメントを有効にする
             comments_max_length: コメント最大長
-            dummy_global_attribute_1: ダミーステータス１
-            dummy_global_attribute_2: ダミーステータス2
+            dummy_global_attribute1: ダミーステータス１
+            dummy_global_attribute2: ダミーステータス2
             dummy_global_translatable_text: ダミー翻訳可能なテキスト
             enable_pads_creation: パッドの作成を有効にする
             resources_permissions_enabled: リソースの権限を有効にする
@@ -409,8 +456,8 @@ ja:
             amendment_reaction_enabled: 修正反応は有効です
             amendments_visibility: 修正の表示
             comments_blocked: コメントをブロック
-            dummy_step_attribute_1: ダミーステップ属性１
-            dummy_step_attribute_2: ダミーステップ属性2
+            dummy_step_attribute1: ダミーステップ属性１
+            dummy_step_attribute2: ダミーステップ属性2
             dummy_step_translatable_text: ダミーステップ翻訳可能なテキスト
     contact: お問い合わせ
     content_blocks:
@@ -454,13 +501,6 @@ ja:
       actions:
         login_before_access: アクセスする前にアカウントでログインしてください
         unauthorized: この操作を実行する権限がありません。
-    data_portability:
-      export:
-        ready: 準備完了
-      show:
-        download_data: データをダウンロード
-        download_data_description: あなたのアカウントに関連付けられたすべての情報を含むファイルを<strong>%{user_email}</strong> に送信します。このメールは.zipファイルとパスワードが添付されています。<br/><br/>ファイルを展開するには、 <a href="https://www.7-zip.org/">7-Zip</a> (Windowsユーザー向け) か <a href="https://www.keka.io/">Keka</a> (MacOSユーザー向け)が必要です。Linuxをお使いの場合、すでにツールがインストールされているはずです。インストールされていない場合、 <a href="https://gitlab.gnome.org/GNOME/file-roller">File Roller</a> や <a href="https://peazip.github.io">PeaZip</a> が利用できます。
-        request_data: データを要求する
     datepicker:
       help_text: '期待されるフォーマット: %{datepicker_format}'
     devise:
@@ -479,7 +519,6 @@ ja:
           newsletter: 関連するお知らせを受け取る
           newsletter_title: ニュースレターを受け取る
           nickname_help: '%{organization} でのニックネームです。文字、数字、''-'' および ''_'' のみを使用できます。'
-          password_help: "半角英数字%{minimun_characters}文字以上で入力してください。単純すぎてはいけません（例：123456）。アカウントIDやメールアドレスと異なる必要があります。"
           sign_in: ログイン
           sign_up: 新規登録
           sign_up_as:
@@ -528,6 +567,13 @@ ja:
           this_application_will_not_be_able_to: 'このアプリケーションは次のことができません：'
           update_profile: プロフィールを更新
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> があなたのアカウントを使用しようとしています"
+    download_your_data:
+      export:
+        ready: 準備完了
+      show:
+        download_data: データをダウンロード
+        download_data_description: あなたのアカウントに関連付けられたすべての情報を含むファイルを<strong>%{user_email}</strong> に送信します。このメールは.zipファイルとパスワードが添付されています。<br/><br/>ファイルを展開するには、 <a href="https://www.7-zip.org/">7-Zip</a> (Windowsユーザー向け) か <a href="https://www.keka.io/">Keka</a> (MacOSユーザー向け)が必要です。Linuxをお使いの場合、すでにツールがインストールされているはずです。インストールされていない場合、 <a href="https://gitlab.gnome.org/GNOME/file-roller">File Roller</a> や <a href="https://peazip.github.io">PeaZip</a> が利用できます。
+        request_data: データを要求する
     editor_images:
       create:
         error: アップロード画像のエラー
@@ -671,6 +717,8 @@ ja:
           email_outro: あなたはプラットフォームの管理者であるため、この通知を受け取りました。
           email_subject: ユーザーグループがプロファイルを更新しました
           notification_title: '%{user_group_name} ユーザーグループがプロファイルを更新し、未検証のままにしました。 <a href="%{groups_admin_path}">管理画面</a> で確認できるようになりました。'
+      nickname_event:
+        notification_body: ニックネームの使用方法を修正し、重複がないようにしたため、大文字と小文字の区別のルールをなくしました。<br/> あなたのニックネームは、同じ名前の別のニックネームの後に作成されたため、自動的に名前が変更されました。<a href="%{link_to_account_settings}">アカウント設定</a>から変更することができます。
       notification_event:
         notification_title: <a href="%{resource_path}">%{resource_title}</a> にイベントが発生しました。
       reports:
@@ -698,7 +746,7 @@ ja:
           email_subject: "%{name} が公式化されました"
           notification_title: 参加者 %{name} (%{nickname}) が公式化されました。
     export_mailer:
-      data_portability_export:
+      download_your_data_export:
         click_button: '次のリンクをクリックするとあなたのデータがダウンロードできます。<br/>このファイルは %{date} まで利用できます。<br/>ファイルを開くには <a href="https://www.7-zip.org/">7-Zip</a> (Windowsユーザー向け), <a href="https://www.keka.io/en/">Keka</a> (MacOSユーザー向け) または <a href="https://peazip.github.io">PeaZip</a> (Linuxユーザー向け)等が必要です。パスワード:%{password}'
         download: ダウンロード
       export:
@@ -737,7 +785,6 @@ ja:
         button: フォローを停止
         error: リソースのフォローを解除する際に問題が発生しました。
     forms:
-      current_file: 現在のファイル
       current_image: 現在の画像
       default_image: デフォルトの画像
       errors:
@@ -749,15 +796,41 @@ ja:
         file:
           explanation: 'ファイルのガイダンス:'
           message_1: 画像またはドキュメントである必要があります。
-          message_2: 画像の場合は、横長画像を使用してください。画像は自動的にトリミングされます。CSV ファイルの場合、列間の区切り文字はカンマ(",") でなければなりません。
+          message_2: 画像の場合、ランドスケープ画像が適しています。システムが画像を切り抜きます。
+        icon:
+          explanation: 'アイコンのガイド:'
+          message_1: 正方形の画像でなければなりません。
+          message_2: この画像の推奨サイズは512x512です。
         image:
           explanation: '画像のガイダンス:'
           message_1: テキストを含まない風景画像が適しています。
           message_2: システムが画像を切り抜きます。
       file_validation:
         allowed_file_extensions: 'アップロード可能なファイル形式: %{extensions}'
+        max_file_dimension: '最大ファイルサイズ: %{resolution} ピクセル'
         max_file_size: '最大ファイルサイズ: %{megabytes}MB'
-      remove_this_file: このファイルを削除
+      files:
+        extension_allowlist: '対応しているフォーマット: %{extensions}'
+      upload:
+        labels:
+          add_attachment: 添付ファイルを追加
+          add_file: ファイルを追加
+          add_image: 画像を追加
+          cancel: キャンセル
+          edit_image: 画像を編集
+          error: エラー
+          file_size_too_large: 'ファイルサイズが大きすぎます！最大ファイルサイズ: %{megabytes}MB'
+          remove: 削除
+          replace: 置換
+          save: 保存
+          title: タイトル
+          title_required: タイトルが必要です
+          uploaded: アップロード済
+          validating: 検証中...
+          validation_error: 検証エラー
+      upload_help:
+        dropzone: ここにファイルをドロップするか、クリックしてアップロードします
+        explanation: '%{attribute} のガイド'
     gamification:
       all_badges_link: 利用可能なバッジをすべて表示
       badges:
@@ -846,6 +919,7 @@ ja:
         success: 参加リクエストは正常に作成されました。管理者はあなたをグループに承認する前にリクエストを確認します。
       leave:
         error: グループから脱退中に問題が発生しました
+        last_admin: あなたが最後の管理者であるため、このグループから自分自身を削除することはできません。グループから脱退するためには、別のメンバーを管理者にしてください。
         success: グループを放棄しました。
       members:
         accept_or_reject_join_requests: '次のユーザーがこのグループに参加するために申請しました。リクエストを承認または拒否します。'
@@ -858,7 +932,7 @@ ja:
       no_user_groups: まだどのグループにも属していません。
       roles:
         admin: 管理者
-        creator: 作成者
+        creator: 管理者
         member: メンバー
       update:
         error: グループの更新中に問題が発生しました
@@ -883,7 +957,7 @@ ja:
         body_1: あなたは外部リンクにアクセスしようとしています。外部サイトの内容にはご注意ください。
         body_2: サイトにアクセスする前に、訪問しようとしているリンクをチェックし、安全なサイトであるか確認してください。
         cancel: キャンセル
-        close_modal: 閉じる
+        close_modal: モーダルを閉じる
         proceed: 続行
         title: 外部リンクを開く
     log:
@@ -892,9 +966,12 @@ ja:
         create_with_space: "%{user_name} が %{resource_name} に %{space_name} を作成しました"
         delete: "%{user_name} が %{resource_name} を削除しました"
         delete_with_space: "%{user_name} が %{resource_name} で %{space_name} を削除しました"
+        publish_with_space: "%{user_name} が %{space_name} の %{resource_name} を公開しました"
         unknown_action: "%{user_name} が %{resource_name} にいくつかのアクションを実行しました"
         unknown_action_with_space: "%{user_name} が %{resource_name} で %{space_name} にアクションを実行しました"
+        unpublish_with_space: "%{user_name} が %{space_name} の %{resource_name} を非公開にしました"
         update: "%{user_name} が %{resource_name} を更新しました"
+        update_permissions_with_space: "%{user_name} が %{space_name} の %{resource_name} の権限を更新しました"
         update_with_space: "%{user_name} さんが %{resource_name} で %{space_name} を更新しました"
       value_types:
         area_presenter:
@@ -923,37 +1000,37 @@ ja:
       conversation_mailer:
         comanagers_new_conversation:
           admin_in_group: あなたは %{group}の管理者であるため、これを受け取っています。
-          greeting: Hi, %{recipient}!
+          greeting: こんにちは、%{recipient}。
           intro: "%{manager} が %{group}という名前で新しい会話を開始しました。こちらをクリックしてください:"
-          outro: お楽しみください!
+          outro: ' '
           subject: "%{manager} が %{group} として新しい会話を開始しました"
         comanagers_new_message:
           admin_in_group: あなたは %{group}の管理者であるため、これを受け取っています。
-          greeting: Hi, %{recipient}!
+          greeting: こんにちは、%{recipient}。
           intro: "%{manager} は、 %{group}という名前の新しいメッセージを会話に投稿しました。それらを表示するにはここをクリックしてください："
-          outro: お楽しみください!
+          outro: ' '
           subject: "%{manager} は %{group} として新しいメッセージを送信しました"
         new_conversation:
-          greeting: Hi, %{recipient}!
+          greeting: こんにちは、%{recipient}。
           intro: "%{sender} があなたと新しい会話を開始しました。こちらをクリックしてください:"
-          outro: お楽しみください!
+          outro: ' '
           subject: "%{sender} があなたと会話を開始しました"
         new_group_conversation:
           admin_in_group: あなたは %{group}の管理者であるため、これを受け取っています。
-          greeting: Hi, %{recipient}!
+          greeting: こんにちは、%{recipient}。
           intro: "%{sender} がグループ %{group}との新しい会話を開始しました。こちらをクリックしてください:"
-          outro: お楽しみください!
+          outro: ' '
           subject: "%{sender} が %{group} と会話を開始しました"
         new_group_message:
           admin_in_group: あなたは %{group}の管理者であるため、これを受け取っています。
-          greeting: Hi, %{recipient}!
+          greeting: こんにちは、%{recipient}。
           intro: "%{sender} がグループ %{group}との会話に新しいメッセージを投稿しました。こちらをクリックしてください:"
-          outro: お楽しみください!
+          outro: ' '
           subject: "%{group} に %{sender} からの新しいメッセージがあります"
         new_message:
-          greeting: Hi, %{recipient}!
+          greeting: こんにちは、%{recipient}。
           intro: "%{sender} さんがあなたの会話に新しいメッセージを投稿しました。こちらをクリックしてください："
-          outro: お楽しみください!
+          outro: ' '
           subject: '%{sender} からの新しいメッセージがあります'
       conversations:
         add_conversation_users:
@@ -1015,7 +1092,7 @@ ja:
     newsletter_mailer:
       newsletter:
         note: '%{organization_name}でニュースレターを購読しているため、このメールを受信しました。 <a href="%{link}">通知ページ</a> で設定を変更できます。'
-        see_on_website: このメールは正しく表示されませんか？ <a href="%{link}" target="_blank">ウェブサイト</a> で確認してください。
+        see_on_website: このメールは正しく表示されていませんか？ <a href="%{link}" target="_blank" class="see-on-website">ウェブサイト</a> でご確認ください。
         unsubscribe: この種類のメールの受信を拒否するには、 <a href="%{link}" target="_blank" class="unsubscribe">購読解除</a>.
     newsletter_templates:
       basic_only_text:
@@ -1067,23 +1144,47 @@ ja:
       no_notifications: まだ通知はありません。
       show:
         missing_event: この通知は利用できなくなった要素に属しています。破棄してください。
+    notifications_digest_mailer:
+      header:
+        daily: 日次の通知のダイジェスト
+        weekly: 週次の通知のダイジェスト
+      hello: こんにちは %{name} さん、
+      intro:
+        daily: 'あなたがフォローしているアクティビティに基づいた最終日以降の通知です:'
+        weekly: 'これらは、あなたがフォローしているアクティビティに基づいた先週以降の通知です:'
+      outro: このコンテンツまたは著者をフォローしているため、これらの通知を受け取りました。それぞれのページからフォローを解除できます。
+      see_more: 他の通知を見る
+      subject: あなたのメールダイジェストです
     notifications_settings:
       show:
         administrators: 管理者
         allow_public_contact: フォローしていない人からもダイレクトメッセージを受信する
+        allow_push_notifications: プッシュ通知を取得して、プラットフォームにいないときの動作を確認します。いつでもオフにすることができます。
         direct_messages: ダイレクトメッセージを受信する
-        email_on_moderations: モデレーションのため何か報告されるたびにメールを受信したいです。
-        email_on_notification: 通知を毎回メールで受け取る
+        email_on_moderations: 私はモデレーションの報告がなされたたびに毎回メールを受け取りたいです。
         everything_followed: 自分がフォローしているすべて
         newsletter_notifications: ニュースレターを受け取る
         newsletters: ニュースレター
+        notification_settings:
+          close_meeting_reminder: レポートを未公開で閉じたミーティングのリマインドメールを受信したい
+        notifications_sending_frequencies:
+          daily: 1日1回
+          none: なし
+          real_time: リアルタイム
+          weekly: 週1回
+        notifications_sending_frequency: 通知メールを受信する頻度は？
         own_activity: 誰かが提案にコメントしたり、私に言及したりした時など、自分自身の活動
+        push_notifications: プッシュ通知
+        push_notifications_reminder: プラットフォームから通知を受け取るには、まずブラウザの設定で許可する必要があります。
         receive_notifications_about: 通知を受け取りたい
-        send_notifications_by_email: 電子メールで通知を受け取る
         update_notifications_settings: 変更を保存
       update:
         error: 通知設定の更新中に問題が発生しました。
         success: 通知設定が正常に更新されました。
+    offline:
+      show:
+        message: 現在オフラインのようです。後でもう一度お試しください。
+        retry: 再試行
     open_data:
       not_available_yet: オープンデータファイルはまだ利用できません。数分後にもう一度お試しください。
     own_user_groups:
@@ -1137,7 +1238,7 @@ ja:
           agreement: 上記の規約に同意する
           legend: 利用規約に同意する
         refuse:
-          modal_body: 拒否した場合は、プラットフォームを使用できなくなります。 <a href="%{data_portability_path}">データをダウンロード</a> または <a href="%{delete_path}">アカウントを削除</a> することができます。
+          modal_body: 拒否する場合、プラットフォームをご利用いただけなくなります。 <a href="%{download_your_data_path}">データをダウンロード</a> または <a href="%{delete_path}">アカウントを削除</a> することができます。
           modal_btn_continue: 利用規約に同意して続ける
           modal_btn_exit: 後で確認する
           modal_button: 同意しない
@@ -1149,6 +1250,10 @@ ja:
           title: '必須：サービス利用規約の更新を確認する'
     participatory_space_private_users:
       not_allowed: このコンテンツを表示する権限がありません
+    passwords:
+      update:
+        error: パスワードの更新中に問題が発生しました
+        success: パスワードが正常に更新されました
     profile:
       deleted: 参加者が削除されました
       inaccessible_message: このプロファイルは利用規約違反によりアクセスできません
@@ -1292,6 +1397,8 @@ ja:
         close_modal: ウィンドウを閉じる
         please_sign_in: ログインしてください
         sign_up: 新規登録
+      mentions_modal:
+        remove_recipient: 受信者 %{name} を削除
       participatory_space_filters:
         filters:
           areas: エリア
@@ -1332,7 +1439,7 @@ ja:
       show_translated: 機械翻訳されたテキストを表示する
     user_activity:
       index:
-        no_activities_warning: この参加者はまだアクティビティを行っていません。
+        no_activities_warning: この参加者にはまだアクティビティがありません。
     user_contact_disabled: この参加者はダイレクトメッセージを受け付けません。
     user_conversations:
       create:
@@ -1379,6 +1486,7 @@ ja:
       notify:
         body_1: ユーザー %{user} が %{token} によって報告されました
         body_2: '理由: %{reason}'
+        details: ユーザーが提供した詳細
         greetings: ようこそ、<br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
         hello: こんにちは、 %{admin} さん。
         subject: '%{organization_name} で新しいユーザーが報告されました'
@@ -1439,7 +1547,7 @@ ja:
     invitations:
       edit:
         header: アカウントの作成を完了する
-        nickname_help: '%{organization} のニックネーム。'
+        nickname_help: ニックネームは %{organization} です。英文字、数字、'-' および '_' のみ使用できます。
         submit_button: 保存
         subtitle: 招待を受け入れる場合は、アカウントIDとパスワードを設定してください。
       invitation_removed: 招待が削除されました。
@@ -1506,10 +1614,11 @@ ja:
     passwords:
       edit:
         change_my_password: パスワードを変更する
-        change_your_password: パスワードを変更する
         confirm_new_password: 新しいパスワードを確認
         new_password: 新しいパスワード
         password_help: "半角英数字%{minimun_characters}文字以上で入力してください。単純すぎてはいけません（例：123456）。アカウントIDやメールアドレスと異なる必要があります。"
+        password_help_admin: "%{minimun_characters} 文字以上であり、過度に一般的ではない文字列 (例: 123456)ではなく, あなたのニックネームやあなたの電子メール、そしてあなたの古いパスワードと異なる文字列を指定してください。"
+        title: パスワードの変更
       new:
         forgot_your_password: パスワードをお忘れですか？
         send_me_reset_password_instructions: パスワードリセット手順を送信してください
@@ -1556,6 +1665,7 @@ ja:
       public: 公開情報
   errors:
     messages:
+      allowed_file_content_types: '次の拡張子を持つファイルのみが許可されています: %{types}'
       already_confirmed: が確認されました。ログインしてみてください
       confirmation_period_expired: '%{period}以内に確認する必要があります。新しいものをリクエストしてください'
       content_type_allowlist_error: ファイルの種類が無効です
@@ -1585,14 +1695,60 @@ ja:
     timestamp_error_message: 申し訳ありませんが、早すぎます！再提出してください。
   layouts:
     decidim:
-      cookie_warning:
-        description_html: このサイトはCookieを使用しています。引き続きサイトを閲覧することで、Cookieの使用に同意したものとみなされます。 %{link}
-        link_label: Cookie についての詳細
-        ok: 同意します
+      data_consent:
+        details:
+          columns:
+            description: 説明
+            name: 名前
+            service: サービス
+            type: 種別
+          items:
+            _session_id:
+              description: ウェブページ間を移動したときにウェブサイト内のユーザーをウェブサイトが記憶できるようにします。
+              service: このウェブサイト
+            decidim-consent:
+              description: このウェブサイトでユーザーが許可するクッキーに関する情報を保存します。
+              service: このウェブサイト
+            pwaInstallPromptSeen:
+              description: プログレッシブウェブアプリケーション(PWA) のインストール通知がユーザーによって既に表示されている場合、ステータスを保存します。
+              service: このウェブサイト
+          types:
+            cookie: クッキー
+            local_storage: ローカルストレージ
+        dialog:
+          accept_all: すべて受け入れる
+          accept_only_essential: 必須のみを受け入れる
+          description: 本サイトは、サイトのパフォーマンスとコンテンツを向上させるために、ウェブサイト上でクッキーを使用しています。 クッキーは、より多くの個々のユーザーエクスペリエンスとソーシャルメディアチャネルを提供することができます。
+          settings: 設定
+          title: ウェブサイトで使用されるクッキーに関する情報
+        modal:
+          accept_all: すべて受け入れる
+          accept_only_essential: 必須のみを受け入れる
+          analytics:
+            description: これらのクッキーは、ウェブサイトの改善に役立つウェブサイトの視聴者を測定および分析するために使用されます。
+            title: 分析と統計
+          description: このサイトは、ウェブサイトの基本的な機能を確保し、ユーザーのオンライン体験を向上させるためにクッキーを使用しています。 Cookieの使用を設定および承認したり、同意オプションを変更することはいつでもできます。
+          essential:
+            description: これらのクッキーは、ウェブサイトの主要な機能を可能にし、ユーザーの安全を保つために使われます。 自動的にブラウザに保存され、無効にすることはできません。
+            title: 必須
+          marketing:
+            description: これらのクッキーは、お客様がウェブサイトをどのように使用するかに関する情報を収集し、お客様が使用するさまざまなウェブサイトでよりパーソナライズされたマーケティングを提供するために利用することができます。
+            title: マーケティング
+          preferences:
+            description: これらのクッキーは、ウェブサイト上で過去に行った選択をウェブサイトが記憶し、ユーザーによりパーソナライズされた体験を提供することを可能にします。
+            title: 設定
+          save_settings: 設定を保存
+          title: Cookieの設定
+          toggle: '%{consent_category} の切り替え'
+        warning:
+          all_categories: すべてのクッキー
+          change_settings: Cookie の設定を変更する
+          consent_required: このコンテンツを表示するには %{categories} を有効にする必要があります。
       edit_link:
         edit: 編集
       footer:
         cc_by_license: クリエイティブコモンズライセンス
+        data_consent_settings: Cookieの設定
         decidim_logo: Decidim ロゴ
         download_open_data: オープンデータファイルをダウンロード
         made_with_open_source: このサイトは <a target="_blank" href="https://github.com/decidim/decidim">フリーソフトウェア</a>で作られています。
@@ -1612,6 +1768,8 @@ ja:
       notifications_dashboard:
         mark_all_as_read: すべて既読にする
         mark_as_read: 既読にする
+      offline_banner:
+        cache_version_page: あなたのネットワークはオフラインです。以前にアクセスしたページのキャッシュされたバージョンを表示しています。コンテンツは最新ではないかもしれません。
       social_media_links:
         facebook: "Facebook の %{organization}"
         github: "GitHub の %{organization}"
@@ -1623,6 +1781,8 @@ ja:
         continue_session: セッションを続ける
         sign_out: ログアウト
         title: セッションを続行しますか？
+      upload_modal:
+        close_modal: モーダルを閉じる
       user_menu:
         account: 'ユーザーアカウント: %{name}'
         admin_dashboard: 管理ダッシュボード
@@ -1655,6 +1815,7 @@ ja:
     nickname_included_in_password: ニックネームに類似しすぎています
     not_enough_unique_characters: ユニークな文字が十分ではありません
     password_not_allowed: は許可されていません
+    password_repeated: 古いパスワードは再利用できません
     password_too_common: あまりにも一般的です
     password_too_long: 長すぎます
     password_too_short: 短すぎます

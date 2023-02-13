@@ -1,3 +1,4 @@
+---
 de:
   activemodel:
     attributes:
@@ -14,17 +15,24 @@ de:
         description: Beschreibung
         file: Datei
         title: Anhang oder Bildname
+        weight: Reihenfolge
       attachment_collection:
         description: Beschreibung
         name: Name
+        weight: Reihenfolge
       category:
         description: Beschreibung
         name: Name
         parent_id: Übergeordnete Kategorie
+        weight: Reihenfolge
       component:
         name: Name
         published_at: Veröffentlicht unter
-        weight: Bestellposition
+        weight: Reihenfolge
+      external_domain:
+        value: Wert
+      help_section:
+        content: Inhalt
       id: ID
       import:
         user_group_id: Importierte Inhalte erstellen als
@@ -92,6 +100,9 @@ de:
         welcome_notification_body: Text der Willkommens-Benachrichtigung
         welcome_notification_subject: Betreff der Willkommens-Benachrichtigung
         youtube_handler: YouTube-Handler
+      participatory_space_private_user:
+        email: E-Mail
+        name: Name
       scope:
         code: Code
         name: Name
@@ -113,12 +124,13 @@ de:
         show_in_footer: In der Fußzeile anzeigen
         slug: URL-Block
         title: Titel
-        weight: Bestellposition
+        topic_id: Thema
+        weight: Reihenfolge
       static_page_topic:
         description: Beschreibung
         show_in_footer: In der Fußzeile anzeigen
         title: Titel
-        weight: Bestellposition
+        weight: Reihenfolge
       user_group_csv_verification:
         file: Datei
     errors:
@@ -177,7 +189,7 @@ de:
         reject: Ablehnen
         share: Teilen
         user:
-          new: Neuer Benutzer
+          new: Neuer Administrator
         verify: Überprüfen
       admin_terms_of_use:
         accept:
@@ -259,6 +271,8 @@ de:
         update:
           error: Beim Aktualisieren dieses Anhangs ist ein Fehler aufgetreten.
           success: Anhang wurde erfolgreich aktualisiert.
+      attachments_privacy_warning:
+        message: Seien Sie vorsichtig, wenn Sie mit Anhängen in einem privaten Raum arbeiten. Jeder Teilnehmer kann dieses Dokument mit anderen teilen.
       autocomplete:
         no_results: keine Ergebnisse gefunden
         search_prompt: Geben Sie mindestens drei Zeichen ein, um zu suchen
@@ -341,7 +355,7 @@ de:
       dashboard:
         show:
           view_more_logs: Weitere Protokolle anzeigen
-          welcome: Willkommen im Decidim Admin Panel.
+          welcome: Willkommen beim Admin-Panel von Decidim.
       domain_whitelist:
         form:
           domain_too_short: Domain zu kurz
@@ -834,9 +848,23 @@ de:
           invalid: Beim Lesen der CSV-Datei ist ein Fehler aufgetreten.
           success: CSV-Datei wurde erfolgreich hochgeladen, wir senden eine Einladungs-E-Mail an die Teilnehmer. Dies kann eine Weile dauern.
         new:
+          destroy:
+            button: Alle private Teilnehmende auswählen
+            confirm: Sind Sie sicher, dass Sie alle private Teilnehmende entfernen möchten? Diese Aktion kann nicht rückgängig gemacht werden. Sie werden sie nicht wiederherstellen können.
+            empty: Sie haben keine private Teilnehmende.
+            explanation: Sie haben %{count} private Teilnehmende.
+            title: Alle private Teilnehmende entfernen
           explanation: 'Laden Sie Ihre CSV-Datei hoch. Diese muss zwei Spalten haben ohne Kopfzeile, mit E-Mail in der ersten Spalte der Datei und Namen in der letzten Spalte der Datei (E-Mail, Name) in Bezug auf die Benutzer, die Sie dem Beteiligungsbereich hinzufügen möchten. Vermeiden sie ungültige Zeichen wie `<>?%&^*#@()[]=+:;"{}\|` im Namen des Nutzers zu verwenden.'
           title: CSV-Datei hochladen
           upload: Hochladen
+      reminders:
+        create:
+          error: Beim Erstellen dieser Erinnerungen ist ein Problem aufgetreten.
+          success:
+            one: "%{count} Benutzer wird erinnert."
+            other: "%{count} Benutzer werden erinnert."
+        new:
+          submit: Senden
       resource_permissions:
         edit:
           submit: einreichen
@@ -894,6 +922,7 @@ de:
         gallery:
           add_images: Bilder hinzufügen
           delete_image: Bild löschen
+          edit_images: Bilder bearbeiten
           gallery_legend: Bildergalerie hinzufügen (Optional)
       static_page_topics:
         create:
@@ -954,7 +983,7 @@ de:
         static_pages: Seiten
         statistics: Aktivität
         user_groups: Benutzergruppen
-        users: Teilnehmer
+        users: Administratoren
       user_group:
         csv_verify:
           invalid: Beim Lesen der CSV-Datei ist ein Fehler aufgetreten.
@@ -990,7 +1019,7 @@ de:
           role: Rolle
         new:
           create: Einladen
-          title: Benutzer als Administrator einladen
+          title: Neuen Administrator einladen
       users_statistics:
         users_count:
           admins: Admins

@@ -1,3 +1,4 @@
+---
 sr:
   activemodel:
     attributes:
@@ -264,7 +265,6 @@ sr:
       dashboard:
         show:
           view_more_logs: Pogledaj još zapisa iz evidencije
-          welcome: Dobrošli u Decidim Admin Panel.
       exports:
         export_as: "%{name} kao %{export_format}"
         notice: Vaš prenos podataka je u toku. Dobićete e-mail poruku kada bude završen.
@@ -556,6 +556,9 @@ sr:
           images:
             preview: Pregled
           omnipresent_banner_appearance_title: Izmeni sveprisutni baner
+      organization_homepage_content_blocks:
+        edit:
+          update: Ažuriraj
       shared:
         gallery:
           add_images: Dodaj slike
@@ -564,10 +567,14 @@ sr:
       titles:
         metrics: Metrika
         statistics: Aktivnost
-        users: Učesnici
       users_statistics:
         users_count:
           last_day: Poslednji dan
           last_month: Poslednji mesec
           last_week: Poslednje nedelje
           no_users_count_statistics_yet: Još nema statistike o broju korisnika
+    moderations:
+      models:
+        moderation:
+          fields:
+            created_at: Datum kreiranja

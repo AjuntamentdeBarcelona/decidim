@@ -1,10 +1,7 @@
+---
 hu:
   activemodel:
     attributes:
-      agenda:
-        description: Leírás
-        duration: Időtartam
-        title: Cím
       close_meeting:
         attendees_count: Résztvevők száma
         attending_organizations: Résztvevő szervezetek listája
@@ -22,7 +19,6 @@ hu:
         decidim_scope_id: Hatáskör
         decidim_user_group_id: Felhasználói csoport
         description: Leírás
-        end_time: Záró időpont
         id: ID
         location: Helye
         location_hints: Tippek a helyre
@@ -35,8 +31,6 @@ hu:
         registration_terms: Regisztrációs feltételek
         registration_url: Regisztrációs URL
         registrations_enabled: Regisztráció engedélyezve
-        show_embedded_iframe: Mutassa ennek az url-nek az iframe beágyazását
-        start_time: Kezdő időpont
         title: Cím
         transparent: Átlátszó
         type_of_meeting: Típus
@@ -89,14 +83,15 @@ hu:
             values:
               'false': Előzmények
               'true': Közelgő
-          origin_eq:
-            values:
-              citizen: Polgár
-              official: Hivatalos
-              user_group: Felhasználói csoportok
           scope_id_eq:
             label: Hatókör
-          type_eq:
+          with_any_origin:
+            label: Kiindulópont
+            values:
+              official: Hivatalos
+              participants: Résztvevő
+              user_group: Felhasználói csoportok
+          with_any_type:
             label: Értekezlet típusa
             values:
               hybrid: Hibrid
@@ -281,9 +276,6 @@ hu:
           edit:
             close: Bezárás
             title: Ttalálkozó lezárása
-        meeting_copies:
-          form:
-            select_a_meeting_type: Válassza ki a találkozó típusát
         meetings:
           close:
             invalid: Probléma merült fel a találkozó lezárásakor
@@ -302,17 +294,15 @@ hu:
             update: Frissítés
           form:
             address_help: 'Cím: Geocoder használata a helymeghatározáshoz'
-            available_slots_help: Hagyd "0" értéken, ha a jelentkezők száma korlátlan
             disclaimer: 'Jogi nyilatkozat: Egy külső regisztrációs rendszer használatával Ön tudatában van annak, hogy a %{organization} szervezői nem felelősek a felhasználók által a külső szolgáltatásnak megadott adatokért.'
             location_help: 'Helyszín: üzenet az adott felhasználóknak a találkozó helyéről'
             location_hints_help: 'Helyszíni tippek: további információk. Példa: az épület emelete ha személyes találkozóról van szó, vagy a találkozó jelszava, ha korlátozott hozzáféréssel rendelkező online találkozóról van szó.'
             online_meeting_url_help: 'Link: a résztvevők engedélyezése a találkozóhoz való közvetlen kapcsolódáshoz'
-            registration_email_help: Ez a szöveg a regisztrációt megerősítő e-mail közepén fog megjelenni. Épp a regisztrációs kód után.
             registration_url_help: 'Link: lehetővé teszi a résztvevők számára, hogy a regisztrációhoz a külső szolgáltatást használják'
             select_a_meeting_type: Válassza ki a találkozó típusát
             select_a_registration_type: Kérjük, válassza ki a regisztráció típusát
             select_an_iframe_access_level: Kérjük, válassz iframe hozzáférési szintet
-            show_embedded_iframe_help: Csak néhány szolgáltatás engedélyezi a beágyazást megbeszélésekbe vagy élő eseményekbe (YouTube, Twitch és Jitsi)
+            show_embedded_iframe_help: 'Csak néhány szolgáltatás engedélyezi a beágyazást megbeszélésekbe vagy élő eseményekbe a következő domainekről: %{domains}'
           index:
             title: Találkozók
           new:
@@ -355,6 +345,7 @@ hu:
             available_slots_help: Hagyd "0" értéken, ha a jelentkezők száma korlátlan.
             invites: Meghívók
             recommendation_message: Adatvédelmi okokból javasoljuk, hogy törölje ezt az űrlapot, ha már nincs rá szüksége. Alapértelmezés szerint ez 3 hónap az ülés végét követően.
+            registration_email_help: Ez a szöveg a regisztrációt megerősítő e-mail közepén fog megjelenni. Épp a regisztrációs kód után.
             registration_form: Regisztrációs űrlap
             registrations_count:
               one: '%{count} regisztráció volt.'
@@ -382,6 +373,8 @@ hu:
           value_types:
             organizer_presenter:
               not_found: 'A szervező nem található az adatbázisban (ID: %{id})'
+        questionnaire:
+          update: "%{user_name} frissítette a kérdőívet a %{meeting_name} üléshez"
       application_helper:
         filter_category_values:
           all: Összes
@@ -392,7 +385,19 @@ hu:
       calendar_modal:
         calendar_url: Naptár URL
         close_window: Ablak bezárása
+        copy_calendar_url: Másolás
+        copy_calendar_url_clarification: Naptár URL másolása a vágólapra
+        copy_calendar_url_copied: Lemásolva!
+        copy_calendar_url_description: Az összes közzétett találkozót láthatja a naptáralkalmazásában vagy naptárszolgáltatónál (pl Google Calendar). Másolja ki és illessze be ezt az URL-címet a naptárába az "Új naptár hozzáadása URL-címről" opcióval.
+        copy_calendar_url_explanation: Kérjük, vegye figyelembe, hogy a kiválasztott találkozókat exportálja. Ha az összeset exportálni szeretné, először állítsa vissza az összes szűrőt.
+        copy_calendar_url_message: A hivatkozás vágólapra másolása sikeres.
         export_calendar: Naptár exportálása
+      close_meeting_reminder_mailer:
+        close_meeting_reminder:
+          body: A találkozó <a href="%{meeting_path}">%{meeting_title}</a> lezárásra vár. A "találkozó lezárása" gomb segítségével adjon jelentést a megbeszélésről.
+          greetings: Üdvözöljük <br/>%{organization_name}<br/><a href="%{organization_url}">%{organization_url}</a>
+          hello: Hello %{username},
+          subject: Lezárhatja a megbeszélést a %{organization_name} platformon beküldött jelentéssel
       conference_venues: Konferencia helyszínek
       content_blocks:
         upcoming_meetings:
@@ -462,8 +467,8 @@ hu:
           my_meetings: Találkozóim
           origin_values:
             all: Összes
-            citizens: Polgárok
             official: Hivatalos
+            participants: Résztvevők
             user_groups: Csoportok
           scope: Hatókör
           search: Keresés
@@ -482,7 +487,6 @@ hu:
           address_help: 'Cím: Geocoder használata a helymeghatározáshoz'
           available_slots_help: Hagyd "0" értéken, ha a jelentkezők száma korlátlan
           create_as: Ülés létrehozása mint
-          show_embedded_iframe_help: Csak néhány szolgáltatás engedélyezi a beágyazást megbeszélésekbe vagy élő eseményekbe (YouTube, Twitch és Jitsi)
         meeting_minutes:
           related_information: Kapcsolódó információ
         meetings:

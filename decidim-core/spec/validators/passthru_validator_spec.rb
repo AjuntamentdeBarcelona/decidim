@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe PassthruValidator do
-  subject { validatable.new(file: file) }
+  subject { validatable.new(file: file, organization: organization) }
 
   let(:validator_settings) { {} }
 
@@ -39,17 +39,17 @@ describe PassthruValidator do
         ActiveModel::Name.new(self, nil, "Validatable")
       end
 
-      include Virtus.model
+      include Decidim::AttributeObject::Model
       include ActiveModel::Validations
 
       attribute :file
-      validates :file, validator_config
+      attribute :organization
 
-      def organization
-        @organization ||= FactoryBot.create(:organization)
-      end
+      validates :file, validator_config
     end
   end
+
+  let(:organization) { create(:organization) }
 
   context "when the file is valid" do
     let(:file) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
@@ -64,7 +64,7 @@ describe PassthruValidator do
       it "adds the passthrough record's validation errors on the field" do
         expect(subject).to be_invalid
         expect(subject.errors[:file]).to eq(
-          ["file should be one of image/jpeg, image/png"]
+          ["only files with the following extensions are allowed: jpeg, jpg, png"]
         )
       end
     end
@@ -108,7 +108,7 @@ describe PassthruValidator do
         it { is_expected.to be_valid }
       end
 
-      context "when the if condition returns false" do
+      context "when the unless condition returns false" do
         let(:validator_settings) { { unless: -> { false } } }
 
         it { is_expected.to be_invalid }

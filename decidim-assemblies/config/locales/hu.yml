@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     attributes:
@@ -68,12 +69,6 @@ hu:
         email: Email
         name: Név
         role: Szerep
-    errors:
-      models:
-        assembly:
-          attributes:
-            document:
-              invalid_document_type: 'Nem megfelelő dokument típus. Az elfogadott formátumok: %{valid_mime_types}'
   activerecord:
     models:
       decidim/assembly:
@@ -242,6 +237,9 @@ hu:
     admin_log:
       assembly:
         create: "%{user_name} létrehozta a(z) %{resource_name} gyűlést"
+        duplicate: "%{user_name} duplikálta a(z) %{resource_name} gyűlést"
+        export: "%{user_name} exportálta a(z) %{resource_name} gyűlést"
+        import: "%{user_name} importálta a(z) %{resource_name} gyűlést"
         publish: "%{user_name} közzétette a(z) %{resource_name} gyűlést"
         unpublish: "%{user_name} visszavonta a(z) %{resource_name} gyűlés közzétételét"
         update: "%{user_name} frissítette a(z) %{resource_name} gyűlést"
@@ -270,7 +268,7 @@ hu:
             duration_help: Ha a gyűlés időtartama korlátozott, válassz befejező dátumot. Ellenkező esetben határozatlan idejű lesz.
             filters: Szűrők
             images: képek
-            included_at_help: Válaszd ki a dátumot, amikor a gyűlést hozzáadtad a Decidimhez. Nem feltétlenül kell megegyeznie a létrehozás időpontjával.
+            included_at_help: Válassza ki a dátumot, amikor ezt a gyűlést hozzáadták a platformhoz. Nem feltétlenül kell megegyeznie a létrehozás dátumával.
             metadata: Metaadatok
             other: Egyéb
             select_a_created_by: Válassz alapítót

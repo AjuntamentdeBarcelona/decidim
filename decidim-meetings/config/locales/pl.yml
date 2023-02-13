@@ -1,10 +1,7 @@
+---
 pl:
   activemodel:
     attributes:
-      agenda:
-        description: Opis
-        duration: Czas trwania
-        title: Tytuł
       close_meeting:
         attendees_count: Liczba osób biorących udział
         attending_organizations: Lista organizacji biorących udział
@@ -21,7 +18,6 @@ pl:
         decidim_scope_id: Zakres
         decidim_user_group_id: Grupa użytkowników
         description: Opis
-        end_time: Czas zakończenia
         id: Numer ID
         location: Miejsce
         location_hints: Wskazówki co do miejsca
@@ -33,7 +29,6 @@ pl:
         registration_terms: Warunki rejestracji
         registration_url: Adres URL rejestracji
         registrations_enabled: Rejestracje włączone
-        start_time: Czas rozpoczęcia
         title: Tytuł
         transparent: Transparentny
         type_of_meeting: Typ
@@ -84,13 +79,6 @@ pl:
               'true': Zamknięte
           is_upcoming_true:
             label: Data
-          origin_eq:
-            label: Źródło
-            values:
-              official: Oficjalny
-          type_eq:
-            values:
-              online: Online
       meeting_copies:
         create:
           error: Wystąpił błąd podczas duplikowania tego spotkania.
@@ -287,16 +275,13 @@ pl:
             update: Aktualizuj
           form:
             address_help: 'Adres: używany przez Geocoder do znalezienia lokalizacji'
-            available_slots_help: Zostaw 0 jeśli masz nieograniczoną liczbę dostępnych miejsc
             disclaimer: 'Uwaga: Korzystając z zewnętrznego systemu uwierzytelniania, jesteś świadomy, że organizatorzy %{organization} nie są odpowiedzialni za dane dostarczone przez użytkowników usługi zewnętrznej.'
             location_help: 'Lokalizacja: informacja dla użytkowników dotycząca miejsca spotkania'
             location_hints_help: 'Wskazówki dotyczące lokalizacji: dodatkowe informacje. Przykład: piętro budynku, jeśli jest to spotkanie fizyczne, lub hasło do spotkania, jeśli odbywa się ono online i ma ograniczony dostęp.'
             online_meeting_url_help: 'Link: zezwól uczestnikom na bezpośredni dostęp do Twojego spotkania'
-            registration_email_help: Ten tekst pojawi się w środku wiadomości e-mail z potwierdzeniem rejestracji. Tuż po kodzie rejestracyjnym.
             registration_url_help: 'Link: zezwól użytkownikom na korzystanie z usługi zewnętrznej, której używasz do rejestracji'
             select_a_meeting_type: Wybierz typ spotkania
             select_a_registration_type: Wybierz typ rejestracji
-            show_embedded_iframe_help: Tylko kilka usług pozwala na osadzanie w spotkaniu lub wydarzeniu na żywo (YouTube, Twitch i Jitsi)
           index:
             title: Spotkania
           new:
@@ -336,6 +321,7 @@ pl:
             available_slots_help: Zostaw 0, jeśli dostępna jest nieograniczona liczba miejsc.
             invites: Zaproszenia
             recommendation_message: Ze względu na ochronę prywatności zalecamy usunięcie tego podpisu, gdy nie będzie już wymagany. Standardowo są to 3 miesiące od zakończenia spotkania.
+            registration_email_help: Ten tekst pojawi się w środku wiadomości e-mail z potwierdzeniem rejestracji. Tuż po kodzie rejestracyjnym.
             registration_form: Formularz rejestracyjny
             registrations_count:
               one: Była%{count} rejestracja.
@@ -368,7 +354,11 @@ pl:
       calendar_modal:
         calendar_url: Adres URL kalendarza
         close_window: Zamknij okno
+        copy_calendar_url_description: Możesz zobaczyć wszystkie opublikowane spotkania w swojej aplikacji kalendarza. Skopiuj i wklej ten adres URL w swoim kalendarzu, używając opcji "Dodaj nowy kalendarz z URL".
         export_calendar: Eksportuj kalendarz
+      close_meeting_reminder_mailer:
+        close_meeting_reminder:
+          subject: Teraz możesz zamknąć spotkanie z opublikowaniem raportu na platformie %{organization_name}
       conference_venues: Sale konferencyjne
       content_blocks:
         upcoming_meetings:
@@ -428,7 +418,6 @@ pl:
           origin: Źródło
           origin_values:
             all: Wszystkie
-            citizens: Obywatele
             official: Oficjalny
             user_groups: Grupy
           scope: Zakres
@@ -455,7 +444,6 @@ pl:
           select_a_category: Wybierz kategorię
           select_a_meeting_type: Wybierz typ spotkania
           select_a_registration_type: Wybierz typ rejestracji
-          show_embedded_iframe_help: Tylko kilka usług pozwala na osadzanie w spotkaniu lub wydarzeniu na żywo (YouTube, Twitch i Jitsi)
         index:
           new_meeting: Nowe spotkanie
         meeting_minutes:

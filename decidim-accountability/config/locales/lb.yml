@@ -1,3 +1,4 @@
+---
 lb:
   activemodel:
     attributes:
@@ -156,7 +157,6 @@ lb:
             progress: Fortschritt
         timeline_entry:
           fields:
-            description: Beschreiwung
             entry_date: Datum
       result_m:
         executed: Ausgeführt

@@ -4,10 +4,10 @@ require "devise/models/decidim_validatable"
 require "valid_email2"
 
 module Decidim
-  # A UserGroup is an organization of citizens
+  # A UserGroup is an organization of participants
   class UserGroup < UserBaseEntity
     include Decidim::Traceable
-    include Decidim::DataPortability
+    include Decidim::DownloadYourData
     include Decidim::ActsAsAuthor
     include Decidim::UserReportable
     include Decidim::Searchable
@@ -21,7 +21,7 @@ module Decidim
              foreign_key: :decidim_user_id,
              source: :user
 
-    validates :name, presence: true, uniqueness: { scope: :decidim_organization_id }
+    validates :name, presence: true, uniqueness: { scope: :decidim_organization_id }, unless: -> { blocked? }
 
     validate :correct_state
     validate :unique_document_number, if: :has_document_number?
@@ -87,7 +87,7 @@ module Decidim
     end
 
     def self.export_serializer
-      Decidim::DataPortabilitySerializers::DataPortabilityUserGroupSerializer
+      Decidim::DownloadYourDataSerializers::DownloadYourDataUserGroupSerializer
     end
 
     def document_number

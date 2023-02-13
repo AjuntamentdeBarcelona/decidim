@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails"
+require "decidim/rails"
 require "active_support/all"
 require "action_view/railtie"
 
@@ -13,7 +13,6 @@ require "devise-i18n"
 require "devise_invitable"
 require "foundation_rails_helper"
 require "active_link_to"
-require "rectify"
 require "carrierwave"
 require "rails-i18n"
 require "date_validator"
@@ -39,7 +38,7 @@ require "mime-types"
 require "diffy"
 require "social-share-button"
 require "ransack"
-require "searchlight"
+require "wisper"
 require "webpacker"
 
 # Needed for the assets:precompile task, for configuring webpacker instance
@@ -48,9 +47,6 @@ require "decidim/webpacker"
 require "decidim/api"
 require "decidim/middleware/strip_x_forwarded_host"
 require "decidim/middleware/current_organization"
-
-# Backport cookie handling extensions for Rails 6.0
-require "decidim/middleware/rails_cookies"
 
 module Decidim
   module Core
@@ -65,6 +61,10 @@ module Decidim
             helper Decidim::LayoutHelper if respond_to?(:helper)
           end
         end
+      end
+
+      initializer "decidim.action_mailer" do |app|
+        app.config.action_mailer.deliver_later_queue_name = :mailers
       end
 
       initializer "decidim.middleware" do |app|
@@ -90,6 +90,17 @@ module Decidim
 
         Decidim::Api.add_orphan_type Decidim::Core::UserType
         Decidim::Api.add_orphan_type Decidim::Core::UserGroupType
+      end
+
+      initializer "decidim.ransack" do
+        Ransack.configure do |config|
+          # Avoid turning parameter values such as user_id[]=1&user_id[]=2 into
+          # { user_id: [true, "2"] }. This option allows us to handle the type
+          # convertions manually instead for each case.
+          # See: https://github.com/activerecord-hackery/ransack/issues/593
+          # See: https://github.com/activerecord-hackery/ransack/pull/742
+          config.sanitize_custom_scope_booleans = false
+        end
       end
 
       initializer "decidim.i18n_exceptions" do
@@ -122,16 +133,15 @@ module Decidim
         next if Decidim.maps.present?
         next if Decidim.geocoder.blank?
 
-        legacy_api_key ||= begin
-          if Decidim.geocoder[:here_api_key].present?
-            Decidim.geocoder.fetch(:here_api_key)
-          elsif Decidim.geocoder[:here_app_id].present?
-            [
-              Decidim.geocoder.fetch(:here_app_id),
-              Decidim.geocoder.fetch(:here_app_code)
-            ]
-          end
-        end
+        legacy_api_key ||= if Decidim.geocoder[:here_api_key].present?
+                             Decidim.geocoder.fetch(:here_api_key)
+                           elsif Decidim.geocoder[:here_app_id].present?
+                             [
+                               Decidim.geocoder.fetch(:here_app_id),
+                               Decidim.geocoder.fetch(:here_app_code)
+                             ]
+                           end
+
         next unless legacy_api_key
 
         ActiveSupport::Deprecation.warn(
@@ -167,6 +177,7 @@ module Decidim
 
         Decidim.stats.register :processes_count, priority: StatsRegistry::HIGH_PRIORITY do |organization, start_at, end_at|
           processes = ParticipatoryProcesses::OrganizationPrioritizedParticipatoryProcesses.new(organization)
+
           processes = processes.where("created_at >= ?", start_at) if start_at.present?
           processes = processes.where("created_at <= ?", end_at) if end_at.present?
           processes.count
@@ -221,9 +232,9 @@ module Decidim
                         decidim.user_interests_path,
                         position: 1.4
 
-          menu.add_item :data_portability,
+          menu.add_item :download_your_data,
                         t("my_data", scope: "layouts.decidim.user_profile"),
-                        decidim.data_portability_path,
+                        decidim.download_your_data_path,
                         position: 1.5
 
           menu.add_item :delete_account,
@@ -239,6 +250,13 @@ module Decidim
           Decidim::EventsManager.subscribe(/^decidim\.events\./) do |event_name, data|
             EventPublisherJob.perform_later(event_name, data)
           end
+        end
+      end
+
+      initializer "decidim.validators" do
+        config.to_prepare do
+          # Decidim overrides to the file content type validator
+          require "file_content_type_validator"
         end
       end
 

@@ -3,7 +3,7 @@
 module Decidim
   module Conferences
     # This command is executed when the user leaves a conference.
-    class LeaveConference < Rectify::Command
+    class LeaveConference < Decidim::Command
       # Initializes a LeaveConference Command.
       #
       # conference - The current instance of the conference to be left.
@@ -20,10 +20,10 @@ module Decidim
       #
       # Broadcasts :ok if successful, :invalid otherwise.
       def call
-        @conference.with_lock do
-          return broadcast(:invalid) unless registration
-          return broadcast(:invalid) unless meetings_registrations
+        return broadcast(:invalid) unless registration
+        return broadcast(:invalid) unless meetings_registrations
 
+        @conference.with_lock do
           destroy_registration
           destroy_meeting_registration
         end

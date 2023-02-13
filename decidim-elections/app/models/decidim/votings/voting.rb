@@ -16,6 +16,7 @@ module Decidim
       include Decidim::HasUploadValidations
       include Decidim::HasAttachments
       include Decidim::HasAttachmentCollections
+      include Decidim::FilterableResource
 
       enum voting_type: [:in_person, :online, :hybrid].index_with(&:to_s), _suffix: :voting
 
@@ -61,6 +62,8 @@ module Decidim
       scope :finished, -> { published.where("end_time < ?", Time.now.utc) }
       scope :order_by_most_recent, -> { order(created_at: :desc) }
       scope :promoted, -> { published.where(promoted: true) }
+
+      scope_search_multi :with_any_date, [:active, :upcoming, :finished]
 
       def upcoming?
         start_time > Time.now.utc
@@ -135,6 +138,10 @@ module Decidim
         ballot_styles.exists?
       end
 
+      def check_census_enabled?
+        dataset.present? && show_check_census?
+      end
+
       def elections
         Decidim::Elections::Election.where(component: components)
       end
@@ -155,6 +162,14 @@ module Decidim
 
       def vote_flow_for(election)
         Decidim::Votings::CensusVoteFlow.new(election)
+      end
+
+      # Create i18n ransackers for :title and :description.
+      # Create the :search_text ransacker alias for searching from both of these.
+      ransacker_i18n_multi :search_text, [:title, :description]
+
+      def self.ransackable_scopes(_auth_object = nil)
+        [:with_any_date]
       end
     end
   end

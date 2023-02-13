@@ -4,12 +4,13 @@ module Decidim
   module Admin
     # A command with all the business logic to destroy a category in the
     # system.
-    class DestroyCategory < Rectify::Command
+    class DestroyCategory < Decidim::Command
       # Public: Initializes the command.
       #
       # category - A Category that will be destroyed
-      def initialize(category)
+      def initialize(category, user)
         @category = category
+        @user = user
       end
 
       # Executes the command. Broadcasts these events:
@@ -30,7 +31,9 @@ module Decidim
       attr_reader :category
 
       def destroy_category
-        category.destroy!
+        Decidim.traceability.perform_action!(:delete, category, @user) do
+          category.destroy!
+        end
       end
     end
   end

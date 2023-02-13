@@ -11,7 +11,7 @@ describe Decidim::Assemblies::Permissions do
   let(:assemblies_setting) { create :assemblies_setting, organization: organization }
   let(:assembly) { create :assembly, organization: organization, assembly_type: assembly_type }
   let(:context) { {} }
-  let(:permission_action) { Decidim::PermissionAction.new(action) }
+  let(:permission_action) { Decidim::PermissionAction.new(**action) }
   let(:assembly_admin) { create :assembly_admin, assembly: assembly }
   let(:assembly_collaborator) { create :assembly_collaborator, assembly: assembly }
   let(:assembly_moderator) { create :assembly_moderator, assembly: assembly }
@@ -20,11 +20,11 @@ describe Decidim::Assemblies::Permissions do
   shared_examples "access for role" do |access|
     case access
     when true
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     when :not_set
       it_behaves_like "permission is not set"
     else
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
   end
 
@@ -74,6 +74,23 @@ describe Decidim::Assemblies::Permissions do
       )
     end
 
+    context "when accessing global moderation" do
+      subject { Decidim::Admin::Permissions.new(user, permission_action, context).permissions.allowed? }
+
+      let(:action) do
+        { scope: :admin, action: :read, subject: :global_moderation }
+      end
+
+      it_behaves_like(
+        "access for roles",
+        org_admin: true,
+        admin: true,
+        collaborator: false,
+        moderator: true,
+        valuator: false
+      )
+    end
+
     context "when reading a assembly" do
       let(:action) do
         { scope: :public, action: :read, subject: :assembly }
@@ -83,13 +100,13 @@ describe Decidim::Assemblies::Permissions do
       context "when the user is an admin" do
         let(:user) { create :user, :admin }
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when the assembly is published" do
         let(:user) { create :user, organization: organization }
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when the assembly is not published" do
@@ -97,7 +114,7 @@ describe Decidim::Assemblies::Permissions do
         let(:assembly) { create :assembly, :unpublished, organization: organization }
 
         context "when the user doesn't have access to it" do
-          it { is_expected.to eq false }
+          it { is_expected.to be false }
         end
 
         context "when the user has access to it" do
@@ -105,7 +122,7 @@ describe Decidim::Assemblies::Permissions do
             create :assembly_user_role, user: user, assembly: assembly
           end
 
-          it { is_expected.to eq true }
+          it { is_expected.to be true }
         end
       end
     end
@@ -115,7 +132,7 @@ describe Decidim::Assemblies::Permissions do
         { scope: :public, action: :list, subject: :assembly }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context "when listing assembly members" do
@@ -123,7 +140,7 @@ describe Decidim::Assemblies::Permissions do
         { scope: :public, action: :list, subject: :members }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context "when any other action" do
@@ -272,6 +289,36 @@ describe Decidim::Assemblies::Permissions do
     it_behaves_like(
       "access for roles",
       org_admin: true,
+      admin: true,
+      collaborator: false,
+      moderator: false,
+      valuator: false
+    )
+  end
+
+  context "when exporting an assembly" do
+    let(:action) do
+      { scope: :admin, action: :export, subject: :assembly }
+    end
+
+    it_behaves_like(
+      "access for roles",
+      org_admin: true,
+      admin: false,
+      collaborator: false,
+      moderator: false,
+      valuator: false
+    )
+  end
+
+  context "when copying an assembly" do
+    let(:action) do
+      { scope: :admin, action: :copy, subject: :assembly }
+    end
+
+    it_behaves_like(
+      "access for roles",
+      org_admin: true,
       admin: false,
       collaborator: false,
       moderator: false,
@@ -335,7 +382,7 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :read, subject: :dummy }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when action is :preview" do
@@ -343,7 +390,7 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :preview, subject: :dummy }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "when action is a random one" do
@@ -363,7 +410,7 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :create, subject: :assembly }
         end
 
-        it { is_expected.to eq false }
+        it { is_expected.to be true }
       end
 
       shared_examples "allows any action on subject" do |action_subject|
@@ -372,7 +419,7 @@ describe Decidim::Assemblies::Permissions do
             { scope: :admin, action: :foo, subject: action_subject }
           end
 
-          it { is_expected.to eq true }
+          it { is_expected.to be true }
         end
       end
 
@@ -393,7 +440,7 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :create, subject: :assembly }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       shared_examples "allows any action on subject" do |action_subject|
@@ -402,7 +449,7 @@ describe Decidim::Assemblies::Permissions do
             { scope: :admin, action: :foo, subject: action_subject }
           end
 
-          it { is_expected.to eq true }
+          it { is_expected.to be true }
         end
       end
 
@@ -425,7 +472,7 @@ describe Decidim::Assemblies::Permissions do
         { scope: :admin, action: :index, subject: :assembly_type }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context "when action is :create" do
@@ -433,7 +480,7 @@ describe Decidim::Assemblies::Permissions do
         { scope: :admin, action: :create, subject: :assembly_type }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context "when action is :edit" do
@@ -441,7 +488,7 @@ describe Decidim::Assemblies::Permissions do
         { scope: :admin, action: :edit, subject: :assembly_type }
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context "when action is :destroy" do
@@ -453,13 +500,13 @@ describe Decidim::Assemblies::Permissions do
       context "and assembly type has children" do
         let!(:assembly) { create :assembly, organization: organization, assembly_type: assembly_type }
 
-        it { is_expected.to eq false }
+        it { is_expected.to be false }
       end
 
       context "and assembly type has no children" do
         let(:assembly) { create :assembly, organization: organization }
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
     end
 
@@ -470,7 +517,7 @@ describe Decidim::Assemblies::Permissions do
         { scope: :admin, action: :create, subject: :assembly_type }
       end
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
 
     context "when listing assemblies list" do
@@ -486,7 +533,7 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :list, subject: :assembly }
         end
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
       context "when the assembly has one ancestor" do
@@ -499,7 +546,7 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :list, subject: :assembly }
         end
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
       context "when the assembly has more than one ancestor" do
@@ -513,10 +560,10 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :list, subject: :assembly }
         end
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
-      context "when the assembly has one ancestor" do
+      context "when the assembly has one sucessor" do
         before do
           create :assembly_user_role, user: user, assembly: assembly.parent
         end
@@ -526,7 +573,105 @@ describe Decidim::Assemblies::Permissions do
           { scope: :admin, action: :list, subject: :assembly }
         end
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(true) }
+      end
+    end
+  end
+
+  describe "when acting with assemblies admins and children assemblies" do
+    let!(:user) { create :assembly_admin, assembly: mother_assembly }
+    let(:mother_assembly) { create :assembly, parent: assembly, organization: organization, hashtag: "mother" }
+    let(:child_assembly) { create :assembly, parent: mother_assembly, organization: organization, hashtag: "child" }
+
+    context "when assembly is a grandmother assembly" do
+      let(:context) { { assembly: assembly } }
+
+      context "and action is :list" do
+        let(:action) do
+          { scope: :admin, action: :list, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
+      end
+
+      context "and action is :export" do
+        let(:action) do
+          { scope: :admin, action: :export, subject: :assembly }
+        end
+
+        it { is_expected.to be(false) }
+      end
+
+      context "and action is :copy" do
+        let(:action) do
+          { scope: :admin, action: :copy, subject: :assembly }
+        end
+
+        it { is_expected.to be(false) }
+      end
+    end
+
+    context "when assembly is a mother assembly" do
+      let(:context) { { assembly: mother_assembly } }
+
+      context "and action is :list" do
+        let(:action) do
+          { scope: :admin, action: :list, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
+      end
+
+      context "and action is :export" do
+        let(:action) do
+          { scope: :admin, action: :export, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
+      end
+
+      context "and action is :copy" do
+        let(:action) do
+          { scope: :admin, action: :copy, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
+      end
+    end
+
+    context "when assembly is a child assembly" do
+      let(:context) { { assembly: child_assembly } }
+
+      context "and action is :list" do
+        let(:action) do
+          { scope: :admin, action: :list, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
+      end
+
+      context "and action is :export" do
+        let(:action) do
+          { scope: :admin, action: :export, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
+      end
+
+      context "and action is :copy" do
+        let(:action) do
+          { scope: :admin, action: :copy, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
+      end
+
+      context "and action is :read the current assembly" do
+        let(:action) do
+          { scope: :admin, action: :read, subject: :assembly }
+        end
+
+        it { is_expected.to be(true) }
       end
     end
   end

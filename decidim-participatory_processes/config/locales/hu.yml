@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     attributes:
@@ -56,16 +57,12 @@ hu:
         short_description: Rövid leírás
         start_date: Kezdő dátum
         title: Cím
+      participatory_process_type:
+        title: Cím
       participatory_process_user_role:
         email: Email
         name: Név
         role: Szerep
-    errors:
-      models:
-        participatory_process:
-          attributes:
-            document:
-              invalid_document_type: 'Érvénytelen dokumentumtípus. Elfogadott formátumok: %{valid_mime_types}'
     models:
       decidim/participatory_process_step_activated_event: Lépés aktiválva
       decidim/participatory_process_step_changed_event: Lépés megváltozott
@@ -96,6 +93,7 @@ hu:
         new_process: Új folyamat
         new_process_group: Új folyamat csoport
         new_process_step: Új lépés
+        new_process_type: Új folyamat típus
         new_process_user_role: Új folyamat adminisztrátor
         preview: Előnézet
         publish: Közzétesz
@@ -106,6 +104,7 @@ hu:
         participatory_process_groups_submenu:
           info: Info
           landing_page: Landing oldal
+        participatory_process_types: Folyamat típusok
         participatory_processes: Folyamatok
         participatory_processes_submenu:
           attachment_collections: Mappák
@@ -137,6 +136,11 @@ hu:
             start_date: Kezdő dátum
             title: Cím
           name: Résztvevői folyamat lépés
+        participatory_process_type:
+          fields:
+            created_at: Létrehozva
+            title: Cím
+          name: Folyamat típusa
         participatory_process_user_role:
           fields:
             email: Email
@@ -219,6 +223,23 @@ hu:
         update:
           error: Hiba történt a részvételi folyamat lépésének frissítése során.
           success: Részvételi folyamat lépés frissítése sikeres.
+      participatory_process_types:
+        create:
+          error: Hiba történt az új folyamat típus létrehozásakor.
+          success: Folyamat típus sikeresen létrehozva.
+        destroy:
+          success: Folyamat-típus sikeresen törölve.
+        edit:
+          title: Folyamat típus szerkesztése
+          update: Frissítés
+        form:
+          title: Cím
+        new:
+          create: Létrehozás
+          title: Új folyamat típus
+        update:
+          error: Hiba történt a folyamat típus frissítése során.
+          success: A folyamat típus sikeresen frissítésre került.
       participatory_process_user_roles:
         create:
           error: Hiba a felhasználó részvételi folyamathoz való hozzáadásakor.
@@ -263,6 +284,7 @@ hu:
           success: Részvételi folyamat csoport létrehozása sikeres.
       titles:
         participatory_process_groups: Részvételi folyamat csoportok
+        participatory_process_types: Részvételi folyamat típusok
         participatory_processes: Részvételi folyamatok
       users:
         resend_invitation:
@@ -271,6 +293,9 @@ hu:
     admin_log:
       participatory_process:
         create: "%{user_name} létrehozta a(z) %{resource_name} részvételi folyamatot"
+        duplicate: "%{user_name} duplikálta a(z) %{resource_name} részvételi folyamatot"
+        export: "%{user_name} exportálta a(z) %{resource_name} részvételi folyamatot"
+        import: "%{user_name} importálta a(z) %{resource_name} részvételi folyamatot"
         publish: "%{user_name} közzétette a(z) %{resource_name} részvételi folyamatot"
         unpublish: "%{user_name} visszavonta a(z) %{resource_name} részvételi folyamatot közzétételét"
         update: "%{user_name} frissítette a(z) %{resource_name} részvételi folyamatot"
@@ -282,6 +307,10 @@ hu:
         create: "%{user_name} létrehozta a(z) %{resource_name} lépést a(z) %{space_name} részvételi folyamatban"
         delete: "%{user_name} törölte a(z) %{resource_name} lépést a(z) %{space_name} részvételi folyamatból"
         update: "%{user_name} frissítette a(z) %{resource_name} lépést a(z) %{space_name} részvételi folyamatban"
+      participatory_process_type:
+        create: "%{user_name} létrehozta a(z) %{resource_name} részvételi folyamat típust"
+        delete: "%{user_name} törölte a(z) %{resource_name} részvételi folyamat típust"
+        update: "%{user_name} frissítette a(z) %{resource_name} részvételi folyamat típust"
       participatory_process_user_role:
         create: "%{user_name} meghívta %{resource_name} felhasználót a(z) %{space_name} részvételi folyamatba"
         delete: "%{user_name} törölte %{resource_name} felhasználót a(z) %{space_name} részvételi folyamatból"
@@ -309,6 +338,10 @@ hu:
           contextual: "<p>A <strong>részvételi folyamat</strong> a részvételi tevékenységek sorrendje (pl. Először egy felmérést tölt be, majd javaslatokat tesz, személyes vagy virtuális találkozókkal foglalkozik, végül pedig kiemelteti őket) a döntés megfogalmazása és meghozatala érdekében egy adott témában.</p> <p>Példák a részvételi folyamatokra: a bizottsági tagok megválasztásának folyamata (ahol a jelölteket először bemutatták, vitatták és végül jelöltségüket választották), részvételi költségvetések (ahol javaslatokat tesznek, gazdaságilag értékelik és szavaznak a rendelkezésre álló pénzzel) egy stratégiai tervezési folyamatot, egy rendelet vagy normaterv kidolgozását, egy városi tér kialakítását vagy egy közpolitikai terv elkészítését.</p>\n"
           page: "<p>A <strong>részvételi folyamat</strong> a részvételi tevékenységek sorrendje (pl. Először egy felmérést tölt be, majd javaslatokat tesz, személyes vagy virtuális találkozókkal foglalkozik, végül pedig kiemelteti őket) a döntés megfogalmazása és meghozatala érdekében egy adott témában.</p> <p>Példák a részvételi folyamatokra: a bizottsági tagok megválasztásának folyamata (ahol a jelölteket először bemutatták, vitatták és végül jelöltségüket választották), részvételi költségvetések (ahol javaslatokat tesznek, gazdaságilag értékelik és szavaznak a rendelkezésre álló pénzzel) egy stratégiai tervezési folyamatot, egy rendelet vagy normaterv kidolgozását, egy városi tér kialakítását vagy egy közpolitikai terv elkészítését.</p>\n"
           title: Mi a részvételi folyamat?
+    log:
+      value_types:
+        participatory_process_type_presenter:
+          not_found: 'A folyamat típust nem találtuk az adatbázisban (ID:%{id})'
     menu:
       processes: Folyamatok
     metrics:
@@ -381,6 +414,7 @@ hu:
             related_processes: Kapcsolódó folyamatok
             scope_type_max_depth_help: Hatáskör szűrő mélység korlátozása; A szűrő az általánostól a kiválasztott hatáskörtípus típusáig jelenik meg.
             select_an_area: Válasszon egy területet
+            select_participatory_process_type: Válasszon folyamat típust
             select_process_group: Válassza ki a folyamatcsoportot
             slug_help: 'Az URL slugok a folyamatok linkjeinek generáláshoz szükségesek. Csak betűket, számokat és kötőjeleket használhatsz. Betűvel kell kezdened. Példa: %{url}'
             title: Általános információk
@@ -407,6 +441,7 @@ hu:
           back_to_process: Vissza a folyamatok oldalára
       participatory_processes:
         filters:
+          all_types: Minden típus
           counters:
             active:
               one: 1 aktív folyamat
@@ -424,6 +459,7 @@ hu:
             no_active: Nincsenek aktív folyamatok
             no_active_nor_upcoming: Nincs aktív vagy közelgő folyamat
             no_active_nor_upcoming_callout: Nincs sem aktív, sem közelgő folyamat. A korrábbiakat itt nézheted meg.
+          filter_by: Mutat
           names:
             active: Aktív
             all: Összes

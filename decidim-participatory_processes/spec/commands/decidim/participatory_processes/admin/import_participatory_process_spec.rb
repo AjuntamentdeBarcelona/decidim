@@ -9,7 +9,7 @@ module Decidim::ParticipatoryProcesses
     subject { described_class.new(form) }
 
     let(:organization) { create :organization }
-    let!(:document_file) { IO.read(Decidim::Dev.asset(document_name)) }
+    let!(:document_file) { File.read(Decidim::Dev.asset(document_name)) }
     let(:form_doc) do
       instance_double(File,
                       blank?: false)
@@ -61,6 +61,17 @@ module Decidim::ParticipatoryProcesses
         expect(imported_participatory_process).not_to be_published
         expect(imported_participatory_process.organization).to eq(organization)
       end
+
+      it "traces the action", versioning: true do
+        expect(Decidim.traceability)
+          .to receive(:perform_action!).exactly(3).times
+                                       .and_call_original
+
+        expect { subject.call }.to change(Decidim::ActionLog, :count)
+        action_log = Decidim::ActionLog.last
+        expect(action_log.action).to eq("import")
+        expect(action_log.version).to be_present
+      end
     end
 
     describe "when the form is not valid" do
@@ -73,7 +84,7 @@ module Decidim::ParticipatoryProcesses
       it "doesn't create any proces" do
         expect do
           subject.call
-        end.to change(::Decidim::ParticipatoryProcess, :count).by(0)
+        end.not_to change(::Decidim::ParticipatoryProcess, :count)
       end
     end
 
@@ -90,7 +101,7 @@ module Decidim::ParticipatoryProcesses
 
       it "imports a participatory process and the steps" do
         stub_calls_to_external_files
-        expect { subject.call }.to change { Decidim::Component.count }.by(3)
+        expect { subject.call }.to change(Decidim::Component, :count).by(3)
         expect(Decidim::Component.where(participatory_space_id: Decidim::ParticipatoryProcess.last).count).to eq 3
       end
 
@@ -106,7 +117,7 @@ module Decidim::ParticipatoryProcesses
 
       it "imports a participatory process and the steps" do
         stub_calls_to_external_files
-        expect { subject.call }.to change { Decidim::ParticipatoryProcessStep.count }.by(1)
+        expect { subject.call }.to change(Decidim::ParticipatoryProcessStep, :count).by(1)
         expect(Decidim::ParticipatoryProcessStep.distinct.pluck(:decidim_participatory_process_id).count).to eq 1
 
         imported_participatory_process_step = Decidim::ParticipatoryProcessStep.last
@@ -128,7 +139,7 @@ module Decidim::ParticipatoryProcesses
       it "imports a participatory process and the categories" do
         stub_calls_to_external_files
 
-        expect { subject.call }.to change { Decidim::Category.count }.by(8)
+        expect { subject.call }.to change(Decidim::Category, :count).by(8)
         expect(Decidim::Category.unscoped.distinct.pluck(:decidim_participatory_space_id).count).to eq 1
 
         imported_participatory_process_category = Decidim::Category.unscoped.first
@@ -154,7 +165,7 @@ module Decidim::ParticipatoryProcesses
         it "imports a participatory process and the collections" do
           stub_calls_to_external_files
 
-          expect { subject.call }.to change { Decidim::AttachmentCollection.count }.by(1)
+          expect { subject.call }.to change(Decidim::AttachmentCollection, :count).by(1)
           imported_participatory_process_collection = Decidim::AttachmentCollection.first
           expect(imported_participatory_process_collection.name).to eq("ca" => "assumenda", "en" => "cumque", "es" => "rem")
           expect(imported_participatory_process_collection.collection_for).to eq(Decidim::ParticipatoryProcess.last)

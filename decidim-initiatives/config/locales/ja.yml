@@ -1,10 +1,15 @@
+---
 ja:
   activemodel:
     attributes:
       initiative:
+        answer: 回答
+        answer_url: 回答URL
         area_id: エリア
+        decidim_scope_id: スコープ
         decidim_user_group_id: 作成者
         description: 説明
+        hashtag: ハッシュタグ
         offline_votes: In-personal 署名
         offline_votes_for_scope: '%{scope_name} の In-personal 署名'
         scope_id: スコープ
@@ -17,6 +22,7 @@ ja:
           online: オンライン
         state: ステータス
         title: タイトル
+        type_id: タイプ
       initiatives_committee_member:
         user: 委員会メンバー
       initiatives_settings:
@@ -27,6 +33,7 @@ ja:
         banner_image: バナー画像
         child_scope_threshold_enabled: 下層スコープの署名を有効にする
         collect_user_extra_fields: 署名に参加者の個人データを収集する
+        comments_enabled: コメントを有効にする
         custom_signature_end_date_enabled: 著者が署名の収集期間の終わりを選択できるようにする
         description: 説明
         document_number_authorization_handler: 署名上のドキュメント番号を検証する権限
@@ -39,6 +46,9 @@ ja:
         title: タイトル
         undo_online_signatures_enabled: 参加者がオンライン署名を取り消すことを有効にする
         validate_sms_code_on_votes: 署名プロセスにSMSコード検証ステップを追加
+      initiatives_type_scope:
+        decidim_scopes_id: スコープ
+        supports_required: 必要サポート数
       initiatives_vote:
         date_of_birth: 誕生日
         document_number: ドキュメント番号
@@ -85,12 +95,17 @@ ja:
             label: タイプ
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: '%{collection} をタイトル、説明、ID、または著者名で検索します。'
+      initiatives_settings:
+        update:
+          error: エラーが発生しました
+          success: イニシアチブの設定が正常に更新されました
       menu:
         attachments: 添付ファイル
         committee_members: 委員会メンバー
         components: コンポーネント
         information: 情報
         initiatives: イニシアチブ
+        initiatives_settings: 設定
         initiatives_types: イニシアチブ種別
         moderations: モデレーション
       models:
@@ -242,6 +257,16 @@ ja:
           update:
             error: エラーが発生しました
             success: イニシアチブが正常に更新されました
+        initiatives_settings:
+          edit:
+            update: 更新
+          form:
+            comments: コメント数の多い順
+            date: 新着順
+            publication_date: 公開日の新しい順
+            random: ランダム
+            signatures: 署名数順
+            title: イニシアチブの設定
         initiatives_type_scopes:
           create:
             error: エラーが発生しました
@@ -273,7 +298,7 @@ ja:
             update: 更新
           form:
             authorizations: 認証設定
-            child_scope_threshold_enabled_help: "この設定では、対面での署名収集をサポートせず、サブスコープの署\n名フラグを有効にし、スコープとユーザーを関連付ける承認ハンドラと連携します。オーソリゼーションの設定で、下記のオーソリゼーションを必ず選択してください。これが機能するためには、1つのスコープ - N個のサブスコープというように、階層的に構成されている必要があります。この設定がどのように機能するかについては、 <a href=\"https://docs.decidim.org/en/admin/spaces/initiatives/\" target=\"_blank\">このリンク</a> を参照してください。"
+            child_scope_threshold_enabled_help: 'この設定フラグはオフライン投票をサポートしておらず、サブスコープを有効にし、スコープをユーザに関連付ける認証ハンドラで動作します。 認証の設定が間違っていないことを確認してください。正しく動作させるためには、スコープを 親1つにつき子N個が対応する階層構造で構成する必要があります。 この設定の仕組みについての詳細は、<a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">イニシアチブの管理者ドキュメント</a> を参照してください。'
             only_global_scope_enabled_help: '「下層スコープ署名」を有効にし、グローバルスコープを親スコープとして設定する場合、このフラグをチェックします。これを有効にすると、イニシアチブ作成ウィザードでイニシアチブ種別の選択がスキップされます。この設定の仕組みについての詳細は、<a href="https://docs.decidim.org/admin-manual/en/initiatives/" target="_blank">このリンク</a> を参照してください。'
             options: オプション
             title: 一般情報
@@ -291,6 +316,12 @@ ja:
           send_to_technical_validation: "%{user_name} が %{resource_name} イニシアチブを技術的検証に提出しました"
           unpublish: "%{user_name} が %{resource_name} イニシアチブを破棄しました"
           update: "%{user_name} が %{resource_name} のイニシアチブを更新しました"
+        initiatives_settings:
+          update: "%{user_name} がイニシアチブの設定を更新しました"
+        initiatives_type:
+          create: "%{user_name} が %{resource_name} イニシアチブタイプを作成しました"
+          delete: "%{user_name} が %{resource_name} イニシアチブタイプを削除しました"
+          update: "%{user_name} は %{resource_name} イニシアチブタイプを更新しました"
       admin_states:
         accepted: 十分な署名
         created: 作成済み
@@ -559,6 +590,8 @@ ja:
           published: 公開済み
           rejected: 十分な署名がありません
           validating: 技術的検証
+      signature_interval:
+        title: 署名の収集期間
       states:
         accepted: 承認済み
         expired: 期限切れ

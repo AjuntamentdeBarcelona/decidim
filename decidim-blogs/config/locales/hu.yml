@@ -1,3 +1,4 @@
+---
 hu:
   activemodel:
     models:
@@ -10,16 +11,14 @@ hu:
   decidim:
     blogs:
       actions:
+        author_id: Bejegyzés létrehozása
         confirm_destroy: Biztos, hogy törlöd ezt a bejegyzést?
         destroy: Törlés
         edit: Szerkesztés
         new: Új bejegyzés
         title: Műveletek
-        user_group_id: Bejegyzés létrehozása
       admin:
         models:
-          components:
-            body: Szöveg
           post:
             name: Bejegyzés
         posts:
@@ -39,6 +38,11 @@ hu:
           update:
             invalid: Hiba történt a bejegyzés mentése során.
             success: Bejegyzés mentése sikeres
+      admin_log:
+        post:
+          create: "%{user_name} létrehozta a(z) %{resource_name} blogposztot itt: %{space_name}"
+          delete: "%{user_name} törölte a(z) %{resource_name} blogposztot itt: %{space_name}"
+          update: "%{user_name} frissítette a(z) %{resource_name} blogposztot itt: %{space_name}"
       last_activity:
         new_post_at_html: "<span>Új hozzászólás %{link}</span>kor"
       models:
@@ -47,7 +51,7 @@ hu:
             author: Szerző
             body: Szöveg
             created_at: 'Létrehozva:'
-            title: cím
+            official_blog_post: Hivatalos bejegyzés
       posts:
         show:
           back: Vissza a listához

@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -62,5 +63,11 @@ lt:
             current_step: Žingsnis %{step}
             of_total_steps: iš%{total_steps}
             tos_agreement: Dalyvaudami sutinkate su paslaugos teikimo sąlygomis
+      admin_log:
+        template:
+          create: "%{user_name} atnaujino %{resource_name} klausimyno šabloną"
+          delete: "%{user_name} ištrynė %{resource_name} klausimyno šabloną"
+          duplicate: "%{user_name} dublikavo %{resource_name} klausimyno šabloną"
+          update: "%{user_name} atnaujino %{resource_name} klausimyno šabloną"
       template_types:
         questionnaires: Klausimynai

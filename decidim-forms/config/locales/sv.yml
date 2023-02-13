@@ -1,3 +1,4 @@
+---
 sv:
   activemodel:
     attributes:
@@ -124,14 +125,8 @@ sv:
       errors:
         answer:
           body: Kroppen kan inte vara to
-      files:
-        extension_allowlist: 'Godkända format:'
       images:
         dimensions: "%{width} x %{height} px"
-        dimensions_info: 'Denna bild kommer att vara:'
-        processors:
-          resize_and_pad: Anpassad och vadderad till
-          resize_to_fit: Anpassad för att passa
       question_types:
         files: Filer
         long_answer: Långt svar

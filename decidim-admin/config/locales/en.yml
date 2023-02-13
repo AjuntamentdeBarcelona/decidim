@@ -15,17 +15,24 @@ en:
         description: Description
         file: File
         title: Attachment or image name
+        weight: Order position
       attachment_collection:
         description: Description
         name: Name
+        weight: Order position
       category:
         description: Description
         name: Name
         parent_id: Parent
+        weight: Order position
       component:
         name: Name
         published_at: Published at
         weight: Order position
+      external_domain:
+        value: Value
+      help_section:
+        content: Content
       id: ID
       import:
         user_group_id: Create imports as
@@ -93,6 +100,9 @@ en:
         welcome_notification_body: Welcome notification body
         welcome_notification_subject: Welcome notification subject
         youtube_handler: YouTube handler
+      participatory_space_private_user:
+        email: Email
+        name: Name
       scope:
         code: Code
         name: Name
@@ -114,6 +124,7 @@ en:
         show_in_footer: Show in the footer
         slug: URL slug
         title: Title
+        topic_id: Topic
         weight: Order position
       static_page_topic:
         description: Description
@@ -134,6 +145,14 @@ en:
               allowed_file_content_types: Invalid image file
             official_img_header:
               allowed_file_content_types: Invalid image file
+        participatory_space_private_user_csv_import:
+          attributes:
+            file:
+              malformed: Malformed import file, please read through the instructions carefully and make sure the file is UTF-8 encoded.
+        user_group_csv_verification:
+          attributes:
+            file:
+              malformed: Malformed import file, please read through the instructions carefully and make sure the file is UTF-8 encoded.
       new_import:
         attributes:
           file:
@@ -178,7 +197,7 @@ en:
         reject: Reject
         share: Share
         user:
-          new: New user
+          new: New admin
         verify: Verify
       admin_terms_of_use:
         accept:
@@ -261,6 +280,8 @@ en:
         update:
           error: There was a problem updating this attachment.
           success: Attachment updated successfully.
+      attachments_privacy_warning:
+        message: Be careful when working with attachments in a private space. Any participant could share this document to others.
       autocomplete:
         no_results: No results found
         search_prompt: Type at least three characters to search
@@ -343,7 +364,7 @@ en:
       dashboard:
         show:
           view_more_logs: View more logs
-          welcome: Welcome to the Decidim Admin Panel.
+          welcome: Welcome to the Admin Panel.
       domain_whitelist:
         form:
           domain_too_short: Domain too short
@@ -836,9 +857,23 @@ en:
           invalid: There was a problem reading the CSV file.
           success: CSV file uploaded successfully, we're sending an invitation email to participants. This might take a while.
         new:
+          destroy:
+            button: Delete all private participants
+            confirm: Are you sure you want to delete all private participants? This action can't be undone, you will not be able to recover them.
+            empty: You have no private participants.
+            explanation: You have %{count} private participants.
+            title: Delete private participants
           explanation: Upload your CSV file. It must have two columns with email in the first column of the file and name in the last column of the file (email, name) of the users that you want to add to the participatory space, without headers. Avoid using invalid chars like `<>?%&^*#@()[]=+:;"{}\|` in user name.
           title: Upload your CSV file
           upload: Upload
+      reminders:
+        create:
+          error: There was a problem creating reminders.
+          success:
+            one: "%{count} user will be reminded."
+            other: "%{count} users will be reminded."
+        new:
+          submit: Send
       resource_permissions:
         edit:
           submit: Submit
@@ -896,6 +931,7 @@ en:
         gallery:
           add_images: Add images
           delete_image: Delete Image
+          edit_images: Edit images
           gallery_legend: Add an image gallery (Optional)
       static_page_topics:
         create:
@@ -956,7 +992,7 @@ en:
         static_pages: Pages
         statistics: Activity
         user_groups: Groups
-        users: Participants
+        users: Administrators
       user_group:
         csv_verify:
           invalid: There was a problem reading the CSV file.
@@ -992,7 +1028,7 @@ en:
           role: Role
         new:
           create: Invite
-          title: Invite participant as administrator
+          title: Invite new administrator
       users_statistics:
         users_count:
           admins: Admins

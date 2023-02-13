@@ -1,3 +1,4 @@
+---
 fi:
   activemodel:
     attributes:
@@ -23,6 +24,12 @@ fi:
       postal_letter_postage:
         full_address: Koko osoite
         verification_code: Vahvistuskoodi
+    errors:
+      models:
+        census_data:
+          attributes:
+            file:
+              malformed: Virheellinen tuontitiedosto, lue ohjeet huolellisesti ja varmista, että tiedosto on UTF-8 muodossa.
   decidim:
     admin:
       menu:
@@ -191,7 +198,7 @@ fi:
               verification_number: 'Vahvistus #%{n}'
           rejections:
             create:
-              success: Vahvistus hylätty. Käyttäjää pyydetään muuttamaan asiakirjojaan
+              success: Vahvistus hylätty. Käyttäjää pyydetään päivittämään lataamiaan asiakirjoja
         authorizations:
           choose:
             choose_a_type: 'Valitse, kuinka haluat varmistaa henkilöllisyytesi:'

@@ -1,3 +1,4 @@
+---
 ro:
   activemodel:
     attributes:
@@ -259,9 +260,9 @@ ro:
       filters:
         active: Activ
         all: Toate
+        date: Data
         finished: Terminat
         search: Caută
-        state: Status
         upcoming: Urmează
       filters_small_view:
         close_modal: Închide fereastra

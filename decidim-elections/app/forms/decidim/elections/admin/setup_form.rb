@@ -57,9 +57,9 @@ module Decidim
         end
 
         def messages
-          @messages ||= validations.map do |message, t_args, _valid|
+          @messages ||= validations.to_h do |message, t_args, _valid|
             [message, I18n.t("steps.create_election.requirements.#{message}", **t_args, scope: "decidim.elections.admin")]
-          end.to_h
+          end
         end
 
         def census_messages
@@ -107,7 +107,7 @@ module Decidim
         private
 
         def choose_random_trustees
-          return @trustee_ids if @trustee_ids.any? || defined?(@trustees)
+          return @trustee_ids if @trustee_ids&.any? || defined?(@trustees)
 
           @trustees = if participatory_space_trustees_with_public_key.count >= bulletin_board.number_of_trustees
                         participatory_space_trustees_with_public_key.sample(bulletin_board.number_of_trustees)

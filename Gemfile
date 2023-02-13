@@ -13,29 +13,24 @@ gem "decidim-templates", path: "."
 
 gem "bootsnap", "~> 1.4"
 
-gem "foundation_rails_helper", git: "https://github.com/sgruhier/foundation_rails_helper.git"
-gem "puma", ">= 5.5.1"
+gem "puma", ">= 5.6.2"
 
 gem "faker", "~> 2.14"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
-  # Use latest simplecov from master until next version of simplecov is
-  # released (greather than 0.18.5)
-  # See https://github.com/decidim/decidim/issues/6230
-  gem "simplecov", "~> 0.19.0"
-
   gem "decidim-dev", path: "."
 
-  gem "brakeman", "~> 5.1"
+  gem "brakeman", "~> 5.2"
+  gem "parallel_tests", "~> 3.7"
 end
 
 group :development do
-  gem "letter_opener_web", "~> 1.3"
+  gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
   gem "rubocop-faker"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
-  gem "web-console", "4.0.4"
+  gem "web-console", "~> 4.2"
 end

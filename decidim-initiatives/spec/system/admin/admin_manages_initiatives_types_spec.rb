@@ -37,7 +37,7 @@ describe "Admin manages initiatives types", type: :system do
 
       select("Online", from: "Signature type")
 
-      attach_file "Banner image", Decidim::Dev.asset("city2.jpeg")
+      dynamically_attach_file(:initiatives_type_banner_image, Decidim::Dev.asset("city2.jpeg"))
 
       click_button "Create"
 
@@ -64,6 +64,7 @@ describe "Admin manages initiatives types", type: :system do
       uncheck "Enable participants to undo their online signatures"
       check "Enable authors to choose the end of signature collection period"
       check "Enable authors to choose the area for their initiative"
+      uncheck "Enable comments"
 
       click_button "Update"
 

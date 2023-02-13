@@ -4,7 +4,7 @@ module Decidim
   module Elections
     module Voter
       # This command updates the vote status and sends a notification.
-      class UpdateVoteStatus < Rectify::Command
+      class UpdateVoteStatus < Decidim::Command
         # Public: Initializes the command.
         #
         # vote        - the vote that has been updated
@@ -74,7 +74,7 @@ module Decidim
             }
           }
 
-          Decidim::EventsManager.publish(data)
+          Decidim::EventsManager.publish(**data)
         end
 
         def send_vote_email

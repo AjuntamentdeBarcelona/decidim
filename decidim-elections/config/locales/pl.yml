@@ -1,3 +1,4 @@
+---
 pl:
   activemodel:
     attributes:
@@ -16,6 +17,7 @@ pl:
         min_selections: Żadna z powyższych opcji
         title: Tytuł
       voting:
+        banner_image: Banner
         end_time: Głosowanie kończy się
         start_time: Głosowanie rozpoczyna się
     errors:
@@ -287,15 +289,6 @@ pl:
             selected: Wybrane
             submit: Prześlij
             title: Opublikowano wyniki
-          tally:
-            continue: Dalej
-            invalid: Wystąpił błąd podczas usuwania męża (osoby) zaufania
-            mark_as_missing: Oznacz jako brakujący
-            mark_as_missing_description: Wszyscy mężowie zaufania powinni uczestniczyć w tym procesie, ale jeśli nie może wziąć udziału w tym procesie, możesz oznaczyć go jako brakujący.
-            success: Brakująca uwaga męża zaufania została pomyślnie wysłana do Tablicy
-            tally_completion: 'Proces zostanie zakończony, gdy wszyscy mężowie zaufania będą aktywni lub zostaną oznaczeni jako brakujący. Wymagana ilość mężów zaufania: %{quorum}.'
-            title: Proces ustalania wyniku głosowania
-            undo_mark_as_missing: Przed zakończeniem procesu będzie mógł uczestniczyć mąż zaufania oznaczony jako brakujący omyłkowo. Mężowie zaufania mogą postępować jak zwykle, a oznaczenie jako "brakujący" zostanie zignorowane.
           tally_ended:
             answer: Odpowiedź
             not_selected: Nie wybrano
@@ -305,6 +298,13 @@ pl:
             submit: Opublikuj wyniki
             success: Prośba o publikację wyników została pomyślnie przesłana do Tablicy danych wyborczych
             title: Obliczone wyniki
+          tally_started:
+            invalid: Wystąpił błąd podczas usuwania męża (osoby) zaufania
+            mark_as_missing: Oznacz jako brakujący
+            mark_as_missing_description: Wszyscy mężowie zaufania powinni uczestniczyć w tym procesie, ale jeśli nie może wziąć udziału w tym procesie, możesz oznaczyć go jako brakujący.
+            success: Brakująca uwaga męża zaufania została pomyślnie wysłana do Tablicy
+            tally_completion: 'Proces zostanie zakończony, gdy wszyscy mężowie zaufania będą aktywni lub zostaną oznaczeni jako brakujący. Wymagana ilość mężów zaufania: %{quorum}.'
+            undo_mark_as_missing: Przed zakończeniem procesu będzie mógł uczestniczyć mąż zaufania oznaczony jako brakujący omyłkowo. Mężowie zaufania mogą postępować jak zwykle, a oznaczenie jako "brakujący" zostanie zignorowane.
           vote:
             errors:
               time_after: Wybory nadal trwają. Musisz poczekać do daty zakończenia (%{end_time}) aby zamknąć głosowanie.
@@ -358,6 +358,11 @@ pl:
           upcoming: Nadchodzące
         end_date: Data zakończenia
         footer:
+          remaining_time:
+            one: "<strong>%{count} godzina %{minutes} minut</strong> pozostało do głosowania."
+            few: "<strong>%{count} godzin %{minutes} minut</strong> pozostało do głosowania."
+            many: "<strong>%{count} godzin %{minutes} minut</strong> pozostało do głosowania."
+            other: "<strong>%{count} godziny %{minutes} minuty</strong> pozostały do głosowania."
           view: Zobacz
           vote: Głosuj
         label:
@@ -422,7 +427,6 @@ pl:
           all: Wszystkie
           finished: Zakończone
           search: Szukaj
-          state: Status
           upcoming: Nadchodzące
         filters_small_view:
           close_modal: Zamknij okno
@@ -440,8 +444,9 @@ pl:
           title: Wyniki wyborów
           votes:
             one: "%{count} głos"
+            few: "%{count} głosów"
+            many: "%{count} głosów"
             other: "%{count} głosy"
-            zero: "%{count} głosów"
         show:
           action_button:
             change_vote: Zmień swój głos
@@ -531,24 +536,13 @@ pl:
             title: Przywróć klucze dla wyborów %{election}
             upload_election_keys: Prześlij klucze wyborcze
             upload_icon: Ikona wskazująca akcję pobierania
-          tally_steps:
-            back: Wróć
+          tally_started_steps:
             description: Wyniki tego głosowania są generowane na Tablicy danych wyborczych. Aby zakończyć ten proces niezbędne jest twoje uczestnictwo jako męża (osoby) zaufania.
             keys:
               end_tally: Zakończono proces ustalania wyniku głosowania
               tally:
                 cast: Suma oddanych głosów
                 share: Udostępnij ustalony wynik głosowania
-            list:
-              status: Status
-              task: Zadanie
-            process_warning: Po rozpoczęciu procesu, nie powinieneś opuszczać tej strony do czasu jego zakończenia. Zajmie to kilka minut, ponieważ wszyscy mężowie (osoby) zaufania powinni być podłączeni w celu jego ukończenia.
-            start: Rozpocznij
-            start_icon: Ikona wskazująca przycisk startu dla tworzenia kluczy wyborczych
-            status:
-              completed: Zakończono
-              pending: Oczekujące
-              processing: Przetwarzanie
             title: Wynik głosowania dla %{election}
           update:
             error: Status wyborów nie został zaktualizowany.
@@ -581,15 +575,12 @@ pl:
               generate_legend_3: Upewnij się, że Twój komputer nie ma kopii pliku (np. sprawdź foldery Pobrane i Pulpit).
               generate_legend_4: Utwórz kolejną kopię pliku na innym urządzeniu zewnętrznym i przechowuj go w bezpiecznym miejscu.
               submit: Prześlij
-              submit_legend: Po wykonaniu wszystkich opisanych wyżej kroków, zakończ proces wysyłania publicznego klucza identyfikacyjnego na serwer Decidim.
               submit_title: Prześlij publiczny klucz identyfikacyjny
               title: Klucze identyfikacyjne męża (osoby) zaufania
               upload: Prześlij swoje klucze identyfikacyjne
               upload_error:
                 invalid_format: Wgrany plik nie zawiera żadnego klucza identyfikacyjnego.
                 invalid_key: Nie można załadować kluczy identyfikacyjnych z przesłanego pliku.
-                invalid_public_key: Klucze identyfikacyjne z przesłanego pliku nie pasują do publicznego klucza identyfikacyjnego przechowywanego przez Decidim.
-              upload_legend: Decidim posiada twoje publiczne klucze identyfikacyjne, ale Twoja przeglądarka nadal nie ma tych kluczy. Musisz zaimportować plik z kluczami identyfikacyjnymi do komputera z kopii zapasowej, którą utworzyłeś po ich utworzeniu.
             not_supported_browser_description: Wygląda na to, że używasz przeglądarki internetowej, która nie może być użyta do działań męża (osoby) zaufania. Upewnij się, że używasz najnowszej wersji przeglądarki, lub spróbuj użyć dowolnej z najpopularniejszych przeglądarek, aby móc wykonać zadania męża (osoby) zaufania.
             not_supported_browser_title: Aktualizuj przeglądarkę by działać jako mąż (osoba) zaufania
             trustee_role_description: Zostałeś powołany do pełnienia funkcji męża (osoby) zaufania w niektórych głosowaniach na tej platformie.
@@ -630,8 +621,6 @@ pl:
         failed:
           header: Oddanie głosu nie powiodło się
           lead: Twój głos nie został oddany!
-          modal:
-            close: Zamknij
           text: Coś poszło nie tak. Spróbuj ponownie.
           try_again: Spróbuj ponownie
         header:
@@ -657,9 +646,7 @@ pl:
         onboarding_modal:
           close: Zamknij okno
           create_account: Utwórz konto
-          description: Czy chcesz utworzyć nowe konto w Decydim? Będziesz mógł uczestniczyć w procesach i aktywnie działać w organizacji.
           no_account: Nie, dziękuję.
-          title: Nowy w Decydim?
         update:
           error: Wystąpił błąd z aktualizacją stanu Twojego głosu. Zagłosuj ponownie.
         verify:
@@ -670,7 +657,6 @@ pl:
             header: Nie znaleziono głosu!
             info: Kod głosu nie został znaleziony na urnie wyborczej %{link}, spróbuj ponownie.
           form:
-            back: Wróć do Decidim
             submit: Sprawdź
             vote_identifier: 'Kod identyfikacyjny:'
           header:
@@ -1013,8 +999,6 @@ pl:
           census:
             create:
               invalid: Wystąpił błąd przy przesyłaniu listy wyborców. Spróbuj ponownie później.
-            creating_data:
-              info_message: "<strong>Poczekaj</strong>, przetworzono %{processed_count} z %{raw_count} wierszy z pliku %{file}."
             delete:
               button: Usuń wszystkie dane listy wyborców
             destroy:
@@ -1026,8 +1010,6 @@ pl:
               confirm: Możesz wyeksportować kody dostępu tylko raz. Upewnij się, że masz dostęp do konta e-mail <strong>%{email}</strong>.
               launch_error: Wystąpił problem z uruchomieniem eksportu kodów dostępu
               launch_success: Eksport kodów dostępu został uruchomiony. Wkrótce otrzymasz e-mail na adres %{email}
-            exporting_access_codes:
-              info_message: "<strong>Poczekaj</strong>, eksport jest przygotowywany, wkrótce otrzymasz go na adres %{email}"
             freeze:
               callout: Lista wyborców została zamknięta i nie może być już zmieniania.
             generate_access_codes:
@@ -1038,8 +1020,6 @@ pl:
               info_message_warn: Sprawdź, czy nie brakuje żadnych danych, ponieważ utworzono %{data_count} rekordów, a przesłany plik %{file} miał %{raw_count} wierszy.
               launch_error: Wystąpił błąd przy uruchomieniu tworzenia kodów dostępu
               launch_success: Uruchomiono tworzenie kodów.
-            generating_access_codes:
-              info_message: "<strong>Poczekaj</strong>, kody dostępu do głosowania są tworzone..."
             new:
               file_help:
                 explanation: 'Wytyczne dotyczące pliku:'
@@ -1154,11 +1134,9 @@ pl:
         in_person_votes:
           complete_voting:
             available_answers: 'Możliwe odpowiedzi:'
-            census_verified: Uczestnik jeszcze nie głosował.
             complete_voting: Zakończ głosowanie
             identify_another: Zidentyfikuj innego uczestnika
             questions_title: 'Ma prawo do głosowania w następujących kwestiach:'
-            questions_title_voted: 'Uczestnik głosował już online i ma prawo głosować w następujących kwestiach:'
             voted: Uczestnik zagłosował
           create:
             error: Głos nie został zarejestrowany. Spróbuj ponownie.
@@ -1283,7 +1261,6 @@ pl:
           all: Wszystko
           finished: Zakończone
           search: Szukaj
-          state: Status
           upcoming: Nadchodzące
         filters_small_view:
           close_modal: Zamknij okno

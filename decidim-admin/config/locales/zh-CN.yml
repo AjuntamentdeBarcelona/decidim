@@ -1,3 +1,4 @@
+---
 zh-CN:
   activemodel:
     attributes:
@@ -273,7 +274,6 @@ zh-CN:
       dashboard:
         show:
           view_more_logs: 查看更多日志
-          welcome: 欢迎来到Decidim管理面板
       exports:
         export_as: "%{name} 为 %{export_format}"
         formats:
@@ -731,7 +731,6 @@ zh-CN:
         static_pages: 页 次
         statistics: 活动
         user_groups: 群組
-        users: 参加者
       user_group:
         csv_verify:
           invalid: 读取CSV文件时出现问题。
@@ -767,7 +766,6 @@ zh-CN:
           role: 作用
         new:
           create: 邀请
-          title: 邀请参与者作为管理员
       users_statistics:
         users_count:
           admins: 管理员
@@ -799,10 +797,10 @@ zh-CN:
       models:
         moderation:
           fields:
+            created_at: 创建日期
             hidden_at: 隐藏于
             report_count: 计数
             reported_content_url: 报告的内容 URL
-            reports: 报告
             visit_url: 访问 URL
   errors:
     messages:

@@ -1,3 +1,4 @@
+---
 pl:
   activemodel:
     models:
@@ -12,16 +13,14 @@ pl:
   decidim:
     blogs:
       actions:
+        author_id: Utwórz wpis jako
         confirm_destroy: Czy na pewno chcesz usunąć ten wpis?
         destroy: Usuń
         edit: Edytuj
         new: Nowy wpis
         title: Działania
-        user_group_id: Utwórz wpis jako
       admin:
         models:
-          components:
-            body: Treść
           post:
             name: Wpis
         posts:
@@ -49,7 +48,6 @@ pl:
             author: Autor
             body: Treść
             created_at: Utworzono
-            title: Tytuł
       posts:
         show:
           back: Powrót do listy

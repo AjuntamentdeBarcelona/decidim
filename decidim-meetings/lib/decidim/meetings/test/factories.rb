@@ -86,6 +86,8 @@ FactoryBot.define do
       end
     end
 
+    trait(:participant_author) { not_official }
+
     trait :user_group_author do
       author do
         create(:user, organization: component.organization) if component
@@ -205,7 +207,7 @@ FactoryBot.define do
   factory :invite, class: "Decidim::Meetings::Invite" do
     meeting
     user
-    sent_at { Time.current - 1.day }
+    sent_at { 1.day.ago }
     accepted_at { nil }
     rejected_at { nil }
 

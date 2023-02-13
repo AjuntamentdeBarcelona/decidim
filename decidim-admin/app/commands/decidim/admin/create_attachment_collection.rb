@@ -4,14 +4,15 @@ module Decidim
   module Admin
     # A command with all the business logic to add an attachment collection
     # to a participatory space.
-    class CreateAttachmentCollection < Rectify::Command
+    class CreateAttachmentCollection < Decidim::Command
       # Public: Initializes the command.
       #
       # form - A form object with the params.
       # collection_for - The ActiveRecord::Base that will hold the collection
-      def initialize(form, collection_for)
+      def initialize(form, collection_for, user)
         @form = form
         @collection_for = collection_for
+        @user = user
       end
 
       # Executes the command. Broadcasts these events:
@@ -32,12 +33,20 @@ module Decidim
       attr_reader :form
 
       def create_attachment_collection
-        AttachmentCollection.create!(
+        Decidim.traceability.create!(
+          AttachmentCollection,
+          @user,
+          attributes
+        )
+      end
+
+      def attributes
+        {
           name: form.name,
           weight: form.weight,
           description: form.description,
           collection_for: @collection_for
-        )
+        }
       end
     end
   end

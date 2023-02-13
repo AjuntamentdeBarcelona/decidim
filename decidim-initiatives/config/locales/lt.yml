@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -24,6 +25,7 @@ lt:
         banner_image: Reklamjuostės paveikslėlis
         child_scope_threshold_enabled: Leisti parašus posritėse
         collect_user_extra_fields: Surinkti dalyvio asmens duomenis gavus parašą
+        comments_enabled: Įjungti komentarus
         custom_signature_end_date_enabled: Suteikti autoriams galimybę pasirinkti parašų rinkimo periodo pabaigą
         description: Aprašymas
         document_number_authorization_handler: Leidimas tikrinti dokumento numerį gavus parašą
@@ -54,11 +56,6 @@ lt:
               title: Pavadinimo laukas neturėtų būti tuščias
   activerecord:
     models:
-      decidim/initiative:
-        one: Iniciatyva
-        few: Iniciatyvos
-        many: Iniciatyvos
-        other: Iniciatyvos
       decidim/initiative_comittee:
         one: Komitetas
         few: Komitetai
@@ -90,12 +87,17 @@ lt:
             label: Tipas
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Ieškoti %{collection} pagal pavadinimą, aprašymą, ID ar autoriaus vardą ir pavardę.
+      initiatives_settings:
+        update:
+          error: Įvyko klaida
+          success: Iniciatyvų nustatymai atnaujinti
       menu:
         attachments: Priedai
         committee_members: Komiteto nariai
         components: Komponentai
         information: Informacija
         initiatives: Iniciatyvos
+        initiatives_settings: Nustatymai
         initiatives_types: Iniciatyvų tipai
         moderations: Moderavimai
       models:
@@ -247,6 +249,16 @@ lt:
           update:
             error: Įvyko klaida
             success: Iniciatyva sėkmingai atnaujinta
+        initiatives_settings:
+          edit:
+            update: Atnaujinti
+          form:
+            comments: Labiausiai komentuota
+            date: Naujausia
+            publication_date: Naujausiai publikuota
+            random: Atsitiktinai
+            signatures: Surinko daugiausia parašų
+            title: Nustatymai iniciatyvoms
         initiatives_type_scopes:
           create:
             error: Įvyko klaida
@@ -278,7 +290,7 @@ lt:
             update: Atnaujinti
           form:
             authorizations: Autorizacijos nustatymai
-            child_scope_threshold_enabled_help: 'Šis konfigūracijos variantas neleidžia turėti fizinių balsų. Jis leidžia turėti posrites ir dirba su autorizacijų tvarkykle kuri priskiria sritį naudotojui. Įsitikinkite, kad pasirenkate teisingą autorizaciją autorizacijų nustatymuose esančiuose žemiau. Tam, kad tai veiktų, sritys turi būti sukonfigūruotos hierarchiškai: 1. Motininis - N Jaunesnysis. Daugiau informacijos galite rasti <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank"> iniciatyvų administratorių dokumentacijos puslapyje</a>.'
+            child_scope_threshold_enabled_help: 'Šis konfigūracijos variantas neleidžia turėti fizinių alsų. Jis leidžia turėti posrites ir dirba su autorizacijų tvarkykle kuri priskiria sritį naudotojai. Įsitikinkite, kad pasirenkate teisingą autorizaciją autorizacijų nustatymuose esančiuose žemiau. Tam, kad tai veiktų, sritys turi būti sukonfigūruotos hierarchiškai: 1. Motininis - N Jaunesnysis. Daugiau informacijų galite rasti <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank"> iniciatyvų administratorių dokumentacijos puslapyje</a>.'
             only_global_scope_enabled_help: Pažymėkite šį laukelį, jei įjungėte "Įgalinti parašus pagal poskyrį" ir nustatėte visuotinę apimtį kaip motininę apimtį. Įjungus šį laukelį iniciatyvos tipo pasirinkimas bus praleistas iniciatyvos kūrimo vedlyje. Jei reikia daugiau informacijos apie tai, kaip veikia ši sąranka, žr. šią <a href="https://docs.decidim.org/en/admin/spaces/initiatives/" target="_blank">nuorodą</a>.
             options: Variantai
             title: Bendra informacija
@@ -296,6 +308,12 @@ lt:
           send_to_technical_validation: "%{user_name} išsiuntė iniciatyvą %{resource_name} techniniam patvirtinimui"
           unpublish: "%{user_name} atmetė iniciatyvą %{resource_name}"
           update: "%{user_name} atnaujino iniciatyvą %{resource_name}"
+        initiatives_settings:
+          update: "%{user_name} atnaujino iniciatyvų nustatymus"
+        initiatives_type:
+          create: "%{user_name} sukūrė %{resource_name} iniciatyvos tipą"
+          delete: "%{user_name} ištrynė %{resource_name} iniciatyvos tipą"
+          update: "%{user_name} atnaujino %{resource_name} iniciatyvos tipą"
       admin_states:
         accepted: Parašų užtenka
         created: Sukurta
@@ -581,6 +599,8 @@ lt:
           published: Publikuota
           rejected: Parašų neužtenka
           validating: Techninis patvirtinimas
+      signature_interval:
+        title: Parašų rinkimo periodas
       states:
         accepted: Priimta
         expired: Nebegalioja

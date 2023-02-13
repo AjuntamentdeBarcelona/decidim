@@ -1,4 +1,5 @@
-is-IS:
+---
+is:
   activemodel:
     attributes:
       proposal:
@@ -169,7 +170,6 @@ is-IS:
         withdrawn: Aftakað
       application_helper:
         filter_origin_values:
-          citizens: Borgarar
           official: Opinber
         filter_state_values:
           not_answered: Ekki svarað

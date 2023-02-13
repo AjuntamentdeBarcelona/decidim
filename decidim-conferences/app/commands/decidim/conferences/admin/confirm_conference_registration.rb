@@ -4,7 +4,7 @@ module Decidim
   module Conferences
     module Admin
       # This command is executed when the user joins a conference.
-      class ConfirmConferenceRegistration < Rectify::Command
+      class ConfirmConferenceRegistration < Decidim::Command
         # Initializes a JoinConference Command.
         #
         # conference_registration - The registration to be confirmed
@@ -18,9 +18,9 @@ module Decidim
         #
         # Broadcasts :ok if successful, :invalid otherwise.
         def call
-          @conference_registration.with_lock do
-            return broadcast(:invalid) unless can_join_conference?
+          return broadcast(:invalid) unless can_join_conference?
 
+          @conference_registration.with_lock do
             confirm_registration
             send_email_confirmation
             send_notification_confirmation

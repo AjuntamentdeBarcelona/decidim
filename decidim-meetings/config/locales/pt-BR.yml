@@ -1,10 +1,7 @@
+---
 pt-BR:
   activemodel:
     attributes:
-      agenda:
-        description: Descrição
-        duration: Duração
-        title: Título
       close_meeting:
         attendees_count: Número de Participantes
         attending_organizations: Lista de organizações que participaram
@@ -22,7 +19,6 @@ pt-BR:
         decidim_scope_id: Âmbito
         decidim_user_group_id: Grupo de usuários
         description: Descrição
-        end_time: Fim do tempo
         location: Localização
         location_hints: Dicas de localização
         online_meeting_url: URL da reunião on-line
@@ -34,7 +30,6 @@ pt-BR:
         registration_terms: Termos de registro
         registration_url: URL de Registro
         registrations_enabled: Registos habilitados
-        start_time: Hora de início
         title: Título
         transparent: Transparente
         type_of_meeting: Tipo
@@ -69,15 +64,6 @@ pt-BR:
         other: Registros
   decidim:
     admin:
-      filters:
-        meetings:
-          origin_eq:
-            label: Origem
-            values:
-              official: Oficial
-          type_eq:
-            values:
-              online: On-line
       meeting_copies:
         create:
           error: Ocorreu um erro ao duplicar esta reunião.
@@ -271,12 +257,10 @@ pt-BR:
             update: Atualizar
           form:
             address_help: 'Endereço: usado pelo Geocodificador para encontrar a localização'
-            available_slots_help: Deixe-o em 0 se você tiver slots ilimitados disponíveis
             disclaimer: 'Aviso: ao usar um sistema de registro externo, você está ciente de que os organizadores do %{organization} não são responsáveis pelos dados fornecidos pelos usuários ao serviço externo.'
             location_help: 'Localização: mensagem direcionada aos usuários que imprimem o local para'
             location_hints_help: 'Dicas de localização: informações adicionais Exemplo: o piso do edifício se é uma reunião presencial, ou a senha da reunião, se é uma reunião online com acesso restrito.'
             online_meeting_url_help: 'Link: permitir que os participantes se conectem diretamente à sua reunião'
-            registration_email_help: Este texto aparecerá no meio do e-mail de confirmação de registro. Logo após o código de registro.
             registration_url_help: 'Link: permitir que os participantes possam acessar o serviço externo que você está usando para inscrições'
             select_a_meeting_type: Por favor, selecione um tipo de reunião
             select_a_registration_type: Por favor, selecione um tipo de registro
@@ -322,6 +306,7 @@ pt-BR:
             available_slots_help: Deixe-o para 0 se você tiver slots ilimitados disponíveis.
             invites: Convites
             recommendation_message: Por razões de privacidade, recomendamos que você exclua esse formulário de inscrição quando não precisar mais dele. Por padrão, isso será daqui a 3 meses após o fim da reunião.
+            registration_email_help: Este texto aparecerá no meio do e-mail de confirmação de registro. Logo após o código de registro.
             registration_form: Formulário de registro
             registrations_count:
               one: Houve %{count} registro.
@@ -416,7 +401,6 @@ pt-BR:
           origin: Origem
           origin_values:
             all: Tudo
-            citizens: Cidadãos
             official: Oficial
             user_groups: Grupos
           scope: Escopo

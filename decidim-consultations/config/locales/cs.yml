@@ -1,3 +1,4 @@
+---
 cs:
   activemodel:
     attributes:
@@ -267,9 +268,9 @@ cs:
       filters:
         active: Aktivní
         all: Vše
+        date: Datum
         finished: Dokončeno
         search: Vyhledávání
-        state: Stav
         upcoming: Nadcházející
       filters_small_view:
         close_modal: Zavřete okno

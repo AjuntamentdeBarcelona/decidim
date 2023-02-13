@@ -1,3 +1,4 @@
+---
 lt:
   activemodel:
     attributes:
@@ -68,12 +69,6 @@ lt:
         email: El. paštas
         name: Vardas
         role: Rolė
-    errors:
-      models:
-        assembly:
-          attributes:
-            document:
-              invalid_document_type: 'Netinkamas dokumento tipas. Priimtini formatai: %{valid_mime_types}'
   activerecord:
     models:
       decidim/assembly:
@@ -248,6 +243,9 @@ lt:
     admin_log:
       assembly:
         create: "%{user_name} sukūrė %{resource_name} asamblėją"
+        duplicate: "%{user_name} dublikavo %{resource_name} asamblėją"
+        export: "%{user_name} eksportavo %{resource_name} asamblėją"
+        import: "%{user_name} importavo %{resource_name} asamblėją"
         publish: "%{user_name} publikavo %{resource_name} asamblėją"
         unpublish: "%{user_name} depublikavo %{resource_name} asamblėją"
         update: "%{user_name} atnaujino %{resource_name} asamblėją"
@@ -276,7 +274,7 @@ lt:
             duration_help: Jei šios asamblėjos veiklos trukmė ribota, pasirinkite pabaigos datą. Priešingu atveju bus rodoma, kad ji neterminuota.
             filters: Filtrai
             images: Vaizdai
-            included_at_help: Pasirinkite datą, kada ši asamblėja buvo įtraukta į „Decidim“. Ši data nebūtinai turi sutapti su sukūrimo data.
+            included_at_help: Pasirinkite datą, kada ši asamblėja buvo įtraukta į „Decidim“ platformą. Ši data nebūtinai turi sutapti su sukūrimo data.
             metadata: Metaduomenys
             other: Kita
             select_a_created_by: Pasirinkti pagal kūrėją

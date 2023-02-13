@@ -6,10 +6,6 @@ module Decidim
       class HighlightedAssembliesCell < Decidim::ViewModel
         delegate :current_user, to: :controller
 
-        cache :show, expires_in: 10.minutes, if: :perform_caching? do
-          cache_hash
-        end
-
         def show
           render if highlighted_assemblies.any?
         end
@@ -22,6 +18,7 @@ module Decidim
           @highlighted_assemblies ||= OrganizationPrioritizedAssemblies
                                       .new(current_organization, current_user)
                                       .query
+                                      .with_attached_hero_image
                                       .includes([:organization])
                                       .limit(max_results)
         end

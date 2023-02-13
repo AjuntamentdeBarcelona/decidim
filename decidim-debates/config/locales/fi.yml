@@ -1,3 +1,4 @@
+---
 fi:
   activemodel:
     attributes:
@@ -10,6 +11,7 @@ fi:
         end_time: Päättymisaika
         information_updates: Tietojen päivitykset
         instructions: Osallistumisohjeet
+        scope_id: Teema
         start_time: Alkamisaika
         title: Otsikko
         user_group_id: Luo keskustelu käyttäjänä
@@ -117,11 +119,11 @@ fi:
           all: Kaikki
           category: Aihepiiri
           category_prompt: Valitse aihepiiri
-          citizens: Kansalaiset
           commented: Kommentoitu
           my_debates: Omat keskustelut
           official: Virallinen
           origin: Alkuperä
+          participants: Osallistujat
           scope: Teema
           search: Hae
           state: Tila

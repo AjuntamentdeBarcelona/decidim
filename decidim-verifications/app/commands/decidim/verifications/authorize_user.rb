@@ -3,7 +3,7 @@
 module Decidim
   module Verifications
     # A command to authorize a user with an authorization handler.
-    class AuthorizeUser < Rectify::Command
+    class AuthorizeUser < Decidim::Command
       # Public: Initializes the command.
       #
       # handler - An AuthorizationHandler object.
@@ -40,7 +40,7 @@ module Decidim
           event: "decidim.events.verifications.managed_user_error_event",
           event_class: Decidim::Verifications::ManagedUserErrorEvent,
           resource: conflict,
-          affected_users: Decidim::User.where(admin: true, organization: @organization)
+          affected_users: @organization.admins
         )
       end
 

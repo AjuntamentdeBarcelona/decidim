@@ -1,3 +1,4 @@
+---
 it:
   activemodel:
     models:
@@ -10,16 +11,14 @@ it:
   decidim:
     blogs:
       actions:
+        author_id: Crea post come
         confirm_destroy: Sei sicuro di voler eliminare questo post?
         destroy: Elimina
         edit: Modifica
         new: Nuovo post
         title: Azioni
-        user_group_id: Crea post come
       admin:
         models:
-          components:
-            body: Corpo
           post:
             name: Inviare
         posts:
@@ -47,7 +46,6 @@ it:
             author: Autore
             body: Corpo
             created_at: Creato a
-            title: titolo
       posts:
         show:
           back: Torna alla lista

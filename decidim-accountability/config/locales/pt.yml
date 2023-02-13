@@ -1,3 +1,4 @@
+---
 pt:
   activemodel:
     attributes:
@@ -156,7 +157,6 @@ pt:
             progress: Progresso
         timeline_entry:
           fields:
-            description: Descrição
             entry_date: Data
       result_m:
         executed: Executado

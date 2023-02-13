@@ -16,6 +16,9 @@ describe "Explore meeting directory", type: :system do
   end
 
   before do
+    # Required for the link to be pointing to the correct URL with the server
+    # port since the server port is not defined for the test environment.
+    allow(ActionMailer::Base).to receive(:default_url_options).and_return(port: Capybara.server_port)
     switch_to_host(organization.host)
     visit directory
   end
@@ -27,7 +30,7 @@ describe "Explore meeting directory", type: :system do
     it "shows all the upcoming meetings" do
       visit directory
 
-      within ".date_collection_radio_buttons_filter" do
+      within ".with_any_date_collection_radio_buttons_filter" do
         expect(find("input[value='upcoming']").checked?).to be(true)
       end
 
@@ -46,11 +49,28 @@ describe "Explore meeting directory", type: :system do
     end
   end
 
+  describe "text filter" do
+    it "updates the current URL" do
+      create(:meeting, :published, component: components[0], title: { en: "Foobar meeting" })
+      create(:meeting, :published, component: components[1], title: { en: "Another meeting" })
+      visit directory
+
+      within "form.new_filter" do
+        fill_in("filter[title_or_description_cont]", with: "foobar")
+        click_button "Search"
+      end
+
+      expect(page).not_to have_content("Another meeting")
+      expect(page).to have_content("Foobar meeting")
+
+      filter_params = CGI.parse(URI.parse(page.current_url).query)
+      expect(filter_params["filter[title_or_description_cont]"]).to eq(["foobar"])
+    end
+  end
+
   describe "category filter" do
     context "with a category" do
-      let!(:category1) do
-        create(:category, participatory_space: participatory_process, name: { "en": "Category1" })
-      end
+      let!(:category1) { create(:category, participatory_space: participatory_process, name: { en: "Category1" }) }
       let!(:meeting) do
         meeting = meetings.first
         meeting.category = category1
@@ -70,7 +90,7 @@ describe "Explore meeting directory", type: :system do
       it "allows filtering by category" do
         visit directory
 
-        within ".category_id_check_boxes_tree_filter" do
+        within ".with_any_global_category_check_boxes_tree_filter" do
           check "All"
           check translated(participatory_process.title)
         end
@@ -93,7 +113,7 @@ describe "Explore meeting directory", type: :system do
     it "allows filtering by scope" do
       visit directory
 
-      within ".scope_id_check_boxes_tree_filter" do
+      within ".with_any_scope_check_boxes_tree_filter" do
         check "All"
         check translated(meeting.scope.name)
       end
@@ -109,7 +129,7 @@ describe "Explore meeting directory", type: :system do
       it "lists the filtered meetings" do
         visit directory
 
-        within ".origin_check_boxes_tree_filter" do
+        within ".with_any_origin_check_boxes_tree_filter" do
           uncheck "All"
           check "Official"
         end
@@ -129,7 +149,7 @@ describe "Explore meeting directory", type: :system do
       it "lists the filtered meetings" do
         visit directory
 
-        within ".origin_check_boxes_tree_filter" do
+        within ".with_any_origin_check_boxes_tree_filter" do
           uncheck "All"
           check "Groups"
         end
@@ -142,13 +162,13 @@ describe "Explore meeting directory", type: :system do
       end
     end
 
-    context "with 'citizens' origin" do
+    context "with 'participants' origin" do
       it "lists the filtered meetings" do
         visit directory
 
-        within ".origin_check_boxes_tree_filter" do
+        within ".with_any_origin_check_boxes_tree_filter" do
           uncheck "All"
-          check "Citizens"
+          check "Participants"
         end
 
         expect(page).to have_css(".card--meeting", count: 6)
@@ -163,7 +183,7 @@ describe "Explore meeting directory", type: :system do
       let!(:online_meeting2) { create(:meeting, :published, :online, component: components.last) }
 
       it "allows filtering by type 'online'" do
-        within ".type_check_boxes_tree_filter" do
+        within ".with_any_type_check_boxes_tree_filter" do
           uncheck "All"
           check "Online"
         end
@@ -172,13 +192,46 @@ describe "Explore meeting directory", type: :system do
         expect(page).to have_content(online_meeting2.title["en"])
         expect(page).to have_css("#meetings-count", text: "2 MEETINGS")
       end
+
+      it "allows linking to the filtered view using a short link" do
+        within ".with_any_type_check_boxes_tree_filter" do
+          uncheck "All"
+          check "Online"
+        end
+
+        expect(page).to have_content(online_meeting1.title["en"])
+        expect(page).to have_content(online_meeting2.title["en"])
+        expect(page).to have_css("#meetings-count", text: "2 MEETINGS")
+
+        filter_params = CGI.parse(URI.parse(page.current_url).query)
+        base_url = "http://#{organization.host}:#{Capybara.server_port}"
+
+        click_button "Export calendar"
+        expect(page).to have_content("Calendar URL:")
+        expect(page).to have_css("#calendarShare", visible: :visible)
+        short_url = nil
+        within "#calendarShare" do
+          input = find("input#urlCalendarUrl[readonly]")
+          short_url = input.value
+          expect(short_url).to match(%r{^#{base_url}/s/[a-zA-Z0-9]{10}$})
+        end
+
+        visit short_url
+        expect(page).to have_content(online_meeting1.title["en"])
+        expect(page).to have_content(online_meeting2.title["en"])
+        expect(page).to have_css("#meetings-count", text: "2 MEETINGS")
+        expect(page).to have_current_path(/^#{directory}/)
+
+        current_params = CGI.parse(URI.parse(page.current_url).query)
+        expect(current_params).to eq(filter_params)
+      end
     end
 
     context "when there are only in-person meetings" do
       let!(:in_person_meeting) { create(:meeting, :published, :in_person, component: components.last) }
 
       it "allows filtering by type 'in-person'" do
-        within ".type_check_boxes_tree_filter" do
+        within ".with_any_type_check_boxes_tree_filter" do
           uncheck "All"
           check "In-person"
         end
@@ -192,7 +245,7 @@ describe "Explore meeting directory", type: :system do
       let!(:online_meeting) { create(:meeting, :published, :hybrid, component: components.last) }
 
       it "allows filtering by type 'both'" do
-        within ".type_check_boxes_tree_filter" do
+        within ".with_any_type_check_boxes_tree_filter" do
           uncheck "All"
           check "Hybrid"
         end
@@ -212,9 +265,9 @@ describe "Explore meeting directory", type: :system do
 
     context "with all meetings" do
       it "orders them by start date" do
-        visit directory
+        visit "#{directory}?per_page=20"
 
-        within ".date_collection_radio_buttons_filter" do
+        within ".with_any_date_collection_radio_buttons_filter" do
           choose "All"
         end
 
@@ -233,7 +286,7 @@ describe "Explore meeting directory", type: :system do
       it "orders them by start date" do
         visit directory
 
-        within ".date_collection_radio_buttons_filter" do
+        within ".with_any_date_collection_radio_buttons_filter" do
           choose "Past"
         end
 
@@ -280,7 +333,7 @@ describe "Explore meeting directory", type: :system do
       # have_content to wait for the card list to change. This is a hack to
       # reset the contents to no meetings at all, and then showing only the upcoming
       # assembly meetings.
-      within ".date_collection_radio_buttons_filter" do
+      within ".with_any_date_collection_radio_buttons_filter" do
         choose "Past"
       end
 
@@ -290,7 +343,7 @@ describe "Explore meeting directory", type: :system do
         check "Assemblies"
       end
 
-      within ".date_collection_radio_buttons_filter" do
+      within ".with_any_date_collection_radio_buttons_filter" do
         choose "Upcoming"
       end
 

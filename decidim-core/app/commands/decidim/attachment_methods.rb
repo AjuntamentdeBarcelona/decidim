@@ -18,7 +18,7 @@ module Decidim
     end
 
     def delete_attachment(attachment)
-      Attachment.find(attachment.id).delete if attachment.id == proposal.documents.first.id
+      Attachment.find(attachment.id).delete if attachment.id.to_i == proposal.documents.first.id
     end
 
     def attachment_invalid?
@@ -36,7 +36,8 @@ module Decidim
       !@form.attachment.file.is_a?(Decidim::ApplicationUploader)
     end
 
-    def create_attachment
+    def create_attachment(weight: 0)
+      attachment.weight = weight
       attachment.attached_to = @attached_to
       attachment.save!
     end

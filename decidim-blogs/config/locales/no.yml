@@ -1,3 +1,4 @@
+---
 "no":
   activemodel:
     models:
@@ -10,16 +11,14 @@
   decidim:
     blogs:
       actions:
+        author_id: Opprett innlegg som
         confirm_destroy: Er du sikker på at du vil slette dette innlegget?
         destroy: Slett
         edit: Editar
         new: Nytt innlegg
         title: Handlinger
-        user_group_id: Opprett innlegg som
       admin:
         models:
-          components:
-            body: Tekst
           post:
             name: Innlegg
         posts:
@@ -47,7 +46,6 @@
             author: Forfatter
             body: Tekst
             created_at: Opprettet på
-            title: tittel
       posts:
         show:
           back: Tilbake til listen

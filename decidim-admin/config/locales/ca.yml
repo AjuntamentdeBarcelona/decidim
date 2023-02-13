@@ -1,3 +1,4 @@
+---
 ca:
   activemodel:
     attributes:
@@ -14,17 +15,24 @@ ca:
         description: Descripció
         file: Arxiu
         title: Nom de l'adjunt o imatge
+        weight: Ordre de posició
       attachment_collection:
         description: Descripció
         name: Nom
+        weight: Ordre de posició
       category:
         description: Descripció
         name: Nom
         parent_id: Pare
+        weight: Ordre de posició
       component:
         name: Nom
         published_at: Publicat el
         weight: Ordre de posició
+      external_domain:
+        value: Valor
+      help_section:
+        content: Contingut
       id: ID
       import:
         user_group_id: Importar com
@@ -92,6 +100,9 @@ ca:
         welcome_notification_body: Cos de la notificació de benvinguda
         welcome_notification_subject: Assumpte de la notificació de benvinguda
         youtube_handler: Nom d'usuària de YouTube
+      participatory_space_private_user:
+        email: Correu electrònic
+        name: Nom
       scope:
         code: Codi
         name: Nom
@@ -113,6 +124,7 @@ ca:
         show_in_footer: Mostra al peu de pàgina
         slug: Nom curt d'URL
         title: Títol
+        topic_id: Assumpte
         weight: Ordre de posició
       static_page_topic:
         description: Descripció
@@ -133,6 +145,14 @@ ca:
               allowed_file_content_types: Fitxer d'imatge no vàlid
             official_img_header:
               allowed_file_content_types: Fitxer d'imatge no vàlid
+        participatory_space_private_user_csv_import:
+          attributes:
+            file:
+              malformed: Arxiu d'importació mal formatat, si us plau, llegeix les instruccions curosament i assegura't que l'arxiu està codificat en UTF-8.
+        user_group_csv_verification:
+          attributes:
+            file:
+              malformed: Arxiu d'importació mal formatat, si us plau, llegeix les instruccions curosament i assegura't que l'arxiu està codificat en UTF-8.
       new_import:
         attributes:
           file:
@@ -177,7 +197,7 @@ ca:
         reject: Rebutjar
         share: Compartir
         user:
-          new: Nou usuari
+          new: Nova administradora
         verify: Verificar
       admin_terms_of_use:
         accept:
@@ -260,6 +280,8 @@ ca:
         update:
           error: S'ha produït un error en actualitzar aquest adjunt.
           success: Adjunt actualitzat correctament.
+      attachments_privacy_warning:
+        message: Tingues cura quan treballis amb adjunts en un espai privat. Qualsevol participant pot compartir aquest document amb tercers.
       autocomplete:
         no_results: No s'han trobat resultats
         search_prompt: Escriu com a mínim tres caràcters per cercar
@@ -342,7 +364,7 @@ ca:
       dashboard:
         show:
           view_more_logs: Veure més registres
-          welcome: Benvinguda al tauler d'administració de Decidim.
+          welcome: Benvinguda al Tauler d'Aministració.
       domain_whitelist:
         form:
           domain_too_short: El domini és massa curt
@@ -704,7 +726,7 @@ ca:
         select_recipients_to_deliver:
           all_spaces: Totes
           all_users_help: Envia el butlletí a tots els usuaris confimats.
-          confirm_deliver: Estàs segura que vols enviar aquest butlletí? Aquesta acció no es pot desfer.
+          confirm_deliver: Segur que vols enviar aquest butlletí? Aquesta acció no es pot desfer.
           deliver: Enviar butlletí
           followers_help: Envia el butlletí a tots els usuaris confirmats que segueixin qualsevol dels espais participatius seleccionats a la llista.
           none: Cap
@@ -816,7 +838,7 @@ ca:
           inactive_content_blocks: Blocs de contingut inactiu
       organization_homepage_content_blocks:
         edit:
-          update: Actualitza
+          update: Actualitzar
       participatory_space_private_users:
         create:
           error: S'ha produït un error en afegir una participant privada a aquest espai de participació.
@@ -835,9 +857,23 @@ ca:
           invalid: S'ha produït un error en llegir el fitxer CSV.
           success: Arxiu CSV carregat correctament, s'està enviant un missatge de correu electrònic d'invitació als participants. Pot tardar una mica.
         new:
+          destroy:
+            button: Esborrar totes les participants privades
+            confirm: Segur que vols esborrar totes les participants privades? Aquesta acció no es pot desfer, no podràs recuperar-les.
+            empty: No hi ha participants privades.
+            explanation: Hi ha %{count} participant/s privada/ades.
+            title: Esborrar les participants privades
           explanation: 'Carrega el teu arxiu CSV. Ha de tenir dues columnes amb l''adreça de correu electrònic a la primera columna i el nom a la segona (adreça electrònica, nom) dels usuaris que vulguis afegir a l''espai de participació, sense capçaleres. Evita emprar caràcter invàlids com `<>?%&^*#@()[]=+:;"{}\|` al nom d''usuari.'
           title: Puja el fitxer CSV
           upload: Carrega
+      reminders:
+        create:
+          error: Hi ha hagut un problema en crear els recordatoris.
+          success:
+            one: "Es recordarà a %{count} usuària."
+            other: "Es recordarà a %{count} usuàries."
+        new:
+          submit: Envia
       resource_permissions:
         edit:
           submit: Enviar
@@ -895,6 +931,7 @@ ca:
         gallery:
           add_images: Afegir imatges
           delete_image: Esborrar la imatge
+          edit_images: Editar imatges
           gallery_legend: Afegir una galeria d'imatges (opcional)
       static_page_topics:
         create:
@@ -955,7 +992,7 @@ ca:
         static_pages: Pàgines
         statistics: Activitat
         user_groups: Grups
-        users: Participants
+        users: Administradores
       user_group:
         csv_verify:
           invalid: S'ha produït un error en llegir el fitxer CSV.
@@ -991,7 +1028,7 @@ ca:
           role: Rol
         new:
           create: Convidar
-          title: Convidar una participant com a administradora
+          title: Convidar una nova administradora
       users_statistics:
         users_count:
           admins: Administradores
@@ -1039,14 +1076,14 @@ ca:
         moderation:
           fields:
             created_at: Data de creació
-            deleted_resource: Elimina el recurs
+            deleted_resource: Recurs eliminat
             hidden_at: Data d'ocultació
             participatory_space: Espai de participació
             report_count: Recompte
             reportable_id: ID
             reportable_type: Tipus
             reported_content_url: URL contingut del contingut reportat
-            reports: Denúncies
+            reports: Informes
             visit_url: Visiteu l'URL
         report:
           fields:

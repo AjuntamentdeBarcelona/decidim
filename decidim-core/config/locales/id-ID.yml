@@ -1,3 +1,4 @@
+---
 id:
   activemodel:
     attributes:
@@ -44,9 +45,6 @@ id:
   booleans:
     'false': 'Tidak'
     'true': 'iya nih'
-  carrierwave:
-    errors:
-      image_too_big: Gambarnya terlalu besar
   date:
     formats:
       decidim_short: "%d/%m/%Y"
@@ -56,9 +54,6 @@ id:
       decidim_with_month_name_short: "%d %b"
   decidim:
     account:
-      data_portability_export:
-        file_no_exists: File tidak ada
-        notice: Data Anda sedang dalam proses. Anda akan menerima email setelah selesai.
       delete:
         confirm:
           close: Tutup jendela
@@ -69,6 +64,9 @@ id:
       destroy:
         error: Terjadi kesalahan saat menghapus akun Anda.
         success: Akun Anda berhasil dihapus.
+      download_your_data_export:
+        file_no_exists: File tidak ada
+        notice: Data Anda sedang dalam proses. Anda akan menerima email setelah selesai.
       show:
         change_password: Ganti kata sandi
         update_account: Perbaharui akun
@@ -243,6 +241,8 @@ id:
           explanation_html: Untuk melakukan tindakan ini Anda harus diotorisasi, sebelum melakukan itu Anda perlu mengkonfirmasi email Anda <strong>%{email}</strong>.
           request_confirmation_instructions: Meminta instruksi konfirmasi
           title: Konfirmasikan email Anda
+      show:
+        close_modal: Tutup modal
     collapsible_list:
       hidden_elements_count:
         other: dan %{count} lagi
@@ -258,14 +258,14 @@ id:
           global:
             amendments_enabled: Amandemen diaktifkan
             comments_enabled: Komentar diaktifkan
-            dummy_global_attribute_1: Atribut Dummy 1
-            dummy_global_attribute_2: Atribut Dummy 2
+            dummy_global_attribute1: Atribut Dummy 1
+            dummy_global_attribute2: Atribut Dummy 2
             enable_pads_creation: Aktifkan pembuatan bantalan
             resources_permissions_enabled: Izin sumber daya diaktifkan
           step:
             comments_blocked: Komentar diblokir
-            dummy_step_attribute_1: Atribut Langkah Dummy 1
-            dummy_step_attribute_2: Atribut Langkah Dummy 2
+            dummy_step_attribute1: Atribut Langkah Dummy 1
+            dummy_step_attribute2: Atribut Langkah Dummy 2
     contact: Kontak
     content_blocks:
       footer_sub_hero:
@@ -292,12 +292,6 @@ id:
     core:
       actions:
         unauthorized: Anda tidak berwenang untuk melakukan tindakan ini
-    data_portability:
-      export:
-        ready: Siap
-      show:
-        download_data: Unduh datanya
-        request_data: Meminta data
     datepicker:
       help_text: 'Format yang diharapkan: %{datepicker_format}'
     devise:
@@ -363,6 +357,12 @@ id:
           this_application_will_not_be_able_to: 'Aplikasi ini tidak akan dapat:'
           update_profile: Perbarui profil Anda
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> ingin menggunakan akun Anda"
+    download_your_data:
+      export:
+        ready: Siap
+      show:
+        download_data: Unduh datanya
+        request_data: Meminta data
     endorsable:
       endorsements: Endorsemen
     errors:
@@ -492,7 +492,7 @@ id:
           email_subject: "%{nickname} memperbarui profil mereka"
           notification_title: Halaman <a href="%{resource_path}">profil</a> dari %{name} (%{nickname}), yang Anda ikuti, telah diperbarui.
     export_mailer:
-      data_portability_export:
+      download_your_data_export:
         download: Unduh
       export:
         ready: Silakan temukan terlampir versi zip dari ekspor Anda.
@@ -526,12 +526,10 @@ id:
         button: Berhenti mengikuti
         error: Terjadi kesalahan saat berhenti mengikuti sumber daya ini.
     forms:
-      current_file: File saat ini
       current_image: Gambar saat ini
       default_image: Gambar default
       errors:
         error: Ada kesalahan di bidang ini.
-      remove_this_file: Hapus file ini
     gamification:
       all_badges_link: Lihat semua lencana yang tersedia.
       badges:
@@ -632,7 +630,6 @@ id:
       no_user_groups: Belum menjadi anggota grup apa pun.
       roles:
         admin: Administrator
-        creator: Pencipta
         member: Anggota
       update:
         error: Terjadi masalah saat memperbarui grup
@@ -651,6 +648,9 @@ id:
       index:
         last_activity: Aktivitas terakhir
         resource_type: Mengetik
+    links:
+      warning:
+        close_modal: Tutup modal
     log:
       base_presenter:
         create: "%{user_name} dibuat %{resource_name}"
@@ -718,7 +718,6 @@ id:
     newsletter_mailer:
       newsletter:
         note: Anda menerima email ini karena Anda berlangganan nawala pada %{organization_name}. Anda dapat mengubah pengaturan Anda pada <a href="%{link}">halaman pemberitahuan</a>.
-        see_on_website: Tidak bisa melihat email ini dengan benar? Lihat di situs web <a href="%{link}" target="_blank"></a>.
         unsubscribe: Untuk memilih tidak menerima jenis email ini, <a href="%{link}" target="_blank" class="unsubscribe">Berhenti Berlangganan</a>.
     newsletters:
       unsubscribe:
@@ -745,13 +744,11 @@ id:
       no_notifications: Belum ada pemberitahuan.
     notifications_settings:
       show:
-        email_on_notification: Saya ingin menerima email setiap kali saya menerima pemberitahuan.
         everything_followed: Semua yang saya ikuti
         newsletter_notifications: Saya ingin menerima buletin
         newsletters: Nawala
         own_activity: Aktivitas saya sendiri, seperti ketika seseorang berkomentar di proposal saya atau menyebut saya
         receive_notifications_about: Saya ingin mendapatkan pemberitahuan tentang
-        send_notifications_by_email: Kirim pemberitahuan melalui email
         update_notifications_settings: Simpan perubahan
       update:
         error: Terjadi kesalahan saat memperbarui pengaturan notifikasi Anda.
@@ -808,7 +805,6 @@ id:
         form:
           legend: Setujui persyaratan dan ketentuan penggunaan
         refuse:
-          modal_body: Jika Anda menolak, Anda tidak akan dapat menggunakan platform, Anda dapat <a href="%{data_portability_path}">mengunduh data Anda</a> dan / atau <a href="%{delete_path}">menghapus akun Anda</a>.
           modal_btn_continue: Terima persyaratan dan lanjutkan
           modal_btn_exit: Saya akan memeriksanya nanti
           modal_button: Menolak persyaratan
@@ -935,9 +931,6 @@ id:
         share_link: Membagikan tautan
     statistics:
       comments_count: Komentar
-    user_activity:
-      index:
-        no_activities_warning: Pengguna ini belum memiliki aktivitas apa pun.
     user_conversations:
       update:
         error: Pesan tidak terkirim. Coba lagi nanti
@@ -976,7 +969,6 @@ id:
     invitations:
       edit:
         header: Selesaikan membuat akun Anda
-        nickname_help: Pengenal unik Anda dalam %{organization}.
         submit_button: Menyimpan
         subtitle: Jika Anda menerima undangan, atur nama panggilan dan kata sandi Anda.
       invitation_removed: Undangan Anda telah dihapus.
@@ -1043,7 +1035,6 @@ id:
     passwords:
       edit:
         change_my_password: Ubah kata sandi saya
-        change_your_password: Ubah kata sandi Anda
         confirm_new_password: Konfirmasi password baru
         new_password: Kata sandi baru
       new:
@@ -1111,10 +1102,6 @@ id:
     timestamp_error_message: Maaf, itu terlalu cepat! Silakan kirim ulang.
   layouts:
     decidim:
-      cookie_warning:
-        description_html: Situs ini menggunakan cookie. Dengan melanjutkan menelusuri situs, Anda menyetujui penggunaan cookie kami. Cari tahu lebih banyak tentang itu %{link}.
-        link_label: sini
-        ok: saya setuju
       edit_link:
         edit: Edit
       footer:

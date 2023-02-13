@@ -1,3 +1,4 @@
+---
 es-PY:
   activemodel:
     attributes:
@@ -6,18 +7,44 @@ es-PY:
         image: Imagen
         proposals: Propuestas relacionadas
         title: Título
+      ballot_style:
+        code: Código
       election:
         description: Descripción
         end_time: La votación acaba el
         start_time: La votación empieza el
         title: Título
+      monitoring_committee_member:
+        email: Correo electrónico
+        name: Nombre
+      polling_officer:
+        email: Correo electrónico
+        name: Nombre
+      polling_station:
+        address: Dirección
+        location: Ubicación
+        location_hints: Detalles de ubicación
+        polling_station_managers: Gestoras
+        polling_station_president_id: Presidencia
+        title: Título
       question:
         max_selections: Número máximo de opciones
         min_selections: Ninguna de las anteriores
         title: Título
+      trustees_participatory_space:
+        user_id: Participante
       voting:
+        banner_image: Imagen de cabecera
+        census_contact_information: Datos de contacto del censo
+        description: Descripción
         end_time: La votación finaliza
+        introductory_image: Imagen de presentación
+        promoted: Destacada
+        scope_id: Ámbito
+        show_check_census: Mostrar la página de "comprobar censo"
         start_time: La votación empieza
+        title: Título
+        voting_type: Tipo de votación
     errors:
       models:
         answer:
@@ -34,6 +61,10 @@ es-PY:
               cant_be_changed: no se puede cambiar
             public_key:
               cant_be_changed: no se puede cambiar
+        voting:
+          attributes:
+            voting_type:
+              inclusion: "%{value} no es un tipo de votación válido"
   activerecord:
     errors:
       models:
@@ -249,7 +280,7 @@ es-PY:
               'false': no tiene una <strong>clave pública</strong>
               'true': tiene una <strong> clave pública</strong>
             requirements:
-              census_codes_generated: Se han generador los códigos de acceso al censo.
+              census_codes_generated: Se han generado los códigos de acceso al censo.
               census_frozen: Se han exportado los códgos para el censo y el censo ha quedado congelado.
               census_uploaded: El censo está subido.
               component_published: La elección está <strong>publicada</strong>.
@@ -290,15 +321,6 @@ es-PY:
             selected: Seleccionado
             submit: Enviar
             title: Resultados publicados
-          tally:
-            continue: Continuar
-            invalid: Hubo un problema al reportar al garante ausente
-            mark_as_missing: Marcar como ausente
-            mark_as_missing_description: Todos los garantes deberían participar en este proceso, pero si uno de ellos no puede tomar parte en él, puedes marcarlo como ausente.
-            success: El reporte del garante que falta fue enviado con éxito al Bulletin Board
-            tally_completion: El proceso se completará cuando todos los garantes estén activos o marcados como ausentes. Se requiere al menos %{quorum} garantes para completar el proceso.
-            title: Proceso de recuento
-            undo_mark_as_missing: Un garante marcado como ausente por error podrá participar antes de completar el proceso. Pueden proceder como de costumbre y la marca de ausente será ignorada.
           tally_ended:
             answer: Respuesta
             not_selected: No seleccionado
@@ -308,6 +330,15 @@ es-PY:
             submit: Publicar resultados
             success: La solicitud de publicación de resultados se envió correctamente al Bulletin Board
             title: Resultados calculados
+          tally_started:
+            continue: Continuar
+            invalid: Hubo un problema al reportar al garante ausente
+            mark_as_missing: Marcar como ausente
+            mark_as_missing_description: Todos los garantes deberían participar en este proceso, pero si uno de ellos no puede tomar parte en él, puedes marcarlo como ausente.
+            success: El reporte del garante que falta fue enviado con éxito al Bulletin Board
+            tally_completion: El proceso se completará cuando todos los garantes estén activos o marcados como ausentes. Se requiere al menos %{quorum} garantes para completar el proceso.
+            title: Proceso de recuento
+            undo_mark_as_missing: Un garante marcado como ausente por error podrá participar antes de completar el proceso. Pueden proceder como de costumbre y la marca de ausente será ignorada.
           vote:
             errors:
               time_after: La elección aún está en curso. Tienes que esperar hasta la hora de finalización (%{end_time}) para terminar el periodo de votación.
@@ -380,9 +411,8 @@ es-PY:
         end_date: Termina
         footer:
           remaining_time:
-            one: "Quedan <strong>%{count} hora %{minutes} minutos</strong> restantes para votar."
-            other: "Quedan <strong>%{count} horas %{minutes} minutos</strong> restantes para votar."
-            zero: "Quedan <strong>%{minutes} minutos</strong> restantes para votar."
+            one: "<strong>%{count} hora %{minutes} minutos</strong> restantes para votar."
+            other: "<strong>%{count} horas %{minutes} minutos</strong> restantes para votar."
           view: Ver
           vote: Votar
         label:
@@ -443,9 +473,9 @@ es-PY:
         filters:
           active: Activas
           all: Todas
+          date: Fecha
           finished: Finalizadas
           search: Buscar
-          state: Estado
           upcoming: Próximas
         filters_small_view:
           close_modal: Cerrar el modal
@@ -464,7 +494,6 @@ es-PY:
           votes:
             one: "%{count} voto"
             other: "%{count} votos"
-            zero: "%{count} votos"
         show:
           action_button:
             change_vote: Cambia tu voto
@@ -554,7 +583,7 @@ es-PY:
             title: Restaurar claves para la elección %{election}
             upload_election_keys: Subir claves de elección
             upload_icon: Icono que indica una acción de descarga
-          tally_steps:
+          tally_started_steps:
             back: Atrás
             description: Los resultados de esta elección están siendo calculados en el Bulletin Board. Para completar este proceso, se necesita tu participación como garante.
             keys:
@@ -565,11 +594,11 @@ es-PY:
             list:
               status: Estado
               task: Tarea
-            process_warning: Una vez iniciado el proceso, no debes salir de esta página hasta que el proceso termine. Tardará varios minutos, ya que todos los garantes deben estar conectados para completarlo.
+            process_warning: Una vez iniciado el proceso, no debes salir de esta página hasta que el proceso termine. Tardará algunos minutos, ya que todas las garantes deben estar conectados para completarlo.
             start: Empezar
             start_icon: Icono que indica un botón de inicio para iniciar la generación de claves de una elección
             status:
-              completed: Completada
+              completed: Completado
               pending: Pendiente
               processing: Procesando
             title: Recuento para %{election}
@@ -604,15 +633,15 @@ es-PY:
               generate_legend_3: Asegúrate de que tu equipo no tenga una copia del archivo (por ejemplo, comprueba las carpetas de Descargas y Escritorio).
               generate_legend_4: Haz otra copia del archivo en un dispositivo externo diferente y guárdalo en un lugar muy seguro.
               submit: Enviar
-              submit_legend: Después de seguir todos los pasos explicados anteriormente, completa el proceso enviando la clave de identificación pública al servidor de Decidim.
+              submit_legend: Después de seguir todos los pasos explicados anteriormente, completa el proceso enviando la clave de identificación pública al servidor.
               submit_title: Enviar la clave pública de identificación
               title: Claves de identificación del garante
               upload: Sube tus claves de identificación
               upload_error:
                 invalid_format: El archivo subido no contiene ninguna clave de identificación.
                 invalid_key: Las claves de identificación en el archivo subido no se pueden cargar.
-                invalid_public_key: Las claves de identificación en el archivo subido no coinciden con la clave de identificación pública almacenada por Decidim.
-              upload_legend: Decidim tiene tus claves públicas de identificación, pero tu navegador todavía no las tiene. Necesitas importar el archivo con tus claves de identificación a tu ordenador desde la copia de seguridad que creaste después de generarlas.
+                invalid_public_key: Las claves de identificación en el archivo subido no coinciden con la clave pública de identificación almacenada.
+              upload_legend: El servidor tiene sus claves públicas de identificación, pero su navegador todavía no las tiene. Necesitas importar el archivo con tus claves de identificación a tu ordenador desde la copia de seguridad que creaste después de generarlas.
             not_supported_browser_description: Parece que estás usando un navegador que no puede ser utilizado para actuar como garante. Asegúrate de que estás usando la versión más reciente de tu navegador, o intenta usar cualquiera de los navegadores más populares para poder completar tus tareas como garante.
             not_supported_browser_title: Actualiza el navegador para actuar como garante
             trustee_role_description: Se le ha asignado como garante en algunas de las elecciones celebradas en esta plataforma.
@@ -654,10 +683,6 @@ es-PY:
         failed:
           header: Voto fallido
           lead: '¡Tu voto no ha sido emitido!'
-          modal:
-            close: Cerrar
-            communication_lost: Desafortunadamente, parece que la comunicación con el servidor de votación (Bulletin Board) se ha perdido.<br>Puede ser que la conexión a Internet esté averiada o que el servidor de destino esté demasiado ocupado.<br>Puedes intentarlo más tarde o ponerte en contacto con el servicio de asistencia si este problema persiste.
-            title: Algo salió mal
           text: Algo salió mal, por favor inténtalo de nuevo.
           try_again: Inténtalo de nuevo
         header:
@@ -683,9 +708,9 @@ es-PY:
         onboarding_modal:
           close: Cerrar modal
           create_account: Crear Cuenta
-          description: '¿Quieres crear una nueva cuenta en Decidim? Así participarás en los procesos y ser parte activa de la organización.'
+          description: '¿Quieres crear una nueva cuenta en la plataforma? Podrás participar en los procesos y ser parte activa de la organización.'
           no_account: No, gracias.
-          title: '¿Es tu primera vez en Decidim?'
+          title: '¿Eres nueva en la plataforma?'
         update:
           error: Ha habido un problema al actualizar el estado del voto. Vuelve a intentarlo.
         verify:
@@ -696,9 +721,10 @@ es-PY:
             header: Voto no encontrado!
             info: El código de voto no se ha encontrado en la urna de %{link}, inténtelo de nuevo.
           form:
-            back: Volver a Decidim
+            back: Volver a la plataforma
             submit: Comprobar
             vote_identifier: 'Código identificador:'
+            vote_identifier_help: Este es el identificador que se te dio después de emitir tu voto (no es el código para entrar la cabina de votación).
           header:
             title: Verifica tu voto
           success:
@@ -1019,6 +1045,7 @@ es-PY:
             introductory_image: Imagen de presentación
             promoted: Destacada
             select_a_voting_type: Por favor, selecciona un tipo de votación
+            show_check_census_help: Si quieres mostrar el enlace "¿Puedo votar?" en el menú de votaciones públicas
             slug: Nombre corto de URL
             slug_help: 'Los textos cortos de URL se utilizan para generar las URL que apuntan a esta votación. Sólo acepta letras, números y guiones, y debe comenzar con una letra. Ejemplo: %{url}'
             title: Título
@@ -1067,7 +1094,7 @@ es-PY:
               invalid: Se ha producido un error al subir el censo, por favor inténtalo de nuevo más tarde.
               invalid_csv_header: Los encabezados CSV faltan o no son correctos - por favor lee las instrucciones cuidadosamente
             creating_data:
-              info_message: "<strong>Por favor espera</strong>, procesadas %{processed_count} de %{raw_count} filas del fichero %{file}."
+              info_message: "<strong>Por favor espera</strong>, procesadas %{processed_count} de %{raw_count} filas del fichero %{file} (esto puede tardar algunos minutos)."
             delete:
               button: Borrar todos los datos del censo
               confirm: Eliminar todo el censo no se puede deshacer. ¿Seguro que quieres continuar?
@@ -1082,9 +1109,12 @@ es-PY:
               launch_error: Problema al iniciar la exportación de códigos de acceso
               launch_success: Se ha iniciado la exportación de los códigos de acceso. En breve recibirás un correo en %{email}
             exporting_access_codes:
-              info_message: "<strong>Por favor, espera</strong>, se está preparando la exportación. La recibirás en breve en %{email}"
+              info_message: "<strong>Por favor, espera</strong>, se está preparando la exportación, la recibirás en breve en %{email} (esto puede tardar unos minutos)."
             freeze:
               callout: El censo está cerrado y no se puede modificar.
+              help_html: |
+                Los datos del censo Se han subido correctamente, los códigos se han generado y exportado con éxito.<br><strong>Ahora estás lista para comenzar la elección.</strong><br>
+                Utiliza el CSV exportado, que incluye los códigos individuales para distribuirlo al censo utilizando tus propios medios, o active la pestaña "¿Puedo votar?", para permitir que cualquiera recupere este código usando sus propios datos de censales.
             generate_access_codes:
               button: Generar códigos de acceso de la votación
               callout: Ahora puedes generar los códigos de acceso. Ten en cuenta que después de generarlos ya no podrás modificar más el censo.
@@ -1093,8 +1123,9 @@ es-PY:
               info_message_warn: Por favor, comprueba que no falten datos, ya que se han creado %{data_count} registros, pero el fichero que se ha subido (%{file}) tenía %{raw_count} filas.
               launch_error: Ha habido un problema al generar los códigos de acceso
               launch_success: Se ha iniciado la generación de códigos.
+              start_over: Por favor, elimine el censo actual y vuelva a empezar con un archivo CSV apropiado con filas válidas.
             generating_access_codes:
-              info_message: "<strong>Por favor espera</strong>, se están generando los códigos de acceso a la votación..."
+              info_message: "<strong>Espera, por favor<</strong>, los códigos de acceso a la votación se están generando (esto puede tardar unos minutos)..."
             new:
               file_help:
                 explanation: 'Instrucciones para el archivo:'
@@ -1213,11 +1244,12 @@ es-PY:
         in_person_votes:
           complete_voting:
             available_answers: 'Respuestas disponibles:'
-            census_verified: La participante aún no ha votado.
+            census_verified: Esta participante no ha votado presencialmente aún.
+            census_verified_with_online_vote: Esta participante ya ha votado en línea. Si vota en persona, los votos anteriores serán invalidados y este será su voto definitivo.
             complete_voting: Completar votación
             identify_another: Identificar a otra participante
             questions_title: 'Tiene derecho a votar en las siguientes preguntas:'
-            questions_title_voted: 'La participante ya ha votado en línea y tiene derecho a votar en las siguientes preguntas:'
+            questions_title_voted: 'Esta participante ya ha votado en línea y tiene derecho a votar en las siguientes preguntas:'
             voted: La participante ha votado
           create:
             error: El voto no ha sido registrado. Por favor, inténtalo de nuevo.
@@ -1343,9 +1375,9 @@ es-PY:
         filters:
           active: Activas
           all: Todas
+          date: Fecha
           finished: Finalizadas
           search: Buscar
-          state: Estado
           upcoming: Próximas
         filters_small_view:
           close_modal: Cerrar ventana

@@ -1,3 +1,4 @@
+---
 sk:
   activemodel:
     attributes:
@@ -266,7 +267,6 @@ sk:
         all: Všetko
         finished: Dokončené
         search: Hľadať
-        state: Stav
         upcoming: Nadchádzajúce
       filters_small_view:
         close_modal: Zavrieť okno

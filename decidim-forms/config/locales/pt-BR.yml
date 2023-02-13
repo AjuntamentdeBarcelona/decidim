@@ -1,3 +1,4 @@
+---
 pt-BR:
   activemodel:
     attributes:
@@ -114,14 +115,8 @@ pt-BR:
       errors:
         answer:
           body: O corpo não pode ficar em branco
-      files:
-        extension_allowlist: 'Formatos aceitos:'
       images:
         dimensions: "%{width} x %{height} px"
-        dimensions_info: 'Esta imagem será:'
-        processors:
-          resize_and_pad: Redimensionado e acolchoado para
-          resize_to_fit: Redimensionado para caber
       question_types:
         files: Arquivos
         long_answer: Resposta longa

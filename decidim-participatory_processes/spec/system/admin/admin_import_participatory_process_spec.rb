@@ -24,11 +24,12 @@ describe "Admin imports participatory process", type: :system do
           ca: "Importació del procés participatiu"
         )
         fill_in :participatory_process_slug, with: "pp-import"
-        attach_file :participatory_process_document, Decidim::Dev.asset("participatory_processes.json")
       end
 
       stub_get_request_with_format("http://localhost:3000/uploads/decidim/participatory_process/hero_image/1/city.jpeg", "image/jpeg")
       stub_get_request_with_format("http://localhost:3000/uploads/decidim/participatory_process/banner_image/1/city2.jpeg", "image/jpeg")
+
+      dynamically_attach_file(:participatory_process_document, Decidim::Dev.asset("participatory_processes.json"))
 
       click_button "Import"
     end

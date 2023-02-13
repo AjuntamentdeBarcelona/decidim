@@ -1,10 +1,7 @@
+---
 "no":
   activemodel:
     attributes:
-      agenda:
-        description: Beskrivelse
-        duration: Varighet
-        title: Tittel
       close_meeting:
         attendees_count: Antall deltagere
         attending_organizations: Liste over organisasjoner som deltok
@@ -22,7 +19,6 @@
         decidim_scope_id: Tema
         decidim_user_group_id: Brukergruppe
         description: Beskrivelse
-        end_time: Sluttid
         id: ID
         location: Plassering
         location_hints: Plasseringstips
@@ -34,8 +30,6 @@
         registration_terms: Registrerings vilkår
         registration_url: Link til registrering
         registrations_enabled: Registreringer aktivert
-        show_embedded_iframe: Vis innebygd iframe for denne nettadressen
-        start_time: Start-Tid
         title: Tittel
         transparent: Privat
         type_of_meeting: Type møte
@@ -88,19 +82,15 @@
             values:
               'false': Tidligere
               'true': Kommende
-          origin_eq:
-            label: Opprinnelse
-            values:
-              citizen: Innbygger
-              official: Offisiell
-              user_group: Brukergrupper
           scope_id_eq:
             label: Tema
-          type_eq:
+          with_any_origin:
+            values:
+              user_group: Brukergrupper
+          with_any_type:
             label: Type møte
             values:
               in_person: Tilstede
-              online: Digitalt
       meeting_copies:
         create:
           error: Det oppstod et problem med å publisere dette møtet.
@@ -277,9 +267,6 @@
           edit:
             close: Lukk
             title: Lukk møte
-        meeting_copies:
-          form:
-            select_a_meeting_type: Vennligst velg en møtetype
         meetings:
           close:
             invalid: Det oppstod et problem med å avslutte dette møtet
@@ -298,17 +285,14 @@
             update: Oppdater
           form:
             address_help: 'Adresse: brukes av Geocoder for å finne lokasjonen'
-            available_slots_help: Sett den til 0 hvis du har ubegrensede plasser tilgjengelig
             disclaimer: 'Ansvarsfraskrivelse: Ved å bruke et eksternt registreringssystem, er du klar over at opphavspersonene av %{organization} ikke er ansvarlige for dataene som brukerne gir til den eksterne tjenesten.'
             location_help: 'Plassering: melding rettet til brukerne som antyder stedet å møte på'
             location_hints_help: 'Hint: ekstra info. Eksempel: Etasje i bygningen hvis det er et fysisk møte, eller møtepassordet hvis det er et nettmøte med begrenset tilgang.'
             online_meeting_url_help: 'Lenke: tillat deltakere å koble direkte til møtet ditt'
-            registration_email_help: Denne teksten vil dukke opp i midten av e-posten med registreringsbekreftelsen. Like etter registreringskoden.
             registration_url_help: 'Lenke: La deltakerne gå på den eksterne tjenesten du bruker for registreringer'
             select_a_meeting_type: Vennligst velg en møtetype
             select_a_registration_type: Velg en registreringstype
             select_an_iframe_access_level: Velg et tilgangsnivå for iframe
-            show_embedded_iframe_help: Kun noen få tjenester tillater integrering i møte eller direktearrangement (YouTube, Twitch og Jitsi)
           index:
             title: Møter
           new:
@@ -350,6 +334,7 @@
           form:
             available_slots_help: Sett den til 0 hvis du har ubegrensede plasser tilgjengelig.
             invites: Invitasjoner
+            registration_email_help: Denne teksten vil dukke opp i midten av e-posten med registreringsbekreftelsen. Like etter registreringskoden.
             registration_form: Registreingsskjema
             registrations_count:
               one: Det har vært %{count} registrering.
@@ -460,8 +445,8 @@
           origin: Opprinnelse
           origin_values:
             all: Alle
-            citizens: Innbyggere
             official: Offisiell
+            participants: Deltakere
             user_groups: Grupper
           scope: Tema
           search: Søk

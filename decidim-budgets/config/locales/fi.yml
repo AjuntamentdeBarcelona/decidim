@@ -1,3 +1,4 @@
+---
 fi:
   activemodel:
     attributes:
@@ -47,6 +48,7 @@ fi:
         import: Tuo ehdotuksia suunnitelmiksi
         new: Uusi %{name}
         preview: Esikatsele
+        send_voting_reminders: Lähetä äänestysmuistutukset
         title: Toiminnot
       admin:
         budgets:
@@ -88,16 +90,44 @@ fi:
             title: Muokkaa suunnitelmaa
             update: Päivitä
           index:
+            actions: Toiminnot
+            cancel: Peruuta
+            change_category: Vaihda aihepiiri
+            change_scope: Vaihda teema
+            change_selected: Muuta tilaa
+            deselect_implementation: Ei valittu toteutukseen
             finished_orders: Valmiit äänet
             pending_orders: Odottavat äänet
+            select_for_implementation: Valittu toteutukseen
             selected: Valittu
             title: Suunnitelmat
+            update: Päivitä
+            update_scope_button: Muuta teema
           new:
             create: Luo
             title: Uusi suunnitelma
           update:
             invalid: Suunnitelman päivitys epäonnistui
             success: Suunnitelman päivitys onnistui
+          update_category:
+            invalid: 'Näillä projekteilla oli jo aihepiiri %{subject_name}: %{projects}.'
+            select_a_category: Valitse aihepiiri
+            select_a_project: Valitse projekti
+            success: 'Seuraavien projektien aihepiirin päivitys onnistui %{subject_name}: %{projects}.'
+          update_scope:
+            invalid: 'Näillä projekteilla oli jo teema %{subject_name}: %{projects}.'
+            select_a_project: Valitse projekti
+            select_a_scope: Valitse teema
+            success: 'Seuraavien projektien teeman päivitys onnistui %{subject_name}: %{projects}.'
+          update_selected:
+            invalid:
+              selected: 'Nämä projektit oli jo valittu toteutukseen: %{projects}.'
+              unselected: 'Näitä projekteja ei oltu valittu toteutukseen: %{projects}.'
+            select_a_project: Valitse projekti
+            select_a_selection: Valitse tila
+            success:
+              selected: 'Näiden projektien valinta toteutukseen onnistui: %{projects}.'
+              unselected: 'Näiden projektien toteutukseen valinnan poistaminen onnistui: %{projects}.'
         proposals_imports:
           create:
             invalid: Ehdotusten tuonti suunnitelmiksi epäonnistui
@@ -110,6 +140,12 @@ fi:
             origin_component_id: Lähdekomponentti
             select_component: Valitse komponentti
             title: Tuo ehdotuksia
+        reminders:
+          orders:
+            description: Käyttäjät saavat sähköpostiviestin, jossa on linkit budjetteihin, joissa heillä on odottavia ääniä.
+            title:
+              one: Olet lähettämässä muistutuksen sähköpostiin %{count} käyttäjälle
+              other: Olet lähettämässä muistutuksen sähköpostiin %{count} käyttäjälle
       admin_log:
         budget:
           create: "%{user_name} loi budjetin %{resource_name} osallistumistilassa %{space_name}"
@@ -141,6 +177,8 @@ fi:
         show: Näytä projektit
         vote: Äänestä
         voted_on: Olet äänestänyt budjeteissa %{links}
+      last_activity:
+        new_vote_at_html: "<span>Uusi budjetointiääni %{link}</span>"
       limit_announcement:
         cant_vote: Et voi äänestää tästä budjetista. <a href="%{landing_path}">Kokeile toista budjettia</a>.
         limit_reached: Sinulla on ääniä kohteessa %{links}. Äänestääksesi tästä budjetista <a href="%{landing_path}">poista äänesi ja aloita alusta</a>.
@@ -154,6 +192,7 @@ fi:
           fields:
             category: Aihepiiri
             id: ID
+            scope: Teema
             title: Otsikko
       order_summary_mailer:
         order_summary:
@@ -226,6 +265,8 @@ fi:
           filter: Suodata
           filter_by: Suodata
           unfold: Avaa
+        index:
+          view_project: Näytä projekti
         order_progress:
           vote: Äänestä
         order_selected_projects:
@@ -259,6 +300,15 @@ fi:
         show:
           budget: Budjetti
           view_all_projects: Näytä kaikki suunnitelmat
+      vote_reminder_mailer:
+        vote_reminder:
+          email_budgets: 'Alueet, joissa sinulla on keskeneräinen ääni:'
+          email_intro: Olet aloittanut osallistuvan budjetoinnin äänestyksen, mutta et suorittanut sitä loppuun.
+          email_link: Siirry jatkamaan äänestystä
+          email_outro: Muistathan saattaa äänesi loppuun saakka. Äänestääksesi, sinun on valittava se ehdotus tai ne ehdotukset, joita haluat äänestää ja tämän jälkeen vahvistettava äänesti "Äänestä" -painikkeella.
+          email_subject:
+            one: Sinulla on keskeneräinen ääni osallistavan budjetoinnin äänestyksessä
+            other: Sinulla on keskeneräisiä ääniä osallistavan budjetoinnin äänestyksessä
     components:
       budgets:
         actions:
@@ -274,6 +324,7 @@ fi:
               errors:
                 budget_voting_rule_only_one: Voit valita ainoastaan yhden äänestyssäännön
                 budget_voting_rule_required: Yksi äänestyssääntö vaaditaan
+            geocoding_enabled: Geokoodaus käytössä
             landing_page_content: Budjetoinnin aloitussivun teksti
             more_information_modal: Lisätietoikkunan teksti
             projects_per_page: Suunnitelmat sivua kohden

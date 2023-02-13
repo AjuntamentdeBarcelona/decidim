@@ -1,3 +1,4 @@
+---
 pt-BR:
   activemodel:
     models:
@@ -10,16 +11,14 @@ pt-BR:
   decidim:
     blogs:
       actions:
+        author_id: Criar publicação como
         confirm_destroy: Deseja mesmo excluir este post?
         destroy: Excluir
         edit: Editar
         new: Nova postagem
         title: Ações
-        user_group_id: Criar publicação como
       admin:
         models:
-          components:
-            body: Corpo
           post:
             name: Postar
         posts:
@@ -47,7 +46,6 @@ pt-BR:
             author: Autor
             body: Corpo
             created_at: Criado em
-            title: título
       posts:
         show:
           back: Voltar para a lista

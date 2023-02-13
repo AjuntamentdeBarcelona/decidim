@@ -1,10 +1,7 @@
+---
 de:
   activemodel:
     attributes:
-      agenda:
-        description: Beschreibung
-        duration: Dauer
-        title: Titel
       close_meeting:
         attendees_count: Anzahl der Teilnehmer
         attending_organizations: Liste der Organisationen, die teilgenommen haben
@@ -22,7 +19,6 @@ de:
         decidim_scope_id: Umfang
         decidim_user_group_id: Benutzergruppe
         description: Beschreibung
-        end_time: Endzeit
         id: ID
         location: Ort
         location_hints: Standorthinweise
@@ -35,11 +31,21 @@ de:
         registration_terms: Registrierungsbedingungen
         registration_url: Registrierungs-URL
         registrations_enabled: Registrierungen aktiviert
-        show_embedded_iframe: Eingebetteten Iframe für diese URL anzeigen
-        start_time: Startzeit
         title: Titel
         transparent: Transparent
         type_of_meeting: Art
+      meeting_agenda:
+        title: Titel
+        visible: Sichtbar
+      meeting_agenda_items:
+        description: Beschreibung
+        duration: Dauer
+        title: Titel
+      meeting_registration_invite:
+        email: E-Mail
+        name: Name
+      validate_registration_code:
+        code: Code
     errors:
       models:
         meeting_agenda:
@@ -85,15 +91,15 @@ de:
             values:
               'false': Vergangenheit
               'true': Anstehend
-          origin_eq:
-            label: Ursprung
-            values:
-              citizen: Bürger
-              official: Offiziell
-              user_group: Benutzergruppen
           scope_id_eq:
             label: Umfang
-          type_eq:
+          with_any_origin:
+            label: Ursprung
+            values:
+              official: Offiziell
+              participants: Teilnehmer
+              user_group: Benutzergruppen
+          with_any_type:
             label: Art des Treffens
             values:
               hybrid: Hybrid
@@ -278,9 +284,6 @@ de:
           edit:
             close: Schließen
             title: Sitzung beenden
-        meeting_copies:
-          form:
-            select_a_meeting_type: Bitte eine Meeting-Typ auswählen
         meetings:
           close:
             invalid: Beim Schließen dieses Meetings ist ein Problem aufgetreten
@@ -299,16 +302,13 @@ de:
             update: Aktualisieren
           form:
             address_help: 'Adresse: wird von Geocoder zur Lokalisierung verwendet'
-            available_slots_help: Belassen Sie es auf 0, wenn Sie unbegrenzte Plätze zur Verfügung haben
             disclaimer: 'Haftungsausschluss: Durch Verwendung eines externen Registrierungssystems wissen Sie, dass die Organisatoren von %{organization} nicht für die Daten verantwortlich sind, welche die Benutzer dem externen Dienst zur Verfügung stellen.'
             location_help: 'Ort: an die Benutzer gerichtete Nachricht mit dem Treffpunkt'
             location_hints_help: 'Hinweise zum Standort: Zusätzliche Informationen. Beispiel: das Stockwerk im Gebäude wenn es eine Sitzung vor Ort ist, oder das Passwort wenn es eine Online-Sitzung mit eingeschränktem Zugriff ist.'
             online_meeting_url_help: 'Link: Erlaubt Teilnehmern, sich direkt mit Ihrem Meeting zu verbinden'
-            registration_email_help: Dieser Text erscheint in der Mitte der Registrierungs-E-Mail, direkt nach dem Registrierungscode.
             registration_url_help: 'Link: Erlaubt den Teilnehmern den externen Service zu nutzen, den Sie für die Registrierung verwenden'
             select_a_meeting_type: Bitte eine Meeting-Typ auswählen
             select_a_registration_type: Bitte wählen Sie eine Registrierungsart aus
-            show_embedded_iframe_help: Nur wenige Dienste erlauben das Einbetten einer Veranstaltung oder eines Livestreams (Youtube, Twitch und Jitsi)
           index:
             title: Meetings
           new:
@@ -348,6 +348,7 @@ de:
             available_slots_help: Belassen Sie es auf 0, wenn Sie unbegrenzte Plätze zur Verfügung haben.
             invites: Lädt ein
             recommendation_message: Aus Datenschutzgründen empfehlen wir, dass Sie dieses Einschreibeformular löschen, wenn es nicht länger benötigt wird. Standardmäßig ist das 3 Monate nachdem die Besprechung durchgeführt wurde.
+            registration_email_help: Dieser Text erscheint in der Mitte der Registrierungs-E-Mail, direkt nach dem Registrierungscode.
             registration_form: Anmeldeformular
             registrations_count:
               one: Es wurde %{count} registriert.
@@ -385,7 +386,16 @@ de:
       calendar_modal:
         calendar_url: Kalender-URL
         close_window: Fenster schließen
+        copy_calendar_url: Kopieren
+        copy_calendar_url_clarification: Kalender-URL in Zwischenablage kopieren
+        copy_calendar_url_copied: Kopiert!
+        copy_calendar_url_description: Sie können alle veröffentlichten Meetings in Ihrer Kalenderanwendung oder bei Ihrem Kalender-Anbieter sehen. Kopieren und fügen Sie diese URL mit der Option "Neuen Kalender von einer URL hinzufügen" in Ihren Kalender ein.
+        copy_calendar_url_explanation: Bitte beachten Sie, dass Sie eine Auswahl von Meetings exportieren, da es aktive Filter gibt. Wenn Sie alle exportieren möchten, setzen Sie zuerst alle Filter zurück.
+        copy_calendar_url_message: Die URL wurde erfolgreich in die Zwischenablage kopiert.
         export_calendar: Kalender exportieren
+      close_meeting_reminder_mailer:
+        close_meeting_reminder:
+          hello: Hallo %{username},
       conference_venues: Tagungsstätten
       content_blocks:
         upcoming_meetings:
@@ -460,8 +470,8 @@ de:
           origin: Ursprung
           origin_values:
             all: Alle
-            citizens: Einzelpersonen
             official: Offiziell
+            participants: Teilnehmer
             user_groups: Gruppen
           scope: Umfang
           search: Suche
@@ -488,7 +498,6 @@ de:
           select_a_category: Bitte wählen sie eine Kategorie
           select_a_meeting_type: Bitte eine Meeting-Art auswählen
           select_a_registration_type: Bitte wählen Sie eine Registrierungsart aus
-          show_embedded_iframe_help: Nur wenige Dienste erlauben das Einbetten einer Veranstaltung oder eines Livestreams (Youtube, Twitch und Jitsi)
         index:
           click_here: Alle Treffen anzeigen
           new_meeting: Neue Besprechung

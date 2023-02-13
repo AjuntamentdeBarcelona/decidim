@@ -16,7 +16,16 @@ describe "Homepage", type: :system do
 
   context "when there's an organization" do
     let(:official_url) { "http://mytesturl.me" }
-    let(:organization) { create(:organization, official_url: official_url) }
+    let(:organization) do
+      create(:organization, official_url: official_url,
+                            highlighted_content_banner_enabled: true,
+                            highlighted_content_banner_title: Decidim::Faker::Localized.sentence(word_count: 2),
+                            highlighted_content_banner_short_description: Decidim::Faker::Localized.sentence(word_count: 2),
+                            highlighted_content_banner_action_title: Decidim::Faker::Localized.sentence(word_count: 2),
+                            highlighted_content_banner_action_subtitle: Decidim::Faker::Localized.sentence(word_count: 2),
+                            highlighted_content_banner_action_url: ::Faker::Internet.url,
+                            highlighted_content_banner_image: Decidim::Dev.test_file("city.jpeg", "image/jpeg"))
+    end
 
     before do
       create :content_block, organization: organization, scope_name: :homepage, manifest_name: :hero
@@ -35,6 +44,12 @@ describe "Homepage", type: :system do
     context "when requesting the root path" do
       before do
         visit decidim.root_path
+      end
+
+      context "when having homepage anchors" do
+        %w(hero sub_hero highlighted_content_banner how_to_participate footer_sub_hero).each do |anchor|
+          it { expect(page).to have_selector("##{anchor}", visible: :all) }
+        end
       end
 
       it_behaves_like "accessible page"
@@ -145,9 +160,9 @@ describe "Homepage", type: :system do
       end
 
       context "when there are static pages" do
-        let!(:static_page_1) { create(:static_page, organization: organization, show_in_footer: true) }
-        let!(:static_page_2) { create(:static_page, organization: organization, show_in_footer: true) }
-        let!(:static_page_3) { create(:static_page, organization: organization, show_in_footer: false) }
+        let!(:static_page1) { create(:static_page, organization: organization, show_in_footer: true) }
+        let!(:static_page2) { create(:static_page, organization: organization, show_in_footer: true) }
+        let!(:static_page3) { create(:static_page, organization: organization, show_in_footer: false) }
 
         before do
           visit current_path
@@ -155,17 +170,17 @@ describe "Homepage", type: :system do
 
         it "includes links to them" do
           within ".main-footer" do
-            [static_page_1, static_page_2].each do |static_page|
+            [static_page1, static_page2].each do |static_page|
               expect(page).to have_content(static_page.title["en"])
             end
 
-            expect(page).to have_no_content(static_page_3.title["en"])
+            expect(page).to have_no_content(static_page3.title["en"])
           end
 
-          click_link static_page_1.title["en"]
-          expect(page).to have_i18n_content(static_page_1.title)
+          click_link static_page1.title["en"]
+          expect(page).to have_i18n_content(static_page1.title)
 
-          expect(page).to have_i18n_content(static_page_1.content)
+          expect(page).to have_i18n_content(static_page1.content)
         end
 
         it "includes the footer sub_hero with the current organization name" do
@@ -185,7 +200,7 @@ describe "Homepage", type: :system do
             )
           end
           let(:user) { nil }
-          let!(:static_page_1) { create(:static_page, organization: organization, show_in_footer: true, allow_public_access: true) }
+          let!(:static_page1) { create(:static_page, organization: organization, show_in_footer: true, allow_public_access: true) }
           let!(:static_page_topic1) { create(:static_page_topic, organization: organization, show_in_footer: true) }
           let!(:static_page_topic1_page1) do
             create(
@@ -220,9 +235,9 @@ describe "Homepage", type: :system do
 
           it "displays only publicly accessible pages and topics in the footer" do
             within ".main-footer" do
-              expect(page).to have_content(static_page_1.title["en"])
-              expect(page).to have_no_content(static_page_2.title["en"])
-              expect(page).to have_no_content(static_page_3.title["en"])
+              expect(page).to have_content(static_page1.title["en"])
+              expect(page).to have_no_content(static_page2.title["en"])
+              expect(page).to have_no_content(static_page3.title["en"])
               expect(page).to have_content(static_page_topic1.title["en"])
               expect(page).to have_no_content(static_page_topic2.title["en"])
               expect(page).to have_no_content(static_page_topic3.title["en"])
@@ -240,9 +255,9 @@ describe "Homepage", type: :system do
             it_behaves_like "accessible page"
 
             it "displays all pages and topics in footer that are configured to display in footer" do
-              expect(page).to have_content(static_page_1.title["en"])
-              expect(page).to have_content(static_page_2.title["en"])
-              expect(page).to have_no_content(static_page_3.title["en"])
+              expect(page).to have_content(static_page1.title["en"])
+              expect(page).to have_content(static_page2.title["en"])
+              expect(page).to have_no_content(static_page3.title["en"])
               expect(page).to have_content(static_page_topic1.title["en"])
               expect(page).to have_content(static_page_topic2.title["en"])
               expect(page).to have_no_content(static_page_topic3.title["en"])

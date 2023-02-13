@@ -1,10 +1,7 @@
+---
 gl:
   activemodel:
     attributes:
-      agenda:
-        description: Descrición
-        duration: Duración
-        title: Título
       close_meeting:
         attendees_count: Número de asistentes
         attending_organizations: Listaxe de organizacións que asistiron
@@ -21,7 +18,6 @@ gl:
         decidim_category_id: Categoría
         decidim_scope_id: Alcance
         description: Descrición
-        end_time: Hora de finalización
         location: Localización
         location_hints: Consellos de localización
         organizer_id: Organizador
@@ -30,7 +26,6 @@ gl:
         registration_form_enabled: Formulario de rexistro habilitado
         registration_terms: Termos de rexistro
         registrations_enabled: Rexistros habilitados
-        start_time: Hora de inicio
         title: Título
         transparent: Transparente
     errors:
@@ -64,6 +59,16 @@ gl:
         other: Rexistros
   decidim:
     admin:
+      filters:
+        meetings:
+          with_any_origin:
+            label: Orixe
+            values:
+              official: Oficial
+              participants: Participante
+          with_any_type:
+            values:
+              online: En liña
       meeting_copies:
         create:
           error: Produciuse un erro ao duplicar esta reunión.
@@ -225,9 +230,6 @@ gl:
           edit:
             close: Pechar
             title: Pechar reunión
-        meeting_copies:
-          form:
-            select_a_meeting_type: Por favor, selecciona un tipo de xuntanza
         meetings:
           close:
             invalid: Produciuse un problema ao pechar esta reunión
@@ -238,8 +240,6 @@ gl:
             success: Reunión eliminada correctamente
           edit:
             update: Actualización
-          form:
-            registration_email_help: Este texto aparecerá no medio do correo de confirmación do rexistro, xusto despois do código de rexistro.
           index:
             title: Reunións
           new:
@@ -269,6 +269,7 @@ gl:
           form:
             available_slots_help: Déixao a 0 se ten slots ilimitados dispoñibles.
             invites: Invitacións
+            registration_email_help: Este texto aparecerá no medio do correo de confirmación do rexistro, xusto despois do código de rexistro.
             registration_form: Formulario de inscrición
             registrations_count:
               one: Houbo un rexistro de %{count}.
@@ -349,6 +350,8 @@ gl:
         filters:
           category: Categoría
           date: Data
+          origin_values:
+            participants: Participantes
           search: Busca
         filters_small_view:
           close_modal: Pechar modal

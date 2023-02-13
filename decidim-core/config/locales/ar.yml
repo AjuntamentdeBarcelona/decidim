@@ -1,3 +1,4 @@
+---
 ar:
   activemodel:
     attributes:
@@ -75,9 +76,6 @@ ar:
   booleans:
     'false': 'لا'
     'true': 'نعم'
-  carrierwave:
-    errors:
-      image_too_big: الصورة كبيرة جدا
   date:
     formats:
       decidim_short: "%d/%m/%Y"
@@ -85,12 +83,6 @@ ar:
       decidim_with_day_and_month_name: "%A %d %b %Y"
       decidim_with_month_name: "%d %B %Y"
       decidim_with_month_name_short: "%d %b"
-  datetime:
-    distance_in_words:
-      x_seconds:
-        one: منذ ثانية
-        other: "منذ %{count} ثوان"
-        zero: للتو
   decidim:
     accessibility:
       external_link: الرابط الخارجي
@@ -98,9 +90,6 @@ ar:
       logo: "شعار %{organization} الرسمي"
       skip_button: تخطي إلى المحتوى الرئيسي
     account:
-      data_portability_export:
-        file_no_exists: الملف غير موجود
-        notice: يتم تنزيل بياناتك حاليًا. ستتلقى بريدًا إلكترونيًا عند اكتماله.
       delete:
         confirm:
           close: أغلق النافذة
@@ -111,8 +100,17 @@ ar:
       destroy:
         error: حدثت مشكلة في حذف حسابك.
         success: تم حذف حسابك بنجاح.
+      download_your_data_export:
+        file_no_exists: الملف غير موجود
+        notice: يتم تنزيل بياناتك حاليًا. ستتلقى بريدًا إلكترونيًا عند اكتماله.
+      email_change:
+        body1: لقد أرسلنا رسالة بريد إلكتروني إلى %{unconfirmed_email} للتحقق من عنوان بريدك الإلكتروني الجديد.
+        body2: هل تحتاج إلينا لإرسال بريد إلكتروني للتحقق مرة أخرى؟ %{resend_link} أو %{cancel_link}.
+        cancel_error: لا يمكن إلغاء طلب تغيير البريد الإلكتروني.
+        cancel_successfully: تم إلغاء تغيير البريد الإلكتروني بنجاح.
+        send_again: إرسل مجددا
       show:
-        available_locales_helper: اختر اللغة التي تريد استخدامها لتصفح وتلقي الإشعارات في Decidim
+        available_locales_helper: اختر اللغة التي تريد استخدامها لتصفح وتلقي الإشعارات على المنصة
         change_password: غير كلمة السر
         update_account: تحديث الحساب
       update:
@@ -132,6 +130,11 @@ ar:
         delete: "%{user_name} إزالة المكون %{resource_name} من %{space_name} الفضاء"
         publish: "%{user_name} نشر المكون %{resource_name} في الفضاء %{space_name}"
         unpublish: "%{user_name} غير منشور المكون %{resource_name} من %{space_name} الفضاء"
+      helpers:
+        answers: أجوبة
+        comments: تعليقات
+        projects: مشاريع
+        results: نتائج
       moderation:
         hide: "%{user_name} اختبأ مورد من النوع %{resource_type} في الفضاء %{space_name}"
         unreport: "%{user_name} الإبلاغ عن مورد من النوع %{resource_type} في %{space_name} الفضاء"
@@ -302,6 +305,8 @@ ar:
           title: غير مخوّل
         unconfirmed:
           title: تأكيد البريد الإلكتروني
+      show:
+        close_modal: إغلاق مشروط
     block_user_mailer:
       notify:
         hello: مرحبًا،
@@ -328,8 +333,8 @@ ar:
           global:
             amendments_enabled: تم تمكين التعديلات
             comments_enabled: تم تمكين التعليقات
-            dummy_global_attribute_1: السمة الدمية 1
-            dummy_global_attribute_2: السمة الدمية 2
+            dummy_global_attribute1: السمة الدمية 1
+            dummy_global_attribute2: السمة الدمية 2
             dummy_global_translatable_text: نص افتراضي قابل للترجمة
             enable_pads_creation: تمكين إنشاء منصات
             resources_permissions_enabled: تم تمكين أذونات الموارد
@@ -338,8 +343,8 @@ ar:
             amendment_promotion_enabled: ترقية التعديلات مُفعّلة
             amendments_visibility: طريقة عرض التعديلات
             comments_blocked: تم حظر التعليقات
-            dummy_step_attribute_1: الخطوة الدمية السمة 1
-            dummy_step_attribute_2: الخطوة الدمية السمة 2
+            dummy_step_attribute1: الخطوة الدمية السمة 1
+            dummy_step_attribute2: الخطوة الدمية السمة 2
             dummy_step_translatable_text: نص افتراضي للخطوة قابل للترجمة
     contact: اتصل
     content_blocks:
@@ -372,12 +377,6 @@ ar:
       actions:
         login_before_access: من فضلك ، لِج بحسابك قبل الوصول
         unauthorized: غير مصرح لك بتنفيذ هذا الإجراء
-    data_portability:
-      export:
-        ready: جاهز
-      show:
-        download_data: قم بتنزيل البيانات
-        request_data: طلب البيانات
     datepicker:
       help_text: 'التنسيق المتوقع: %{datepicker_format}'
     devise:
@@ -443,6 +442,12 @@ ar:
           this_application_will_not_be_able_to: 'لن يكون هذا التطبيق قادرًا على:'
           update_profile: تحديث ملفك الشخصي
           wants_to_use_your_account_html: "<strong>%{application_name}</strong> يريد استخدام حسابك"
+    download_your_data:
+      export:
+        ready: جاهز
+      show:
+        download_data: قم بتنزيل البيانات
+        request_data: طلب البيانات
     endorsable:
       endorsements: موافقات
     errors:
@@ -572,7 +577,7 @@ ar:
           email_subject: "%{nickname} تحديث ملفهم الشخصي"
           notification_title: و <a href="%{resource_path}">صفحة الملف الشخصي</a> من %{name} (%{nickname})، الذي كنت التالية، وقد تم تحديثها.
     export_mailer:
-      data_portability_export:
+      download_your_data_export:
         download: تحميل
       export:
         ready: يرجى الاطلاع على نسخة مضغوطة من التصدير.
@@ -606,7 +611,6 @@ ar:
         button: إيقاف المتابَعة
         error: حدثت مشكلة في إلغاء متابعة هذا المورد.
     forms:
-      current_file: الملف الحالي
       current_image: الصورة الحالية
       default_image: الصورة الافتراضية
       errors:
@@ -614,7 +618,26 @@ ar:
           password: الكلمة السرية قصيرة جدا.
           password_confirmation: يجب أن يكون تأكيد كلمة المرور مطابق للكلمة السرية.
         error: يوجد خطأ في هذا المجال.
-      remove_this_file: أزل هذا الملف
+      file_help:
+        file:
+          message_2: بالنسبة للصور، يُفضل استخدام صور بالوضع العرضي، تقوم الخدمة باقتصاص الصورة.
+        icon:
+          explanation: 'إرشادات للأيقونة:'
+          message_1: يجب أن تكون صورة مربعة.
+          message_2: الحجم الموصى به لهذه الصورة هو 512 × 512.
+      upload:
+        labels:
+          add_attachment: إضافة مرفق
+          add_file: إضافة ملف
+          add_image: إضافة صورة
+          cancel: إلغاء
+          edit_image: تعديل الصورة
+          error: خطأ!
+          remove: حذف
+          replace: إستبدال
+          save: حفظ
+          title: العنوان
+          title_required: العنوان مطلوب!
     gamification:
       all_badges_link: رؤية جميع الشارات المتاحة.
       badges:
@@ -715,7 +738,6 @@ ar:
       no_user_groups: لا ينتمي إلى أي مجموعة حتى الآن.
       roles:
         admin: مدير
-        creator: المنشئ
         member: عضو
       update:
         error: حدثت مشكلة أثناء تحديث المجموعة
@@ -737,6 +759,7 @@ ar:
     links:
       warning:
         cancel: إلغاء
+        close_modal: إغلاق مشروط
     log:
       base_presenter:
         create: "%{user_name} تم الإنشاء %{resource_name}"
@@ -812,7 +835,6 @@ ar:
     newsletter_mailer:
       newsletter:
         note: لقد تلقيت هذه الرسالة الإلكترونية لأنك مشترك في الرسائل الإخبارية على %{organization_name}. يمكنك تغيير الإعدادات الخاصة بك على هاتفك <a href="%{link}">الصفحة إخطارات</a>.
-        see_on_website: لا يمكن عرض هذا البريد الإلكتروني بشكل صحيح؟ اطلع عليه على <a href="%{link}" target="_blank">الموقع</a>.
         unsubscribe: لإلغاء الاشتراك في تلقي هذا النوع من البريد الإلكتروني ، <a href="%{link}" target="_blank" class="unsubscribe">إلغاء الاشتراك</a>.
     newsletter_templates:
       image_text_cta_settings_form:
@@ -843,13 +865,12 @@ ar:
       no_notifications: لا إخطارات حتى الآن.
     notifications_settings:
       show:
-        email_on_notification: أرغب في تلقي رسالة بريد إلكتروني في كل مرة أتلقى فيها إشعارًا.
+        email_on_moderations: أريد أن أتلقى رسالة بريد إلكتروني كلما يتم فيها الإبلاغ عن شيء أو عن شخص ما للإشراف.
         everything_followed: كل شيء أتابعه
         newsletter_notifications: أريد أن أتلقى رسائل إخبارية
         newsletters: النشرات الإخبارية
         own_activity: نشاطي الخاص ، مثلما يعلقني أحدهم في اقتراحي أو يذكرني
         receive_notifications_about: أريد الحصول على إشعارات حول
-        send_notifications_by_email: إرسال الإخطارات عن طريق البريد الإلكتروني
         update_notifications_settings: حفظ التغييرات
       update:
         error: حدثت مشكلة أثناء تحديث إعدادات الإشعارات.
@@ -906,7 +927,6 @@ ar:
         form:
           legend: توافق على شروط وأحكام الاستخدام
         refuse:
-          modal_body: إذا رفضت ، فلن تتمكن من استخدام النظام الأساسي ، يمكنك <a href="%{data_portability_path}">تنزيل بياناتك</a> و / أو <a href="%{delete_path}">حذف حسابك</a>.
           modal_btn_continue: قبول الشروط والمتابعة
           modal_btn_exit: سأراجعها لاحقًا
           modal_button: رفض الشروط
@@ -958,7 +978,9 @@ ar:
       report:
         content_original_language: لغة المحتوى الأصلية
         hello: مرحبا %{name}،
+        reason: السبب
         report_html: <p>تم الإبلاغ عن المحتوى <a href="%{url}">التالي</a> .</p>
+        see_report: معاينة التقرير
         subject: تم الإبلاغ عن مورد
     reports:
       create:
@@ -1048,9 +1070,6 @@ ar:
       pages_count: صفحات
       participants_count: المشاركون
       users_count: المشاركون
-    user_activity:
-      index:
-        no_activities_warning: هذا المشارك لم يقم بأي نشاط حتى الآن.
     user_conversations:
       index:
         add_users_placeholder: البحث…
@@ -1106,7 +1125,6 @@ ar:
     invitations:
       edit:
         header: الانتهاء من إنشاء حسابك
-        nickname_help: اسم الشهرة الخاص بك في %{organization}.
         submit_button: حفظ
         subtitle: إذا قبلت الدعوة ، فيرجى تعيين اسم المستخدم وكلمة المرور الخاصين بك.
       invitation_removed: تمت إزالة دعوتك.
@@ -1173,7 +1191,6 @@ ar:
     passwords:
       edit:
         change_my_password: تغيير كلمة المرور الخاصة بي
-        change_your_password: غير كلمة المرور الخاصة بك
         confirm_new_password: تأكيد كلمة المرور الجديدة
         new_password: كلمة السر الجديدة
       new:
@@ -1247,10 +1264,6 @@ ar:
     timestamp_error_message: آسف ، كان ذلك سريعًا جدًا! يرجى إعادة تقديم.
   layouts:
     decidim:
-      cookie_warning:
-        description_html: يستخدم هذا الموقع ملفات تعريف الارتباط. من خلال الاستمرار في تصفح الموقع ، فإنك توافق على استخدامنا لملفات تعريف الارتباط. اكتشف المزيد عنها %{link}.
-        link_label: هنا
-        ok: أنا موافق
       edit_link:
         edit: تعديل
       footer:

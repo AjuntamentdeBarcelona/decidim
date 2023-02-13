@@ -1,3 +1,4 @@
+---
 ar:
   activemodel:
     attributes:
@@ -9,7 +10,7 @@ ar:
     elections:
       admin:
         steps:
-          tally:
+          tally_started:
             invalid: كانت هناك مشكلة في الإبلاغ عن الأمين المفقود
             mark_as_missing: وضع علامة مفقود
             mark_as_missing_description: يجب أن يشارك جميع الأمناء في هذه العملية، ولكن إذا لم يتمكن الأمين من المشاركة في العملية، يمكنك وضع علامة على أنها مفقودة.

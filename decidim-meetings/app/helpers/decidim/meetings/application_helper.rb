@@ -16,7 +16,7 @@ module Decidim
       def filter_origin_values
         origin_values = []
         origin_values << TreePoint.new("official", t("decidim.meetings.meetings.filters.origin_values.official"))
-        origin_values << TreePoint.new("citizens", t("decidim.meetings.meetings.filters.origin_values.citizens")) # todo
+        origin_values << TreePoint.new("participants", t("decidim.meetings.meetings.filters.origin_values.participants")) # todo
         if current_organization.user_groups_enabled?
           origin_values << TreePoint.new("user_group", t("decidim.meetings.meetings.filters.origin_values.user_groups")) # todo
         end
@@ -65,7 +65,12 @@ module Decidim
 
       # If the content is safe, HTML tags are sanitized, otherwise, they are stripped.
       def render_meeting_body(meeting)
-        Decidim::ContentProcessor.render(render_sanitized_content(meeting, :description), "div")
+        sanitized = render_sanitized_content(meeting, :description)
+        if safe_content?
+          Decidim::ContentProcessor.render_without_format(sanitized).html_safe
+        else
+          Decidim::ContentProcessor.render(sanitized, "div")
+        end
       end
 
       def prevent_timeout_seconds

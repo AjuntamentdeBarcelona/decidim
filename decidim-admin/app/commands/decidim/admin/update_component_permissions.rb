@@ -4,16 +4,17 @@ module Decidim
   module Admin
     # This command gets called when permissions for a component are updated
     # in the admin panel.
-    class UpdateComponentPermissions < Rectify::Command
+    class UpdateComponentPermissions < Decidim::Command
       # Public: Initializes the command.
       #
       # form    - The form from which the data in this component comes from.
       # component - The component to update.
       # resource - The resource to update.
-      def initialize(form, component, resource)
+      def initialize(form, component, resource, user)
         @form = form
         @component = component
         @resource = resource
+        @user = user
       end
 
       # Public: Sets the permissions for a component.
@@ -22,9 +23,11 @@ module Decidim
       def call
         return broadcast(:invalid) unless form.valid?
 
-        transaction do
-          update_permissions
-          run_hooks
+        Decidim.traceability.perform_action!("update_permissions", @component, @user) do
+          transaction do
+            update_permissions
+            run_hooks
+          end
         end
 
         broadcast(:ok)
@@ -45,7 +48,7 @@ module Decidim
           handlers_content = {}
 
           selected_handlers(value).each do |handler_key|
-            opts = value.authorization_handlers_options[handler_key.to_sym]
+            opts = value.authorization_handlers_options[handler_key.to_s]
             handlers_content[handler_key] = opts ? { options: opts } : {}
           end
 

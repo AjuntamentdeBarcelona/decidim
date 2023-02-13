@@ -5,14 +5,15 @@ module Decidim
     module Admin
       # This command is executed when the user changes a Result from the admin
       # panel.
-      class UpdateStatus < Rectify::Command
+      class UpdateStatus < Decidim::Command
         # Initializes an UpdateStatus Command.
         #
         # form - The form from which to get the data.
         # status - The current instance of the status to be updated.
-        def initialize(form, status)
+        def initialize(form, status, user)
           @form = form
           @status = status
+          @user = user
         end
 
         # Updates the status if valid.
@@ -33,7 +34,9 @@ module Decidim
         attr_reader :status, :form
 
         def update_status
-          status.update!(
+          Decidim.traceability.update!(
+            status,
+            @user,
             key: @form.key,
             name: @form.name,
             description: @form.description,
