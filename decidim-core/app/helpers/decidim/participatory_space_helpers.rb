@@ -43,13 +43,11 @@ module Decidim
     end
 
     def participatory_space_manifest
-      @participatory_space_manifest ||= begin
-        if current_participatory_space_manifest.is_a? Decidim::ResourceManifest
-          Decidim.participatory_space_manifests.find { |manifest| manifest.model_class_name == current_participatory_space.class.name }
-        else
-          current_participatory_space_manifest
-        end
-      end
+      @participatory_space_manifest ||= if current_participatory_space_manifest.is_a? Decidim::ResourceManifest
+                                          Decidim.participatory_space_manifests.find { |manifest| manifest.model_class_name == current_participatory_space.class.name }
+                                        else
+                                          current_participatory_space_manifest
+                                        end
     end
   end
 end
