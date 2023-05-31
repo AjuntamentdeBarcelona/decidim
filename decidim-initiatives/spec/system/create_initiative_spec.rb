@@ -9,7 +9,6 @@ describe "Initiative", type: :system do
   let!(:authorized_user) { create(:user, :confirmed, organization: organization) }
   let!(:authorization) { create(:authorization, user: authorized_user) }
   let(:login) { true }
-
   let(:initiative_type_minimum_committee_members) { 2 }
   let(:signature_type) { "any" }
   let(:initiative_type_promoting_committee_enabled) { true }
@@ -559,6 +558,27 @@ describe "Initiative", type: :system do
       context "when create initiative" do
         let(:initiative) { build(:initiative) }
 
+        context "when only one signature collection and scope are available" do
+          let(:signature_type) { "offline" }
+          let!(:other_initiative_type) { nil }
+          let!(:other_initiative_type_scope) { nil }
+          let(:initiative_type_scope2) { nil }
+          let(:initiative_type) { create(:initiatives_type, organization: organization, minimum_committee_members: initiative_type_minimum_committee_members, signature_type: signature_type) }
+
+          before do
+            fill_in "Title", with: translated(initiative.title, locale: :en)
+            fill_in "initiative_description", with: translated(initiative.description, locale: :en)
+            find_button("Continue").click
+          end
+
+          it "hides and automatically selects the values" do
+            expect(page).not_to have_content("Signature collection type")
+            expect(page).not_to have_content("Scope")
+            expect(find(:xpath, "//input[@id='initiative_type_id']", visible: :all).value).to eq(initiative_type.id.to_s)
+            expect(find(:xpath, "//input[@id='initiative_signature_type']", visible: :all).value).to eq("offline")
+          end
+        end
+
         context "when there is only one initiative type" do
           let!(:other_initiative_type) { nil }
           let!(:other_initiative_type_scope) { nil }
@@ -612,7 +632,7 @@ describe "Initiative", type: :system do
 
           it "shows input for signature collection type" do
             expect(page).to have_content("Signature collection type")
-            expect(find(:xpath, "//select[@id='initiative_signature_type']", visible: :all).value).to eq("online")
+            expect(find(:xpath, "//select[@id='initiative_signature_type']", visible: :all).value).to eq(signature_type)
           end
 
           it "shows input for hashtag" do
@@ -632,14 +652,6 @@ describe "Initiative", type: :system do
             end
           end
 
-          context "when the scope is not selected" do
-            it "shows an error" do
-              select("Online", from: "Signature collection type")
-              find_button("Continue").click
-              expect(page).to have_content("There's an error in this field")
-            end
-          end
-
           context "when the initiative type does not enable custom signature end date" do
             it "does not show the signature end date" do
               expect(page).not_to have_content("End of signature collection period")
@@ -647,7 +659,8 @@ describe "Initiative", type: :system do
           end
 
           context "when the initiative type enables custom signature end date" do
-            let(:initiative_type) { create(:initiatives_type, :custom_signature_end_date_enabled, organization: organization, minimum_committee_members: initiative_type_minimum_committee_members, signature_type: "offline") }
+            let(:signature_type) { "offline" }
+            let(:initiative_type) { create(:initiatives_type, :custom_signature_end_date_enabled, organization: organization, minimum_committee_members: initiative_type_minimum_committee_members, signature_type: signature_type) }
 
             it "shows the signature end date" do
               expect(page).to have_content("End of signature collection period")
@@ -661,7 +674,8 @@ describe "Initiative", type: :system do
           end
 
           context "when the initiative type enables area" do
-            let(:initiative_type) { create(:initiatives_type, :area_enabled, organization: organization, minimum_committee_members: initiative_type_minimum_committee_members, signature_type: "offline") }
+            let(:signature_type) { "offline" }
+            let(:initiative_type) { create(:initiatives_type, :area_enabled, organization: organization, minimum_committee_members: initiative_type_minimum_committee_members, signature_type: signature_type) }
 
             it "shows the area" do
               expect(page).to have_content("Area")
@@ -681,7 +695,7 @@ describe "Initiative", type: :system do
         end
       end
 
-      context "when there's a promoter committee" do
+      context "when there is a promoter committee" do
         let(:initiative) { build(:initiative, organization: organization, scoped_type: initiative_type_scope) }
 
         before do
@@ -693,7 +707,6 @@ describe "Initiative", type: :system do
           find_button("Continue").click
 
           select("Online", from: "Signature collection type")
-          select(translated(initiative_type_scope.scope.name, locale: :en), from: "Scope")
           find_button("Continue").click
         end
 
@@ -726,13 +739,37 @@ describe "Initiative", type: :system do
           end
         end
 
-        context "and it's disabled at the type scope" do
+        context "and it is disabled at the type scope" do
           let(:initiative_type) { create(:initiatives_type, organization: organization, promoting_committee_enabled: false, signature_type: signature_type) }
 
           it "skips the promoting committee settings" do
             expect(page).not_to have_content("Promoter committee")
             expect(page).to have_content("Finish")
           end
+        end
+      end
+
+      context "when the initiative is created by an user group" do
+        let(:organization) { create(:organization, available_authorizations: authorizations, user_groups_enabled: true) }
+        let(:initiative) { build(:initiative) }
+        let!(:user_group) { create(:user_group, :verified, organization: organization, users: [authorized_user]) }
+
+        before do
+          authorized_user.reload
+          find_button("I want to promote this initiative").click
+
+          fill_in "Title", with: translated(initiative.title, locale: :en)
+          fill_in "initiative_description", with: translated(initiative.description, locale: :en)
+          find_button("Continue").click
+
+          select("Online", from: "Signature collection type")
+          select(user_group.name, from: "Author")
+        end
+
+        it "shows the user group as author" do
+          expect(Decidim::Initiative.where(decidim_user_group_id: user_group.id).count).to eq(0)
+          find_button("Continue").click
+          expect(Decidim::Initiative.where(decidim_user_group_id: user_group.id).count).to eq(1)
         end
       end
 
@@ -746,7 +783,6 @@ describe "Initiative", type: :system do
           fill_in "initiative_description", with: translated(initiative.description, locale: :en)
           find_button("Continue").click
 
-          select(translated(initiative_type_scope.scope.name, locale: :en), from: "Scope")
           select("Online", from: "Signature collection type")
           dynamically_attach_file(:initiative_documents, Decidim::Dev.asset("Exampledocument.pdf"))
           find_button("Continue").click
