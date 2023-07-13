@@ -451,8 +451,6 @@ fi:
         sms_phone:
           invalid: Puhelinnumero on virheellinen tai odottaa tarkastusta. Tarkista vahvistuksesi.
       initiatives:
-        author:
-          deleted: Poistettu
         author_list:
           hidden_authors_count:
             one: ja yksi muu henkilö

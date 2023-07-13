@@ -432,8 +432,6 @@ eu:
         sms_phone:
           invalid: Telefono-zenbakia baliogabea edo baimenaren zain dago. Egiaztatu zure baimenak.
       initiatives:
-        author:
-          deleted: Ezabatutako
         author_list:
           hidden_authors_count:
             one: eta beste 1 pertsona

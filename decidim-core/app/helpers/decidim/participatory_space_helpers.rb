@@ -18,7 +18,7 @@ module Decidim
     def participatory_space_helpers
       return @participatory_space_helpers if defined?(@participatory_space_helpers)
 
-      helper = current_participatory_space_manifest.context(current_participatory_space_context).helper
+      helper = participatory_space_manifest.context(current_participatory_space_context).helper
 
       klass = Class.new(SimpleDelegator) do
         include helper.constantize if helper
@@ -39,6 +39,16 @@ module Decidim
       content_tag :div, class: "wrapper" do
         concat(participatory_space_floating_help)
         concat(capture(&block))
+      end
+    end
+
+    def participatory_space_manifest
+      @participatory_space_manifest ||= begin
+        if current_participatory_space_manifest.is_a? Decidim::ResourceManifest
+          Decidim.participatory_space_manifests.find { |manifest| manifest.model_class_name == current_participatory_space.class.name }
+        else
+          current_participatory_space_manifest
+        end
       end
     end
   end

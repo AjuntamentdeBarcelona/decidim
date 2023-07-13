@@ -448,8 +448,6 @@ ja:
         sms_phone:
           invalid: 電話番号が無効または承認待ちです。認証を確認してください。
       initiatives:
-        author:
-          deleted: 削除しました
         author_list:
           hidden_authors_count:
             other: '%{count} 人以上'

@@ -227,8 +227,6 @@ lb:
         sms_phone:
           invalid: Die Telefonnummer ist ungültig oder muss noch autorisiert werden. Bitte überprüfen Sie Ihre Berechtigungen.
       initiatives:
-        author:
-          deleted: Gelöscht
         author_list:
           hidden_authors_count:
             one: und 1 weitere Person

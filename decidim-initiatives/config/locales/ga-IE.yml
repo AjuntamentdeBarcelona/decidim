@@ -140,8 +140,6 @@ ga:
             month: Mí
             year: Bliain
       initiatives:
-        author:
-          deleted: Scriosta
         committee_members:
           approve: Ceadaigh
           revoke: Cúlghairm

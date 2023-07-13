@@ -10,9 +10,9 @@ $(() => {
 
     let progressPosition = progressRef.getBoundingClientRect().bottom;
     if (progressPosition > 0) {
-      progressFix.classList.remove(progressVisibleClass);
+      progressFix?.classList?.remove(progressVisibleClass);
     } else {
-      progressFix.classList.add(progressVisibleClass);
+      progressFix?.classList?.add(progressVisibleClass);
     }
   }
 

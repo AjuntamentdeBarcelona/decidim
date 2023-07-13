@@ -26,8 +26,13 @@ describe "Explore projects", :slow, type: :system do
   end
 
   describe "index" do
-    it "shows all resources for the given component" do
+    before do
       visit_budget
+    end
+
+    it_behaves_like "has focus mode", "TOTAL BUDGET"
+
+    it "shows all resources for the given component" do
       within "#projects" do
         expect(page).to have_selector(".budget-list__item", count: projects_count)
       end

@@ -344,8 +344,6 @@ cs:
         sms_phone:
           invalid: Telefonní číslo je neplatné nebo čeká na autorizaci. Zkontrolujte prosím vaše oprávnění.
       initiatives:
-        author:
-          deleted: Vymazáno
         author_list:
           hidden_authors_count:
             one: a 1 další osobou
