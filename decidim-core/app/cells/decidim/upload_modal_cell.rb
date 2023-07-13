@@ -5,6 +5,7 @@ module Decidim
   class UploadModalCell < Decidim::ViewModel
     include Cell::ViewModel::Partial
     include ERB::Util
+    include Decidim::SanitizeHelper
 
     alias form model
 
@@ -29,7 +30,7 @@ module Decidim
     end
 
     def label
-      options[:label]
+      form.send(:custom_label, attribute, options[:label], { required: required?, for: nil })
     end
 
     def button_label
@@ -72,8 +73,17 @@ module Decidim
       options[:multiple] || false
     end
 
+    # @deprecated Please use `required?` instead.
+    #
+    # NOTE: When this is removed, also the `optional` option should be removed.
     def optional
-      options[:optional]
+      !required?
+    end
+
+    def required?
+      return !options[:optional] if options.has_key?(:optional)
+
+      options[:required] == true
     end
 
     # By default Foundation adds form errors next to input, but since input is in the modal
@@ -81,7 +91,7 @@ module Decidim
     # This should only be necessary when file is required by the form.
     def input_validation_field
       object_name = form.object.present? ? "#{form.object.model_name.param_key}[#{add_attribute}_validation]" : "#{add_attribute}_validation"
-      input = check_box_tag object_name, 1, attachments.present?, class: "hide", label: false, required: !optional
+      input = check_box_tag object_name, 1, attachments.present?, class: "hide", label: false, required: required?
       message = form.send(:abide_error_element, add_attribute) + form.send(:error_and_help_text, add_attribute)
       input + message
     end
@@ -142,7 +152,7 @@ module Decidim
     def title_for(attachment)
       return unless has_title?
 
-      translated_attribute(attachment.title)
+      decidim_html_escape(decidim_sanitize(translated_attribute(attachment.title)))
     end
 
     def truncated_file_name_for(attachment, max_length = 31)
