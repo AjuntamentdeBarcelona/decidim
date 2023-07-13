@@ -66,25 +66,6 @@ gl:
         one: ao redor de 1 mes
         other: ao redor de %{count} meses
       half_a_minute: medio minuto
-      less_than_x_minutes:
-        one: menos de 1 minuto
-        other: menos de %{count} minutos
-      less_than_x_seconds:
-        one: agora
-        other: menos de %{count} segundos
-      x_days:
-        one: hai 1 día
-        other: "hai %{count} días"
-      x_hours:
-        one: hai 1 hora
-        other: "hai %{count} horas"
-      x_minutes:
-        one: hai 1 min
-        other: "hai %{count} min"
-      x_seconds:
-        one: hai 1 seg
-        other: "hai %{count} seg"
-        zero: agora
   decidim:
     accessibility:
       front_page_link: Ir á páxina principal
@@ -282,6 +263,8 @@ gl:
           explanation_html: Para realizar esta acción necesitas estar autorizado, antes de facer isto necesitas confirmar o teu correo <strong>%{email}</strong>.
           request_confirmation_instructions: Solicitar instrucións de confirmación
           title: Confirma o teu correo electrónico
+      show:
+        close_modal: Pechar modal
     collapsible_list:
       hidden_elements_count:
         one: e %{count} máis
@@ -776,7 +759,6 @@ gl:
     newsletter_mailer:
       newsletter:
         note: Recibiches este correo electrónico porque estás subscrito a boletíns en %{organization_name}. Podes cambiar a configuración nas túas <a href="%{link}"> notificacións páxina</a>.
-        see_on_website: Non se pode ver este correo electrónico correctamente? Vénseo no <a href="%{link}" target="_blank"> sitio web</a>.
         unsubscribe: Para desactivar a recepción deste tipo de correo electrónico, <a href="%{link}" target="_blank" class="unsubscribe">Subscribe</a>.
     newsletters:
       unsubscribe:
@@ -873,15 +855,12 @@ gl:
           legend: Concorda cos termos e condicións de uso
         refuse:
           modal_body: Rexeitar, non será capaz de utilizar a plataforma, pode <a href="%{data_portability_path}">Descargar seus datos</a> e / ou <a href="%{delete_path}">eliminar a súa conta</a>.
-          modal_btn_continue: Aceptar termos e continuar
           modal_btn_exit: Vou revisalo máis tarde
-          modal_button: Rexeitar os termos
           modal_close: Pechar modal
           modal_title: '¿Realmente rexeita os Termos e condicións actualizados?'
         required_review:
           alert: Actualizamos as nosas Condicións de servizo, por favor revíselas.
           body: Leve un momento para revisar as actualizacións das nosas Condicións de servizo. Se non, non poderás usar a plataforma.
-          title: 'Requirido: repasa as actualizacións dos nosos termos de servizo'
     participatory_space_private_users:
       not_allowed: Non tes permiso para ver este contido
     profile:
@@ -1014,9 +993,6 @@ gl:
       pages_count: Páxinas
       participants_count: Participantes
       users_count: Participantes
-    user_activity:
-      index:
-        no_activities_warning: Este usuario aínda non tivo ningunha actividade.
     user_conversations:
       show:
         back: Amosar todas as conversas

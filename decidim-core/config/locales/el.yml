@@ -305,7 +305,7 @@ el:
           request_confirmation_instructions: Ζητήστε οδηγίες επιβεβαίωσης
           title: Επιβεβαίωση διεύθυνσης email
       show:
-        close_modal: Κλείσιμο παραθύρου
+        close_modal: Κλείσιμο βοηθητικού στοιχείου
     collapsible_list:
       hidden_elements_count:
         one: και %{count} ακόμη
@@ -779,6 +779,9 @@ el:
       index:
         last_activity: Τελευταία δραστηριότητα
         resource_type: Τύπος
+    links:
+      warning:
+        close_modal: Κλείσιμο βοηθητικού στοιχείου
     log:
       base_presenter:
         create: "Ο χρήστης %{user_name} δημιούργησε το στοιχείο %{resource_name}"
@@ -896,7 +899,6 @@ el:
     newsletter_mailer:
       newsletter:
         note: Λάβατε αυτό το email επειδή έχετε εγγραφεί σε ενημερωτικά δελτία στον οργανισμό %{organization_name}. Μπορείτε να αλλάξετε τις ρυθμίσεις σας στη <a href="%{link}">σελίδα ειδοποιήσεων</a>.
-        see_on_website: Δεν βλέπετε αυτό το email σωστά; Δείτε το στον <a href="%{link}" target="_blank">ιστότοπο</a>.
         unsubscribe: Για να εξαιρεθείτε από τη λήψη αυτού του τύπου email, πατήστε <a href="%{link}" target="_blank" class="unsubscribe">Κατάργηση εγγραφής</a>.
     newsletter_templates:
       basic_only_text:
@@ -1008,15 +1010,12 @@ el:
           legend: Αποδοχή των όρων και των προϋποθέσεων χρήσης
         refuse:
           modal_body: Εάν αρνηθείτε, δεν θα μπορείτε να χρησιμοποιήσετε την πλατφόρμα, μπορείτε να πραγματοποιήσετε <a href="%{data_portability_path}">λήψη των δεδομένων σας</a> ή/και <a href="%{delete_path}">διαγραφή του λογαριασμού σας</a>.
-          modal_btn_continue: Αποδοχή των όρων και συνέχεια
           modal_btn_exit: Θα τους διαβάσω αργότερα
-          modal_button: Απόρριψη των όρων
           modal_close: Κλείσιμο βοηθητικού στοιχείου
           modal_title: Θέλετε πραγματικά να απορρίψετε τους ενημερωμένους Όρους και προϋποθέσεις;
         required_review:
           alert: Ενημερώσαμε τους Όρους χρήσης υπηρεσίας, διαβάστε τους.
           body: Αφιερώστε λίγο χρόνο για να διαβάσετε τις ενημερώσεις στους Όρους χρήσης υπηρεσίας. Διαφορετικά, δεν θα μπορείτε να χρησιμοποιήσετε την πλατφόρμα.
-          title: 'Απαιτείται: Διαβάστε τις ενημερώσεις στους όρους χρήσης υπηρεσίας μας'
     participatory_space_private_users:
       not_allowed: Δεν επιτρέπεται η προβολή αυτού του περιεχομένου
     profile:
@@ -1159,9 +1158,6 @@ el:
     tags:
       filter_results_for_category: 'Φιλτράρισμα αποτελεσμάτων για την κατηγορία: %{resource}'
       filter_results_for_scope: 'Φιλτράρισμα αποτελεσμάτων για το πεδίο εφαρμογής: %{resource}'
-    user_activity:
-      index:
-        no_activities_warning: Αυτός ο συμμετέχων δεν έχει ακόμη κάποια δραστηριότητα.
     user_contact_disabled: Αυτός ο συμμετέχων δεν δέχεται άμεσα μηνύματα.
     user_conversations:
       create:
@@ -1452,7 +1448,8 @@ el:
       widget:
         see_more: Δείτε περισσότερα
   locale:
-    name: Αγγλικά
+    name: Ελληνικά
+    name_with_error: Ελληνικά (σφάλμα!)
   password_validator:
     domain_included_in_password: είναι πολύ παρόμοιο με αυτό το όνομα τομέα
     email_included_in_password: είναι πολύ παρόμοια με τη διεύθυνση email σας
