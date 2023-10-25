@@ -226,7 +226,7 @@ ro:
             few: 'Întâlnirea nu poate fi eliminată deoarece are %{count} propuneri asociate:'
             other: 'Întâlnirea nu poate fi eliminată deoarece are %{count} propuneri asociate acestuia:'
         manage_poll: Gestionare sondaj
-        new: Noua întâlnire
+        new: Întâlnire nouă
         preview: Previzualizare
         registrations: Înregistrări
         title: Acțiuni
@@ -658,7 +658,7 @@ ro:
         see_all: Afișează toate întâlnirile (%{count})
         upcoming_meetings: Întâlniri viitoare
       upcoming_meeting_for_card:
-        upcoming_meeting: Întâlnire viitoare
+        upcoming_meeting: Şedinţa viitoare
     resource_links:
       meetings_through_proposals:
         meeting_result: 'Rezultate asociate:'

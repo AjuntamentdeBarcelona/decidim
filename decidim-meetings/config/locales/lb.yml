@@ -151,6 +151,8 @@ lb:
         registration_code_validated:
           email_intro: Ihr Registrierungscode "%{registration_code}" für die Sitzung "%{resource_title}" wurde bestätigt.
     meetings:
+      actions:
+        new: Nei Versammlung
       admin:
         agenda:
           edit:
@@ -391,6 +393,9 @@ lb:
             official_meeting: Offizielle Besprechung
             start_time: Ufanksdatum
             title: Titel
+    participatory_spaces:
+      upcoming_meeting_for_card:
+        upcoming_meeting: Kommende Sitzung
     resource_links:
       proposals_from_meeting:
         meeting_proposal: 'Ähnliche Vorschläge:'

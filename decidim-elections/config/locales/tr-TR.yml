@@ -125,8 +125,6 @@ tr:
             name: Cevap
           election:
             name: Seçim
-          question:
-            name: Soru
           trustee:
             name: Vekil
         proposals_imports:
@@ -363,6 +361,10 @@ tr:
               name: Oylama istatistikleri
             timeline:
               name: Oylama Zaman Çizelgesi
+        votings:
+          actions:
+            publish: Yayınla
+            unpublish: Yayımdan Kaldır
       content_blocks:
         landing_page:
           description:
