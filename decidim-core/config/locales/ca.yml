@@ -1797,6 +1797,7 @@ ca:
         github: "%{organization} a GitHub"
         instagram: "%{organization} a Instagram"
         twitter: "%{organization} a Twitter"
+        x: "%{organization} a X"
         youtube: "%{organization} a YouTube"
       timeout_modal:
         body: Has estat sense activitat durant %{minutes} minuts. Si continues inactiva, es tancarà la teva sessió automàticament per la teva pròpia seguretat.
@@ -1863,6 +1864,7 @@ ca:
     weibo: Sina Weibo
     whatsapp_app: WhatsApp
     whatsapp_web: WhatsApp
+    x: X
     xing: Xing
   time:
     formats:

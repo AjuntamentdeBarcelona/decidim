@@ -1798,6 +1798,7 @@ es:
         instagram: "%{organization} en Instagram"
         twitter: "%{organization} en Twitter"
         youtube: "%{organization} en YouTube"
+        x: "%{organization} en X"
       timeout_modal:
         body: Has estado sin actividad durante %{minutes} minutos. Si sigues estando inactivo, serás desconectado automáticamente por tu propia seguridad.
         continue_session: Continuar sesión
@@ -1863,6 +1864,7 @@ es:
     weibo: Sina Weibo
     whatsapp_app: WhatsApp
     whatsapp_web: WhatsApp
+    x: X
     xing: Xing
   time:
     formats:
