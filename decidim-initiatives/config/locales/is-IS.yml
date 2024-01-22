@@ -170,6 +170,7 @@ is:
         title: Frumkvæði
       initiatives:
         committee_members:
+          confirm_revoke: Ertu viss?
           revoke: Afturkalla
         count:
           title:
