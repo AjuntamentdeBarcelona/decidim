@@ -95,6 +95,7 @@ Decidim.register_component(:budgets) do |component|
     settings.attribute :announcement, type: :text, translated: true, editor: true
 
     settings.attribute :landing_page_content, type: :text, translated: true, editor: true
+    settings.attribute :landing_page_instructions, type: :text, translated: true, editor: true
     settings.attribute :more_information_modal, type: :text, translated: true
   end
 
@@ -105,6 +106,7 @@ Decidim.register_component(:budgets) do |component|
     settings.attribute :announcement, type: :text, translated: true, editor: true
 
     settings.attribute :landing_page_content, type: :text, translated: true, editor: true
+    settings.attribute :landing_page_instructions, type: :text, translated: true, editor: true
     settings.attribute :more_information_modal, type: :text, translated: true
     settings.attribute :announcement, type: :text, translated: true, editor: true
   end

@@ -169,8 +169,6 @@ is:
       index:
         title: Frumkvæði
       initiatives:
-        author:
-          deleted: Eytt
         committee_members:
           confirm_revoke: Ertu viss?
           revoke: Afturkalla

@@ -414,8 +414,6 @@ sv:
         sms_phone:
           invalid: Telefonnumret är ogiltigt eller har ännu inte godkänts. Kontrollera dina godkännanden.
       initiatives:
-        author:
-          deleted: Raderade
         author_list:
           hidden_authors_count:
             one: och ytterligare en person

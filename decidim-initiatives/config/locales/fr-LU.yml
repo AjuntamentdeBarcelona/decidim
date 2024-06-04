@@ -437,8 +437,6 @@ fr-LU:
         sms_phone:
           invalid: Le numéro de téléphone est invalide ou en attente d'autorisation. S'il vous plaît, vérifiez vos autorisations.
       initiatives:
-        author:
-          deleted: Supprimé
         author_list:
           hidden_authors_count:
             one: et 1 autre personne

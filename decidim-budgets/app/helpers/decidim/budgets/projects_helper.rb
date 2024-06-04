@@ -4,6 +4,7 @@ module Decidim
   module Budgets
     # A helper to render order and budgets actions
     module ProjectsHelper
+      include ActiveSupport::NumberHelper
       include Decidim::ApplicationHelper
       include Decidim::MapHelper
 
@@ -16,7 +17,7 @@ module Decidim
 
       # Return a percentage of the current order budget from the total budget
       def current_order_budget_percent
-        current_order&.budget_percent.to_f.floor
+        current_order&.budget_percent.to_f.floor.clamp(0, 100)
       end
 
       # Return the minimum percentage of the current order budget from the total budget

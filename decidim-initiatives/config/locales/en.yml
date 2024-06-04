@@ -395,6 +395,7 @@ en:
           more_information: "(More information)"
           select: I want to promote this initiative
           select_initiative_type_help: Initiatives are a means by which the participants can intervene so that the organization can undertake actions in defence of the general interest. Which initiative do you want to launch?
+          verification_required: Verify your account to promote this initiative
         share_committee_link:
           continue: Continue
           invite_to_committee_help: Link to invite people that will be part of the promoter committee
@@ -474,8 +475,6 @@ en:
         sms_phone:
           invalid: The phone number is invalid or pending of authorization. Please, check your authorizations.
       initiatives:
-        author:
-          deleted: Deleted
         author_list:
           hidden_authors_count:
             one: and 1 more person
@@ -507,11 +506,6 @@ en:
           unfold: Unfold
         index_header:
           new_initiative: New initiative
-          not_authorized:
-            authorizations_page: View authorizations
-            close: Close
-            explanation: You need to be verified in order to create a new initiative.
-            title: Authorization required
         initiatives:
           closed_initiatives_warning: Currently, there are no open initiatives, but here you can find all the closed initiatives listed.
           no_initiatives_warning: No initiatives match your search criteria.
@@ -588,6 +582,12 @@ en:
         status_change_for: The initiative %{title} has changed its status
       last_activity:
         new_initiative: New initiative
+      modal:
+        not_authorized:
+          authorizations_page: View authorizations
+          close: Close
+          explanation: You need to be verified in order to create a new initiative.
+          title: Authorization required
       pages:
         home:
           highlighted_initiatives:
@@ -621,6 +621,7 @@ en:
           comment: Comment
       initiatives_type:
         actions:
+          create: Create
           title: Actions
           vote: Sign
   layouts:
@@ -633,7 +634,6 @@ en:
         promotal_committee: Promoter committee
         select_initiative_type: Choose
         show_similar_initiatives: Compare
-        step: Step %{current} of %{total}
         title: Create new initiative
       initiative_header:
         initiative_menu_item: Initiative

@@ -474,8 +474,6 @@ es:
         sms_phone:
           invalid: El número de teléfono no es válido o está pendiente de autorización. Por favor, revisa tus autorizaciones.
       initiatives:
-        author:
-          deleted: Eliminado
         author_list:
           hidden_authors_count:
             one: y 1 persona más
@@ -588,6 +586,12 @@ es:
         status_change_for: La iniciativa %{title} ha cambiado su estado
       last_activity:
         new_initiative: Nueva iniciativa
+      modal:
+        not_authorized:
+          authorizations_page: Ver autorizaciones
+          close: Cerrar
+          explanation: Debes estar verificado para crear una nueva iniciativa.
+          title: Autorización requerida
       pages:
         home:
           highlighted_initiatives:

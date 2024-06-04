@@ -79,8 +79,9 @@ describe "Initiative", type: :system do
       it_behaves_like "initiative shows signatures"
 
       it "shows the author name once in the authors list" do
-        within ".initiative-authors" do
+        within ".author-data" do
           expect(page).to have_content(initiative.author_name, count: 1)
+          expect(page).to have_link(href: "/profiles/#{initiative.author.nickname}")
         end
       end
 

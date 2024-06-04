@@ -471,8 +471,6 @@ hu:
         sms_phone:
           invalid: A telefonszám érvénytelen vagy függőben van. Kérjük, ellenőrizd az engedélyeket.
       initiatives:
-        author:
-          deleted: Törölve
         author_list:
           hidden_authors_count:
             one: és további 1 személy
