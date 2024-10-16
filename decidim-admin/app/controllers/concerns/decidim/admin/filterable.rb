@@ -136,8 +136,8 @@ module Decidim
         end
 
         # For rejecting ransack params while keeping query params in links.
-        def query_params_without(*)
-          q = ransack_params.except(*)
+        def query_params_without(*filters)
+          q = ransack_params.except(*filters)
 
           return blank_query_params if q.blank?
 
