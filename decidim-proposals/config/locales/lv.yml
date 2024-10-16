@@ -1,4 +1,3 @@
----
 lv:
   activemodel:
     attributes:
@@ -48,15 +47,12 @@ lv:
             title:
               identical: UN pamatteksts nevar būt identisks
     models:
-      decidim/proposals/accepted_proposal_event: Priekšlikums pieņemts
       decidim/proposals/admin/update_proposal_category_event: Priekšlikuma kategorija ir mainīta
       decidim/proposals/admin/update_proposal_scope_event: Priekšlikuma tvērums ir mainīts
       decidim/proposals/creation_enabled_event: Priekšlikuma izveide ir iespējota
       decidim/proposals/endorsing_enabled_event: Priekšlikuma atbalstīšana ir iespējota
-      decidim/proposals/evaluating_proposal_event: Priekšlikums tiek vērtēts
       decidim/proposals/proposal_mentioned_event: Priekšlikums ir minēts
       decidim/proposals/publish_proposal_event: Priekšlikums ir publicēts
-      decidim/proposals/rejected_proposal_event: Priekšlikums ir noraidīts
       decidim/proposals/voting_enabled_event: Balsošana par priekšlikumu ir iespējota
   activerecord:
     models:
@@ -72,10 +68,6 @@ lv:
         zero: Piezīmes
         one: Piezīme
         other: Piezīmes
-      decidim/proposals/proposal_vote:
-        zero: Atbalsta
-        one: Atbalsts
-        other: Atbalsta
   decidim:
     admin:
       filters:
@@ -90,7 +82,6 @@ lv:
           amend: Grozīt
           create: Izveidot
           endorse: Atbalstīt
-          vote: Atbalsts
           withdraw: Atsaukt
         name: Priekšlikumi
         settings:
@@ -100,11 +91,9 @@ lv:
             amendments_wizard_help_text: Grozījumu vedņa palīdzības teksts
             announcement: Paziņojums
             attachments_allowed: Atļaut pielikumus
-            can_accumulate_supports_beyond_threshold: Var sasniegt atbalstu, kas pārsniedz slieksni
             collaborative_drafts_enabled: Sadarbības projekti iespējoti
             comments_enabled: Komentāri ir iespējoti
             geocoding_enabled: Ģeokodēšana iespējota
-            minimum_votes_per_user: Minimālais atbalsts no viena lietotāja
             new_proposal_body_template: Jauna priekšlikuma veidne
             new_proposal_body_template_help: Jūs varat definēt jau gatavu jauno priekšlikumu tekstu
             new_proposal_help_text: Jaunu priekšlikumu palīdzības teksts
@@ -116,11 +105,8 @@ lv:
             proposal_length: Maksimālais priekšlikuma pamatteksta garums
             proposal_limit: Priekšlikumu skaita limits vienam dalībniekam
             proposal_wizard_step_1_help_text: Priekšlikumu vedņa „Izveidot” soļa palīdzības teksts
-            proposal_wizard_step_2_help_text: Priekšlikumu vedņa "Salīdzināt" soļa palīdzības teksts
-            proposal_wizard_step_3_help_text: Priekšlikuma vedņa „Pabeigt” soļa palīdzības teksts
             resources_permissions_enabled: Katram priekšlikumam var iestatīt darbības atļaujas
             threshold_per_proposal: Slieksnis vienam priekšlikumam
-            vote_limit: Atbalsta limits vienam dalībniekam
           step:
             amendment_creation_enabled: Grozījumu izveide ir iespējota
             amendment_creation_enabled_help: Dalībnieks var grozīt priekšlikumus.
@@ -142,9 +128,6 @@ lv:
             proposal_answering_enabled: Atbilde uz priekšlikumiem ir iespējota
             publish_answers_immediately: Nekavējoties publicēt atbildes uz priekšlikumiem
             suggested_hashtags: Dalībniekiem ieteiktās mirkļbirkas jaunajiem priekšlikumiem
-            votes_blocked: Atbalsts bloķēts
-            votes_enabled: Atbalsts iespējots
-            votes_hidden: Atbalsts slēpts (ja atbalsts ir iespējots tad, atzīmējot šo, tiks paslēpts atbalsta apmērs)
     events:
       proposals:
         admin:
@@ -177,24 +160,6 @@ lv:
           email_intro: 'Jūs varat atbalstīt priekšlikumus telpā %{participatory_space_title}! Sāciet piedalīties šajā lapā:'
           email_outro: Jūs saņēmāt šo paziņojumu, jo sekojat %{participatory_space_title}. Jūs varat atteikties no paziņojumu saņemšanas, sekojot iepriekšējai saitei.
           email_subject: Priekšlikumu atbalstīšana %{participatory_space_title} ir sākusies
-        proposal_accepted:
-          affected_user:
-            email_intro: 'Jūsu priekšlikums "%{resource_title}" tika pieņemts. Jūs varat izlasīt atbildi šajā lapā:'
-            email_outro: Jūs saņēmāt šo paziņojumu, jo esat "%{resource_title}" autors.
-            email_subject: Šis priekšlikums ir pieņemts.
-            notification_title: Jūsu priekšlikums <a href="%{resource_path}">%{resource_title}</a> ir pieņemts.
-          follower:
-            email_intro: 'Priekšlikums "%{resource_title}" ir pieņemts. Jūs varat izlasīt atbildi šajā lapā:'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> priekšlikums ir pieņemts.
-        proposal_evaluating:
-          affected_user:
-            email_intro: 'Pašlaik tiek vērtēts jūsu priekšlikums "%{resource_title}". Atbilde būs pieejama šajā lapā:'
-            email_outro: Jūs saņēmāt šo paziņojumu, jo esat "%{resource_title}" autors.
-            email_subject: Jūsu priekšlikums tiek vērtēts
-            notification_title: Jūsu priekšlikums <a href="%{resource_path}">%{resource_title}</a> tiek vērtēts.
-          follower:
-            email_intro: 'Pašlaik tiek vērtēts jūsu priekšlikums "%{resource_title}". Atbilde būs pieejama šajā lapā:'
-            notification_title: Priekšlikums <a href="%{resource_path}">%{resource_title}</a> tiek vērtēts.
         proposal_mentioned:
           email_intro: Jūsu priekšlikums "%{mentioned_proposal_title}" ir pieminēts <a href="%{resource_url}"> šajā telpā </a> komentāros.
           email_outro: Jūs saņēmāt šo paziņojumu, jo esat "%{resource_title}" autors.
@@ -209,14 +174,6 @@ lv:
           email_intro: Priekšlikums "%{resource_title}" ir pievienots "%{participatory_space_title}", kam jūs sekojat.
           email_outro: Jūs saņēmāt šo paziņojumu, jo sekojat "%{participatory_space_title}". Jūs varat atteikties no paziņojumu saņemšanas, sekojot iepriekšējai saitei.
           email_subject: Jauns priekšlikums "%{resource_title}" tika pievienots %{participatory_space_title}
-        proposal_rejected:
-          affected_user:
-            email_intro: 'Jūsu priekšlikums "%{resource_title}" tika noraidīts. Jūs varat izlasīt atbildi šajā lapā:'
-            email_outro: Jūs saņēmāt šo paziņojumu, jo esat "%{resource_title}" autors.
-            notification_title: Jūsu priekšlikums <a href="%{resource_path}">%{resource_title}</a> tika noraidīts.
-          follower:
-            email_intro: 'Priekšlikums "%{resource_title}" tika noraidīts. Jūs varat izlasīt atbildi šajā lapā:'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> priekšlikums tika noraidīts.
         proposal_update_category:
           email_intro: 'Administrators ir atjauninājis jūsu priekšlikuma kategoriju "%{resource_title}", aplūkojiet to šajā lapā:'
           email_outro: Jūs saņēmāt šo paziņojumu, jo esat priekšlikuma autors.
@@ -228,10 +185,7 @@ lv:
           email_subject: '%{resource_title} priekšlikuma tvērums tika atjaunināts'
           notification_title: <a href="%{resource_path}">%{resource_title}</a> administrators ir atjauninājis priekšlikuma tvērumu.
         voting_enabled:
-          email_intro: 'Varat atbalstīt priekšlikumus telpā %{participatory_space_title}! Sāciet piedalīties šajā lapā:'
           email_outro: Jūs saņēmāt šo paziņojumu, jo sekojat %{participatory_space_title}. Jūs varat atteikties no paziņojumu saņemšanas, sekojot iepriekšējai saitei.
-          email_subject: Priekšlikumu atbalstīšana priekš %{participatory_space_title} ir sākusies
-          notification_title: Tagad jūs varat sākt <a href="%{resource_path}"> atbalstīt priekšlikumus </a> sadaļā <a href="%{participatory_space_url}">%{participatory_space_title}</a>
     gamification:
       badges:
         accepted_proposals:
@@ -248,13 +202,7 @@ lv:
         proposal_votes:
           conditions:
             - Pārlūkojiet un pavadiet kādu laiku, lasot citu cilvēku priekšlikumus
-            - Atbalstiet priekšlikumus, kas jums patīk vai šķiet interesanti
-          description: Šis žetons tiek piešķirts, kad jūs atbalstāt citu cilvēku priekšlikumus.
-          description_another: Šis dalībnieks ir atbalstījis%{score} priekšlikumus.
-          description_own: Jūs esat atbalstījis %{score} priekšlikumus.
-          name: Atbalsti priekšlikumiem
-          next_level_in: Atbalstiet vēl %{score} priekšlikumus, lai sasniegtu nākamo līmeni!
-          unearned_own: Jūs vēl neesat atbalstījis nevienu priekšlikumu.
+            - 
         proposals:
           conditions:
             - Izvēlieties savu līdzdalības telpu ar iespējotu priekšlikumu iesniegšanu
@@ -278,10 +226,6 @@ lv:
         description: Priekšlikumu skaits
         object: priekšlikumi
         title: Priekšlikumi
-      votes:
-        description: Atbalstīto priekšlikumu skaits
-        object: atbalsta
-        title: Atbalsta
     proposals:
       actions:
         answer_proposal: Atbildes priekšlikums
@@ -327,11 +271,7 @@ lv:
             success: Līdzdalības procesa teksts ir veiksmīgi atjaunināts.
         proposal_answers:
           form:
-            accepted: Pieņemts
             answer_proposal: Atbilde
-            evaluating: Vērtē
-            not_answered: Nav atbildēts
-            rejected: Noraidīts
             title: Atbilde par priekšlikumu %{title}
         proposal_notes:
           form:
@@ -389,7 +329,6 @@ lv:
             remove_assignment: Noņemt uzdevumu
             remove_assignment_confirmation: Vai tiešām vēlaties noņemt vērtētāju šim priekšlikumam?
             valuators: Vērtētāji
-            votes_count: Atbalstu skaits
           update_category:
             invalid: 'Šiem priekšlikumiem jau bija %{subject_name} kategorija: %{proposals}.'
             success: 'Priekšlikumi ir veiksmīgi atjaunināti kategorijā %{subject_name} kategorija: %{proposals}.'
@@ -432,11 +371,8 @@ lv:
           official: Oficiālā
           user_groups: Grupas
         filter_state_values:
-          accepted: Pieņemts
           all: Visi
-          evaluating: Vērtē
           not_answered: Nav atbildēts
-          rejected: Noraidīts
         filter_type_values:
           all: Visi
           amendments: Grozījumi
@@ -555,17 +491,7 @@ lv:
         buttons:
           amend: Grozīt
           comment: Komentēt
-      proposal_votes:
-        create:
-          error: Atbalstot priekšlikumu, radās problēma
       proposals:
-        compare:
-          continue: Turpināt
-          no_similars_found: Labi padarīts! Netika atrasti līdzīgi priekšlikumi
-          title: Līdzīgi priekšlikumi
-        complete:
-          send: Sūtīt
-          title: Pabeidziet savu priekšlikumu
         edit:
           attachment_legend: "(Pēc izvēles) Pievienojiet pielikumu"
           back: Atpakaļ
@@ -576,6 +502,7 @@ lv:
           discard: Atmest šo melnrakstu
           discard_confirmation: Vai tiešām vēlaties atmest šo grozījuma melnrakstu?
           send: Priekšskatīt
+          title: Rediģēt priekšlikuma projektu
         filters:
           activity: Mana aktivitāte
           all: Visi
@@ -588,7 +515,6 @@ lv:
           search: Meklēt
           state: Statuss
           type: Veids
-          voted: Atbalstīts
         index:
           collaborative_drafts_list: Piekļūt sadarbības projektam
           count:
@@ -604,7 +530,6 @@ lv:
           most_commented: Visvairāk komentētie
           most_endorsed: Visvairāk veicinātie
           most_followed: Visvairāk sekotāju
-          most_voted: Visvairāk atbalstītie
           random: Nejauši
           recent: Nesenie
           with_more_authors: Ar vairākiem autoriem
@@ -634,34 +559,14 @@ lv:
           proposal_accepted_reason: 'Šis priekšlikums ir pieņemts, jo:'
           proposal_in_evaluation_reason: Šis priekšlikums tiek vērtēts
           proposal_rejected_reason: 'Šis priekšlikums netika pieņemts, jo'
-          withdraw_btn_hint: Ja pārdomājat, jūs varat atsaukt savu priekšlikumu, ja vien neesat saņēmis atbalstu. Priekšlikums netiks izdzēsts, bet tas parādīsies atsaukto priekšlikumu sarakstā.
           withdraw_proposal: Atsaukt priekšlikumu
-        vote_button:
-          already_voted: Jau atbalstīts
-          already_voted_hover: Atsaukt atbalstu
-          maximum_votes_reached: Sasniegts atbalsta limits
-          no_votes_remaining: Nav atlikuši atbalsti
-          vote: Atbalsts
-          votes_blocked: Atbalsts nav iespējots
         voting_rules:
-          can_accumulate_supports_beyond_threshold:
-            description: Katrs priekšlikums var uzkrāt vairāk nekā %{limit} atbalstu
-          minimum_votes_per_user:
-            description: Starp dažādiem priekšlikumiem jums ir jāsadala vismaz %{votes} balsis.
-            supports_remaining: Jums ir jāatbalsta vēl %{remaining_votes} vairāk priekšlikumi, lai jūsu atbalsts tiktu ņemts vērā.
           proposal_limit:
             description: Jūs varat izveidot līdz %{limit} priekšlikumiem.
-          title: 'Atbalstam tiek piemēroti šādi noteikumi:'
-          vote_limit:
-            description: Jūs varat atbalstīt līdz %{limit} priekšlikumiem.
-            votes: Atbalsta
         wizard_aside:
           back: Atpakaļ
         wizard_steps:
           step_1: Izveidojiet savu priekšlikumu
-          step_2: Salīdzināt
-          step_3: Pabeigt
-          step_4: Publicējiet savu priekšlikumu
       proposals_picker:
         choose_proposals: Izvēlieties priekšlikumus
       publish:

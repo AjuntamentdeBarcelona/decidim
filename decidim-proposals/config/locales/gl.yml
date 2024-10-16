@@ -1,4 +1,3 @@
----
 gl:
   activemodel:
     attributes:
@@ -57,22 +56,17 @@ gl:
           attributes:
             base:
               not_official: Non é oficial
-              supported: Recibiron soporte ou apoios
         proposals_split:
           attributes:
             base:
               not_official: Non é oficial
-              supported: Recibiron soporte ou apoios
     models:
-      decidim/proposals/accepted_proposal_event: A proposta foi aceptada
       decidim/proposals/admin/update_proposal_category_event: Modificouse a categoría de proposta
       decidim/proposals/admin/update_proposal_scope_event: Mudouse o ámbito da proposta
       decidim/proposals/creation_enabled_event: Creación de proposta habilitada
       decidim/proposals/endorsing_enabled_event: Aprobación da proposta habilitada
-      decidim/proposals/evaluating_proposal_event: A proposta está a ser avaliada
       decidim/proposals/proposal_mentioned_event: Proposta mencionada
       decidim/proposals/publish_proposal_event: Proposta publicada
-      decidim/proposals/rejected_proposal_event: Proposta rexeitada
       decidim/proposals/voting_enabled_event: A votación da proposta habilitada
   activerecord:
     models:
@@ -85,9 +79,6 @@ gl:
       decidim/proposals/proposal_note:
         one: Nota
         other: Notas
-      decidim/proposals/proposal_vote:
-        one: Vota
-        other: Votos
   decidim:
     admin:
       filters:
@@ -117,7 +108,6 @@ gl:
           comment: Comentario
           create: Crear
           endorse: Endosar
-          vote: Vota
           vote_comment: Votar comentario
           withdraw: Retirar
         name: Propostas
@@ -126,7 +116,6 @@ gl:
             amendments_enabled: Modificacións habilitadas
             announcement: Anuncio
             attachments_allowed: Permitir anexos
-            can_accumulate_supports_beyond_threshold: Pode acumular soportes máis aló do limiar
             collaborative_drafts_enabled: Esquemas colaborativos habilitados
             comments_enabled: Comentarios habilitados
             default_sort_order: Orde predefinido das propostas
@@ -134,12 +123,10 @@ gl:
               most_commented: Máis comentadas
               most_endorsed: Máis apoios
               most_followed: Máis seguidas
-              most_voted: Máis apoios
               random: Ao chou
               recent: Máis recentes
               with_more_authors: Con máis autores
             geocoding_enabled: Geocoding habilitado
-            minimum_votes_per_user: Votos mínimos por usuario
             new_proposal_help_text: Nova proposta de axuda de texto
             official_proposals_enabled: Propostas oficiais habilitadas
             participatory_texts_enabled: Permitir textos participativos
@@ -148,13 +135,10 @@ gl:
             proposal_length: Lonxitude máxima do corpo da proposta
             proposal_limit: Límite de proposta por usuario
             proposal_wizard_step_1_help_text: Asistente de propostas "Crear" texto de axuda paso a paso
-            proposal_wizard_step_2_help_text: Asistente de propostas "Comparar" texto de axuda paso a paso
-            proposal_wizard_step_3_help_text: Asistente de propostas Texto de axuda de paso "Completo"
             resources_permissions_enabled: Os permisos de acción pódense establecer para cada proposta
             scope_id: Ámbito
             scopes_enabled: Ámbitos habilitados
             threshold_per_proposal: Umbral por proposta
-            vote_limit: Límite de voto por usuario
           step:
             announcement: Anuncio
             automatic_hashtags: Hashtags engadido a todas as propostas
@@ -165,7 +149,6 @@ gl:
               most_commented: Máis comentadas
               most_endorsed: Máis apoios
               most_followed: Máis seguidas
-              most_voted: Máis apoios
               random: Ao chou
               recent: Recentes
               with_more_authors: Con máis autores
@@ -173,9 +156,8 @@ gl:
             endorsements_enabled: Aprobacións habilitadas
             proposal_answering_enabled: Contestando a proposta habilitada
             suggested_hashtags: Hashtags suxeriu aos usuarios novas propostas
-            votes_blocked: Voto bloqueado
-            votes_enabled: Votación habilitada
-            votes_hidden: Votos ocultos (se os votos están habilitados, a comprobación ocultará o número de votos)
+            votes_blocked: Votos bloqueados
+            votes_enabled: Votos habilitados
     events:
       proposals:
         collaborative_draft_access_accepted:
@@ -204,24 +186,6 @@ gl:
           email_intro: 'Podes aprobar propostas en %{participatory_space_title}. Comezar a participar nesta páxina:'
           email_outro: Recibiches esta notificación porque estás seguindo %{participatory_space_title}. Podes deixar de recibir notificacións seguindo a ligazón anterior.
           email_subject: As propostas de avaliación iniciáronse para %{participatory_space_title}
-        proposal_accepted:
-          affected_user:
-            email_intro: 'A túa proposta "%{resource_title}" foi aceptada. Podes ler a resposta nesta páxina:'
-            email_outro: Recibiches esta notificación porque es un autor de "%{resource_title}".
-            email_subject: A túa proposta foi aceptada
-            notification_title: A túa proposta <a href="%{resource_path}">%{resource_title}</a> foi aceptada.
-          follower:
-            email_intro: 'A proposta "%{resource_title}" foi aceptada. Podes ler a resposta nesta páxina:'
-            notification_title: A proposta <a href="%{resource_path}">%{resource_title}</a> foi aceptada.
-        proposal_evaluating:
-          affected_user:
-            email_intro: 'A túa proposta "%{resource_title}" está a ser avaliada. Podes consultar unha resposta nesta páxina:'
-            email_outro: Recibiches esta notificación porque es un autor de "%{resource_title}".
-            email_subject: A túa proposta está a ser avaliada
-            notification_title: A súa proposta <a href="%{resource_path}">%{resource_title}</a> está sendo avaliada.
-          follower:
-            email_intro: 'A proposta "%{resource_title}" está a ser avaliada. Podes consultar unha resposta nesta páxina:'
-            notification_title: A proposta <a href="%{resource_path}">%{resource_title}</a> está a ser avaliada.
         proposal_mentioned:
           email_outro: Recibiches esta notificación porque es un autor de "%{resource_title}".
           email_subject: Enviouse a súa proposta "%{mentioned_proposal_title}"
@@ -235,14 +199,6 @@ gl:
           email_intro: A proposta "%{resource_title}" engadiuse a "%{participatory_space_title}" que estás seguindo.
           email_outro: Recibiches esta notificación porque estás seguindo "%{participatory_space_title}". Podes deixar de seguir desde a ligazón anterior.
           email_subject: Nova proposta "%{resource_title}" engadida a %{participatory_space_title}
-        proposal_rejected:
-          affected_user:
-            email_intro: 'A túa proposta "%{resource_title}" foi rexeitada. Podes ler a resposta nesta páxina:'
-            email_outro: Recibiches esta notificación porque es un autor de "%{resource_title}".
-            notification_title: A túa proposta <a href="%{resource_path}">%{resource_title}</a> foi rexeitada.
-          follower:
-            email_intro: 'A proposta "%{resource_title}" foi rexeitada. Podes ler a resposta nesta páxina:'
-            notification_title: A proposta <a href="%{resource_path}">%{resource_title}</a> foi rexeitada.
         proposal_update_category:
           email_intro: 'Un administrador actualizou a categoría da túa proposta "%{resource_title}", comproba isto:'
           email_outro: Recibiches esta notificación porque es o autor da proposta.
@@ -251,10 +207,7 @@ gl:
         proposal_update_scope:
           email_outro: Recibiches esta notificación porque es o autor da proposta.
         voting_enabled:
-          email_intro: 'Podes votar propostas en %{participatory_space_title}. Comezar a participar nesta páxina:'
           email_outro: Recibiches esta notificación porque estás seguindo %{participatory_space_title}. Podes deixar de recibir notificacións seguindo a ligazón anterior.
-          email_subject: A votación das propostas comezou para %{participatory_space_title}
-          notification_title: Agora podes comezar <a href="%{resource_path}">propostas de voto</a> en <a href="%{participatory_space_url}">%{participatory_space_title}</a>
     gamification:
       badges:
         accepted_proposals:
@@ -271,13 +224,7 @@ gl:
         proposal_votes:
           conditions:
             - Busque e pase un tempo a ler as propostas doutras persoas
-            - Dea soporte ás propostas que che gustan ou que che resulten interesantes
-          description: Este distintivo concedeuse cando apoias as propostas doutras persoas.
-          description_another: Este usuario deu soporte a %{score} propostas.
-          description_own: Vostede deu apoio a %{score} propostas.
-          name: A proposta é compatible
-          next_level_in: Dea soporte a máis de %{score} propostas para alcanzar o seguinte nivel!
-          unearned_own: Xa deu soporte a ningunha proposta aínda.
+            - 
         proposals:
           conditions:
             - Escolle o espazo de participación do teu interese coa presentación de propostas habilitadas
@@ -301,10 +248,6 @@ gl:
         description: Número de propostas xeradas
         object: propostas
         title: Propostas
-      votes:
-        description: Número de votos xerados nas propostas dos usuarios
-        object: votos
-        title: Votos
     participatory_spaces:
       highlighted_proposals:
         see_all: Ver todos (%{count})
@@ -366,11 +309,7 @@ gl:
             success: Texto participativo actualizado con éxito.
         proposal_answers:
           form:
-            accepted: Aceptada
             answer_proposal: Resposta
-            evaluating: Avaliación
-            not_answered: Non respondeu
-            rejected: Rexeitado
             title: Resposta á proposta %{title}
         proposal_notes:
           form:
@@ -414,7 +353,6 @@ gl:
             related_meetings: Xuntanzas relacionadas
             remove_assignment_confirmation: Estás seguro de que desexas eliminar este avaliador/a da proposta?
             valuators: Avaliadores/as
-            votes_count: Reconto de votos
         proposals_imports:
           new:
             create: Propostas de importación
@@ -450,11 +388,8 @@ gl:
           participants: Participantes
           user_groups: Grupos de usuarios
         filter_state_values:
-          accepted: Aceptada
           all: Todo
-          evaluating: Avaliación
           not_answered: Non respondeu
-          rejected: Rexeitado
         filter_type_values:
           all: Todo
           amendments: Enmendas
@@ -574,17 +509,7 @@ gl:
         buttons:
           amend: Modificar
           comment: Comentario
-      proposal_votes:
-        create:
-          error: Houbo erros ao votar a proposta.
       proposals:
-        compare:
-          continue: Continuar
-          no_similars_found: Ben feito! Non se atoparon propostas similares
-          title: Propostas similares
-        complete:
-          send: Enviar
-          title: Completa a túa proposta
         dynamic_map_instructions:
           instructions: Podes mover o punto no mapa.
         edit:
@@ -599,6 +524,7 @@ gl:
           discard: Descarta este borrador
           discard_confirmation: '¿Estás seguro de que desexas descartar este borrador de proposta?'
           send: Vista previa
+          title: Editar borrador de proposta
         filters:
           activity: A miña actividade
           all: Todas
@@ -611,7 +537,6 @@ gl:
           search: Busca
           state: Estado
           type: Tipo
-          voted: Votado
         index:
           click_here: Ver todas as propostas
           collaborative_drafts_list: Acceda a borradores colaborativos
@@ -629,7 +554,6 @@ gl:
           most_commented: Máis comentadas
           most_endorsed: Con máis adhesións
           most_followed: Con máis seguidores
-          most_voted: A maioría votada
           random: Aleatorio
           recent: Recentes
           with_more_authors: Con máis autores
@@ -655,38 +579,14 @@ gl:
           proposal_accepted_reason: 'Esta proposta foi aceptada porque:'
           proposal_in_evaluation_reason: Esta proposta está a ser avaliada
           proposal_rejected_reason: 'Esta proposta foi rexeitada porque:'
-          withdraw_btn_hint: Pode retirar a súa proposta se cambia de opinión, sempre que non teña recibido ningún apoio. A proposta non se elimina, aparecerá na lista de propostas retiradas.
           withdraw_proposal: Retire a proposta
-        vote_button:
-          already_voted: Xa votou
-          already_voted_hover: Unvocar
-          maximum_votes_reached: Límite de voto alcanzado
-          no_votes_remaining: Non hai votos restantes
-          vote: Vota
-          votes_blocked: Votación desactivada
-        votes_count:
-          count:
-            one: VOTAR
-            other: VOTOS
         voting_rules:
-          can_accumulate_supports_beyond_threshold:
-            description: Cada proposta pode acumular máis de %{limit} apoios
-          minimum_votes_per_user:
-            description: Debes distribuír un mínimo de %{votes} votos entre diferentes propostas.
-            supports_remaining: Tes que votar máis %{remaining_votes} propostas para que os teus votos sexan tidos en conta.
           proposal_limit:
             description: Podes crear ata %{limit} propostas.
-          title: 'A votación está suxeita ás seguintes regras:'
-          vote_limit:
-            description: Podes votar ata %{limit} propostas.
-            votes: Votos
         wizard_aside:
           back: De volta
         wizard_steps:
           step_1: Crea a túa proposta
-          step_2: Compare
-          step_3: Completa
-          step_4: Publica a túa proposta
       publish:
         error: Houbo erros ao publicar a proposta.
         success: Proposta publicada correctamente.
@@ -710,4 +610,4 @@ gl:
     statistics:
       proposals_accepted: Propostas aceptadas
       proposals_count: Propostas
-      supports_count: Apoios
+      votes_count: Votos

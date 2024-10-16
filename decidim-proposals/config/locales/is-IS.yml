@@ -1,5 +1,4 @@
----
-is:
+is-IS:
   activemodel:
     attributes:
       proposal:
@@ -27,7 +26,6 @@ is:
           global:
             announcement: Tilkynning
             attachments_allowed: Leyfa viðhengi
-            can_accumulate_supports_beyond_threshold: Getur safnað stuðning fyrirfram þröskuld
             comments_enabled: Athugasemdir virkt
             geocoding_enabled: Geocoding virkt
             new_proposal_help_text: Ný tillaga hjálpartexta
@@ -36,8 +34,6 @@ is:
             proposal_edit_before_minutes: Tillögur má breyta af höfundum áður en þessi mörg mínútur fara fram
             proposal_length: Hámark umsóknar lengd líkamans
             proposal_wizard_step_1_help_text: Tillaga töframaður "Búa til" skref hjálpartexta
-            proposal_wizard_step_2_help_text: Tillaga töframaður "Bera saman" skref hjálpartexta
-            proposal_wizard_step_3_help_text: Tillaga töframaður "Complete" skref hjálpartexta
             threshold_per_proposal: Gildi fyrir hverja tillögu
           step:
             announcement: Tilkynning
@@ -55,14 +51,6 @@ is:
           email_intro: 'Þú getur samþykkt tillögur í %{participatory_space_title}! Byrja að taka þátt í þessari síðu:'
           email_outro: Þú hefur fengið þessa tilkynningu vegna þess að þú fylgist með %{participatory_space_title}. Þú getur hætt við að fá tilkynningar eftir fyrri tengilinn.
           email_subject: Tillögur um áritun hafa byrjað fyrir %{participatory_space_title}
-        proposal_accepted:
-          follower:
-            email_intro: 'Tillagan "%{resource_title}" hefur verið samþykkt. Þú getur lesið svarið á þessari síðu:'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> tillöguna hefur verið samþykkt.
-        proposal_evaluating:
-          follower:
-            email_intro: 'Tillagan "%{resource_title}" er nú metin. Þú getur leitað að svari á þessari síðu:'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> tillögunni er metið.
         proposal_mentioned:
           email_subject: Tillagan þín "%{mentioned_proposal_title}" hefur verið minnst
           notification_title: Tillaga þín "%{mentioned_proposal_title}" hefur verið nefnd <a href="%{resource_path}">í þessu rými</a> í athugasemdunum.
@@ -71,10 +59,6 @@ is:
           notification_title: <a href="%{resource_path}">%{resource_title}</a> tillöguna var gefin út af <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
         proposal_published_for_space:
           email_intro: Tillagan "%{resource_title}" hefur verið bætt við "%{participatory_space_title}" sem þú fylgist með.
-        proposal_rejected:
-          follower:
-            email_intro: 'Tillagan "%{resource_title}" hefur verið hafnað. Þú getur lesið svarið á þessari síðu:'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> tillöguna hefur verið hafnað.
         proposal_update_category:
           email_outro: Þú hefur fengið þessa tilkynningu vegna þess að þú ert höfundur tillögunnar.
           email_subject: '%{resource_title} tillöguflokkinn hefur verið uppfærður'
@@ -97,11 +81,7 @@ is:
             name: Tillaga
         proposal_answers:
           form:
-            accepted: Samþykkt
             answer_proposal: Svara
-            evaluating: Mat
-            not_answered: Ekki svarað
-            rejected: Hafnað
             title: Svar fyrir tillögu %{title}
         proposal_notes:
           form:
@@ -144,10 +124,7 @@ is:
         filter_origin_values:
           official: Opinber
         filter_state_values:
-          accepted: Samþykkt
-          evaluating: Mat
           not_answered: Ekki svarað
-          rejected: Hafnað
       models:
         proposal:
           fields:
@@ -160,11 +137,6 @@ is:
             title: Titill
             votes: Atkvæði
       proposals:
-        compare:
-          no_similars_found: Vel gert! Engar svipaðar tillögur fundust
-          title: Svipaðar tillögur
-        complete:
-          title: Ljúka tillögu þinni
         edit:
           back: Til baka
           select_a_category: Vinsamlegast veldu flokk
@@ -174,6 +146,7 @@ is:
           discard: Fargaðu þessari drög
           discard_confirmation: Ertu viss um að þú viljir fleygja þessari tillögu drög?
           send: Preview
+          title: Breyta tillögu drög
         filters:
           category: Flokkur
           origin: Uppruni
@@ -201,17 +174,11 @@ is:
           proposal_accepted_reason: 'Þessi tillaga hefur verið samþykkt vegna þess að:'
           proposal_in_evaluation_reason: Þessi tillaga er metin
           proposal_rejected_reason: 'Þessi tillaga hefur verið hafnað vegna þess að:'
-          withdraw_btn_hint: Þú getur afturkallað tillöguna þína ef þú skiptir um skoðun, svo lengi sem þú hefur ekki fengið stuðning. Tillagan er ekki eytt, hún mun birtast á lista yfir afturkallað tillögur.
           withdraw_proposal: Afturkalla tillögu
         voting_rules:
-          can_accumulate_supports_beyond_threshold:
-            description: Hver tillaga getur safnast meira en %{limit} styður
           proposal_limit:
             description: Þú getur búið til allt að %{limit} tillögur.
         wizard_aside:
           back: Til baka
         wizard_steps:
           step_1: Búðu til tillöguna þína
-          step_2: Bera saman
-          step_3: Heill
-          step_4: Birta tillöguna þína

@@ -1,4 +1,3 @@
----
 zh-CN:
   activemodel:
     attributes:
@@ -50,15 +49,12 @@ zh-CN:
             title:
               identical: 和正文不能相同
     models:
-      decidim/proposals/accepted_proposal_event: 提议已被接受
       decidim/proposals/admin/update_proposal_category_event: 建议类别已更改
       decidim/proposals/admin/update_proposal_scope_event: 建议范围已更改
       decidim/proposals/creation_enabled_event: 建议创建已启用
       decidim/proposals/endorsing_enabled_event: 提案已启用
-      decidim/proposals/evaluating_proposal_event: 目前正在对提案进行评价
       decidim/proposals/proposal_mentioned_event: 提及的建议
       decidim/proposals/publish_proposal_event: 建议已发布
-      decidim/proposals/rejected_proposal_event: 被拒绝的提案
       decidim/proposals/voting_enabled_event: 提案投票已启用
   activerecord:
     models:
@@ -68,8 +64,6 @@ zh-CN:
         other: 建议
       decidim/proposals/proposal_note:
         other: 注
-      decidim/proposals/proposal_vote:
-        other: 支持
   decidim:
     admin:
       filters:
@@ -102,7 +96,6 @@ zh-CN:
           amend: 修改：
           create: 创建
           endorse: 批准
-          vote: 支持
           withdraw: 取款
         name: 建议
         settings:
@@ -112,12 +105,10 @@ zh-CN:
             amendments_wizard_help_text: 修正向导帮助文本
             announcement: 通 知
             attachments_allowed: 允许附件
-            can_accumulate_supports_beyond_threshold: 可以积累超过阈值的支持
             collaborative_drafts_enabled: 协作草稿已启用
             comments_enabled: 评论已启用
             comments_max_length: 评论最大长度 (默认值留0)
             geocoding_enabled: 地理编码已启用
-            minimum_votes_per_user: 每个用户的最低支持
             new_proposal_body_template: 新的提案正文模板
             new_proposal_body_template_help: 您可以定义新建议将包含的预填文本
             new_proposal_help_text: 新建议帮助文本
@@ -129,13 +120,10 @@ zh-CN:
             proposal_length: 最大建议体长度
             proposal_limit: 每个参与者的建议限制
             proposal_wizard_step_1_help_text: 建议向导“创建”步骤帮助文本
-            proposal_wizard_step_2_help_text: 建议向导“Compare”步骤帮助文本
-            proposal_wizard_step_3_help_text: 建议向导“完成”步骤帮助文本
             resources_permissions_enabled: 每个提案都可以设置动作权限
             scope_id: 范围
             scopes_enabled: 范围已启用
             threshold_per_proposal: 每个建议的阈值
-            vote_limit: 每位参与者的支持限制
           step:
             amendment_creation_enabled: 修改创建已启用
             amendment_creation_enabled_help: 参加者可以修改提案。
@@ -157,9 +145,6 @@ zh-CN:
             proposal_answering_enabled: 建议答案已启用
             publish_answers_immediately: 立即发布提案答案
             suggested_hashtags: 推荐给参与者的新建议标签
-            votes_blocked: 支持被阻止
-            votes_enabled: 支持已启用
-            votes_hidden: 支持隐藏 (如果支持已启用，选中将隐藏支持次数)
     events:
       proposals:
         admin:
@@ -190,24 +175,6 @@ zh-CN:
           email_intro: '您可以在 %{participatory_space_title}中批准提案！开始参与此页面：'
           email_outro: 您收到此通知是因为您正在关注 %{participatory_space_title}。您可以停止收到跟随上一个链接的通知。
           email_subject: '%{participatory_space_title} 的建议已经开始'
-        proposal_accepted:
-          affected_user:
-            email_intro: '您的建议 "%{resource_title}" 已被接受。您可以在此页面中阅读答案：'
-            email_outro: 您收到此通知是因为您是"%{resource_title} "的作者。
-            email_subject: 您的建议已被接受
-            notification_title: 您的提议 <a href="%{resource_path}">%{resource_title}</a> 已被接受。
-          follower:
-            email_intro: '提议 "%{resource_title}" 已被接受。您可以在此页面中阅读答案：'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> 提议已被接受。
-        proposal_evaluating:
-          affected_user:
-            email_intro: '您的建议 "%{resource_title}" 目前正在评估中。您可以检查此页面的答案：'
-            email_outro: 您收到此通知是因为您是"%{resource_title} "的作者。
-            email_subject: 您的建议正在评估中
-            notification_title: 您的提议 <a href="%{resource_path}">%{resource_title}</a> 正在评估中。
-          follower:
-            email_intro: '提议 "%{resource_title}" 目前正在评估。您可以在这个页面检查答案：'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> 提议正在评估中。
         proposal_mentioned:
           email_outro: 您收到此通知是因为您是"%{resource_title} "的作者。
           email_subject: 您的提议 "%{mentioned_proposal_title}" 已被提到了
@@ -220,14 +187,6 @@ zh-CN:
           email_intro: 提议 "%{resource_title}" 已被添加到"%{participatory_space_title}"，您正在关注它。
           email_outro: 您收到此通知是因为您正在关注 "%{participatory_space_title}"。您可以停止收到跟随上一个链接的通知。
           email_subject: 新提议 "%{resource_title}" 已添加到 %{participatory_space_title}
-        proposal_rejected:
-          affected_user:
-            email_intro: '您的提议 "%{resource_title}" 已被拒绝。您可以在此页中读取答案：'
-            email_outro: 您收到此通知是因为您是"%{resource_title} "的作者。
-            notification_title: 您的提议 <a href="%{resource_path}">%{resource_title}</a> 已被拒绝
-          follower:
-            email_intro: '提议 "%{resource_title}" 已被拒绝。您可以在此页中读取答案：'
-            notification_title: <a href="%{resource_path}">%{resource_title}</a> 提议已被拒绝。
         proposal_update_category:
           email_intro: '管理员更新了您的提议 "%{resource_title}"的类别，在此页面查看：'
           email_outro: 您收到此通知是因为您是提案的作者。
@@ -239,9 +198,7 @@ zh-CN:
           email_subject: '%{resource_title} 建议范围已更新'
           notification_title: <a href="%{resource_path}">%{resource_title}</a> 提议范围已被管理员更新。
         voting_enabled:
-          email_intro: '您可以在 %{participatory_space_title}中支持建议！开始参与此页面：'
           email_outro: 您收到此通知是因为您正在关注 %{participatory_space_title}。您可以停止收到跟随上一个链接的通知。
-          email_subject: '%{participatory_space_title} 的建议支持已经开始'
     gamification:
       badges:
         accepted_proposals:
@@ -258,13 +215,7 @@ zh-CN:
         proposal_votes:
           conditions:
             - 浏览并花一些时间阅读其他人的建议
-            - 支持您想要的建议或有趣的
-          description: 当你支持其他人的建议时，这个徽章将被授予。
-          description_another: 此参与者已经支持 %{score} 提案。
-          description_own: 您已经对 %{score} 的建议给予了支持。
-          name: 建议支持
-          next_level_in: 支持更多 %{score} 个建议以达到下一级！
-          unearned_own: 您还没有对任何建议给予支持。
+            - 
         proposals:
           conditions:
             - 选择您感兴趣的提交建议的参与空间
@@ -288,10 +239,6 @@ zh-CN:
         description: 建议数
         object: 提议
         title: 建议
-      votes:
-        description: 支持提议的数量
-        object: 支持
-        title: 支持
     participatory_spaces:
       highlighted_proposals:
         see_all: 查看所有建议 (%{count})
@@ -341,11 +288,7 @@ zh-CN:
             success: 参与性文本更新成功。
         proposal_answers:
           form:
-            accepted: 已接受
             answer_proposal: 答案
-            evaluating: 评价
-            not_answered: 未回答
-            rejected: 已拒绝
             title: 对提议 %{title} 的答案
         proposal_notes:
           form:
@@ -401,7 +344,6 @@ zh-CN:
             remove_assignment: 移除作业
             remove_assignment_confirmation: 您确定要从此建议中删除值吗？
             valuators: 估价器
-            votes_count: 支持计数
           update_category:
             invalid: '这些建议已经有 %{subject_name} 分类: %{proposals}。'
             success: '建议已成功更新到 %{subject_name} 类别： %{proposals}。'
@@ -444,11 +386,8 @@ zh-CN:
           official: 官方的
           user_groups: 群組
         filter_state_values:
-          accepted: 已接受
           all: 所有的
-          evaluating: 评价
           not_answered: 未回答
-          rejected: 已拒绝
         filter_type_values:
           all: 所有的
           amendments: 修 正 案
@@ -566,17 +505,7 @@ zh-CN:
         buttons:
           amend: 修改：
           comment: 评论
-      proposal_votes:
-        create:
-          error: 有一个问题支持这项提议。
       proposals:
-        compare:
-          continue: 继续
-          no_similars_found: 干得好！没有找到类似的建议
-          title: 类似的提议
-        complete:
-          send: 发送
-          title: 完成您的提议
         edit:
           attachment_legend: "(可选) 添加附件"
           back: 后退
@@ -587,6 +516,7 @@ zh-CN:
           discard: 丢弃这个草稿
           discard_confirmation: 您确定要放弃这个建议草案吗？
           send: 预览
+          title: 编辑提案草案
         filters:
           activity: 我的活动
           all: 所有的
@@ -599,7 +529,6 @@ zh-CN:
           search: 搜索
           state: 状态
           type: 类型
-          voted: 支持的
         index:
           collaborative_drafts_list: 访问协作草稿
           count:
@@ -613,7 +542,6 @@ zh-CN:
           most_commented: 最多评论
           most_endorsed: 最多支持
           most_followed: 关注最多的
-          most_voted: 最多支持
           random: 随机播放
           recent: 最近的
           with_more_authors: 有更多作者
@@ -639,45 +567,19 @@ zh-CN:
           proposal_accepted_reason: '这一提议已被接受，原因是：'
           proposal_in_evaluation_reason: 这项建议正在评估
           proposal_rejected_reason: '这一提议被否决，理由是：'
-          withdraw_btn_hint: 如果您改变主意，只要您没有得到任何支持，您可以撤回您的建议。 该提案未予删除，将列入撤回的提案清单。
           withdraw_confirmation_html: 您确定要撤回此建议吗？<br><br><strong>此操作不能取消！</strong>
           withdraw_proposal: 撤回提案
         update:
           title: 更新提议
-        vote_button:
-          already_voted: 已经支持
-          already_voted_hover: 取款支持
-          maximum_votes_reached: 已达到支持上限
-          no_votes_remaining: 不支持剩余
-          vote: 支持
-          votes_blocked: 支持已禁用
-        votes_count:
-          count:
-            other: 支持
         voting_rules:
-          can_accumulate_supports_beyond_threshold:
-            description: 每个建议都可以积累超过 %{limit} 个支持
-          minimum_votes_per_user:
-            description: 您必须在不同的建议中至少分配 %{votes} 支持。
-            supports_remaining: 您必须支持 %{remaining_votes} 个更多的建议以便您的支持被考虑。
           proposal_limit:
             description: 您最多可以创建 %{limit} 个建议。
-          title: '支持受以下规则约束：'
-          vote_limit:
-            description: 您可以最多支持 %{limit} 个建议。
-            votes: 支持
         wizard_aside:
           back: 后退
           back_from_step_1: 回到提议
-          back_from_step_2: 回到提议
-          back_from_step_3: 返回比较提案
-          back_from_step_4: 返回编辑草稿
         wizard_steps:
           current_step: 当前步骤
           step_1: 创建您的提议
-          step_2: 比较
-          step_3: Complete
-          step_4: 发布您的提议
           title: 建议创建步骤
       proposals_picker:
         choose_proposals: 选择建议
