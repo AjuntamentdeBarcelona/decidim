@@ -453,6 +453,7 @@ es:
           values:
             'false': Publicada
             'true': Sin publicar
+        remove_all: Eliminar todos
         scope_id_eq:
           label: Ámbito
         search_label: Buscar
@@ -967,6 +968,11 @@ es:
           empty: No hay tokens activos.
           help: Estos tokens se utilizan para compartir públicamente este recurso no publicado a cualquier usuario. Se ocultarán cuando se publique el recurso. Haz clic en el icono de compartir el token para visitar la URL compartible.
           title: Compartir tokens
+        adjacent_navigation:
+          next: Siguiente
+          next_title: Siguiente elemento
+          previous: Anterior
+          previous_title: Anterior elemento
       shared:
         gallery:
           add_images: Añadir imágenes
