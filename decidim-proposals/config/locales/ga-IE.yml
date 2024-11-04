@@ -1,3 +1,4 @@
+---
 ga:
   activemodel:
     attributes:
@@ -29,6 +30,12 @@ ga:
         few: Moltaí
         many: Moltaí
         other: Moltaí
+      decidim/proposals/proposal_vote:
+        one: Tacaíocht
+        two: Tacaíochtaí
+        few: Tacaíochtaí
+        many: Tacaíochtaí
+        other: Tacaíochtaí
   decidim:
     admin:
       filters:
@@ -53,6 +60,7 @@ ga:
           comment: Tabhair Trácht
           create: Cruthaigh
           endorse: Formhuinigh
+          vote: Tacaigh le
         name: Moltaí
         settings:
           global:
@@ -73,6 +81,9 @@ ga:
       proposals:
         object: moltaí
         title: Moltaí
+      votes:
+        object: tacaíochtaí
+        title: Tacaíochtaí
     proposals:
       actions:
         title: Gníomhartha
@@ -92,7 +103,9 @@ ga:
               odt: ODT
         proposal_answers:
           form:
+            accepted: Glactha
             answer_proposal: Freagra
+            rejected: Diúltaithe
         proposal_notes:
           form:
             note: Nóta
@@ -130,7 +143,9 @@ ga:
           official: Oifigiúil
           user_groups: Grúpaí
         filter_state_values:
+          accepted: Glactha
           all: Uile
+          rejected: Diúltaithe
         filter_type_values:
           all: Uile
           proposals: Moltaí
@@ -186,6 +201,10 @@ ga:
           amend: Leasaigh
           comment: Trácht
       proposals:
+        compare:
+          continue: Lean ar aghaidh
+        complete:
+          send: Seol
         edit:
           back: Ar Ais
           select_a_category: Roghnaigh catagóir le do thoil
@@ -211,11 +230,19 @@ ga:
           publish: Foilsigh
         show:
           answer: Freagra
+        vote_button:
+          vote: Tacaigh le
+        voting_rules:
+          vote_limit:
+            votes: Tacaíochtaí
         wizard_aside:
           back: Ar Ais
+        wizard_steps:
+          step_2: Cuir i gcomparáid
+          step_3: Críochnaithe
       versions:
         index:
           title: Leaganacha
     statistics:
       proposals_count: Moltaí
-      votes_count: Vótaí
+      supports_count: Tacaíochtaí
