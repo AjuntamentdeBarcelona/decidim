@@ -122,6 +122,11 @@ module Decidim
       Decidim::Assemblies::AdminLog::AssemblyPresenter
     end
 
+    # This is a overwrite for Decidim::ParticipatorySpaceResourceable.visible?
+    def visible?
+      published? && (!private_space? || (private_space? && is_transparent?))
+    end
+
     def hashtag
       attributes["hashtag"].to_s.delete("#")
     end
@@ -149,7 +154,7 @@ module Decidim
     end
 
     def user_roles(role_name = nil)
-      roles = Decidim::AssemblyUserRole.where(assembly: self_and_ancestors)
+      roles = Decidim::AssemblyUserRole.order_by_name.where(assembly: self_and_ancestors)
       return roles if role_name.blank?
 
       roles.where(role: role_name)
