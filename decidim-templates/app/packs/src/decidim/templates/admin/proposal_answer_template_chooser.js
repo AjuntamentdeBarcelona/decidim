@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return Promise.reject(response);
         }).
         then((data) => {
+          console.error(JSON.stringify(data));
           document.getElementById(`proposal_answer_internal_state_${data.state}`).click();
 
           let editorContainer = null;
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }).
         catch((response) => {
+          console.error(response);
           response.json().then((data) => {
             const el = document.createElement("p");
             el.classList.add("text-alert");

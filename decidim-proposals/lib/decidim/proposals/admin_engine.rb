@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "decidim/proposals/admin_filter"
+
 module Decidim
   module Proposals
     # This is the engine that runs on the public interface of `decidim-proposals`.
@@ -25,6 +27,8 @@ module Decidim
           resources :proposal_notes, only: [:create]
         end
 
+        resources :proposal_states
+
         resources :participatory_texts, only: [:index] do
           collection do
             get :new_import
@@ -36,6 +40,10 @@ module Decidim
         end
 
         root to: "proposals#index"
+      end
+
+      initializer "decidim_proposals.admin_filters" do
+        Decidim::Proposals::AdminFilter.register_filter!
       end
 
       def load_seed

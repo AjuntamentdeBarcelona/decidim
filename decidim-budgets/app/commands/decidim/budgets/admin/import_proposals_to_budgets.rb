@@ -76,7 +76,7 @@ module Decidim
 
         def all_proposals
           Decidim::Proposals::Proposal.where(component: origin_component)
-                                      .where(state: :accepted).published.not_hidden.not_withdrawn.accepted.order(:published_at)
+                                      .accepted.published.not_hidden.not_withdrawn.accepted.order(:published_at)
         end
 
         def origin_component

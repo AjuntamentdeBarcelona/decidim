@@ -187,6 +187,7 @@ PATH
     decidim-templates (0.28.4)
       decidim-core (= 0.28.4)
       decidim-forms (= 0.28.4)
+      decidim-proposals (= 0.28.4)
     decidim-verifications (0.28.4)
       decidim-core (= 0.28.4)
 
