@@ -415,7 +415,6 @@ zh-TW:
           index:
             actions: 操作
             assign_to_valuator: 分配給評估人員
-            assign_to_valuator_button: 指派
             cancel: 取消
             change_category: 變更類別
             change_scope: 變更範圍
@@ -429,7 +428,6 @@ zh-TW:
             split_button: 拆分
             title: 提案
             unassign_from_valuator: 取消分派給評估者
-            unassign_from_valuator_button: 取消分配
             update: 更新
             update_scope_button: 更新範圍
           new:
@@ -466,7 +464,6 @@ zh-TW:
         proposals_imports:
           create:
             invalid: 匯入提案時發生問題.
-            success: "%{number} 個提案成功匯入."
           new:
             create: 匯入提案
             no_components: 這個參與空間中沒有其他的提案元件可以匯入提案。

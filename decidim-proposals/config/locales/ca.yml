@@ -194,7 +194,7 @@ ca:
             scope_id: Àmbit
             scopes_enabled: Àmbits habilitats
             threshold_per_proposal: Llindar per proposta
-            vote_limit: Límit de propostes per participant
+            vote_limit: Límit de suports per participant
           step:
             amendment_creation_enabled: Creació d'esmenes habilitada
             amendment_creation_enabled_help: Les participants poden esmenar les propostes.
@@ -400,14 +400,14 @@ ca:
           proposals: Propostes
         import_proposals_mailer:
           notify_failure:
-            body: There was a problem while importing proposals from the %{origin_component_name} component to the %{target_component_name} component.
-            subject: There was an error importing proposals
+            body: Hi ha hagut un problema en importar propostes del component %{origin_component_name} al component %{target_component_name}.
+            subject: S'ha produït un error en importar les propostes
           notify_success:
             added_proposals:
-              one: One proposal was imported.
-              other: "%{count} proposals were imported."
-            body: Successful imported proposals from the %{origin_component_name} component to the %{target_component_name} component. You can review the results in the administration interface.
-            subject: The proposals have been imported successfully
+              one: S'ha importat una proposta.
+              other: "S'han importat %{count} propostes."
+            body: S'han importat amb èxit les propostes des del component %{origin_component_name} al component %{target_component_name}. Pots revisar els resultats al tauler d'administració.
+            subject: Les propostes s'han importat correctament
         imports:
           help:
             answers: |
@@ -525,7 +525,6 @@ ca:
           index:
             actions: Accions
             assign_to_valuator: Assignar a avaluadora
-            assign_to_valuator_button: Assignar
             cancel: Cancel·lar
             change_category: Canvia la categoria
             change_scope: Canviar àmbit
@@ -541,7 +540,6 @@ ca:
             statuses: Estats
             title: Propostes
             unassign_from_valuator: Desfer assignació a avaluadora
-            unassign_from_valuator_button: Desfer assignació
             update: Actualitza
             update_scope_button: Actualitzar àmbit
           new:
@@ -582,7 +580,7 @@ ca:
         proposals_imports:
           create:
             invalid: S'ha produït un error en importar les propostes.
-            success: The import process has started. We will let you know once it has finished.
+            success: El procés d'importació ha començat. T'avisarem quan hagi finalitzat.
           new:
             create: Importa propostes
             no_components: No hi ha cap altre component de propostes en aquest espai participatiu des d'on importar-les.

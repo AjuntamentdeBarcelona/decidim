@@ -406,6 +406,12 @@ cs:
         exports:
           proposal_comments: Komentáře
           proposals: Návrhy
+        import_proposals_mailer:
+          notify_failure:
+            body: Při importu návrhů ze komponenty %{origin_component_name} do komponenty %{target_component_name} došlo k chybě.
+            subject: Došlo k chybě při importu návrhů
+          notify_success:
+            subject: Návrhy byly úspěšně importovány
         imports:
           help:
             answers: |
@@ -527,7 +533,6 @@ cs:
           index:
             actions: Akce
             assign_to_valuator: Přiřadit hodnotiteli
-            assign_to_valuator_button: Přiřadit
             cancel: Zrušit
             change_category: Změnit kategorii
             change_scope: Změnit rozsah
@@ -543,7 +548,6 @@ cs:
             statuses: Statusy
             title: Návrhy
             unassign_from_valuator: Odebrat přiřazení od hodnotitele
-            unassign_from_valuator_button: Zrušit přiřazení
             update: Aktualizace
             update_scope_button: Aktualizovat rozsah
           new:
@@ -586,7 +590,7 @@ cs:
         proposals_imports:
           create:
             invalid: Při importu návrhů došlo k chybě.
-            success: "%{number} návrhů bylo úspěšně importováno."
+            success: Proces importu byl zahájen. Jakmile bude dokončen, dáme vám vědět.
           new:
             create: Návrhy na dovoz
             no_components: V tomto účastnickém prostoru neexistují žádné jiné komponenty návrhu, které by mohly importovat návrhy.

@@ -400,15 +400,14 @@ es:
           proposals: Propuestas
         import_proposals_mailer:
           notify_failure:
-            body: Hubo un problema al importar propuestas del componente %{origin_component_name} al componente %{target_component_name}.
-            subject: Hubo un error importando propuestas
+            body: Ha habido un problema al importar propuestas del componente %{origin_component_name} al componente %{target_component_name}.
+            subject: Se ha producido un error al importar las propuestas
           notify_success:
             added_proposals:
               one: Se ha importado una propuesta.
-              other: "Se importaron %{count} propuestas."
-            body: Propuestas importadas con éxito del componente %{origin_component_name} al componente %{target_component_name}. Puede revisar los resultados en el panel de
-             administración.
-            subject: Las propuestas se han importado con éxito
+              other: "Se han importado %{count} propuestas."
+            body: Se han importado con éxito las propuestas desde el componente %{origin_component_name} al componente %{target_component_name}. Puedes revisar los resultados en el tablero de administración.
+            subject: Las propuestas se han importado correctamente
         imports:
           help:
             answers: |
@@ -526,7 +525,6 @@ es:
           index:
             actions: Acciones
             assign_to_valuator: Asignar a evaluadora
-            assign_to_valuator_button: Asignar
             cancel: Cancelar
             change_category: Cambiar categoría
             change_scope: Cambiar ámbito
@@ -542,7 +540,6 @@ es:
             statuses: Estados
             title: Propuestas
             unassign_from_valuator: Desasignar de evaluadora
-            unassign_from_valuator_button: Desasignar
             update: Actualizar
             update_scope_button: Actualizar ámbito
           new:

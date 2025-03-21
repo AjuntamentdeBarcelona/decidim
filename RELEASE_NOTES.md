@@ -41,6 +41,7 @@ bin/rails decidim:upgrade
 bin/rails db:migrate
 bin/rails decidim:upgrade:clean:invalid_records
 bin/rails decidim_proposals:upgrade:set_categories
+bin/rails decidim:upgrade:fix_nickname_casing
 ```
 
 ### 1.4. Follow the steps and commands detailed in these notes
@@ -299,7 +300,35 @@ bin/rails decidim:upgrade:attachments_cleanup
 
 You can see more details about this change on PR [\#11851](https://github.com/decidim/decidim/pull/11851)
 
-### 3.10. [[TITLE OF THE ACTION]]
+### 3.10. Changes in Static maps configuration when using HERE.com
+
+As of [#14180](https://github.com/decidim/decidim/pull/14180) we are migrating to here.com api V3, as V1 does not work anymore. In case your application uses Here.com as static map tile provider, you will need to change your `config/initializers/decidim.rb` to use the new url `https://image.maps.hereapi.com/mia/v3/base/mc/overlay`:
+
+```ruby
+  static_url = "https://image.maps.ls.hereapi.com/mia/1.6/mapview" if static_provider == "here" && static_url.blank?
+```
+
+to
+
+```ruby
+  static_url = "https://image.maps.hereapi.com/mia/v3/base/mc/overlay" if static_provider == "here" && static_url.blank?
+```
+
+You can read more about this change on PR [#14180](https://github.com/decidim/decidim/pull/14180).
+
+### 3.11. Convert nicknames to lowercase
+
+As of [#14272](https://github.com/decidim/decidim/pull/14272) we are migrating all the nicknames to lowercase fix performance issues which affects large databases having many participants.
+
+To apply the fix on your application, you need to run the below command.
+
+```bash
+bin/rails decidim:upgrade:fix_nickname_casing
+```
+
+You can read more about this change on PR [#14272](https://github.com/decidim/decidim/pull/14272).
+
+### 3.12. [[TITLE OF THE ACTION]]
 
 You can read more about this change on PR [\#XXXX](https://github.com/decidim/decidim/pull/XXXX).
 

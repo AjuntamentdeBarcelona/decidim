@@ -514,7 +514,6 @@ pl:
           index:
             actions: Działania
             assign_to_valuator: Przypisz do weryfikatora
-            assign_to_valuator_button: Przypisz
             cancel: Anuluj
             change_category: Zmień kategorię
             change_scope: Zmień zakres
@@ -530,7 +529,6 @@ pl:
             statuses: Statusy
             title: Propozycje
             unassign_from_valuator: Anuluj przypisanie do weryfikatora
-            unassign_from_valuator_button: Anuluj przypisanie
             update: Aktualizuj
             update_scope_button: Aktualizuj zakres
           new:
@@ -573,7 +571,6 @@ pl:
         proposals_imports:
           create:
             invalid: Podczas importowania propozycji wystąpił błąd.
-            success: "Zaimportowano %{number} propozycji."
           new:
             create: Importuj propozycje
             no_components: W tej przestrzeni partycypacyjnej nie ma innych komponentów propozycji do zaimportowania propozycji.
