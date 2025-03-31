@@ -332,8 +332,8 @@ en:
       badges:
         accepted_proposals:
           conditions:
-            - Choose the participation space of your interest with submission for proposals enabled
-            - Try to make proposals that can be carried out. This way they are more likely to be accepted.
+          - Choose the participation space of your interest with submission for proposals enabled
+          - Try to make proposals that can be carried out. This way they are more likely to be accepted.
           description: This badge is granted when you actively participate with new proposals and these are accepted.
           description_another: This participant had %{score} accepted proposals.
           description_own: You got %{score} proposals accepted.
@@ -343,8 +343,8 @@ en:
           unearned_own: You got no proposals accepted yet.
         proposal_votes:
           conditions:
-            - Browse and spend some time reading other people's proposals
-            - Vote to the proposals you like or find interesting
+          - Browse and spend some time reading other people's proposals
+          - Vote to the proposals you like or find interesting
           description: This badge is granted when you vote other people's proposals.
           description_another: This participant has voted to %{score} proposals.
           description_own: You have voted to %{score} proposals.
@@ -354,8 +354,8 @@ en:
           unearned_own: You have voted to no proposals yet.
         proposals:
           conditions:
-            - Choose the participation space of your interest with submission for proposals enabled
-            - Create a new proposal
+          - Choose the participation space of your interest with submission for proposals enabled
+          - Create a new proposal
           description: This badge is granted when you actively participate with new proposals.
           description_another: This participant has created %{score} proposals.
           description_own: You have created %{score} proposals.
@@ -832,7 +832,7 @@ en:
           text_banner: You are viewing the list of proposals withdrawn by their authors. %{go_back_link}.
         new:
           send: Continue
-          title: Create your proposal
+          title: Create new proposal
         orders:
           label: 'Order proposals by:'
           most_commented: Most commented
