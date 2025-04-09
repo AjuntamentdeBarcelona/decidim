@@ -26,6 +26,7 @@ module Decidim
     include LinkedResourceReference
     include ActiveStorage::SetCurrent
     include OnboardingActionMethods
+    include EphemeralSessionChecker
 
     helper Decidim::MetaTagsHelper
     helper Decidim::DecidimFormHelper
