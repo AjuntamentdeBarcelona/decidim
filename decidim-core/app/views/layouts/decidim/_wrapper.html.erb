@@ -30,6 +30,8 @@ end
   </header>
 
   <div id="content" data-content>
+    <%= display_onboarding_action_message(current_user) %>
+
     <%= yield %>
   </div>
 
