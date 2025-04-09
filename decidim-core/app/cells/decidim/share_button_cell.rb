@@ -9,7 +9,7 @@ module Decidim
     end
 
     def text
-      t("decidim.shared.share_modal.share")
+      options[:button_text] || t("decidim.shared.share_modal.share")
     end
 
     def icon_name
