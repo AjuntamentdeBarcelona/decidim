@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "rqrcode"
-
 module Decidim
   class ShareTextWidgetCell < Decidim::ViewModel
     include Decidim::SocialShareButtonHelper
