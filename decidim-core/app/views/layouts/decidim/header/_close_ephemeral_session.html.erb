@@ -5,7 +5,10 @@
         method: :delete,
         class: "main-bar__links-desktop__item",
         "aria-label": t("layouts.decidim.header.close"),
-        data: { close: "", confirm: t("layouts.decidim.header.confirm_close_ephemeral_session") }
+        data: {
+          close: "main-bar__links-desktop__item",
+          confirm: t("layouts.decidim.header.confirm_close_ephemeral_session")
+        }
      ) do %>
         <%= icon "close-line" %><span><%= t("layouts.decidim.header.close") %></span>
     <% end %>
