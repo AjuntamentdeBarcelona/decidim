@@ -6,4 +6,4 @@
                       wrapper_class: "project-item",
                       show_only_added:,
                       hide_vote_button:,
-                      focus_mode: true %>
+                      focus_mode: @focus_mode || voting_open? && current_workflow.vote_allowed?(budget) %>

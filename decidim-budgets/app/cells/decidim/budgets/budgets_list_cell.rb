@@ -26,6 +26,10 @@ module Decidim
 
       private
 
+      def focus_options
+        @focus_options ||= options.slice(:focus_mode)
+      end
+
       def highlighted?
         current_user && highlighted.any?
       end

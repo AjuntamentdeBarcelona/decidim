@@ -13,6 +13,10 @@ module Decidim
 
       private
 
+      def focus_mode?
+        options[:focus_mode] && voting_open? && current_workflow.vote_allowed?(budget)
+      end
+
       def card_class
         ["card--list__item"].tap do |list|
           unless voting_finished?
