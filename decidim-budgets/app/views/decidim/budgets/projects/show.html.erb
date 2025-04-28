@@ -26,9 +26,11 @@
 <%= render partial: "exit_modal" %>
 
 <div id="project-item">
-  <%= render partial: "budget_summary", locals: { responsive: true, focus_mode_origin: "show" } %>
+  <% if voting_open? %>
+    <%= render partial: "budget_summary", locals: { responsive: true, focus_mode_origin: "show" } %>
+  <% end %>
   <% content_for :item_header do %>
-    <% unless voting_finished? %>
+    <% if voting_open? %>
       <%= render partial: "budget_summary", locals: { responsive: false, focus_mode_origin: "show" } %>
       <%= render partial: "budget_excess" %>
       <%= render partial: "budget_confirm" %>
