@@ -52,7 +52,7 @@ module Decidim
       end
 
       def button_text
-        key = if current_workflow.vote_allowed?(budget) && !voted?
+        key = if voting_open? && current_workflow.vote_allowed?(budget) && !voted?
                 progress? ? :progress : :vote
               else
                 :show
@@ -87,6 +87,12 @@ module Decidim
         return unless voting_context?
 
         controller.voting_finished?
+      end
+
+      def voting_open?
+        return unless voting_context?
+
+        controller.voting_open?
       end
     end
   end
