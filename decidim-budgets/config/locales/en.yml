@@ -196,6 +196,8 @@ en:
         vote: Vote
         voted_budgets: Voted budgets
         voted_on: You have voted on %{links}.
+      focus_mode:
+        back_to_budgets: Back to budgets
       last_activity:
         new_vote_at: New budgeting vote at
       limit_announcement:
