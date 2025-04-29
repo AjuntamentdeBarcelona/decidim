@@ -2,6 +2,7 @@ var $orderSelectedProjectsCount = $('#order-selected-projects-count');
 var $orderProgress = document.querySelectorAll('[data-order-progress-responsive]');
 var $projectItem = $('#project-<%= project.id %>-item');
 var $projectBudgetButton = $('#project-<%= project.id %>-budget-button');
+var $projectBudgetButtonResponsive = $('#project-<%= project.id %>-budget-button-responsive');
 var $budgetConfirm = $('#budget-confirm');
 
 $orderProgress.forEach((orderProgress) => {
@@ -30,6 +31,10 @@ if ($projectItem.length > 0) {
 
 if ($projectBudgetButton.length > 0) {
   morphdom($projectBudgetButton[0], '<%= j(render partial: "decidim/budgets/projects/project_budget_button", locals: { project: }).strip.html_safe %>');
+}
+
+if ($projectBudgetButtonResponsive.length > 0) {
+  morphdom($projectBudgetButtonResponsive[0], '<%= j(render partial: "decidim/budgets/projects/project_budget_button", locals: { project:, responsive: true }).strip.html_safe %>');
 }
 
 window.DecidimBudgets.checkProgressPosition();

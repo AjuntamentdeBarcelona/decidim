@@ -79,17 +79,17 @@ describe "Explore Budgets", :slow do
       it_behaves_like "has embedded video in description", :description
 
       it "has a clickable title" do
-        expect(item).to have_link(translated(budget.title), href: budget_path(budget))
+        expect(item).to have_link(translated(budget.title), href: budget_start_voting_path(budget))
       end
 
       context "when an item is bookmarked" do
         let!(:order) { create(:order, user:, budget:) }
         let!(:line_item) { create(:line_item, order:, project: projects.first) }
 
-        it "shows a finish voting link" do
+        it "shows a finish voting link in focus mode" do
           visit_component
 
-          expect(item).to have_link("Finish voting", href: budget_path(budget))
+          expect(item).to have_link("Finish voting", href: budget_start_voting_path(budget))
         end
 
         it "shows the projects count and it has no remove vote link" do
@@ -143,5 +143,9 @@ describe "Explore Budgets", :slow do
 
   def budget_path(budget)
     Decidim::EngineRouter.main_proxy(component).budget_path(budget.id)
+  end
+
+  def budget_start_voting_path(budget)
+    Decidim::EngineRouter.main_proxy(component).budget_focus_projects_path(budget, start_voting: true)
   end
 end

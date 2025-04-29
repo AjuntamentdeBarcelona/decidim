@@ -36,7 +36,7 @@
 
     <% if focus_mode_show %>
       <div class="p-4 bg-white">
-        <%= render partial: "decidim/budgets/projects/project_budget_button" %>
+        <%= render partial: "decidim/budgets/projects/project_budget_button", locals: { responsive: true } %>
       </div>
     <% elsif focus_mode_index && show_vote_button %>
       <div class="p-4 bg-white">

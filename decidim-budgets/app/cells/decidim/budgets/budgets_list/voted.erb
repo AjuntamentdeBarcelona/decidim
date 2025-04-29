@@ -3,7 +3,7 @@
 
   <div id="voted-budgets" class="card__list-list w-full">
     <% voted.each do |budget| %>
-      <%= cell("decidim/budgets/budget_list_item", budget) %>
+      <%= cell("decidim/budgets/budget_list_item", budget, **focus_options) %>
     <% end %>
   </div>
 

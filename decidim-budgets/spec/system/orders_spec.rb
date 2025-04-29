@@ -322,7 +322,7 @@ describe "Orders" do
 
         expect(page).to have_content "€25,000,000"
 
-        page.find("header a", text: translated(organization.name)).click
+        click_on "Back to budgets"
 
         expect(page).to have_content "You have not yet voted"
 
@@ -551,14 +551,11 @@ describe "Orders" do
         end
       end
 
-      it "is not alerted when trying to leave the component" do
+      it "there is a link to return to budgets list" do
         visit_budget_and_start_voting
 
         expect(page).to have_content("Budget vote completed")
-
-        page.find("a[aria-label='Go to front page']").click
-
-        expect(page).to have_current_path decidim.root_path
+        expect(page).to have_link("Back to budgets")
       end
     end
 
@@ -570,10 +567,8 @@ describe "Orders" do
                participatory_space: participatory_process)
       end
 
-      it "cannot create new orders" do
-        visit_budget_and_start_voting
-
-        expect(page).to have_no_button(class: "budget-list__action")
+      it "the user cannot start voting" do
+        expect(page).to have_no_button "Start voting"
       end
     end
 
