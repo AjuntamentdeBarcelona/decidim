@@ -1,5 +1,6 @@
 <% if @focus_mode %>
   <% content_for :focus_mode, true %>
+  <% content_for :exit_focus_mode_button, true %>
   <% content_for :focus_mode_back_button, true %>
   <% content_for :focus_mode_back_path, budgets_path %>
   <% content_for :focus_mode_back_text, t("decidim.budgets.focus_mode.back_to_budgets") %>
