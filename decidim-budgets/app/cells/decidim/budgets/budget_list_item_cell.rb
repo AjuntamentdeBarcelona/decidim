@@ -14,7 +14,7 @@ module Decidim
       private
 
       def focus_mode?
-        options[:focus_mode] && voting_open? && current_workflow.vote_allowed?(budget)
+        options[:focus_mode] && voting_open?
       end
 
       def card_class
@@ -52,7 +52,7 @@ module Decidim
       end
 
       def button_text
-        key = if voting_open? && current_workflow.vote_allowed?(budget) && !voted?
+        key = if voting_open? && !voted?
                 progress? ? :progress : :vote
               else
                 :show
