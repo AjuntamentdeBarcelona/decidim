@@ -13,7 +13,7 @@ module Decidim
 
         Checkout.call(current_order) do
           on(:ok) do
-            redirect_to status_budget_order_path(budget)
+            redirect_to component_settings.vote_focus_mode_by_default? ? status_budget_focus_order_path(budget) : status_budget_order_path(budget)
           end
 
           on(:invalid) do
@@ -67,7 +67,7 @@ module Decidim
 
       def redirect_path
         if params[:return_to] == "budget"
-          budget_path(budget)
+          component_settings.vote_focus_mode_by_default? ? budget_focus_projects_path(budget) : budget_path(budget)
         else
           budgets_path
         end
