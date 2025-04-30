@@ -213,6 +213,25 @@ ca:
             id: ID
             map: Mapa
             title: Títol
+      order:
+        status:
+          continue_voting: Seguir votant
+          download_vote: Descarrega el teu vot
+          pending_to_vote_budgets:
+            one: Pots votar en un altre pressupost
+            other: Pots votar en altres pressupostos
+          share_text: "Acabes de votar pels teus projectes favorits a: \"%{space_name}\"!  🎉 Pots seguir votant a: \"%{component_url}\""
+          share_vote: Comparteix el teu vot
+          title: El teu vot s'ha tramitat correctament
+          view_votes:
+            one: Veure vot
+            other: Veure vots
+          votes_count:
+            one: El teu vot a %{budget_name} ja s'ha registrat.
+            other: El teus %{count} vots a %{budget_name} ja s'han registrat.
+      order_pdf:
+        text: 'Has votat a "%{space_name}", on has seleccionat els projectes següents:'
+        title: El teu vot s'ha acceptat correctament.
       order_summary_mailer:
         order_summary:
           selected_projects: 'Els projectes que has seleccionat són:'
@@ -237,7 +256,7 @@ ca:
             title: Màxim de projectes excedit
         budget_summary:
           are_you_sure: Segur que vols cancel·lar el teu vot?
-          cancel_order: eliminar el teu vot i començar de nou
+          cancel_order: Esborra el teu vot
           checked_out:
             description: Ja has votat pel pressupost. Si has canviat d'idea, pots esborrar el teu vot.
             title: Vot pels pressupostos completat
@@ -270,13 +289,13 @@ ca:
             start_adding_projects: Començar a afegir projectes
           minimum: Mínim
           minimum_projects_rule:
-            description: Selecciona com a mínim %{minimum_number} projectes que vulguis i vota segons les teves preferències per a definir el pressupost.
+            description: Selecciona com a mínim %{minimum_number} projectes que vulguis i vota segons les teves preferències.
           projects_rule:
             description: Selecciona entre %{minimum_number} i %{maximum_number} projectes que vulguis i vota segons les teves preferències per a definir el pressupost.
           projects_rule_maximum_only:
-            description: Selecciona fins a %{maximum_number} projectes que vulguis i vota segons les teves preferències per a definir el pressupost.
+            description: Selecciona fins a %{maximum_number} projectes que vulguis i vota segons les teves preferències.
           vote_threshold_percent_rule:
-            description: Assigna com a mínim %{minimum_budget} amb els projectes que vulguis i vota segons les teves preferències per a definir el pressupost.
+            description: Selecciona els projectes que vulguis fins com a mínim el %{minimum_budget} del total del pressupost i vota segons les teves preferències.
         orders:
           highest_cost: Major cost
           label: Ordenar projectes per
@@ -301,9 +320,10 @@ ca:
           added: Afegit
           all: Tots
         projects_for: Projectes per a %{name}
-        select_projects: Selecciona projectes
+        select_projects: Afegeix projectes
         show:
           budget: Pressupost
+        start_voting: Començar a votar
       prompt: Seleccionar pressupost
       vote_reminder_mailer:
         vote_reminder:

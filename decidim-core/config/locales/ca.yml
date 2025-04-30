@@ -396,7 +396,15 @@ ca:
           scope_id: Àmbit
         name: Autorització d'exemple
       dummy_authorization_workflow:
+        explanation: Exemple de flux de verificació
         name: Flux de treball d'autorització d'exemple
+      ephemeral_dummy_authorization_handler:
+        explanation: Verifica't introduint un número de document que finalitzi amb "X".
+        fields:
+          allowed_postal_codes: Codis postals permesos (separats per comes)
+          document_number: Número de document
+          postal_code: Codi postal
+        name: Una altra autorització d'exemple
       errors:
         duplicate_authorization: Ja hi ha una participant autoritzada amb les mateixes dades. Una administradora es posarà en contacte amb tu per verificar les teves dades.
       expired_at: Vençut el %{timestamp}
@@ -608,6 +616,7 @@ ca:
           sign_in_disabled: Pots accedir amb un compte extern.
           sign_up_disabled: La creació de comptes està deshabilitada, pots fer servir un compte existent per accedir-hi.
         user:
+          ephemeral_session_closed: La teva sessió de convidada ha finalitzat
           timed_out: Has estat sense activitat durant massa temps i la teva sessió s'ha tancat automàticament. Si vols continuar participant, torna a iniciar sessió.
       shared:
         newsletter_modal:
@@ -669,6 +678,7 @@ ca:
         select_identity: Selecciona identitat
     endorsers_list:
       endorsed_by: Li agrada a…
+    ephemeral_user: Visitant
     errors:
       files:
         file_cannot_be_processed: No s'ha pogut processar el fitxer
@@ -1293,6 +1303,16 @@ ca:
         message_1: Sembla que no tens connexió a Internet.
         message_2: Si us plau, torneu-ho a provar més tard.
         retry: Torna-ho a provar
+    onboarding_action_message:
+      click_link: Fes clic aquí
+      cta_html: <a href="%{path}">%{link_text}</a> per %{action} a %{resource_name} <strong>%{resource_title}</strong>
+      ephemeral_authorized_message: Has estat autoritzada amb èxit.<br/>Has iniciat una sessió de convidada, ara hi pots participar.
+      expired_authorization_active_title: La teva autorització ha caducat.
+      finish_authorization_process: Pots finalitzar el procés de verificació
+      incomplete_authorization_active_title: La teva verificació no s'ha completat amb tota la informació necessària.
+      pending_authorization_active_message: Si us plau, completa el formulari per a continuar amb aquesta acció.
+      pending_authorization_active_title: Necessitem verificar la teva identitat.
+      pending_ephemeral_authorization: Si us plau, verifica la teva identitat per continuar.
     open_data:
       not_available_yet: Els fitxers Open Data encara no estan disponibles, torna-ho a provar d'aquí a uns minuts.
     pad_iframe:
@@ -1387,6 +1407,10 @@ ca:
           resend_email_confirmation_instructions: Reenvia un correu electrònic amb les instruccions de confirmació
         confirmation_instructions_sent: Instruccions de confirmació enviades per correu electrònic.
         fill_in_email_to_confirm_it: Si us plau, omple el correu electrònic del teu grup per confirmar-lo.
+    qr:
+      show:
+        scan: Escaneja el codi QR
+        title: Codi QR per %{resource_title}
     reported_mailer:
       hide:
         hello: Hola %{name},
@@ -1451,6 +1475,10 @@ ca:
       selfxss_warning:
         description: Aquesta funció de navegador està pensada per a desenvolupadors i no hauries d'enganxar res aquí si se t'ha demanat que ho facis. Enganxar contingut en aquesta finestra pot comprometre la teva privacitat i donar accés a hackers al teu compte.
         title: Aturar!
+    share_widget:
+      download: Descarregar
+      print: Imprimir el cartell
+      qr_code: Codi QR
     shared:
       confirm_modal:
         cancel: Cancel·lar
@@ -1517,6 +1545,7 @@ ca:
         copy_share_link: Còpia
         copy_share_link_clarification: Copia l'enllaç al porta-retalls
         copy_share_link_copied: Copiat!
+        copy_share_link_cta: O copiar l'enllaç
         copy_share_link_message: S'ha copiat l'enllaç al porta-retalls.
         share: Compartir
         share_link: Compartir l'enllaç
@@ -1930,6 +1959,10 @@ ca:
         sign_up: Crea un compte
         terms_of_service: Termes i condicions d'ús
       header:
+        back: Tornar al llistat
+        cancel: Cancel·lar
+        close: Tancar
+        confirm_close_ephemeral_session: Si abandones la navegació, es tancarà la sessió temporal. Tot el teu progrés i activitat, però, es guardaran. Si has acabat la teva activitat, fes clic a Ok.
         log_in: Entra
         main_menu: Menú principal
         user_menu: Menú d'usuari
