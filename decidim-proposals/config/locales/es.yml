@@ -143,7 +143,7 @@ es:
         actions:
           amend: Enmendar
           comment: Comentar
-          create: Crear
+          create: Crear una propuesta
           endorse: Adherirse
           vote: Apoyar
           vote_comment: Votar comentario

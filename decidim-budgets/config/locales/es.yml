@@ -213,6 +213,25 @@ es:
             id: ID
             map: Mapa
             title: Título
+      order:
+        status:
+          continue_voting: Seguir votando
+          download_vote: Descarga tu voto
+          pending_to_vote_budgets:
+            one: Puedes votar en otro presupuesto
+            other: Puedes votar en otros presupuestos
+          share_text: "¡Acabas de votar por tus proyectos favoritos en: ·%{space_name}·! 🎉 Puedes seguir votando en: \"%{component_url}\""
+          share_vote: Comparte tu voto
+          title: Tu voto se ha tramitado correctamente
+          view_votes:
+            one: Ver voto
+            other: Ver votos
+          votes_count:
+            one: Tu voto en %{budget_name} ya se ha registrado.
+            other: Tus %{count} votos en %{budget_name} ya se han registrado.
+      order_pdf:
+        text: 'Has votado en "%{space_name}", donde has seleccionado los siguientes proyectos:'
+        title: Tu voto se ha aceptado correctamente.
       order_summary_mailer:
         order_summary:
           selected_projects: 'Lo proyectos que has seleccionado son:'
@@ -270,13 +289,13 @@ es:
             start_adding_projects: Empezar a añadir proyectos
           minimum: Mínimo
           minimum_projects_rule:
-            description: Selecciona al menos %{minimum_number} proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
+            description: Selecciona al menos %{minimum_number} proyectos que quieras y vota de acuerdo a tus preferencias.
           projects_rule:
             description: Selecciona al menos %{minimum_number} y hasta %{maximum_number} proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
           projects_rule_maximum_only:
-            description: Selecciona hasta %{maximum_number} proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
+            description: Selecciona hasta %{maximum_number} proyectos que quieras y vota de acuerdo a tus preferencias.
           vote_threshold_percent_rule:
-            description: Asigna al menos %{minimum_budget} a los proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
+            description: Selecciona los proyectos que quieras hasta al menos el %{minimum_budget} del total del presupuesto y vota según tus preferencias.
         orders:
           highest_cost: Mayor coste
           label: Ordenar proyectos por
@@ -301,9 +320,10 @@ es:
           added: Añadido
           all: Todos
         projects_for: Proyectos de %{name}
-        select_projects: Selecciona proyectos
+        select_projects: Añadir proyectos
         show:
           budget: Presupuesto
+        start_voting: Empezar a votar
       prompt: Seleccionar presupuesto
       vote_reminder_mailer:
         vote_reminder:
