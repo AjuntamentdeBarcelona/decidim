@@ -15,6 +15,9 @@ module Decidim
           resources :projects, only: [:index, :show]
           namespace :focus do
             resources :projects, only: [:index, :show]
+            resource :order, only: [] do
+              get :status, on: :member
+            end
           end
           resource :order, only: [:destroy] do
             member do
