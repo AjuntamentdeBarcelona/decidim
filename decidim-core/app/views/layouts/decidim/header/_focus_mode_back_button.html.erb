@@ -1,6 +1,6 @@
 <% back_path = content_for(:focus_mode_back_path) || content_for(:focus_mode_return_path) %>
 <% back_text = content_for(:focus_mode_back_text) || t("layouts.decidim.header.back") %>
-<div class="main-bar__back-button hidden lg:flex">
+<div class="main-bar__back-button hidden lg:flex" data-focus-navigation>
   <div>
     <%= link_to(
         back_path,
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="main-bar__back-button lg:hidden">
+<div class="main-bar__back-button lg:hidden" data-focus-navigation>
   <%= link_to(
       back_path,
       class: "text-secondary",

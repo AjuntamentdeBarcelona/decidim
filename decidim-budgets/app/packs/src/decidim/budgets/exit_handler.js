@@ -42,6 +42,8 @@ const allowExitFrom = ($el) => {
     return true
   } else if (document.querySelector(".panel-container") && document.querySelector(".panel-container").contains($el[0])) {
     return true
+  } else if ($el.parents("[data-focus-navigation]").length > 0) {
+    return true
   }
 
   return false;
