@@ -544,8 +544,6 @@ describe "Orders" do
 
         expect(page).to have_content("successfully")
 
-        click_on "Start voting"
-
         within "#order-progress .budget-summary__content", match: :first do
           expect(page).to have_button(disabled: true)
         end

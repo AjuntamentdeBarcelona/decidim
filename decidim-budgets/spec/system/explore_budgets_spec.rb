@@ -65,8 +65,9 @@ describe "Explore Budgets", :slow do
                :with_vote_threshold_percent,
                manifest:,
                participatory_space: participatory_process,
-               settings: { landing_page_content: description })
+               settings: { landing_page_content: description, vote_focus_mode_by_default: })
       end
+      let(:vote_focus_mode_by_default) { true }
       let(:description) { { en: "Short description", ca: "Descripció curta", es: "Descripción corta" } }
       let(:budget) { budgets.first }
       let(:item) { page.find("#budgets .card--list__item", match: :first) }
@@ -111,11 +112,11 @@ describe "Explore Budgets", :slow do
           order
         end
 
-        it "shows the check icon" do
+        it "shows the check icon with a link to the budgets projects in focus mode" do
           visit_component
 
           expect(item).to have_css("div.card__highlight-text svg.fill-success")
-          expect(item).to have_link("See projects", href: budget_path(budget))
+          expect(item).to have_link("See projects", href: budget_start_voting_path(budget))
         end
 
         it "shows the projects count" do
