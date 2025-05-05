@@ -218,7 +218,6 @@ en:
       order:
         status:
           continue_voting: Continue voting
-          download_vote: Download your vote
           pending_to_vote_budgets:
             one: You can vote in other budget
             other: You can vote in other budgets
