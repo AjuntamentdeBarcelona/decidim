@@ -13,6 +13,10 @@ module Decidim
 
       private
 
+      def authorization_redirect_path
+        options[:authorization_redirect_path].presence || resource_path
+      end
+
       def resource_path
         if focus_mode?
           resource_locator([project.budget, "focus", project]).path(url_extra_params)

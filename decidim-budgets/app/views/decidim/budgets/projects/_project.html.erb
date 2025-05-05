@@ -6,4 +6,5 @@
                       wrapper_class: "project-item",
                       show_only_added:,
                       hide_vote_button:,
-                      focus_mode: @focus_mode || voting_open? && current_workflow.vote_allowed?(budget) %>
+                      focus_mode: @focus_mode || voting_open? && current_workflow.vote_allowed?(budget),
+                      authorization_redirect_path: @focus_mode ? budget_focus_projects_path(budget, start_voting: true) : budget_projects_path(budget) %>

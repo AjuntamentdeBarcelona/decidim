@@ -3,6 +3,6 @@
     <%= budget_to_currency(project.budget_amount) %>
   </span>
   <% unless hide_vote_button? %>
-    <%= cell("decidim/budgets/project_vote_button", project, authorization_redirect_path: resource_path, show_only_added:) %>
+    <%= cell("decidim/budgets/project_vote_button", project, authorization_redirect_path:, show_only_added:) %>
   <% end %>
 </div>
