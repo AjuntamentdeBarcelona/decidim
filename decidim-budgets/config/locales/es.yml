@@ -196,6 +196,8 @@ es:
         vote: Votar
         voted_budgets: Presupuestos votados
         voted_on: Has votado %{links}.
+      focus_mode:
+        back_to_budgets: Volver a los presupuestos
       last_activity:
         new_vote_at: Nueva votación presupuestaria en
       limit_announcement:
@@ -215,7 +217,7 @@ es:
             title: Título
       order:
         status:
-          continue_voting: Seguir votando
+          continue_voting: Ir a los presupuestos
           download_vote: Descarga tu voto
           pending_to_vote_budgets:
             one: Puedes votar en otro presupuesto
@@ -358,6 +360,7 @@ es:
             scopes_enabled: Ámbitos habilitados
             title: Título
             total_budget: Presupuesto total
+            vote_focus_mode_by_default: Acceder a los presupuestos en modo focus directamente
             vote_minimum_budget_projects_number: Número mínimo de proyectos a votar
             vote_rule_minimum_budget_projects_enabled: 'Activar norma: Número mínimo de proyectos a votar'
             vote_rule_selected_projects_enabled: 'Habilitar regla: número mínimo y máximo de proyectos en los que votar'

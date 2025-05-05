@@ -196,6 +196,8 @@ ca:
         vote: Vota
         voted_budgets: Pressupostos votats
         voted_on: Has votat a %{links}.
+      focus_mode:
+        back_to_budgets: Tornar als pressupostos
       last_activity:
         new_vote_at: Nova votació pressupostària a
       limit_announcement:
@@ -215,7 +217,7 @@ ca:
             title: Títol
       order:
         status:
-          continue_voting: Seguir votant
+          continue_voting: Anar als pressupostos
           download_vote: Descarrega el teu vot
           pending_to_vote_budgets:
             one: Pots votar en un altre pressupost
@@ -358,6 +360,7 @@ ca:
             scopes_enabled: Àmbits habilitats
             title: Títol
             total_budget: Pressupost total
+            vote_focus_mode_by_default: Accedir als pressupostos en modo focus directament
             vote_minimum_budget_projects_number: Número mínim de projectes a votar
             vote_rule_minimum_budget_projects_enabled: 'Activar norma: Número mínim de projectes a votar'
             vote_rule_selected_projects_enabled: 'Activar regla: número mínim i màxim de projectes a votar'
