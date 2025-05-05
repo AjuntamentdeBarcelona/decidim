@@ -285,11 +285,11 @@ ca:
           budget: Pressupost
           dynamic_help:
             keep_adding_projects: Seguir afegint projectes
-            minimum_reached: Has arribat al mínim per a poder votar
+            minimum_reached: <b>Has arribat al mínim per a poder votar</b>
             start_adding_projects: Començar a afegir projectes
           minimum: Mínim
           minimum_projects_rule:
-            description: Selecciona com a mínim %{minimum_number} projectes que vulguis i vota segons les teves preferències.
+            description: <b>Selecciona com a mínim %{minimum_number} projectes</b> que vulguis i vota segons les teves preferències.
           projects_rule:
             description: Selecciona entre %{minimum_number} i %{maximum_number} projectes que vulguis i vota segons les teves preferències per a definir el pressupost.
           projects_rule_maximum_only:
