@@ -36,11 +36,6 @@
              button_classes: "button button__sm md:button__lg button__text-secondary",
              button_text: t("share_vote", scope: "decidim.budgets.order.status") %>
 
-    <%= link_to export_pdf_budget_order_path(current_order.budget), class: "button button__sm md:button__lg button__transparent-secondary" do %>
-      <span><%= t("download_vote", scope: "decidim.budgets.order.status") %></span>
-      <%= icon "download-line", class: "fill-current" %>
-    <% end %>
-
     <%= link_to budgets_path, class: "button button__sm md:button__lg button__secondary" do %>
       <span>
         <% if pending_to_vote_budgets.present? %>
