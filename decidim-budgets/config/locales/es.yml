@@ -287,11 +287,11 @@ es:
           budget: Presupuesto
           dynamic_help:
             keep_adding_projects: Seguir añadiendo proyectos
-            minimum_reached: Has alcanzado el mínimo para poder votar
+            minimum_reached: "<b>Has alcanzado el mínimo para poder votar</b>"
             start_adding_projects: Empezar a añadir proyectos
           minimum: Mínimo
           minimum_projects_rule:
-            description: Selecciona al menos %{minimum_number} proyectos que quieras y vota de acuerdo a tus preferencias.
+            description: "<b>Selecciona al menos %{minimum_number} proyectos</b> que quieras y vota de acuerdo a tus preferencias."
           projects_rule:
             description: Selecciona al menos %{minimum_number} y hasta %{maximum_number} proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
           projects_rule_maximum_only:

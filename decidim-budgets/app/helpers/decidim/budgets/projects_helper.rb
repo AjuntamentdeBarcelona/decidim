@@ -44,13 +44,13 @@ module Decidim
         current_order&.can_checkout?
       end
 
-      # Returns false if the current order does not have a rule for minimum budget
-      # Returns false if the current order has not reached the minimum budget
+      # Returns false if the current order does not have a rule for minimum projects
+      # Returns false if the current order has not reached the minimum projects
       # Otherwise returns true
       def current_order_minimum_reached?
-        return false if current_order.minimum_budget.zero?
+        return false if current_order.minimum_projects.zero?
 
-        current_order.total > current_order.minimum_budget
+        current_order.total_projects >= current_order.minimum_projects
       end
 
       def current_rule_call_for_action_text
@@ -98,7 +98,7 @@ module Decidim
                         minimum_budget: budget_to_currency(current_order.minimum_budget)
                       )
                     end
-        %(<strong>#{current_rule_call_for_action_text}</strong>. #{rule_text}).html_safe
+        %(#{current_rule_call_for_action_text}. #{rule_text}).html_safe
       end
 
       # Serialize a collection of geocoded projects to be used by the dynamic map component
