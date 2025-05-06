@@ -17,6 +17,8 @@ describe "Orders" do
            participatory_space: participatory_process)
   end
   let(:budget) { create(:budget, component:) }
+  let(:other_budget) { create(:budget, component:) }
+  let!(:other_budget_projects) { create_list(:project, 4, budget: other_budget) }
 
   context "when the user is not logged in" do
     let!(:projects) { create_list(:project, 1, budget:, budget_amount: 25_000_000) }
@@ -315,21 +317,23 @@ describe "Orders" do
         expect(page).to have_no_css ".budget-list__data--added"
       end
 
-      it "is alerted when trying to leave the component before completing" do
-        budget_focus_projects_path = Decidim::EngineRouter.main_proxy(component).budget_focus_projects_path(budget)
+      it "is allowed to navigate through the component using the back buttons" do
+        focus_project_path = Decidim::EngineRouter.main_proxy(component).budget_focus_project_path(budget, projects.first)
+        focus_budget_projects_path = Decidim::EngineRouter.main_proxy(component).budget_focus_projects_path(budget)
+        budgets_path = Decidim::EngineRouter.main_proxy(component).budgets_path
 
-        visit_budget_and_start_voting
-
+        page.visit focus_project_path
         expect(page).to have_content "€25,000,000"
+
+        click_on "Back to list"
+
+        expect(page).to have_no_content "You have not yet voted"
+        expect(page).to have_current_path focus_budget_projects_path
 
         click_on "Back to budgets"
 
-        expect(page).to have_content "You have not yet voted"
-
-        click_on "Return to voting"
-
-        expect(page).to have_no_content("You have not yet voted")
-        expect(page).to have_current_path budget_focus_projects_path
+        expect(page).to have_no_content "You have not yet voted"
+        expect(page).to have_current_path budgets_path
       end
 
       it "is alerted when trying to leave the focus mode" do
@@ -408,8 +412,6 @@ describe "Orders" do
           end
 
           expect(page).to have_content("successfully")
-
-          page.find(".button", text: "View votes").click
         end
       end
 
