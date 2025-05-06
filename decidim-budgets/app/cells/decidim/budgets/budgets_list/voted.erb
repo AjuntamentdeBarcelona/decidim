@@ -1,4 +1,11 @@
 <% if voted? %>
+
+  <% if finished? %>
+    <div class="callout success w-full">
+      <p><%= t(:finished_message, scope: i18n_scope) %></p>
+    </div>
+  <% end %>
+
   <p><%= t(:voted_on, scope: i18n_scope, links: budgets_link_list(voted)) %></p>
 
   <div id="voted-budgets" class="card__list-list w-full">
@@ -6,8 +13,4 @@
       <%= cell("decidim/budgets/budget_list_item", budget, **focus_options) %>
     <% end %>
   </div>
-
-  <% if finished? %>
-    <p><%= t(:finished_message, scope: i18n_scope) %></p>
-  <% end %>
 <% end %>
