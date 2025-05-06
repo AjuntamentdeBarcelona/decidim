@@ -281,3 +281,15 @@
     }
   }
 }
+
+.budget--highlighted {
+  @apply ring-warning;
+}
+
+.card--list__data-progress {
+  @apply ring-warning;
+}
+
+.card--list__data-added {
+  @apply ring-success;
+}
