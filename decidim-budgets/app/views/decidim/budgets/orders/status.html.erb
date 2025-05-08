@@ -1,3 +1,5 @@
+<% add_decidim_page_title(t("title", scope: "decidim.budgets.order.status")) %>
+
 <% if @focus_mode %>
   <% content_for :focus_mode, true %>
   <% content_for :exit_focus_mode_button, true %>
@@ -30,13 +32,8 @@
     <% end %>
   </div>
 
-  <div class="form__wrapper-block flex-col-reverse md:flex-row justify-between lg:px-12">
-    <%= cell "decidim/share_text_widget",
-             current_order.budget,
-             button_classes: "button button__sm md:button__lg button__text-secondary",
-             button_text: t("share_vote", scope: "decidim.budgets.order.status") %>
-
-    <%= link_to budgets_path, class: "button button__sm md:button__lg button__secondary" do %>
+  <div class="form__wrapper-block m-auto">
+    <%= link_to budgets_path, class: "button button__lg button__secondary" do %>
       <span>
         <% if pending_to_vote_budgets.present? %>
           <%= t("continue_voting", scope: "decidim.budgets.order.status") %>
