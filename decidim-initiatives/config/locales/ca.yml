@@ -607,7 +607,7 @@ ca:
           comment: Comentar
       initiatives_type:
         actions:
-          create: Crear
+          create: Crear una iniciativa
           title: Accions
           vote: Signar
   layouts:

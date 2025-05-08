@@ -42,6 +42,8 @@ const allowExitFrom = ($el) => {
     return true
   } else if (document.querySelector(".panel-container") && document.querySelector(".panel-container").contains($el[0])) {
     return true
+  } else if ($el.parents("[data-focus-navigation]").length > 0) {
+    return true
   }
 
   return false;
@@ -90,7 +92,12 @@ $(() => {
     event.stopPropagation();
 
     const $link = $(event.currentTarget);
-    exitLinkText = $link.text();
+    const linkText = $link.text();
+
+    if (linkText.length > 0) {
+      exitLinkText = linkText;
+    }
+
     openExitNotification($link.attr("href"), $link.data("method"));
   });
   // Custom handling for the exit link which needs to change the exit link

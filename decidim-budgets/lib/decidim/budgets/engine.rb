@@ -13,9 +13,16 @@ module Decidim
       routes do
         resources :budgets, only: [:index, :show] do
           resources :projects, only: [:index, :show]
+          namespace :focus do
+            resources :projects, only: [:index, :show]
+            resource :order, only: [] do
+              get :status, on: :member
+            end
+          end
           resource :order, only: [:destroy] do
             member do
               post :checkout
+              get :status
             end
             resource :line_item, only: [:create, :destroy]
           end

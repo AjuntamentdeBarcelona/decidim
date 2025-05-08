@@ -124,6 +124,7 @@ module Decidim
   autoload :ContentSecurityPolicy, "decidim/content_security_policy"
   autoload :IconRegistry, "decidim/icon_registry"
   autoload :HasConversations, "decidim/has_conversations"
+  autoload :PdfSignatureExample, "decidim/pdf_signature_example"
 
   module Commands
     autoload :CreateResource, "decidim/commands/create_resource"

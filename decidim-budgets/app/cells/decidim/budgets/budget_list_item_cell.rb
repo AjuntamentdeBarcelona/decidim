@@ -13,6 +13,10 @@ module Decidim
 
       private
 
+      def focus_mode?
+        options[:focus_mode] && voting_open?
+      end
+
       def card_class
         ["card--list__item"].tap do |list|
           unless voting_finished?
@@ -48,7 +52,7 @@ module Decidim
       end
 
       def button_text
-        key = if current_workflow.vote_allowed?(budget) && !voted?
+        key = if voting_open? && !voted?
                 progress? ? :progress : :vote
               else
                 :show
@@ -83,6 +87,12 @@ module Decidim
         return unless voting_context?
 
         controller.voting_finished?
+      end
+
+      def voting_open?
+        return unless voting_context?
+
+        controller.voting_open?
       end
     end
   end

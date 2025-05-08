@@ -1,0 +1,27 @@
+<% back_path = content_for(:focus_mode_back_path) || content_for(:focus_mode_return_path) %>
+<% back_text = content_for(:focus_mode_back_text) || t("layouts.decidim.header.back") %>
+<div class="main-bar__back-button hidden lg:flex" data-focus-navigation>
+  <div>
+    <%= link_to(
+        back_path,
+        class: "main-bar__links-desktop__item",
+        "aria-label": back_text
+    ) do %>
+        <%= icon "arrow-left-line" %><span><%= back_text %></span>
+    <% end %>
+  </div>
+</div>
+
+<div class="main-bar__back-button lg:hidden" data-focus-navigation>
+  <%= link_to(
+      back_path,
+      class: "text-secondary",
+      type: :button,
+      "aria-label": back_text
+    ) do %>
+      <span class="flex items-center gap-1">
+        <%= icon "arrow-left-line", class: "w-8 h-6 fill-current" %>
+        <%= back_text %>
+      </span>
+    <% end %>
+</div>

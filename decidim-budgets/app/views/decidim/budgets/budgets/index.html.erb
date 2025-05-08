@@ -18,6 +18,6 @@
   </section>
 
   <section class="layout-main__section layout-main__heading flex flex-col items-start">
-    <%= cell("decidim/budgets/budgets_list", current_workflow) %>
+    <%= cell("decidim/budgets/budgets_list", current_workflow, focus_mode: component_settings.vote_focus_mode_by_default?) %>
   </section>
 <% end %>
