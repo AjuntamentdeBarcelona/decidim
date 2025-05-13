@@ -51,9 +51,10 @@ self.addEventListener("notificationclick", (event) => {
 });
 
 // avoid caching admin or users paths
+// also workaround for barcelona PB
 registerRoute(
   ({ url }) =>
-    ["/admin/", "/users/"].some((path) => url.pathname.startsWith(path)),
+    ["/admin/", "/users/", "/authorizations", "/processes/pressupostos2024/f/6466/budgets"].some((path) => url.pathname.startsWith(path)),
   new NetworkOnly()
 );
 
