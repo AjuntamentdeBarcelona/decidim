@@ -32,6 +32,7 @@ en:
           comment: Comment
           create: Create a debate
           endorse: Endorse
+          vote_comment: Vote comment
         name: Debates
         settings:
           global:
