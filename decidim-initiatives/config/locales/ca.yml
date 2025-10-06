@@ -605,6 +605,7 @@ ca:
       initiative:
         actions:
           comment: Comentar
+          vote_comment: Votar el comentari
       initiatives_type:
         actions:
           create: Crear una iniciativa

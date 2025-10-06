@@ -76,6 +76,7 @@ es:
           destroy: Borrar
           endorse: Adherirse
           update: Actualizar
+          vote_comment: Votar comentario
         name: Blog
         settings:
           global:

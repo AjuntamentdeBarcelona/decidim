@@ -32,6 +32,7 @@ ca:
           comment: Comentar
           create: Crear un debat
           endorse: Adherir-se
+          vote_comment: Votar el comentari
         name: Debats
         settings:
           global:
