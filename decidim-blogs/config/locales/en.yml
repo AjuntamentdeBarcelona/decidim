@@ -76,6 +76,7 @@ en:
           destroy: Delete
           endorse: Endorse
           update: Update
+          vote_comment: Vote comment
         name: Blog
         settings:
           global:

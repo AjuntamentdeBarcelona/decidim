@@ -22,6 +22,7 @@ en:
       sortitions:
         actions:
           comment: Comment
+          vote_comment: Vote comment
         name: Sortitions
         settings:
           global:

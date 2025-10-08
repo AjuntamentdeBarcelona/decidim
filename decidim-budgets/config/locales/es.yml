@@ -341,6 +341,7 @@ es:
         actions:
           comment: Comentar
           vote: Vota
+          vote_comment: Votar comentario
         name: Presupuestos
         settings:
           global:

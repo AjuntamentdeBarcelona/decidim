@@ -76,6 +76,7 @@ ca:
           destroy: Esborrar
           endorse: Adherir-se
           update: Actualitzar
+          vote_comment: Votar el comentari
         name: Blog
         settings:
           global:
