@@ -8,7 +8,7 @@ describe Decidim::ProfileCell, type: :cell do
 
   let(:organization) { create(:organization, user_groups_enabled: true) }
   let(:user) { create(:user, :managed, organization:, blocked: false) }
-  let(:context) { { content_cell: "decidim/user_conversations", conversations: [] } }
+  let(:context) { { content_cell: "decidim/badges" } }
   let(:my_cell) { cell("decidim/profile", user, context:) }
 
   context "when show is rendered" do
@@ -32,6 +32,18 @@ describe Decidim::ProfileCell, type: :cell do
       it "shows the inaccessible profile alert" do
         expect(subject).to have_text("This profile is inaccessible due to terms of service violation!")
       end
+    end
+  end
+
+  context "when the user displayed is officialized" do
+    let(:user) { create(:user, :officialized, organization:) }
+
+    it "shows the officialization badge" do
+      expect(subject).to have_xpath("//svg/use[contains(@href, 'ri-star-s-fill')]")
+    end
+
+    it "shows the officialization name" do
+      expect(subject).to have_content(decidim_sanitize_translated(user.officialized_as))
     end
   end
 end
