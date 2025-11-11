@@ -154,7 +154,6 @@ PATH
       decidim-comments (= 0.29.6)
       decidim-core (= 0.29.6)
       decidim-verifications (= 0.29.6)
-      hexapdf (~> 0.32.0)
       wicked_pdf (~> 2.1)
     decidim-meetings (0.29.6)
       decidim-core (= 0.29.6)
