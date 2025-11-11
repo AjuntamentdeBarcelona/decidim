@@ -25,6 +25,9 @@ AGPL
 Ajuntament
 Ajuntamentde
 alabs
+alecslupu
+Alexandru
+amagat
 amd
 amendables
 AMR
@@ -584,6 +587,8 @@ newusermanager
 newwindow
 nicknamizable
 nicknamize
+nicknamenicknamenick
+nicknamenicknamenickname
 nie
 nikola
 nlevel

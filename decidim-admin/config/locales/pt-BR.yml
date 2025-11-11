@@ -695,6 +695,7 @@ pt-BR:
             does_not_belong: Não pertence
             hidden_during_block: Oculto enquanto bloqueia o usuário
             offensive: Ofensivo
+            parent_hidden: Conteúdo pai foi oculto
             spam: Spam
         reports:
           index:
@@ -711,6 +712,11 @@ pt-BR:
             report_language: Reportar idioma
             report_reason: Motivo
             title: Detalhes da denúncia
+      new_import:
+        accepted_mime_types:
+          csv: CSV
+          json: JSON
+          xlsx: XLSX
       newsletter_templates:
         index:
           preview_template: Pré-visualização
@@ -797,7 +803,7 @@ pt-BR:
           reports: Denúncias
           show_email: Mostrar endereço de e-mail
           status: Status
-          unblock: Desbloquear Usuário
+          unblock: Desbloquear usuário
           unofficialize: Não oficializar
         new:
           badge: Emblema de oficialização
@@ -833,15 +839,6 @@ pt-BR:
         edit:
           update: Atualizar
         form:
-          colors:
-            choose_color: Escolha a cor primária
-            colors_title: Cores da organização
-            colors_warning_html: Aviso! Mudando essas cores pode quebrar os contrastes de acessibilidade. Você pode verificar o contraste de sua escolha com o <a href="%{link}">Verificador de Contrastes WebAIM</a> ou outras ferramentas similares.
-            explanation: Esta ferramenta ajuda você a escolher um esquema de cores, composto de tons igualmente espaçados ao redor da roda de cor, que será usado no site da organização.
-            legend_html: Cores principais do aplicativo, com base no <a href="https://www.color-meanings.com/triadic-colors/">algoritmo Triadic</a>. A cor <i>secundária</i> é calculada automaticamente a partir da cor primária e da saturação que você escolheu.
-            saturation: Saturação
-            title: Seletor de cores
-            update_suggested_colors: Atualizar cores sugeridas
           cta_button_path_help_html: 'Você pode substituir onde o botão Chamar para Ação na página inicial liga. Use caminhos parciais, não URLs completas aqui. Aceita letras, números, traços e barras e deve começar com uma letra. O botão Chamar para Ação é exibido na página inicial entre o texto de boas-vindas e a descrição. Exemplo: %{url}'
           cta_button_text_help: Você pode substituir o texto do botão Chamar para Ação na página inicial para cada idioma disponível em sua organização. Se não for definido, o valor padrão será usado. O botão Chamar para Ação é exibido na página inicial entre o texto de boas-vindas e a descrição.
           header_snippets:
@@ -959,6 +956,11 @@ pt-BR:
           help: Esses tokens são usados para compartilhar publicamente esse recurso não publicado para qualquer usuário. Eles estarão ocultos quando o recurso estiver publicado. Clique no ícone de compartilhamento do token para visitar a URL compartilhável.
           title: Compartilhar tokens
       shared:
+        adjacent_navigation:
+          next: Próximo
+          next_title: Próximo item
+          previous: Anterior
+          previous_title: Item anterior
         gallery:
           add_images: Adicione imagens
           edit_images: Editar imagens
@@ -1012,7 +1014,7 @@ pt-BR:
         authorization_workflows: Métodos de verificação
         dashboard: painel de controle
         edit_external_domains: Lista de domínios externos permitidos
-        edit_landing_page: Conteúdos da página
+        edit_landing_page: Conteúdo da página
         edit_organization_appearance: Editar aparência da página inicial
         impersonatable_users: Usuários gerenciáveis
         impersonations: Gerenciamento de usuários

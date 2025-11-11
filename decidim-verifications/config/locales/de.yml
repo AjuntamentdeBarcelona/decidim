@@ -2,6 +2,8 @@
 de:
   activemodel:
     attributes:
+      authorization:
+        verification_attachment: Anhang zur Verifizierung
       config:
         available_methods: Verfügbare Methoden
         offline: Offline
@@ -177,9 +179,9 @@ de:
               john.doe@example.org
               jane.doe@example.org
             file: "CSV-Datei mit E-Mail-Daten"
-            info: 'Muss eine Datei im CSV-Format sein, mit nur einer Spalte der E-Mail-Adresse:'
+            info: 'Muss eine Datei im CSV-Format sein, mit nur einer Spalte mit E-Mail-Adressen:'
             submit: Datei hochladen
-            title: Laden Sie eine neue Erhebung hoch
+            title: Neue Volkszählung hochladen
         authorizations:
           new:
             error: Wir konnten Ihr Konto nicht bestätigen oder Sie befinden sich nicht in der Erhebung der Organisation.

@@ -31,6 +31,8 @@ module Decidim
 
         apply_global_moderations_permission_for_admin!
 
+        can_use_image_editor?
+
         if user.admin? && admin_terms_accepted?
           allow! if read_admin_log_action?
           allow! if read_user_statistics_action?
@@ -252,6 +254,10 @@ module Decidim
 
       def available_authorization_handlers?
         user.organization.available_authorization_handlers.any?
+      end
+
+      def can_use_image_editor?
+        allow! if permission_action.subject == :editor_image && user_has_any_role?(user, nil, broad_check: true)
       end
     end
   end

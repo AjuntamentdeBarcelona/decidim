@@ -157,7 +157,7 @@ nl:
           notification_title: Het <a href="%{resource_path}">%{resource_title}</a> event heeft registraties ingeschakeld.
         upcoming_meeting:
           email_intro: Het "%{resource_title}"event start in minder dan 48 uur.
-          email_outro: Je ontvangt deze melding omdat je het event "%{resource_title}" volgt. Ontvolgen kan door te klikken op de voorgaande link.
+          email_outro: Je hebt deze melding ontvangen omdat je de vergadering "%{resource_title}" volgt. Je kan stoppen met deze te volgen via vorige link.
           email_subject: Het "%{resource_title}" event start in minder dan 48 uur.
           notification_title: Het <a href="%{resource_path}">%{resource_title}</a> event begint over minder dan 48 uur.
     gamification:
@@ -277,8 +277,6 @@ nl:
         registrations:
           edit:
             save: Opslaan
-            validate: bevestigen
-            validate_registration_code: Valideer de registratiecode
           form:
             available_slots_help: Laat het op 0 indien u onbeperkt beschikbare plaatsen hebt.
             invites: Uitnodigingen
@@ -293,9 +291,6 @@ nl:
           update:
             invalid: Er is een probleem opgetreden bij het opslaan van de registratie-instellingen.
             success: Instellingen bijeenkomst registraties succesvol opgeslagen.
-          validate_registration_code:
-            invalid: Deze registratiecode is ongeldig.
-            success: Registratiecode succesvol gevalideerd.
       admin_log:
         invite:
           create: "%{user_name} heeft %{attendee_name} uitgenodigd om deel te nemen aan %{resource_name} vergadering van %{space_name}"
@@ -531,7 +526,7 @@ nl:
       meetings:
         description: Aantal gemaakte vergaderingen
         object: vergaderingen
-        title: vergaderingen
+        title: event
     participatory_spaces:
       highlighted_meetings:
         past_meetings: Vorige events

@@ -2,6 +2,8 @@
 ca:
   activemodel:
     attributes:
+      answer:
+        add_documents: Afegir documents
       close_meeting:
         attendees_count: Nombre d'assistents
         attending_organizations: Llista d'organitzacions que han participat
@@ -212,7 +214,7 @@ ca:
           notification_title: La trobada <a href="%{resource_path}">%{resource_title}</a> ha obert les inscripcions.
         upcoming_meeting:
           email_intro: En menys de 48 hores començarà la trobada "%{resource_title}".
-          email_outro: Has rebut aquesta notificació perquè estàs seguint la trobada "%{resource_title}". Pots deixar-la de seguir des de l'enllaç anterior.
+          email_outro: Has rebut aquesta notificació perquè estàs seguint la trobada "%{resource_title}". Pots deixar de seguir-la des de l'enllaç anterior.
           email_subject: En menys de 48 hores s'iniciarà la trobada "%{resource_title}".
           notification_title: La trobada <a href="%{resource_path}">%{resource_title}</a> començarà en menys de 48 hores.
     forms:
@@ -223,7 +225,7 @@ ca:
         attended_meetings:
           conditions:
             - Inscriu-te a les trobades a les que vols assistir
-          description: Aquest distintiu s'aconsegueix assistint a diverses reunions presencials.
+          description: Aquesta ensenya s'aconsegueix assistint a diverses reunions presencials.
           description_another: Aquesta participant ha assistit a %{score} trobades.
           description_own: Has assistit a %{score} trobades.
           name: Trobades a les que has assistit
@@ -376,7 +378,7 @@ ca:
           edit:
             save: Desa
             validate: Validar
-            validate_registration_code: Valida el codi de registre
+            validate_registration_code: Valida el codi d'inscripció
           form:
             available_slots_help: Deixar a 0 si les inscripcions són il·limitades.
             invites: Invitacions
@@ -394,7 +396,7 @@ ca:
             success: La configuració de les inscripcions de la trobada s'ha desat correctament.
           validate_registration_code:
             invalid: Aquest codi de registre no és vàlid.
-            success: Codi de registre validat amb èxit.
+            success: Codi d'inscripció validat amb èxit.
       admin_log:
         invite:
           create: "%{user_name} ha convidat a %{attendee_name} a unir-se a la trobada %{resource_name} a l'espai %{space_name}"
@@ -601,7 +603,7 @@ ca:
         answers:
           index:
             administrate: Administrar
-            title: Consulta/Sondeig en directe
+            title: Sondeig
           index_admin:
             back_to_meeting: Tornar a la trobada
             title: Administrar consulta/sondeo en directe

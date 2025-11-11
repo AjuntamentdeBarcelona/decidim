@@ -21,7 +21,7 @@ sr:
         progress: Napredak
       timeline_entry:
         description: Opis
-        entry_date: Datum
+        title: Naslov
     models:
       decidim/accountability/proposal_linked_event: Predlog uključen u rezultat
       decidim/accountability/result_progress_updated_event: Rezultati napretka ažurirani
@@ -104,7 +104,7 @@ sr:
             progress: Napredak
         timeline_entry:
           fields:
-            entry_date: Datum
+            title: Naslov
       results:
         count:
           results_count:
@@ -113,6 +113,8 @@ sr:
             other: "%{count} rezultata"
         filters:
           all: Sve
+        home:
+          subcategories_label: Pod kategorije
         home_header:
           global_status: Sveopšte stanje izvršenja
         nav_breadcrumb:

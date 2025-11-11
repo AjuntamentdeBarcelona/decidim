@@ -23,6 +23,8 @@ lv:
         password_confirmation: Apstiprināt jūsu paroli
         personal_url: Personīgais URL
         remove_avatar: Noņemt avatāru
+      user_group:
+        avatar: Avatārs
     models:
       decidim/attachment_created_event: Pielikums
       decidim/component_published_event: Aktīvs komponents
@@ -319,6 +321,8 @@ lv:
         view_all: Skatīt visu
       metrics:
         name: Organizācijas rādītāji
+      participatory_space_metrics:
+        name: Rādītāji
       stats:
         name: Organizācijas statistika
       sub_hero:
@@ -576,7 +580,6 @@ lv:
       reject_invitation: Noraidīt
     group_members:
       actions:
-        are_you_sure: Vai esat pārliecināts?
         promote_to_admin: Padarīt par administratoru
         remove_from_group: Noņemt dalībnieku
       index:
@@ -696,11 +699,9 @@ lv:
       participants:
         description: Aktīvo dalībnieku skaits organizācijā
         object: dalībnieki
-        title: Dalībnieki
       users:
         description: Dalībnieku skaits organizācijā
         object: dalībnieki
-        title: Dalībnieki
     newsletter_mailer:
       newsletter:
         unsubscribe: Lai atteiktos no šāda veida e-pasta saņemšanas, <a href="%{link}" target="_blank" class="unsubscribe"> Anulēt abonementu</a>.
@@ -727,10 +728,8 @@ lv:
       unsubscribe:
         success: Jūsu abonements ir veiksmīgi anulēts.
         token_error: Saitei ir beidzies derīguma termiņš.
-        unsubscribe: Anulēt abonementu
     newsletters_opt_in_mailer:
       notify:
-        body_1: Personas datu apstrāde un to aizsardzība kļūst arvien nozīmīgāka mums visiem. Ievērojot jauno Vispārīgo datu aizsardzības regulu (VDAR) (2018. gada 25. maijs), indivīdi var efektīvāk kontrolēt savu personas datu izmantošanu. Šī iemesla dēļ mums ir nepieciešams jūsu „OK”, lai turpinātu sūtīt būtisku informāciju par %{organisation_name} darbībām.
         body_2: 'Kā jūs varat dot mums savu piekrišanu? Vienkārši noklikšķiniet uz šīs pogas:'
         body_3: Piekrītot jūs varēsiet turpināt saņemt informāciju par platformas pakalpojumiem. Pretējā gadījumā, ja mēs nesaņemsim no jums pozitīvu apstiprinājumu, mēs pārtrauksim jums sūtīt ziņas. Ja jūs apstiprināsiet, ka vēlaties saņemt informāciju, jums vienmēr būs iespēja šo piekrišanu atcelt jebkurā laikā.
         button: Jā, es vēlos turpināt saņemt būtisku informāciju
@@ -809,11 +808,6 @@ lv:
           manage_user_group_users: Pārvaldīt biedrus
           resend_email_confirmation_instructions: Atkārtoti e-pastā nosūtīt apstiprināšanas norādījumus
     reported_mailer:
-      hide:
-        hello: Sveiki, %{name}!
-        manage_moderations: Pārvaldiet moderāciju
-        report_html: <p> Šis <a href="%{url}"> saturs </a> ir paslēpts automātiski.</p>
-        subject: Vienums ir automātiski paslēpts
       report:
         hello: Sveiki, %{name}!
         report_html: <p> Par šo <a href="%{url}"> saturu </a> ir ziņots.</p>

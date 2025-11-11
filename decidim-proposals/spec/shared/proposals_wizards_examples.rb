@@ -44,7 +44,7 @@ shared_examples "proposals wizards" do |options|
 
       context "when the back button is clicked" do
         before do
-          click_on "Back"
+          click_on "Back to proposals"
         end
 
         it "redirects to proposals_path" do
@@ -118,12 +118,12 @@ shared_examples "proposals wizards" do |options|
 
         it "displays the attachments correctly" do
           within "#panel-images" do
-            expect(find("img")["alt"]).to eq(".jpg")
+            expect(find("img")["data-filename"]).to eq(".jpg")
           end
 
           click_on("trigger-documents")
           within "#panel-documents" do
-            expect(find("a.card__list-title")["innerHTML"]).to include("&lt;svg onload=alert('ALERT')&gt;.pdf")
+            expect(find(".card__list-title")["innerHTML"]).to include("&lt;svg onload=alert('ALERT')&gt;.pdf")
           end
         end
       end

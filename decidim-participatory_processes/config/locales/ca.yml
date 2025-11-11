@@ -7,6 +7,7 @@ ca:
         area_id: Àrea
         copy_categories: Copiar les categories
         copy_components: Copiar els components
+        copy_landing_page_blocks: Duplicar els blocs de contingut de la pàgina d'inici
         copy_steps: Copiar les fases
         decidim_area_id: Àrea
         description: Descripció
@@ -173,7 +174,7 @@ ca:
         new:
           copy: Còpia
           select: Selecciona quines dades vols duplicar
-          title: Duplica procés participatiu
+          title: Duplicar el procés participatiu
       participatory_process_groups:
         destroy:
           error: Hi ha hagut un error eliminant aquest grup de processos participatius.
@@ -286,7 +287,7 @@ ca:
           success: El procés participatiu s'ha actualitzat correctament.
       participatory_processes_copies:
         create:
-          error: S'ha produït un error en duplicar el procés participatiu.
+          error: S'ha produït un error en duplicar aquest procés participatiu.
           success: El procés participatiu ha estat duplicat correctament.
       participatory_processes_group:
         create:
@@ -311,6 +312,7 @@ ca:
         update: "%{user_name} ha actualitzat el procés participatiu %{resource_name}"
       participatory_process_group:
         create: "%{user_name} ha creat el grup de processos participatius %{resource_name}"
+        unpublish: "%{user_name} ha despublicat el grup de processos participatius: %{resource_name}"
         update: "%{user_name} ha actualitzat el grup de processos participatius %{resource_name}"
       participatory_process_step:
         activate: "%{user_name} ha activat la fase %{resource_name} en el procés participatiu %{space_name}"
@@ -387,6 +389,8 @@ ca:
           participatory_processes:
             one: Un procés
             other: "%{count} processos"
+      related_processes:
+        help: Tots els processos seleccionats seran assignats a aquest grup, incloent-hi els que ja estan assignats a altres grups.
       show:
         title: Grups de processos participatius
     participatory_process_steps:

@@ -25,6 +25,8 @@ zh-CN:
         password_confirmation: 确认您的密码
         personal_url: 个人网址
         remove_avatar: 删除头像
+      user_group:
+        avatar: 头像
     models:
       decidim/attachment_created_event: 附文
       decidim/component_published_event: 活动组件
@@ -316,6 +318,8 @@ zh-CN:
         view_all: 查看全部
       metrics:
         name: 组织指标
+      participatory_space_metrics:
+        name: 指标
       stats:
         name: 组织统计
       sub_hero:
@@ -584,7 +588,6 @@ zh-CN:
       reject_invitation: 拒绝
     group_members:
       actions:
-        are_you_sure: 您确定吗？
         promote_to_admin: 设为管理员
         remove_from_group: Remove participant
       index:
@@ -717,11 +720,9 @@ zh-CN:
       participants:
         description: 组织中的活跃参与者人数
         object: 参与者
-        title: 参加者
       users:
         description: 参加组织的人数
         object: 参与者
-        title: 参加者
     newsletter_mailer:
       newsletter:
         unsubscribe: 选择不接收这种类型的电子邮件， <a href="%{link}" target="_blank" class="unsubscribe">取消订阅</a>。
@@ -748,10 +749,8 @@ zh-CN:
       unsubscribe:
         success: 您已成功取消订阅。
         token_error: 链接已过期。
-        unsubscribe: 取消订阅
     newsletters_opt_in_mailer:
       notify:
-        body_1: 个人数据的处理和对数据的保护对我们大家都越来越重要。 根据2018年5月25日新的《一般数据保护条例》，个人可以更好地控制自己的个人数据。 为此原因，我们需要您的“确定”继续发送有关 %{organization_name} 活动的信息。
         body_2: '你如何能够给予我们同意？只需点击下面的按钮：'
         body_3: 如果您同意，您将能够继续接收有关平台服务的信息。 相反，如果我们没有得到你的肯定确认，我们将停止向你发送我们的信息。 如果您确认要随时收到通知，您将随时有取消的选项。
         button: 是的，我想继续收到相关信息
@@ -833,11 +832,6 @@ zh-CN:
           manage_user_group_users: 管理成员
           resend_email_confirmation_instructions: 重新发送电子邮件确认说明
     reported_mailer:
-      hide:
-        hello: 您好 %{name}，
-        manage_moderations: 管理版面
-        report_html: <p>以下 <a href="%{url}">内容</a> 已被自动隐藏。</p>
-        subject: 资源已自动隐藏
       report:
         authors: 作者
         content: 报告的内容

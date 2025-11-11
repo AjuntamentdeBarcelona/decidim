@@ -55,7 +55,7 @@ eu:
             export_response:
               title: survey_user_answers_%{token}
             index:
-              title: "Guztira, %{guztira} erantzun"
+              title: "Guztira, %{total} erantzun"
             show:
               title: '#%{number} erantzun'
           display_condition:
@@ -78,7 +78,7 @@ eu:
             select_condition_type: Hautatu baldintza mota bat
           edit:
             save: Gorde
-            title: Editatu galdetegia
+            title: Galdetegia editau
           form:
             add_question: Gehitu galdera
             add_separator: Gehitu banatzailea
@@ -101,26 +101,20 @@ eu:
             any: Edozein
             collapse: Bildu
             description: Deskribapena
-            down: Behera
             expand: Zabaldu
             question: Galdera
             remove: Kendu
             statement: Adierazpena
-            up: Gora
           separator:
-            down: Behera
             remove: Kendu
             separator: Bereizlea
-            up: Gora
           title_and_description:
             collapse: Kolapsoa
             description: Deskribapena
-            down: Behera
             expand: Zabaldu
             remove: Kendu
             title: Izenburua
             title_and_description: Izenburua eta deskribapena
-            up: Gora
           update:
             invalid: Arazo bat egon da inprimakia gordetzean.
             success: Galdetegia zuzen gorde da.
@@ -129,7 +123,7 @@ eu:
           update: "%{user_name} parte-hartzaileak %{resource_name} galdetegia eguneratu du"
       errors:
         answer:
-          body: Gorputza ezin da hutsik egon
+          body: Testua ezin da hutsik egon
       images:
         dimensions: "%{width} x %{height} px"
         processors:

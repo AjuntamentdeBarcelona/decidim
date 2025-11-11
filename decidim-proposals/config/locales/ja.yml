@@ -12,6 +12,8 @@ ja:
         state: 状態
         title: タイトル
         user_group_id: 共同草案として作成します
+      import_participatory_text:
+        document: ドキュメント
       proposal:
         address: 住所
         answer: 回答
@@ -22,6 +24,8 @@ ja:
         decidim_proposals_proposal_state_id: 状態
         decidim_scope_id: スコープ
         has_address: 住所有り
+        latitude: 緯度
+        longitude: 経度
         scope_id: 対象範囲
         state: 状態
         suggested_hashtags: 推奨ハッシュタグ
@@ -48,6 +52,8 @@ ja:
       proposals_copy:
         copy_proposals: この操作は選択したコンポーネントにあるすべての提案を現在のコンポーネントにインポートし、元に戻せないことを理解しています。
         origin_component_id: 提案をコピーするコンポーネント
+      proposals_file_import:
+        file: ファイル
       proposals_import:
         import_proposals: 提案をインポート
         keep_answers: ステータスと回答を保持
@@ -373,7 +379,6 @@ ja:
         title: 投票
     participatory_spaces:
       highlighted_proposals:
-        last: 最近の提案
         see_all: すべての提案を見る
     proposals:
       actions:
@@ -518,6 +523,7 @@ ja:
           index:
             actions: アクション
             assign_to_valuator: 評価者に割り当てる
+            assign_to_valuator_button: 割り当て
             cancel: キャンセル
             change_category: カテゴリの変更
             change_scope: スコープの変更
@@ -533,6 +539,7 @@ ja:
             statuses: ステータス
             title: 提案
             unassign_from_valuator: 評価者からの割り当てを解除
+            unassign_from_valuator_button: 割り当ての解除
             update: 更新
             update_scope_button: スコープの更新
           new:
@@ -551,7 +558,7 @@ ja:
             endorsers: オススメしている人
             link: 提案を見る
             n_more_endorsers:
-              other: 他 %{count} 名
+              other: 他%{count}件
             photos: 写真
             ranking: "%{ranking} / %{total}"
             related_meetings: 関連するミーティング
@@ -809,6 +816,7 @@ ja:
           text_banner: 提案者が撤回した提案の一覧を表示しています。 %{go_back_link}.
         new:
           send: 続ける
+          title: 新しい提案を作成
         orders:
           label: '提案の並び順：'
           most_commented: コメントの多い順

@@ -12,6 +12,8 @@ ca:
         state: Estat
         title: Títol
         user_group_id: Crea un esborrany col·laboratiu com a
+      import_participatory_text:
+        document: Document
       proposal:
         address: Adreça
         answer: Respondre
@@ -22,6 +24,8 @@ ca:
         decidim_proposals_proposal_state_id: Estat
         decidim_scope_id: Àmbit
         has_address: Té adreça
+        latitude: Latitud
+        longitude: Longitud
         scope_id: Àmbit
         state: Estat
         suggested_hashtags: Hashtags suggerits
@@ -48,6 +52,8 @@ ca:
       proposals_copy:
         copy_proposals: Entenc que això importarà totes les propostes del component seleccionat a l'actual i que aquesta acció no es pot desfer.
         origin_component_id: Component des d'on importar les propostes
+      proposals_file_import:
+        file: Arxiu
       proposals_import:
         import_proposals: Importar propostes
         keep_answers: Manté l'estat i les respostes
@@ -329,7 +335,7 @@ ca:
           conditions:
             - Tria l'espai de participació del teu interès amb la creació de propostes activada
             - Intenta fer propostes que es puguin dur a terme. D'aquesta manera és més probable que s'acceptin.
-          description: Aquest distintiu es concedeix quan participes activament amb noves propostes i aquestes són acceptades.
+          description: Aquesta ensenya es concedeix quan participes activament amb noves propostes i aquestes són acceptades.
           description_another: Aquesta participant ha aconseguit %{score} propostes acceptades.
           description_own: '%{score} de les teves propostes han estat acceptades.'
           name: Propostes acceptades
@@ -351,7 +357,7 @@ ca:
           conditions:
             - Tria un espai de participació amb la creació de propostes habilitada que sigui del teu interès
             - Crea una proposta nova
-          description: Aquest distintiu es concedeix quan participes activament amb noves propostes.
+          description: Aquesta ensenya es concedeix quan participes activament amb noves propostes.
           description_another: Aquesta participant ha creat %{score} propostes.
           description_own: Has creat %{score} propostes.
           name: Propostes
@@ -377,7 +383,6 @@ ca:
         title: Suports
     participatory_spaces:
       highlighted_proposals:
-        last: Propostes més recents
         see_all: Veure totes les propostes
     proposals:
       actions:

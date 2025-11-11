@@ -7,7 +7,7 @@ ca:
         answer_url: URL de la resposta
         area_id: Àrea
         decidim_scope_id: Àmbit
-        decidim_user_group_id: Autoria
+        decidim_user_group_id: Autora
         description: Descripció
         hashtag: Etiqueta (hashtag)
         offline_votes: Signatures presencials
@@ -193,7 +193,7 @@ ca:
           conditions:
             - Anar a l'espai d'Iniciatives
             - Segueix les passes per crear una nova iniciativa
-          description: Aquest distintiu es concedeix quan promous noves iniciatives, unint-te amb altres per dur-les a terme.
+          description: Aquesta ensenya es concedeix quan promous noves iniciatives, unint-te amb altres per dur-les a terme.
           description_another: Aquesta participant ha publicat %{score} iniciatives.
           description_own: Tens %{score} iniciatives publicades.
           name: Iniciatives publicades

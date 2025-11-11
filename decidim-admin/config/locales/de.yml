@@ -53,6 +53,7 @@ de:
         customize_welcome_notification: Willkommens-Benachrichtigung anpassen
         default_locale: Standardgebietsschema
         description: Beschreibung
+        enable_machine_translations: Maschinelle Übersetzungen aktivieren
         enable_omnipresent_banner: Zeige allgegenwärtiges Banner
         enable_participatory_space_filters: Bereichs- und Gebietsfilter aktivieren
         facebook_handler: Facebook-Handler
@@ -78,8 +79,8 @@ de:
         machine_translation_display_priority_original: Originaltext zuerst
         machine_translation_display_priority_translation: Übersetzter Text zuerst
         name: Name
-        official_img_footer: Offizielles Logo Fußzeile
-        official_url: Offizielle Organisations-URL
+        official_img_footer: Offizielles Footer-Logo
+        official_url: Offizielle URL der Organisation
         omnipresent_banner_short_description: Kurze Beschreibung
         omnipresent_banner_title: Titel
         omnipresent_banner_url: URL
@@ -106,6 +107,8 @@ de:
       participatory_space_private_user:
         email: E-Mail
         name: Name
+      participatory_space_private_user_csv_import:
+        file: Datei
       scope:
         code: Code
         name: Name
@@ -517,7 +520,7 @@ de:
         and: und
         data_errors:
           duplicate_headers:
-            detail: Bitte überprüfen Sie, dass die Datei benötigte Spalten oder Kopfzeilen nur einmal enthält.
+            detail: Bitte überprüfen Sie, dass die Datei die benötigten Spalten oder Kopfzeilen nur einmal enthält.
             message:
               one: Spalte %{columns} duplizieren.
               other: Spalten %{columns} duplizieren.
@@ -721,6 +724,11 @@ de:
             report_language: Berichtssprache
             report_reason: Grund
             title: Berichtdetails
+      new_import:
+        accepted_mime_types:
+          csv: CSV
+          json: JSON
+          xlsx: XLSX
       newsletter_templates:
         index:
           preview_template: Vorschau
@@ -769,7 +777,7 @@ de:
           recipients_count: Dieser Newsletter wird an <strong id='recipients_count'>%{count}</strong> Teilnehmer gesendet.
           scopes_help: Sendet den Newsletter an Teilnehmer, die einen der gewählten Themenbereiche in den "Meine Interessen" Einstellungen ihres Kontos aktiviert haben.
           select_scopes: Nur Teilnehmer anzeigen, die einen der gewählten Themenbereiche in Ihren "Meine Interessen" Einstellungen ihres Kontos aktiviert haben.
-          select_spaces: Wählen Sie Abschnitte, um den Newsletter zu unterteilen
+          select_spaces: Bereiche zum Segmentieren des Newsletters auswählen
           select_users: Wählen Sie aus, welchen Benutzern Sie den Newsletter senden möchten
           title: Empfänger auswählen
           warning: "<strong>Achtung:</strong> Dieser Newsletter wird nur an Benutzer gesendet, die <em>Ich möchte Newsletter empfangen</em> in ihren Benachrichtigungseinstellungen aktiviert haben."
@@ -807,7 +815,7 @@ de:
           reports: Berichte
           show_email: E-Mail-Adresse anzeigen
           status: Status
-          unblock: Blockierung des Users aufheben
+          unblock: Blockierung des Benutzers aufheben
           unofficialize: Nicht offiziell
         new:
           badge: Offizielles Abzeichen
@@ -860,7 +868,7 @@ de:
           homepage_appearance_title: Homepage-Erscheinungsbild bearbeiten
           homepage_highlighted_content_banner_title: Highlighted Inhaltsbanner
           images:
-            layout_appearance_title: Layout-Layout bearbeiten
+            layout_appearance_title: Layout-Aussehen bearbeiten
             preview: Vorschau
           omnipresent_banner_appearance_title: Bearbeiten Sie das allgegenwärtige Banner
       organization_external_domain_allowlist:
@@ -877,7 +885,7 @@ de:
       participatory_space_private_users:
         create:
           error: Beim Hinzufügen eines privaten Benutzers für diesen partizipativen Bereich ist ein Fehler aufgetreten.
-          success: Participatory Space Privater Benutzerzugriff erfolgreich erstellt.
+          success: Ein privater Zugriff für diesen Beteiligungsbereich wurde erfolgreich für das Konto erstellt.
         destroy:
           error: Beim Löschen eines privaten Benutzers für diesen partizipativen Bereich ist ein Fehler aufgetreten.
           success: Privater Zugriff zum partizipativen Raum erfolgreich gelöscht.
@@ -1110,6 +1118,7 @@ de:
         hidden: Versteckt
         hide: verbergen
         not_hidden: Nicht versteckt
+        parent_hidden: Sie können diese Ressource nicht anzeigen, da die übergeordnete Ressource ausgeblendet ist.
         title: Aktionen
         unhide: Einblenden
         unreport: Nicht melden
@@ -1120,6 +1129,7 @@ de:
             success: Ressource erfolgreich ausgeblendet
           unhide:
             invalid: Es gab ein Problem beim Verstecken der Ressource.
+            parent_invalid: Es gab ein Problem beim Anzeigen der Ressource. Übergeordnete Ressource ist nicht sichtbar.
             success: Ressource erfolgreich ausgeblendet.
           unreport:
             invalid: Es ist ein Problem aufgetreten, die Ressource nicht zu melden.

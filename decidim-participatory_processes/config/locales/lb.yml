@@ -104,6 +104,7 @@ lb:
           attachments: Unhäng
           categories: Kategorien
           components: Komponenten
+          landing_page: Startseite
           moderations: Moderationen
           private_users: Private Benutzer
           process_admins: Benutzer verarbeiten
@@ -148,8 +149,6 @@ lb:
       participatory_process_copies:
         new:
           copy: Kopieren
-          select: Wählen Sie aus, welche Daten Sie duplizieren möchten
-          title: Beteiligungsprozess duplizieren
       participatory_process_groups:
         destroy:
           error: Beim Löschen der Beteiligungsprozessgruppe ist ein Fehler aufgetreten.

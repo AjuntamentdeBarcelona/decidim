@@ -253,6 +253,8 @@ id:
         view_all: Lihat semua
       metrics:
         name: Metrik organisasi
+      participatory_space_metrics:
+        name: Partisipasi dalam angka
       stats:
         name: Statistik organisasi
       sub_hero:
@@ -486,7 +488,6 @@ id:
       reject_invitation: Menolak
     group_members:
       actions:
-        are_you_sure: Apakah kamu yakin?
         promote_to_admin: Membuat admin
         remove_from_group: Hapus pengguna
       index:
@@ -584,11 +585,9 @@ id:
       participants:
         description: Jumlah pengguna aktif dalam organisasi
         object: peserta
-        title: Peserta
       users:
         description: Jumlah pengguna dalam organisasi
         object: pengguna
-        title: Pengguna
     newsletter_mailer:
       newsletter:
         unsubscribe: Untuk memilih tidak menerima jenis email ini, <a href="%{link}" target="_blank" class="unsubscribe">Berhenti Berlangganan</a>.
@@ -596,10 +595,8 @@ id:
       unsubscribe:
         success: Anda berhasil berhenti berlangganan.
         token_error: Tautan telah kedaluwarsa.
-        unsubscribe: Berhenti berlangganan
     newsletters_opt_in_mailer:
       notify:
-        body_1: Pengolahan data pribadi dan perlindungannya menjadi semakin penting bagi kita semua. Dengan Peraturan Perlindungan Data Umum yang baru (GDPR) 25 Mei 2018, individu memiliki kontrol yang lebih baik atas data pribadi mereka. Untuk alasan ini kami memerlukan "OK" Anda untuk terus mengirim informasi yang relevan tentang kegiatan %{organization_name}.
         body_2: 'Bagaimana Anda bisa memberi kami persetujuan Anda? Cukup klik tombol berikut:'
         body_3: Dengan persetujuan ini Anda akan dapat terus menerima informasi tentang layanan platform. Jika, sebaliknya, kami tidak menerima konfirmasi positif dari pihak Anda, kami akan berhenti mengirimi Anda pesan kami. Jika Anda mengonfirmasi bahwa Anda ingin terus mendapat informasi, Anda akan selalu memiliki opsi untuk membatalkan kapan saja.
         button: Ya, saya ingin terus menerima informasi yang relevan
@@ -678,11 +675,6 @@ id:
           manage_user_group_users: Kelola anggota
           resend_email_confirmation_instructions: Kirim ulang instruksi konfirmasi email
     reported_mailer:
-      hide:
-        hello: Halo %{name},
-        manage_moderations: Kelola moderasi
-        report_html: <p>berikut <a href="%{url}">konten</a> telah disembunyikan secara otomatis.</p>
-        subject: Sumber daya telah disembunyikan secara otomatis
       report:
         hello: Halo %{name},
         report_html: <p> <a href="%{url}">konten</a> berikut telah dilaporkan.</p>

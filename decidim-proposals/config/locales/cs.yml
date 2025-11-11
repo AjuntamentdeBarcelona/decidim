@@ -12,6 +12,8 @@ cs:
         state: Stav
         title: Titul
         user_group_id: Vytvořit návrh spolupráce jako
+      import_participatory_text:
+        document: Dokument
       proposal:
         address: Adresa
         answer: Odpovědět
@@ -22,6 +24,8 @@ cs:
         decidim_proposals_proposal_state_id: Stav
         decidim_scope_id: Rozsah
         has_address: Má adresu
+        latitude: Zeměpisná šířka
+        longitude: Zeměpisná délka
         scope_id: Oblast působnosti
         state: Stav
         suggested_hashtags: Navrhované hashtagy
@@ -48,6 +52,8 @@ cs:
       proposals_copy:
         copy_proposals: Rozumím, že tento krok naimportuje všechny návrhy z vybraného prvku do toho současného a že tuto akci nelze vrátit zpět.
         origin_component_id: Komponenta pro kopírování návrhů z
+      proposals_file_import:
+        file: Soubor
       proposals_import:
         import_proposals: Návrhy na dovoz
         keep_answers: Zachovat stav a odpovědi
@@ -385,7 +391,6 @@ cs:
         title: Hlasy
     participatory_spaces:
       highlighted_proposals:
-        last: Poslední návrhy
         see_all: Zobrazit všechny
     proposals:
       actions:
@@ -533,6 +538,7 @@ cs:
           index:
             actions: Akce
             assign_to_valuator: Přiřadit hodnotiteli
+            assign_to_valuator_button: Přiřadit
             cancel: Zrušit
             change_category: Změnit kategorii
             change_scope: Změnit rozsah
@@ -548,6 +554,7 @@ cs:
             statuses: Statusy
             title: Návrhy
             unassign_from_valuator: Odebrat přiřazení od hodnotitele
+            unassign_from_valuator_button: Zrušit přiřazení
             update: Aktualizace
             update_scope_button: Aktualizovat rozsah
           new:
@@ -565,11 +572,6 @@ cs:
             endorsements_count: Počet schvalování
             endorsers: Schvalující
             link: Zobrazit návrh
-            n_more_endorsers:
-              one: a další 1
-              few: a %{count} dalších
-              many: a %{count} dalších
-              other: a dalších %{count}
             photos: Fotky
             ranking: "%{ranking} z %{total}"
             related_meetings: Související schůzky
@@ -836,6 +838,7 @@ cs:
           text_banner: Zobrazujete seznam návrhů stažených jejich autory. %{go_back_link}.
         new:
           send: Pokračovat
+          title: Vytvořit nový návrh
         orders:
           label: 'Seřadit návrhy podle:'
           most_commented: Nejvíce komentované

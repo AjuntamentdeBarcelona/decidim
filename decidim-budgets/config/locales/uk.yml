@@ -26,6 +26,8 @@ uk:
         title: Дії
       admin:
         models:
+          budget:
+            name: Бюджет
           project:
             name: Проект
         projects:
@@ -99,5 +101,7 @@ uk:
             show_votes: Показати голоси
             votes_choices:
               enabled: Голосування увімкнене
+    statistics:
+      projects_count: Проекти
   index:
     confirmed_orders_count: Кількість голосів

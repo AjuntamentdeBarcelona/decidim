@@ -761,7 +761,7 @@ ro:
         index:
           actions: Acțiuni
           badge: Insignă
-          block: Blochează utilizator
+          block: Blochează utilizatorul
           created_at: Creat la
           name: Nume
           nickname: Pseudonim
@@ -807,9 +807,6 @@ ro:
         edit:
           update: Actualizează
         form:
-          colors:
-            colors_title: Culorile organizației
-            colors_warning_html: Atenție! Schimbarea acestor culori poate distruge contrastele de accesibilitate. Poți verifica contrastul alegerii tale cu <a href="%{link}">WebAIM Contrast Checker</a> sau alte unelte similare.
           cta_button_text_help: Poți înlocui textul butonului Apel la acțiune de pe pagina principală pentru fiecare limbă disponibilă în organizația ta. În cazul în care nu există alte limbi setate, se utilizează valoarea implicită. Butonul „Apel la acțiune” este afișat pe pagina principală, între textul de întâmpinare și descriere.
           homepage_appearance_title: Editează aspectul paginii principale
           homepage_highlighted_content_banner_title: Banner pentru conținut evidențiat
@@ -1040,6 +1037,7 @@ ro:
         hidden: Ascuns
         hide: Ascunde
         not_hidden: Neascuns
+        parent_hidden: Nu puteți afișa această resursă deoarece părintele său este încă ascuns.
         title: Acțiuni
         unhide: Anulează ascunderea
         unreport: Anulează raportarea
@@ -1050,6 +1048,7 @@ ro:
             success: Resursa a fost ascunsă cu succes.
           unhide:
             invalid: A apărut o problemă la anularea ascunderii resursei.
+            parent_invalid: A apărut o problemă la afișarea resursei. Părintele nu este vizibil.
             success: Anularea ascunderii resursei a fost realizată cu succes.
           unreport:
             invalid: A apărut o problemă la anularea raportării resursei.

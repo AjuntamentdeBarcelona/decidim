@@ -69,6 +69,8 @@ eu:
         email: Helbide elektronikoa
         name: Izena
         role: Rola
+      partner:
+        logo: Logoa
     errors:
       models:
         conference_registration_invite:
@@ -101,7 +103,7 @@ eu:
         new:
           copy: Kopiatu
           select: Hautatu zein datu bikoiztu nahi dituzun
-          title: Bikoiztu jardunaldia
+          title: Jardunaldia bikoiztu
       conference_publications:
         create:
           error: Arazo bat egon da jardunaldi hau argitaratzean.
@@ -175,7 +177,7 @@ eu:
       conferences_copies:
         create:
           error: Arazo bat egon da jardunaldi hau bikoiztean.
-          success: Jardunaldia zuzen eguneratua.
+          success: Jardunaldia zuzen bikoiztua.
       media_links:
         create:
           error: Arazo bat egon da beste komunikazio-esteka bat sortzean.
@@ -342,7 +344,7 @@ eu:
       admin:
         conference_copies:
           form:
-            slug_help_html: 'URL slugak erabiltzen dira jardunaldi honetako URLak sortzeko. Soilik onartzen ditu gutunak, zenbakiak eta gidoiak, eta letra batez hasi behar du. Adibidea: % {url}'
+            slug_help_html: 'URL slugak erabiltzen dira jardunaldi honetako URLak sortzeko. Soilik onartzen ditu gutunak, zenbakiak eta gidoiak, eta letra batez hasi behar du. Adibidea: %{url}'
         conference_invites:
           create:
             error: Arazo bat izan da parte-hartzaileak konferentziara sartzeko gonbidatuta.
@@ -377,7 +379,7 @@ eu:
             registrations_count:
               one: Izen-emate 1 egon da.
               other: Dena den, %{count} izen-emateak.
-            slug_help_html: 'URL slugak erabiltzen dira jardunaldi honetako URLak sortzeko. Soilik onartzen ditu gutunak, zenbakiak eta gidoiak, eta letra batez hasi behar du. Adibidea: % {url}'
+            slug_help_html: 'URL slugak erabiltzen dira jardunaldi honetako URLak sortzeko. Soilik onartzen ditu gutunak, zenbakiak eta gidoiak, eta letra batez hasi behar du. Adibidea: %{url}'
         content_blocks:
           highlighted_conferences:
             max_results: Erakusteko gehieneko elementu kopurua
@@ -387,10 +389,10 @@ eu:
             title: Parte-hartze ziurtagiria
         invite_join_conference_mailer:
           invite:
-            decline: Baztertu gonbidapena '%{conference_title}'
+            decline: '''%{conference_title}''rako gonbita ez onartu'
             invited_existing_user_to_join_a_conference: "%{invited_by} k zu gonbidatu zaitu %{application} jardunaldira. Beheko esteken bidez baztertu edo onartu dezakezu."
             invited_user_to_join_a_conference: "%{invited_by} k zu gonbidatu zaitu %{application} jardunaldira. Beheko estekan onartu dezakezu."
-            registration: '''%{conference_title}'' izen-ematea'
+            registration: '''%{conference_title}'' jardinalirako izen-ematea'
         partners:
           index:
             title: Kideak
@@ -401,21 +403,21 @@ eu:
             title: Izen-emate motak
         send_conference_diploma_mailer:
           diploma:
-            diploma_html: < a href = " % {url}" >% {title} jardunaldira joan izanaren ziurtagiria aurkituko duzu eranskinetan.
+            diploma_html: < a href = " %{url}" >%{title} jardunaldira joan izanaren ziurtagiria aurkituko duzu eranskinetan.
           diploma_user:
             attendance_verified_by: Bertaratzea nork egiaztatua
             certificate_of_attendance: Parte-hartze ziurtagiria
             certificate_of_attendance_description: Honek ziurtatzen du <strong>%{user}</strong> bertaratu dela eta hartu parte duela <strong>%{title}</strong> etan ospatua <strong>%{location}</strong> an <strong>%{start} - %{end}</strong>
         send_diploma:
           error: Arazo bat egon da jardunaldiaren bertaratze-agiriak bidaltzean.
-          success: Jardunaldirako ziurtagiriak zuzen bidali behar dira
+          success: Jardunaldirako asistentzia-ziurtagiriak behar bezala bidali dira
       conference:
         registration_confirm:
           cancel: Utzi
           confirm: Berretsi
         show:
           going: Joango naiz
-          no_slots_available: Ez dago slotarik erabilgarri
+          no_slots_available: Ez dago plazarik
           registration: Izen-ematea
       conference_program:
         show:
@@ -427,7 +429,7 @@ eu:
           details_2: Jardunaldiaren xehetasunak eranskinean aurkituko dituzu.
         pending_validation:
           confirmation_pending: Berrespena jasoko duzu laster
-          details: 'To You erregistratu %{registration_type} motako kostua batekin %{price} eta ondorengo gertaerak joateko daiteke:'
+          details: '%{registration_type} motako %{price} tasan erregistratu zara, eta gertaera hauei erantzun diezaiekezu:'
           pending_html: <a href="%{url}">%{title}</a> jardunaldirako zure izen-ematea zain dago berresteko.
       conference_registrations:
         create:
@@ -437,7 +439,7 @@ eu:
         decline_invitation:
           invalid: Arazo bat egon da gonbidapena ez onartzean.
           success: Gonbidapena ongi egin du.
-          unauthorized: Gonbidapenari uko egin aurretik hasi behar duzu saioa.
+          unauthorized: Saioa hasi behar duzu gonbidapenari uko egin aurretik.
         destroy:
           invalid: Arazo bat egon da jardunaldi hau uztean.
           success: Jardunaldia behar bezala utzi duzu.
@@ -491,10 +493,10 @@ eu:
       models:
         conference_invite:
           fields:
-            email: Helbide elektronkoa
+            email: Helbide elektronikoa
             name: izena
             registration_type: Izen-emate mota
-            sent_at: Bidalitakoan
+            sent_at: Bidalita
             status: Egoera
           status:
             accepted: Onartuta (%{at})
@@ -507,7 +509,7 @@ eu:
             registration_type: Izen-emate mota
             state: Estatu
             states:
-              confirmed: baieztatu
+              confirmed: Baieztatua
               pending: Zain
       pages:
         home:
@@ -535,8 +537,8 @@ eu:
         conference_registrations_over_percentage:
           email_intro: '"%{resource_title}" jardunaldiak okupatutako slotak %{percentage}% baino gehiago dira.'
           email_outro: Jakinarazpen hau jaso duzu, jardunaldiko parte hartzaileen espazioa delako.
-          email_subject: '"%{resource_title}" jardunaldiak okupatutako slotak %{percentage}% baino gehiago dira'
-          notification_title: <a href="%{resource_path}">%{resource_title}</a> jardunaldiak okupatutako slot-ak %{percentage}% baino gehiago dira.
+          email_subject: '"%{resource_title}" jardunaldian erreserbatutako plazak %{percentage}% baino gehiago dira'
+          notification_title: <a href="%{resource_path}">%{resource_title}</a> jardunaldian erreserbatutako plazak %{percentage}% baino gehiago dira.
         conference_updated:
           email_intro: '"%{resource_title}" jardunaldia eguneratu da. Bertsio berria irakur dezakezu bere orritik:'
           email_outro: Jakinarazpen hau jaso duzu "%{resource_title}" jardunaldia jarraitzen ari zarelako. "Ez jarraitu aurreko estekatik".

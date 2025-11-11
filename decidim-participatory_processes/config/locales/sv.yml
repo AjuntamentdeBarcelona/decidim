@@ -7,6 +7,7 @@ sv:
         area_id: Område
         copy_categories: Kopiera kategorier
         copy_components: Kopiera komponenter
+        copy_landing_page_blocks: Kopiera elementen från landningssidan
         copy_steps: Kopiera steg
         decidim_area_id: Område
         description: Beskrivning
@@ -54,7 +55,7 @@ sv:
         target: Vem deltar
         title: Titel
       participatory_process_step:
-        cta_path: Sökväg för knapp
+        cta_path: Knappens länk
         cta_text: Text till knapp
         description: Beskrivning
         end_date: Slutdatum
@@ -172,8 +173,8 @@ sv:
       participatory_process_copies:
         new:
           copy: Kopiera
-          select: Välj vilka data som du vill duplicera
-          title: Duplicera process
+          select: Välj vilken data du vill duplicera
+          title: Duplicera deltagarprocess
       participatory_process_groups:
         destroy:
           error: Det gick inte att radera dialoggruppen.
@@ -286,8 +287,8 @@ sv:
           success: Processen har uppdaterats.
       participatory_processes_copies:
         create:
-          error: Det gick inte att duplicera processen.
-          success: Processen har duplicerats.
+          error: Det gick inte att duplicera deltagarprocessen.
+          success: Deltagandeprocessen har duplicerats.
       participatory_processes_group:
         create:
           error: Det gick inte att skapa en ny grupp för processer.
@@ -311,6 +312,7 @@ sv:
         update: "%{user_name} uppdaterade deltagandeprocessen %{resource_name}"
       participatory_process_group:
         create: "%{user_name} skapade gruppen %{resource_name}"
+        unpublish: "%{user_name} avpublicerade gruppen av deltagandeprocesser %{resource_name}"
         update: "%{user_name} uppdaterade gruppen %{resource_name}"
       participatory_process_step:
         activate: "%{user_name} aktiverade steget %{resource_name} i processen %{space_name}"

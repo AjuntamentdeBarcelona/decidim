@@ -318,9 +318,10 @@ lt:
         description: Pasiūlymų skaičius
         object: pasiūlymai
         title: Pasiūlymai
+      votes:
+        title: Balsai
     participatory_spaces:
       highlighted_proposals:
-        last: Paskutiniai pasiūlymai
         see_all: Žiūrėti visus pasiūlymus
     proposals:
       actions:
@@ -464,11 +465,6 @@ lt:
             documents: Dokumentai
             endorsements_count: Palaikymų skaičius
             endorsers: Pritariantieji
-            n_more_endorsers:
-              one: ir dar vienas
-              few: ir dar %{count}
-              many: ir dar %{count} daugiau
-              other: ir dar %{count} daugiau
             photos: Nuotraukos
             ranking: "%{ranking} iš %{total}"
             related_meetings: Susiję susitikimai

@@ -53,6 +53,7 @@ en:
         customize_welcome_notification: Customize welcome notification
         default_locale: Default locale
         description: Description
+        enable_machine_translations: Enable machine translations
         enable_omnipresent_banner: Show omnipresent banner
         enable_participatory_space_filters: Enable participatory space filters
         facebook_handler: Facebook handler
@@ -106,6 +107,8 @@ en:
       participatory_space_private_user:
         email: Email
         name: Name
+      participatory_space_private_user_csv_import:
+        file: File
       scope:
         code: Code
         name: Name
@@ -721,6 +724,11 @@ en:
             report_language: Report language
             report_reason: Reason
             title: Report details
+      new_import:
+        accepted_mime_types:
+          csv: CSV
+          json: JSON
+          xlsx: XLSX
       newsletter_templates:
         index:
           preview_template: Preview
@@ -1112,6 +1120,7 @@ en:
         hidden: Hidden
         hide: Hide
         not_hidden: Not hidden
+        parent_hidden: You cannot unhide this resource because its parent is still hidden.
         title: Actions
         unhide: Unhide
         unreport: Unreport
@@ -1122,6 +1131,7 @@ en:
             success: Resource successfully hidden.
           unhide:
             invalid: There was a problem unhiding the resource.
+            parent_invalid: There was a problem unhiding the resource. Parent is not visible.
             success: Resource successfully unhidden.
           unreport:
             invalid: There was a problem unreporting the resource.

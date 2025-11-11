@@ -7,6 +7,7 @@ cs:
         area_id: Oblast
         copy_categories: Kopírovat kategorie
         copy_components: Kopírování komponent
+        copy_landing_page_blocks: Duplikovat bloky vstupní strany
         copy_steps: Kopírování kroků
         decidim_area_id: Oblast
         description: Popis
@@ -179,7 +180,7 @@ cs:
         new:
           copy: Kopírovat
           select: Vyberte, která data chcete duplikovat
-          title: Duplicitní participační proces
+          title: Duplikovat participativní proces
       participatory_process_groups:
         destroy:
           error: Došlo k chybě při zrušení skupiny účastnických procesů.
@@ -293,8 +294,8 @@ cs:
           success: Participační proces byl úspěšně aktualizován.
       participatory_processes_copies:
         create:
-          error: Při kopírování tohoto participačního procesu došlo k chybě.
-          success: Účastnící proces byl úspěšně zdvojen.
+          error: Při duplikaci tohoto participativního procesu došlo k problému.
+          success: Participativní proces byl úspěšně duplikován.
       participatory_processes_group:
         create:
           error: Došlo k chybě při vytváření nové skupiny účastnických procesů.
@@ -318,6 +319,7 @@ cs:
         update: "%{user_name} aktualizoval %{resource_name} participační proces"
       participatory_process_group:
         create: "%{user_name} vytvořil skupinu %{resource_name} na participační proces"
+        unpublish: "%{user_name} zrušil publikaci účastníků %{resource_name} participačního procesu"
         update: "%{user_name} aktualizoval skupinu %{resource_name} na participační proces"
       participatory_process_step:
         activate: "%{user_name} aktivoval %{resource_name} krok %{space_name} participaci"
@@ -396,6 +398,8 @@ cs:
             few: "%{count} procesy"
             many: "%{count} procesů"
             other: "%{count} procesy"
+      related_processes:
+        help: Všechny vybrané procesy budou přiřazeny k této skupině, včetně těch, které jsou již přiřazeny do jiných skupin.
       show:
         title: Skupiny účastnických procesů
     participatory_process_steps:

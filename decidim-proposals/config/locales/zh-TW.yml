@@ -303,6 +303,8 @@ zh-TW:
         description: 提案總數
         object: 提案
         title: 提案
+      votes:
+        title: 投票
     participatory_spaces:
       highlighted_proposals:
         see_all: 檢視所有提案
@@ -443,8 +445,6 @@ zh-TW:
             documents: 文件
             endorsements_count: 連署人數
             endorsers: 贊助人
-            n_more_endorsers:
-              other: 還有 %{count} 位
             photos: 圖片
             ranking: "%{total} 的%{ranking}"
             related_meetings: 相關會議

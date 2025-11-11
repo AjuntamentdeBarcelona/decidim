@@ -4,10 +4,19 @@ en:
     attributes:
       account:
         delete_reason: Reason to delete your account
+      attachment:
+        documents: Documents
+        image: Image
+        photos: Photos
       common:
         created_at: Created at
+      content_block_attachment:
+        background_image: Background image
+        main_image: Main image
       conversation:
         body: Body
+      editor_image:
+        file: File
       group:
         about: About
         avatar: Avatar
@@ -16,12 +25,15 @@ en:
         name: Name
         nickname: Nickname
         phone: Phone
+      import:
+        file: File
       message:
         body: Body
       report:
         details: Additional comments
       user:
         about: About
+        avatar: Avatar
         email: Your email
         encrypted_password: Password
         locale: Locale
@@ -33,6 +45,14 @@ en:
         personal_url: Personal URL
         remove_avatar: Remove avatar
         tos_agreement: Terms of service agreement
+      user_group:
+        avatar: Avatar
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              format: The nickname must be lowercase and contain no spaces
     models:
       decidim/attachment_created_event: Attachment
       decidim/component_published_event: Active component
@@ -140,12 +160,20 @@ en:
       x_seconds:
         one: 1 second
         other: "%{count} seconds"
+    widget:
+      label:
+        date: Select date for %{label}
+        time: Select time for %{label}
+      picker:
+        date_button: Open calendar picker for %{label}
+        time_button: Open time picker for %{label}
   decidim:
     accessibility:
       external_link: External link
       front_page_link: Go to front page
       logo: "%{organization}'s official logo"
       opens_in_new_tab: Opens in new tab
+      secondary_menu: Secondary menu
       skip_button: Skip to main content
     account:
       blocked: This account has been blocked due to terms of service violation
@@ -755,6 +783,11 @@ en:
             email_outro: You have received this notification because you are following %{amendable_title}. You can stop receiving notifications following the previous link.
             email_subject: Amendment rejected for %{amendable_title} from %{emendation_author_nickname}
             notification_title: The <a href="%{emendation_path}">amendment</a> created by <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> has been rejected for <a href="%{amendable_path}">%{amendable_title}</a>.
+        emendation_promoted:
+          follower:
+            email_intro: 'An emendation has been published for %{amendable_title}. You can see it from this page:'
+            email_outro: You have received this notification because you are an author of %{amendable_title}.
+            email_subject: An emendation from %{emendation_author_nickname} has been published as a new %{amendable_type}
       attachments:
         attachment_created:
           email_intro: 'A new document has been added to %{resource_title}. You can see it from this page:'
@@ -976,7 +1009,12 @@ en:
       title: What are the badges?
     group_admins:
       actions:
-        are_you_sure: Are you sure? This will not remove the participant from the group.
+        confirm_modal:
+          ok_add: Add an administrator
+          ok_remove: Remove the administrator
+          title_add: Confirm the new administrator
+          title_remove: Remove the administrator
+        confirm_remove_from_admin: Are you sure you want to remove the administrator from this group?
         demote_admin: Remove admin
       demote:
         error: There was a problem removing this participant from the admins list.
@@ -1006,7 +1044,11 @@ en:
         error: There was a problem accepting this join request.
         success: Join request successfully accepted.
       actions:
-        are_you_sure: Are you sure?
+        confirm_modal:
+          ok_remove: Remove the member
+          title_remove: Remove the member
+        confirm_promote_to_admin: Are you sure you want to add this user as an administrator?
+        confirm_remove_from_group: Are you sure you want to remove the user from this group?
         promote_to_admin: Make admin
         remove_from_group: Remove participant
       index:
@@ -1197,6 +1239,8 @@ en:
         not_started: Not started yet
         remaining: "%{time_distance} remaining"
     metrics:
+      blocked_users:
+        description: Number of blocked participants
       download:
         csv: Download data (CSV)
       followers:
@@ -1207,6 +1251,10 @@ en:
         description: Number of active participants in organization
         object: participants
         title: Participants
+      reported_users:
+        description: Number of reported participants
+      user_reports:
+        description: Number of reports done by participants
       users:
         description: Number of participants in organization
         object: participants
@@ -1238,11 +1286,12 @@ en:
         main_image: Main image
     newsletters:
       unsubscribe:
-        check_subscription: If you want to change your preferences, you can do so in the <a href="%{link}" target="_blank">configuration page</a>.
+        check_subscription_html: If you'd like to start receiving them again, you can re-enable your subscription anytime from the <a href="%{link}" target="_blank">settings page</a>.
         error: There was a problem unsubscribing.
+        subscription_preferences: We have updated your subscription preferences, and you will no longer receive newsletters from %{organization_name}.
         success: You are unsubscribed successfully.
         token_error: The link has expired.
-        unsubscribe: Unsubscribe
+        unsubscribe: Unsubscribe from newsletter
     newsletters_opt_in:
       unauthorized: Sorry, this link is no longer available.
       update:
@@ -1250,7 +1299,7 @@ en:
         success: Newsletter settings successfully updated.
     newsletters_opt_in_mailer:
       notify:
-        body_1: The processing of personal data and its protection is becoming increasingly important for all of us. With the new General Data Protection Regulation (GDPR) of May 25, 2018, individuals have better control over their personal data. For this reason we need your "OK" to continue sending relevant information about the activities of the %{organization_name}.
+        body_1: The processing of personal data and its protection is becoming increasingly important for all of us. With the General Data Protection Regulation (GDPR) of May 25, 2018, individuals have better control over their personal data. For this reason we need your "OK" to continue sending relevant information about the activities of the %{organization_name}.
         body_2: 'How can you give us your consent? Just click the following button:'
         body_3: With this consent you will be able to continue receiving information about the services of the platform. If, on the contrary, we do not receive a positive confirmation on your part we will stop sending you our messages. If you confirm that you want to keep being informed, you will always have the option to cancel at any time.
         button: Yes, I want to continue receiving relevant information
@@ -1272,10 +1321,12 @@ en:
     notifications_digest_mailer:
       header:
         daily: Daily Notification Digest
+        real_time: Real time
         weekly: Weekly Notification Digest
       hello: Hello %{name},
       intro:
         daily: 'These are the notifications from the last day based on the activity you are following:'
+        real_time: 'These is a notification on the activity you are following:'
         weekly: 'These are the notifications from the last week based on the activity you are following:'
       outro: You have received these notifications because you are following this content or its authors. You can unfollow them from their respective pages.
       see_more: See more notifications
@@ -1419,11 +1470,24 @@ en:
         confirmation_instructions_sent: Email confirmation instructions sent.
         fill_in_email_to_confirm_it: Please, fill in your group's email to confirm it.
     reported_mailer:
-      hide:
+      hidden_automatically:
+        content: Reported content
+        details: Details
         hello: Hello %{name},
         manage_moderations: Manage moderations
+        participatory_space: Participatory space
+        reason: Reason
         report_html: <p>The following <a href="%{url}">content</a> has been hidden automatically.</p>
         subject: A resource has been hidden automatically
+      hidden_manually:
+        content: Reported content
+        details: Details
+        hello: Hello %{name},
+        manage_moderations: Manage moderations
+        participatory_space: Participatory space
+        reason: Reason
+        report_html: <p>The following <a href="%{url}">content</a> has been hidden by %{moderator}.</p>
+        subject: A resource has been hidden by %{moderator}
       report:
         authors: Authors
         content: Reported content
@@ -1441,6 +1505,8 @@ en:
       create:
         error: An error ocurred while creating the report. Please, try it again.
         success: The report has been created successfully and it will be reviewed by an admin.
+      hide:
+        success: This resource has been hidden.
       parent_hidden:
         report_details: The parent resource was hidden
     resource_endorsements:
@@ -1466,6 +1532,7 @@ en:
     searches:
       filters:
         jump_to: 'Jump to:'
+        resource: "%{label} among %{collection}"
         search: Search
         state:
           active: Active
@@ -1953,14 +2020,17 @@ en:
         edit: Edit
       footer:
         cc_by_license: Creative Commons License
+        current_organization_img: "%{organization} (Back home)"
         data_consent_settings: Cookie settings
         decidim_logo: Decidim Logo
         decidim_title: Decidim
         download_open_data: Download Open Data files
+        help: Help
         log_in: Log in
         made_with_open_source: Website made with <a target="_blank" href="https://github.com/decidim/decidim">free software</a>.
         resources: Resources
         sign_up: Create an account
+        social_media: Social media
         terms_of_service: Terms of Service
       header:
         back: Back to list
@@ -2004,6 +2074,8 @@ en:
         profile: My account
         public_profile: My public profile
         title: Profile links
+        unread_conversations: You have unread conversations
+        unread_notifications: You have unread notifications
       user_profile:
         account: Account
         authorizations: Authorizations

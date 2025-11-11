@@ -2,6 +2,8 @@
 fi-pl:
   activemodel:
     attributes:
+      authorization:
+        verification_attachment: Vahvistuksen liitetiedosto
       config:
         available_methods: Käytettävissä olevat menetelmät
         offline: Offline
@@ -179,7 +181,7 @@ fi-pl:
             file: "sähköpostiosoitteet sisältävä .csv-tiedosto"
             info: 'On oltava CSV-tiedosto, jossa on vain yksi sarake sähköpostiosoitteille:'
             submit: Lataa tiedosto
-            title: Lataa uusi rekisteri
+            title: Lataa uusi henkilötietorekisteri
         authorizations:
           new:
             error: Emme voineet vahvistaa tiliäsi, koska tietojasi ei löytynyt organisaation rekisteristä.

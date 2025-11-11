@@ -2,6 +2,8 @@
 fi-pl:
   activemodel:
     attributes:
+      answer:
+        add_documents: Lisää asiakirjoja
       close_meeting:
         attendees_count: Osallistujien määrä
         attending_organizations: Osallistuvien organisaatioiden lista
@@ -393,7 +395,7 @@ fi-pl:
             success: Tapahtumailmoittautumisasetukset tallennettiin onnistuneesti.
           validate_registration_code:
             invalid: Tämä ilmoittautumiskoodi on virheellinen.
-            success: Ilmoittautumiskoodi on vahvistettu onnistuneesti.
+            success: Ilmoittautumiskoodin vahvistaminen onnistui.
       admin_log:
         invite:
           create: "%{user_name} kutsui %{attendee_name} osallistumaan tapahtumaan %{resource_name} tilassa %{space_name}"

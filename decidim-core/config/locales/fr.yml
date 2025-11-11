@@ -4,10 +4,19 @@ fr:
     attributes:
       account:
         delete_reason: Pour quelle(s) raison(s) supprimez-vous votre compte ?
+      attachment:
+        documents: Documents
+        image: Image
+        photos: Photos
       common:
         created_at: Créé le
+      content_block_attachment:
+        background_image: Image d'arrière-plan
+        main_image: Image principale
       conversation:
         body: Corps de texte
+      editor_image:
+        file: Fichier
       group:
         about: A propos
         avatar: Avatar
@@ -16,12 +25,15 @@ fr:
         name: Nom
         nickname: Pseudonyme
         phone: Téléphone
+      import:
+        file: Fichier
       message:
         body: Corps de texte
       report:
         details: Commentaires supplémentaires
       user:
         about: A propos de moi
+        avatar: Avatar
         email: Votre email
         encrypted_password: Mot de passe
         locale: Langue
@@ -33,6 +45,14 @@ fr:
         personal_url: Site internet personnel
         remove_avatar: Supprimer l'avatar
         tos_agreement: Conditions d'utilisation
+      user_group:
+        avatar: Avatar
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              format: Le pseudo doit être en minuscules et ne contenir aucun espace
     models:
       decidim/attachment_created_event: Document lié
       decidim/component_published_event: Fonctionnalité active
@@ -140,12 +160,20 @@ fr:
       x_seconds:
         one: 1 seconde
         other: "%{count} secondes"
+    widget:
+      label:
+        date: Sélectionnez une date pour %{label}
+        time: Sélectionnez l'heure pour %{label}
+      picker:
+        date_button: Ouvrir le sélecteur de date pour %{label}
+        time_button: Ouvrir le sélecteur d'heure pour %{label}
   decidim:
     accessibility:
       external_link: Lien externe
       front_page_link: Aller à la première page
       logo: "Logo officiel de %{organization}"
       opens_in_new_tab: S'ouvre dans un nouvel onglet
+      secondary_menu: Menu secondaire
       skip_button: Passer au contenu principal
     account:
       blocked: Ce compte a été bloqué en raison d'une violation des conditions d'utilisation
@@ -549,7 +577,7 @@ fr:
       metrics:
         name: Historique des statistiques de participation
       participatory_space_metrics:
-        name: Métriques
+        name: Participation en chiffres
       participatory_space_stats:
         name: Statistiques
       social_networks_metadata:
@@ -666,7 +694,6 @@ fr:
       drag_and_drop_help: Ajoutez des images en les glissant - déposant ou en les collant depuis votre presse-papier.
     endorsement_buttons_cell:
       already_endorsed: Je n'aime pas
-      endorse: J’aime
     endorsements:
       identities:
         done: Terminé
@@ -740,6 +767,11 @@ fr:
             email_outro: Vous avez reçu cette notification parce que vous suivez %{amendable_title}. Si vous souhaitez vous désabonner des notifications, connectez-vous à la plateforme, puis rendez-vous dans l'onglet “Mon compte” > “Paramètres des notifications”.
             email_subject: Un amendement rejeté pour %{amendable_title} à %{emendation_author_nickname}
             notification_title: Le <a href="%{emendation_path}">amendement</a> créé par <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> a été rejetée pour <a href="%{amendable_path}">%{amendable_title}</a>.
+        emendation_promoted:
+          follower:
+            email_intro: 'Une correction a été publiée pour %{amendable_title}. Vous pouvez la voir sur cette page :'
+            email_outro: Vous avez reçu cette notification parce que vous êtes un(e) auteur/trice de %{amendable_title}.
+            email_subject: Une correction réalisée par %{emendation_author_nickname} a été publiée en tant que nouvelle %{amendable_type}
       attachments:
         attachment_created:
           email_intro: 'Un nouveau document a été ajouté à %{resource_title}. Vous pouvez le voir sur cette page :'
@@ -960,7 +992,12 @@ fr:
       title: Que sont les badges ?
     group_admins:
       actions:
-        are_you_sure: Êtes-vous sûr ? Cela ne supprimera pas l'utilisateur du groupe.
+        confirm_modal:
+          ok_add: Ajouter un administrateur
+          ok_remove: Supprimer l'administrateur
+          title_add: Confirmer le nouvel administrateur
+          title_remove: Supprimer l'administrateur
+        confirm_remove_from_admin: Êtes-vous sûr(e) de vouloir supprimer l'administrateur de ce groupe ?
         demote_admin: Supprimer admin
       demote:
         error: Une erreur s'est produite lors de la suppression de cet utilisateur de la liste des administrateurs.
@@ -990,7 +1027,11 @@ fr:
         error: Une erreur s'est produite lors de l'acceptation de cette demande d'adhésion.
         success: La demande d’adhésion a été acceptée avec succès.
       actions:
-        are_you_sure: Êtes-vous sûr?
+        confirm_modal:
+          ok_remove: Retirer le membre
+          title_remove: Retirer le membre
+        confirm_promote_to_admin: Êtes-vous sûr(e) de vouloir ajouter cet utilisateur en tant qu'administrateur ?
+        confirm_remove_from_group: Êtes-vous sûr(e) de vouloir retirer l'utilisateur de ce groupe ?
         promote_to_admin: Faire admin
         remove_from_group: Supprimer l'utilisateur
       index:
@@ -1181,6 +1222,8 @@ fr:
         not_started: Pas encore commencé
         remaining: "%{time_distance} restant"
     metrics:
+      blocked_users:
+        description: Nombre de participants bloqués
       download:
         csv: Télécharger les données (CSV)
       followers:
@@ -1191,10 +1234,14 @@ fr:
         description: Nombre d'utilisateurs actifs dans l'organisation
         object: les participants
         title: Participants
+      reported_users:
+        description: Nombre de participants signalés
+      user_reports:
+        description: Nombre de signalements effectués par les participants
       users:
         description: Nombre d'utilisateurs dans l'organisation
         object: utilisateurs
-        title: Utilisateurs
+        title: Participants
     newsletter_mailer:
       newsletter:
         no_reply_notice: Cet e-mail a été envoyé à partir d'une adresse automatique qui ne peut pas recevoir d'e-mail. Veuillez ne pas répondre à ce message.
@@ -1222,11 +1269,12 @@ fr:
         main_image: Image principale
     newsletters:
       unsubscribe:
-        check_subscription: Si vous souhaitez modifier vos préférences, vous pouvez le faire dans la page des <a href="%{link}" target="_blank">paramètres des notifications</a>.
+        check_subscription_html: Si vous souhaitez recommencer à les recevoir, vous pouvez réactiver votre abonnement à tout moment à partir de la <a href="%{link}" target="_blank">page des paramètres</a>.
         error: Un problème est survenu lors de la désinscription.
+        subscription_preferences: Nous avons mis à jour vos préférences d'abonnement, et vous ne recevrez plus de newsletters de %{organization_name}.
         success: Vous vous êtes désabonné avec succès.
         token_error: Le lien a expiré.
-        unsubscribe: Se désabonner
+        unsubscribe: Se désabonner de la newsletter
     newsletters_opt_in:
       unauthorized: Désolé, ce lien n'est plus disponible.
       update:
@@ -1234,7 +1282,7 @@ fr:
         success: Les paramètres de la newsletter ont été mis à jour avec succès.
     newsletters_opt_in_mailer:
       notify:
-        body_1: Le traitement des données personnelles et leur protection deviennent de plus en plus importants pour nous tous. Avec le nouveau règlement général sur la protection des données (RGPD) du 25 mai 2018, les individus contrôlent mieux leurs données personnelles. Pour cette raison, nous avons besoin de votre accord pour continuer à vous envoyer des informations pertinentes sur les activités de %{organization_name}.
+        body_1: Le traitement des données personnelles et leur protection deviennent de plus en plus importants pour nous tous. Avec le nouveau Règlement Général sur la Protection des Données (RGPD) du 25 mai 2018, les individus contrôlent mieux leurs données personnelles. Pour cette raison, nous avons besoin de votre consentement pour continuer à vous envoyer des informations pertinentes sur les activités de %{organization_name}.
         body_2: 'Comment pouvez-vous nous donner votre consentement ? Cliquez simplement sur le bouton suivant :'
         body_3: Avec votre consentement, vous serez en mesure de continuer à recevoir des informations sur les services de la plateforme. Si, au contraire, nous ne recevons pas une confirmation positive de votre part, nous cesserons de vous envoyer des messages. Si vous confirmez que vous souhaitez rester informé, vous aurez toujours la possibilité d'annuler ce choix par la suite.
         button: Oui, je veux continuer à recevoir des informations pertinentes
@@ -1256,10 +1304,12 @@ fr:
     notifications_digest_mailer:
       header:
         daily: Résumé quotidien des notifications
+        real_time: Temps réel
         weekly: Résumé hebdomadaire des notifications
       hello: Bonjour %{name},
       intro:
         daily: 'Voici les notifications de la veille, basées sur les ressources que vous suivez :'
+        real_time: 'Ceci est une notification sur l''activité que vous suivez :'
         weekly: 'Voici les notifications de la semaine dernière, basées sur les ressources que vous suivez :'
       outro: Vous avez reçu ces notifications parce que vous suivez ce contenu ou ses auteurs. Pour arrêter de les suivre, rendez-vous sur la page du contenu ou de l'auteur et cliquez sur "Ne plus suivre".
       see_more: Voir plus de notifications
@@ -1391,11 +1441,24 @@ fr:
         confirmation_instructions_sent: Instructions de confirmation d'email envoyées.
         fill_in_email_to_confirm_it: Veuillez compléter le mail de votre groupe pour confirmer celui-ci.
     reported_mailer:
-      hide:
+      hidden_automatically:
+        content: Contenu signalé
+        details: Détails
         hello: Bonjour %{name},
         manage_moderations: Gérer les modérations
-        report_html: <p>Le <a href="%{url}">contenu suivant</a> a été masqué automatiquement.</p>
-        subject: Une ressource a été cachée automatiquement
+        participatory_space: Espace participatif
+        reason: Motif
+        report_html: <p>Le <a href="%{url}">contenu</a> suivant a été masqué automatiquement.</p>
+        subject: Une ressource a été masquée automatiquement
+      hidden_manually:
+        content: Contenu signalé
+        details: Détails
+        hello: Bonjour %{name},
+        manage_moderations: Gérer les modérations
+        participatory_space: Espace participatif
+        reason: Motif
+        report_html: <p>Le <a href="%{url}">contenu</a> suivant a été masqué automatiquement.</p>
+        subject: Une ressource a été masquée par %{moderator}
       report:
         authors: Auteurs
         content: Contenu signalé
@@ -1413,6 +1476,8 @@ fr:
       create:
         error: Une erreur s'est produite lors de la création du rapport. Veuillez essayer à nouveau.
         success: Le contenu a été signalé, il sera examiné par un administrateur.
+      hide:
+        success: Cette ressource a été masquée.
       parent_hidden:
         report_details: La ressource parente a été masquée
     resource_endorsements:
@@ -1438,6 +1503,7 @@ fr:
     searches:
       filters:
         jump_to: 'Aller à:'
+        resource: "%{label} parmi %{collection}"
         search: Rechercher
         state:
           active: actif
@@ -1460,6 +1526,7 @@ fr:
         close_modal: Fermer la fenêtre de dialogue
         ok: Ok
         title: Valider
+      confirm_unload: Cette page contient des modifications non enregistrées. Êtes-vous sûr(e) de vouloir quitter cette page ?
       embed:
         title: Contenu vidéo intégré
       extended_navigation_bar:
@@ -1923,14 +1990,17 @@ fr:
         edit: Modifier
       footer:
         cc_by_license: Licence Creative Commons
+        current_organization_img: "%{organization} (Retour à l'accueil)"
         data_consent_settings: Paramètres des cookies
         decidim_logo: Decidim.org (ouverture dans une nouvelle fenêtre)
         decidim_title: Decidim
         download_open_data: Télécharger les fichiers Open Data
+        help: Aide
         log_in: Se connecter
         made_with_open_source: Site réalisé grâce au <a target="_blank" href="https://github.com/decidim/decidim">logiciel libre Decidim</a>.
         resources: Ressources
         sign_up: Créer un compte
+        social_media: Réseaux sociaux
         terms_of_service: Conditions d'utilisation
       header:
         log_in: Se connecter
@@ -1970,6 +2040,8 @@ fr:
         profile: Mon compte
         public_profile: Mon profil public
         title: Liens du profil
+        unread_conversations: Vous avez des conversations non lues
+        unread_notifications: Vous avez des notifications non lues
       user_profile:
         account: Compte
         authorizations: Autorisations

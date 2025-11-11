@@ -106,6 +106,8 @@ it:
       participatory_space_private_user:
         email: Email
         name: Nome
+      participatory_space_private_user_csv_import:
+        file: File
       scope:
         code: Codice
         name: Nome
@@ -203,6 +205,7 @@ it:
         verify: Verifica
       admin_terms_of_service:
         accept:
+          error: Si è verificato un problema durante l'accettazione dei termini di servizio per l'amministratore.
           success: Ottimo! Hai accettato i termini d'uso per l'amministratrice/tore.
         actions:
           accept: Sono d'accordo con i termini
@@ -366,6 +369,7 @@ it:
         user_name: Utente
       content_blocks:
         create:
+          error: Si è verificato un problema durante la creazione del blocco contenuti.
           success: Blocco contenuto creato correttamente.
         destroy:
           error: Si è verificato un problema cercando di eliminare questo blocco di contenuti.
@@ -536,6 +540,7 @@ it:
               one: Colonna mancante %{columns}.
               other: Colonne mancanti %{columns}.
         error: Si è verificato un errore durante l'importazione.
+        example_error: Si è verificato un problema durante la creazione di un esempio per il tipo specificato.
         new:
           accepted_mime_types:
             csv: csv
@@ -543,8 +548,19 @@ it:
             xlsx: xlsx
           actions:
             back: Indietro
+          download_example: Scarica esempio
+          download_example_format: Esempio come %{name}
           file_legend: Aggiungi un file da importare che verrà analizzato.
           import: Importazione
+        notice: "%{number} %{resource_name} importati con successo."
+      logs:
+        filters:
+          participatory_space: Trova spazio partecipativo
+          text: Ricerca per email, nome o nickname.
+          user: Utente
+        logs_list:
+          no_logs_yet: Non ci sono ancora log.
+          no_matching_logs: Non ci sono registri con i filtri di ricerca forniti. Prova a cambiarli e riprovare.
       managed_users:
         promotion:
           error: Si è verificato un problema nella promozione del partecipante gestito.
@@ -562,6 +578,8 @@ it:
         areas: Ambiti territoriali
         components: Componenti
         configuration: Configurazione
+        content: Contenuto segnalato
+        external_domain_allowlist: Consenti l'uso di domini esterni
         help_sections: Sezioni di Aiuto
         homepage: Homepage
         impersonations: Impersonificazioni
@@ -572,7 +590,9 @@ it:
         reported_users: Partecipanti segnalati
         scope_types: Tipi di ambito
         scopes: Ambito tematico
+        see_site: Vedi sito
         settings: Impostazioni
+        static_page_topics: Argomenti
         static_pages: Pagine
         user_groups: Gruppi
         users: Partecipanti
@@ -641,6 +661,7 @@ it:
           fields:
             created_at: Data di creazione
             email: E-mail
+            last_sign_in_at: Data dell'ultimo accesso
             name: Nome
             role: Ruolo
             roles:
@@ -668,6 +689,7 @@ it:
           nickname: Nickname
           reason: Motivazione
           reports: Numero di segnalazioni
+          title: Partecipanti segnalati
         report:
           reasons:
             does_not_belong: Non appartiene
@@ -677,10 +699,14 @@ it:
           blocked: Bloccato
           unblocked: Non Bloccato
       moderations:
+        index:
+          title: Contenuto segnalato
         report:
           reasons:
             does_not_belong: Non appartiene
+            hidden_during_block: Nascosto durante il blocco dell'utente
             offensive: Offensivo
+            parent_hidden: Il contenuto padre è stato nascosto
             spam: Spam
         reports:
           index:
@@ -697,6 +723,11 @@ it:
             report_language: Lingua del report
             report_reason: Motivo
             title: Dettagli del report
+      new_import:
+        accepted_mime_types:
+          csv: CSV
+          json: JSON
+          xlsx: XLSX
       newsletter_templates:
         index:
           preview_template: Anteprima
@@ -763,6 +794,7 @@ it:
           success: OK, la Newsletter è stata aggiornata. Conviene controllarla prima di inviarla.
       officializations:
         block:
+          error: Si è verificato un errore durante il blocco del partecipante.
           success: Partecipante bloccato con successo.
         create:
           success: Partecipante ufficializzato con successo.
@@ -796,6 +828,7 @@ it:
           show: Mostra
           title: Mostra l'indirizzo email del partecipante
         unblock:
+          error: Si è verificato un errore durante lo sblocco del partecipante.
           success: Partecipante sbloccato con successo.
       organization:
         edit:
@@ -815,7 +848,7 @@ it:
           success: OK, l'organizzazione è stata modificata.
       organization_appearance:
         edit:
-          update: Modifica
+          update: Aggiorna
         form:
           colors:
             choose_color: Scegli un colore primario
@@ -830,7 +863,7 @@ it:
           cta_button_text_help: Puoi sovrascrivere il testo del pulsante Chiamata all'azione nella home page per ogni lingua disponibile nell'organizzazione. Se non è impostato, verrà utilizzato il valore predefinito. Il pulsante Chiamata all'azione è mostrato nella homepage tra il testo di benvenuto e la descrizione.
           header_snippets:
             header_snippets_help_html: Usa questo campo per aggiungere funzionalità all head HTML. L'uso più comune è quello di integrare servizi di terze parti che richiedono alcuni JavaScript o CSS aggiuntivi. Inoltre, è possibile utilizzarlo per aggiungere meta tag extra per l'HTML. Nota che questo sarà reso solo nelle pagine pubbliche, non nella sezione amministrazione. Se il codice interagisce con API esterne o non è conforme alle linee guida di sicurezza dell’applicazione, sarà necessario modificare la Content Security Policy. Per saperne di più su <a href="https://docs.decidim.org/develop/en/customize/content_security_policy">nella documentazione di Decidim</a>.
-            title: Frammenti di intestazione HTML
+            title: Frammenti d'intestazione HTML
           homepage_appearance_title: Modifica l'aspetto della home page
           homepage_highlighted_content_banner_title: Banner con contenuti Highligted
           images:
@@ -847,6 +880,7 @@ it:
           up: Su
         form:
           add: Aggiungi alla lista consentita
+          title: Elenco di domini esterni consentiti
       participatory_space_private_users:
         create:
           error: Si è verificato un errore durante l'aggiunta di un utente privato per questo spazio partecipativo.
@@ -861,9 +895,24 @@ it:
           create: Creare
           title: Nuovo utente privato dello spazio partecipativo.
       participatory_space_private_users_csv_imports:
+        create:
+          invalid: Si è verificato un problema durante la lettura del file CSV. Assicurati di aver seguito le istruzioni.
+          success: File CSV caricato con successo, stiamo inviando un'email di invito ai partecipanti. Potrebbe richiedere un po' di tempo.
         new:
           csv_upload:
             title: Carica il tuo file CSV
+          destroy:
+            button: Elimina tutti i partecipanti privati
+            confirm: Sei sicuro di voler eliminare tutti i partecipanti privati? Questa azione non può essere annullata, non sarai in grado di recuperarli.
+            empty: Non hai partecipanti privati.
+            explanation: Hai %{count} partecipanti privati.
+            title: Elimina tutti i partecipanti privati
+          example_file: 'File di esempio:'
+          explanation: 'Carica il file CSV. Il file deve contenere due colonne (e-mail e nome) senza intestazioni: nella prima sono elencati gli indirizzi e-mail degli utenti che si desidera aggiungere allo spazio partecipativo, nella seconda i loro nomi. Evita di usare caratteri non validi come `<>?%&^*#@()[]=+:;"{}\|` nella colonna dei nomi.'
+          explanation_example: |
+            john.doe@example.org%{csv_col_sep}John Doe
+            jane.doe@example.org%{csv_col_sep}Jane Doe
+          title: Importa partecipanti privati tramite CSV
           upload: Carica File
       reminders:
         create:
@@ -899,6 +948,8 @@ it:
         create:
           error: Si è verificato un errore creando un nuovo ambito.
           success: OK, è stato creato il nuovo àmbito.
+        destroy:
+          success: Ambito eliminato correttamente.
         edit:
           title: Modifica l'àmbito
           update: Aggiorna
@@ -918,6 +969,7 @@ it:
           error: Si è verificato un problema durante la distruzione del token.
           success: Token eliminato correttamente.
         share_tokens:
+          empty: Non esistono token attivi.
           help: Questi token sono utilizzati per condividere pubblicamente questa risorsa non pubblicata con qualsiasi utente. Saranno nascosti al momento della pubblicazione della risorsa. Clicca sull'icona di condivisione del token per visitare l'URL condivisibile.
           title: Condividi token
       shared:
@@ -968,6 +1020,7 @@ it:
         areas: Ambiti territoriali
         authorization_workflows: Metodi di verifica
         dashboard: Cruscotto (Dashboard)
+        edit_landing_page: Contenuti della pagina
         impersonatable_users: Partecipanti gestibili
         impersonations: Gestione dei partecipanti
         metrics: Partecipazione in cifre
@@ -980,10 +1033,13 @@ it:
       user_group:
         csv_verify:
           invalid: Si è verificato un errore durante la lettura del file CSV.
+          success: File CSV caricato con successo, stiamo verificando i gruppi di utenti che soddisfano i criteri. Questo potrebbe richiedere del tempo.
         reject:
           invalid: Si è verificato un errore rifiutando questo gruppo di utenti.
+          success: Gruppo utenti rifiutato correttamente.
         verify:
           invalid: Si è verificato un errore durante la verifica di questo gruppo di utenti.
+          success: Il gruppo utenti è stato verificato correttamente.
       user_groups:
         index:
           state:
@@ -993,7 +1049,11 @@ it:
           verify_via_csv: Verifica tramite CSV
       user_groups_csv_verifications:
         new:
+          example_file: 'File di esempio:'
           explanation: Carica il tuo file CSV. Deve avere le e-mail ufficiali dei gruppi di utenti nella tua organizzazione nella prima colonna del file, senza intestazioni. Verranno convalidati solo i gruppi di utenti che hanno confermato la loro e-mail e che hanno una e-mail che appare nel file CSV.
+          explanation_example: |
+            acme@example.org
+            bubba.gump@example.org
           title: Carica il tuo file CSV
           upload: Carica File
       users:
@@ -1049,10 +1109,14 @@ it:
       models:
         moderation:
           fields:
+            deleted_resource: Risorsa eliminata
             hidden_at: Nascosto a
             participatory_space: Spazio partecipativo
+            report_count: Numero di segnalazioni
+            reportable_id: ID
             reportable_type: Tipo
             reported_content_url: URL del contenuto riportato
+            reports: Motivo
             visit_url: Visita URL
         report:
           fields:

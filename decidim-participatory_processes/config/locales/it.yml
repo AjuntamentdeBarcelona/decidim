@@ -107,6 +107,7 @@ it:
           attachments: Allegati
           categories: Categorie
           components: Componenti
+          landing_page: Pagina di destinazione
           moderations: Moderazione
           private_users: Utenti privati
           process_admins: Amministratrici/tori di processo
@@ -152,8 +153,6 @@ it:
       participatory_process_copies:
         new:
           copy: Copia
-          select: Scegli quale dato vuoi duplicare
-          title: Duplica il processo partecipativo
       participatory_process_groups:
         destroy:
           error: Si è verificato un errore durante la cancellazione del gruppo di processi partecipativi.
@@ -254,10 +253,6 @@ it:
         update:
           error: Si è verificato un errore durante l'aggiornamento di questo processo partecipativo.
           success: OK, il processo partecipativo è stato aggiornato.
-      participatory_processes_copies:
-        create:
-          error: Si è verificato un errore cercando di duplicare questo processo partecipativo.
-          success: OK, il processo partecipativo è stato duplicato.
       participatory_processes_group:
         create:
           error: Si è verificato un errore cercando di creare il nuovo gruppo di processi partecipativi.

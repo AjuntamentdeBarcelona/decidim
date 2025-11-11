@@ -31,7 +31,7 @@ eu:
         github: GitHub
         hashtag: Traola
         hero_image: Hasierako orriko irudia
-        import_attachments: Inportatu erantsitako artxiboak
+        import_attachments: Inportatu erantsitako fitxategiak
         import_categories: Inportatu kategoriak
         import_components: Inportatu osagaiak
         included_at: 'Honen barne:'
@@ -79,7 +79,7 @@ eu:
         assembly:
           attributes:
             document:
-              allowed_file_content_types: 'Dokumentu mota ez da baliozkoa. Honako luzapen hauek dituzten fitxategiak baino ez dira onartzen: % {types}.'
+              allowed_file_content_types: 'Dokumentu mota ez da baliozkoa. Honako luzapen hauek dituzten fitxategiak baino ez dira onartzen: %{types}.'
   activerecord:
     models:
       decidim/assembly:
@@ -135,8 +135,8 @@ eu:
       assembly_copies:
         new:
           copy: Kopiatu
-          select: Hautatu bikoiztu nahi dituzun datuak
-          title: Kopiatu batzarra
+          select: Hautatu zein datu bikoiztu nahi dituzun
+          title: Batzarra bikoiuztu
       assembly_imports:
         create:
           error: Arazo bat egon da batzar hau inportatzean.

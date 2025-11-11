@@ -4,10 +4,19 @@ fi-pl:
     attributes:
       account:
         delete_reason: Syy tilisi poistoon
+      attachment:
+        documents: Asiakirjat
+        image: Kuva
+        photos: Kuvat
       common:
         created_at: Luontiaika
+      content_block_attachment:
+        background_image: Taustakuva
+        main_image: Pääkuva
       conversation:
         body: Viestin teksti
+      editor_image:
+        file: Tiedosto
       group:
         about: Tietoja
         avatar: Avatar
@@ -16,12 +25,15 @@ fi-pl:
         name: Nimi
         nickname: Nimimerkki
         phone: Puhelinnumero
+      import:
+        file: Tiedosto
       message:
         body: Viestin teksti
       report:
         details: Lisätiedot
       user:
         about: Profiilikuvaus
+        avatar: Profiilikuva
         email: Sähköpostiosoitteesi
         encrypted_password: Salasana
         locale: Kieli
@@ -33,6 +45,14 @@ fi-pl:
         personal_url: Henkilökohtainen URL-osoite
         remove_avatar: Poista profiilikuva
         tos_agreement: Käyttöehtojen hyväksyntä
+      user_group:
+        avatar: Avatar
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              format: Nimimerkki on kirjoitettava pienillä kirjaimilla, eikä siinä voi olla välilyöntejä
     models:
       decidim/attachment_created_event: Liite
       decidim/component_published_event: Aktiivinen komponentti
@@ -140,12 +160,20 @@ fi-pl:
       x_seconds:
         one: 1 sekunti
         other: "%{count} sekuntia"
+    widget:
+      label:
+        date: Valitse päivämäärä kohteelle %{label}
+        time: Valitse aika kohteelle %{label}
+      picker:
+        date_button: Avaa kalenterivalitsin kohteelle %{label}
+        time_button: Avaa aikavalitsin kohteelle %{label}
   decidim:
     accessibility:
       external_link: Ulkoinen linkki
       front_page_link: Siirry etusivulle
       logo: "Organisaation %{organization} virallinen logo"
       opens_in_new_tab: Avautuu uuteen välilehteen
+      secondary_menu: Toissijainen valikko
       skip_button: Siirry sisältöön
     account:
       blocked: Tämä käyttäjätili on estetty, koska käyttäjä ei noudattanut käyttöehtoja
@@ -549,7 +577,7 @@ fi-pl:
       metrics:
         name: Organisaation mittarit
       participatory_space_metrics:
-        name: Tilastomittarit
+        name: Osallistuminen lukuina
       participatory_space_stats:
         name: Tilastot
       social_networks_metadata:
@@ -737,6 +765,11 @@ fi-pl:
             email_outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat kohdetta %{amendable_title}. Voit lopettaa ilmoitusten vastaanottamisen edellä esitetyn linkin kautta.
             email_subject: Kohdetta %{amendable_title} koskeva muutos on hylätty käyttäjältä %{emendation_author_nickname}
             notification_title: <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> llä luotu <a href="%{emendation_path}">tarkistusta</a> hylättiin <a href="%{amendable_path}">%{amendable_title}</a>.
+        emendation_promoted:
+          follower:
+            email_intro: 'Muutos on julkaistu kohteelle %{amendable_title}. Näet sen tältä sivulta:'
+            email_outro: Tämä ilmoitus on lähetetty sinulle, koska olet laatinut kohteen %{amendable_title}.
+            email_subject: Laatijan %{emendation_author_nickname} muutos on julkaistu uutena kohteena %{amendable_type}
       attachments:
         attachment_created:
           email_intro: 'Uusi asiakirja on lisätty kohteeseen %{resource_title}. Voit nähdä sen täältä:'
@@ -957,7 +990,12 @@ fi-pl:
       title: Mitä kunniamerkit ovat?
     group_admins:
       actions:
-        are_you_sure: Oletko varma? Tämä ei poista osallistujaa ryhmästä.
+        confirm_modal:
+          ok_add: Lisää hallintakäyttäjä
+          ok_remove: Poista hallintakäyttäjä
+          title_add: Vahvista uusi hallintakäyttäjä
+          title_remove: Poista hallintakäyttäjä
+        confirm_remove_from_admin: Haluatko varmasti poistaa hallintakäyttäjän tästä ryhmästä?
         demote_admin: Poista ylläpitäjä
       demote:
         error: Osallistujan poistaminen hallintakäyttäjien luettelosta epäonnistui.
@@ -987,7 +1025,11 @@ fi-pl:
         error: Liittymispyynnön hyväksyminen epäonnistui.
         success: Liittymispyyntö on hyväksytty.
       actions:
-        are_you_sure: Oletko varma?
+        confirm_modal:
+          ok_remove: Poista jäsen
+          title_remove: Poista jäsen
+        confirm_promote_to_admin: Haluatko varmasti lisätä tämän käyttäjän hallintakäyttäjäksi?
+        confirm_remove_from_group: Haluatko varmasti poistaa käyttäjän tästä ryhmästä?
         promote_to_admin: Nimitä ylläpitäjäksi
         remove_from_group: Poista käyttäjä
       index:
@@ -1178,6 +1220,8 @@ fi-pl:
         not_started: Ei vielä aloitettu
         remaining: "%{time_distance} jäljellä"
     metrics:
+      blocked_users:
+        description: Estettyjen osallistujien määrä
       download:
         csv: Lataa tiedot (CSV)
       followers:
@@ -1187,11 +1231,15 @@ fi-pl:
       participants:
         description: Organisaation aktiivisten käyttäjien määrä
         object: osallistujat
-        title: Osallistujat
+        title: Osallistujaa
+      reported_users:
+        description: Ilmoitettujen osallistujien määrä
+      user_reports:
+        description: Osallistujien lähettämien ilmoitusten määrä
       users:
         description: Organisaation käyttäjien määrä
         object: käyttäjät
-        title: Käyttäjät
+        title: Osallistujaa
     newsletter_mailer:
       newsletter:
         no_reply_notice: Tämä sähköposti on lähetetty sähköpostiosoitteesta, joka ei voi ottaa vastaan sähköpostia. Älä vastaa tähän viestiin.
@@ -1219,11 +1267,12 @@ fi-pl:
         main_image: Pääkuva
     newsletters:
       unsubscribe:
-        check_subscription: Jos haluat muuttaa asetuksiasi, voit tehdä sen <a href="%{link}" target="_blank">asetussivulla</a>.
+        check_subscription_html: Mikäli haluat saada uutiskirjeitä jälleen tulevaisuudessa, voit tilata ne uudestaan <a href="%{link}" target="_blank">profiilisi asetuksista</a>.
         error: Tilauksen peruuttaminen epäonnistui.
+        subscription_preferences: Olemme päivittäneet uutiskirjeitä koskevia asetuksiasi, etkä enää saa uutiskirjeitä palvelusta %{organization_name}.
         success: Tilauksen peruuttaminen onnistui.
         token_error: Linkki on vanhentunut.
-        unsubscribe: Peruuta tilaus
+        unsubscribe: Peruuta uutiskirjeen tilaus
     newsletters_opt_in:
       unauthorized: Valitettavasti tämä linkki ei ole enää käytettävissä.
       update:
@@ -1231,7 +1280,7 @@ fi-pl:
         success: Uutiskirjeasetusten päivitys onnistui.
     newsletters_opt_in_mailer:
       notify:
-        body_1: Henkilötietojen käsittely ja niiden suojaaminen ovat yhä tärkeämpiä meille kaikille. Uuden yleisen tietosuoja-asetuksen (GDPR) 25.5.2018 voimaan tultua yksilöillä on paremmat mahdollisuudet hallinnoida henkilötietojaan. Tästä syystä tarvitsemme suostumuksesi lähettääksemme sinulle olennaista tietoa koskien organisaatiota %{organization_name}.
+        body_1: Henkilötietojen käsittely ja niiden suojaaminen ovat yhä tärkeämpiä meille kaikille. Yleisen tietosuoja-asetuksen (GDPR) 25.5.2018 voimaan tultua yksilöillä on paremmat mahdollisuudet hallinnoida henkilötietojaan. Tästä syystä tarvitsemme suostumuksesi lähettääksemme sinulle olennaista tietoa koskien palvelua %{organization_name}.
         body_2: 'Kuinka voit antaa meille suostumuksesi? Napsauta vain seuraavaa painiketta:'
         body_3: Tämän suostumuksen avulla voit edelleen vastaanottaa tietoja palvelun mahdollisuuksista. Jos emme saa lupaasi, lopetamme viestien lähettämisen sinulle. Jos vahvistat, että haluat edelleen pysyä ajan tasalla palvelusta, sinulla on mahdollisuus peruuttaa tilaus milloin tahansa.
         button: Kyllä, haluan jatkaa olennaisten tietojen vastaanottoa
@@ -1253,10 +1302,12 @@ fi-pl:
     notifications_digest_mailer:
       header:
         daily: Päivittäinen ilmoitusyhteenveto
+        real_time: Reaaliajassa
         weekly: Viikottainen ilmoitusyhteenveto
       hello: Hei %{name},
       intro:
         daily: 'Tässä on lista edellisen päivän ilmoituksista niistä asioista, joita seuraat:'
+        real_time: 'Tämä on ilmoitus seuraamistasi alustalla tapahtuneista asioista:'
         weekly: 'Tässä on lista edellisen viikon ilmoituksista niistä asioista, joita seuraat:'
       outro: Tämä ilmoitus on lähetetty sinulle, koska seuraat ilmoitukseen liittyviä sisältöjä tai niiden tekijöitä. Voit lopettaa seuraamisen näiden sisältöjen sivuilta.
       see_more: Näytä lisää ilmoituksia
@@ -1388,11 +1439,24 @@ fi-pl:
         confirmation_instructions_sent: Sähköpostivahvistuksen ohjeet lähetetty.
         fill_in_email_to_confirm_it: Syötä ryhmäsi sähköpostiosoite ja vahvista se.
     reported_mailer:
-      hide:
+      hidden_automatically:
+        content: Ilmoitettu sisältö
+        details: Tarkemmat tiedot
         hello: Hei %{name},
         manage_moderations: Hallitse moderointeja
-        report_html: <p>Tämä <a href="%{url}">sisältö</a> on piilotettu automaattisesti.</p>
-        subject: Resurssi on piilotettu automaattisesti
+        participatory_space: Osallistumistila
+        reason: Syy
+        report_html: <p>Seuraava <a href="%{url}">sisältö</a> on piilotettu automaattisesti.</p>
+        subject: Kohde on piilotettu automaattisesti
+      hidden_manually:
+        content: Ilmoitettu sisältö
+        details: Tarkemmat tiedot
+        hello: Hei %{name},
+        manage_moderations: Hallitse moderointeja
+        participatory_space: Osallistumistila
+        reason: Syy
+        report_html: <p>Seuraava <a href="%{url}">sisältö</a> on piilotettu moderoijan %{moderator} toimesta.</p>
+        subject: Kohde on piilotettu moderoijan %{moderator} toimesta
       report:
         authors: Tekijät
         content: Ilmoitettu sisältö
@@ -1410,6 +1474,8 @@ fi-pl:
       create:
         error: Ilmoituksen luonnissa tapahtui virhe. Yritä uudestaan.
         success: Ilmoitus on luotu onnistuneesti ja hallintakäyttäjä tarkastaa sen.
+      hide:
+        success: Tämä kohde on piilotettu.
       parent_hidden:
         report_details: Isäntäkohde piilotettiin
     resource_endorsements:
@@ -1435,6 +1501,7 @@ fi-pl:
     searches:
       filters:
         jump_to: 'Siirry kohtaan:'
+        resource: "%{label} kohteesta %{collection}"
         search: Hae
         state:
           active: Aktiiviset
@@ -1457,6 +1524,7 @@ fi-pl:
         close_modal: Sulje ikkuna
         ok: OK
         title: Vahvista
+      confirm_unload: Sinulla on tallentamattomia muutoksia. Oletko varma, että haluat poistua tältä sivulta?
       embed:
         title: Upotettu videosisältö
       extended_navigation_bar:
@@ -1921,14 +1989,17 @@ fi-pl:
         edit: Muokkaa
       footer:
         cc_by_license: Creative Commons -lisenssi
+        current_organization_img: "%{organization} (Siirry etusivulle)"
         data_consent_settings: Evästeasetukset
         decidim_logo: Decidim-logo
         decidim_title: Decidim
         download_open_data: Lataa avoimet datatiedostot
+        help: Ohjeet
         log_in: Kirjaudu sisään
         made_with_open_source: Verkkosivusto luotu <a target="_blank" href="https://github.com/decidim/decidim">vapaan ohjelmiston</a> avulla.
         resources: Resurssit
         sign_up: Luo tili
+        social_media: Sosiaalinen media
         terms_of_service: Käyttöehdot
       header:
         log_in: Kirjaudu sisään
@@ -1968,6 +2039,8 @@ fi-pl:
         profile: Oma käyttäjätili
         public_profile: Oma julkinen profiili
         title: Profiilin linkit
+        unread_conversations: Sinulla on lukemattomia keskusteluja
+        unread_notifications: Sinulla on lukemattomia ilmoituksia
       user_profile:
         account: Käyttäjätili
         authorizations: Varmennukset

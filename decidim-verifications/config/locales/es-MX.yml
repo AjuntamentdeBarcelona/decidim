@@ -2,6 +2,8 @@
 es-MX:
   activemodel:
     attributes:
+      authorization:
+        verification_attachment: Archivo adjunto de la verificación
       config:
         available_methods: Metodos disponibles
         offline: Desconectado
@@ -177,7 +179,7 @@ es-MX:
               john.doe@example.org
               jane.doe@example.org
             file: "archivo .csv con datos de correos electrónicos"
-            info: 'Debe ser un archivo en formato CSV con sólo una columna con la dirección de correo electrónico:'
+            info: 'Debe ser un archivo en formato CSV con una sola columna con la dirección de correo electrónico:'
             submit: Subir archivo
             title: Subir un nuevo censo
         authorizations:

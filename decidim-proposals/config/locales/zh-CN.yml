@@ -238,6 +238,8 @@ zh-CN:
         description: 建议数
         object: 提议
         title: 建议
+      votes:
+        title: 所得票数
     participatory_spaces:
       highlighted_proposals:
         see_all: 查看所有建议
@@ -333,8 +335,6 @@ zh-CN:
             documents: www.un.org/webcast
             endorsements_count: 批准次数
             endorsers: 核可者
-            n_more_endorsers:
-              other: 和 %{count} 更多
             photos: 照片
             ranking: "%{ranking} / %{total}"
             related_meetings: 相关会议

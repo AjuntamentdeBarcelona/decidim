@@ -7,6 +7,7 @@ fi-pl:
         area_id: Alue
         copy_categories: Kopioi aihepiirit
         copy_components: Kopioi komponentit
+        copy_landing_page_blocks: Kopioi laskeutumissivun sisältölohkot
         copy_steps: Kopioi vaiheet
         decidim_area_id: Alue
         description: Kuvaus
@@ -173,7 +174,7 @@ fi-pl:
         new:
           copy: Kopio
           select: Valitse, mitkä tiedot haluat kopioida
-          title: Kopioi osallisuusprosessi
+          title: Kopioi osallistumisprosessi
       participatory_process_groups:
         destroy:
           error: Osallisuusprosessien ryhmän poisto epäonnistui.
@@ -286,8 +287,8 @@ fi-pl:
           success: Osallisuusprosessi päivitetty onnistuneesti.
       participatory_processes_copies:
         create:
-          error: Tämän osallisuusprosessin kopioinnissa tapahtui virhe.
-          success: Osallisuusprosessi kopioitu onnistuneesti.
+          error: Osallistumisprosessin kopiointi epäonnistui.
+          success: Osallistumisprosessin kopiointi onnistui.
       participatory_processes_group:
         create:
           error: Uuden osallisuusprosessiryhmän luonnissa tapahtui virhe.
@@ -311,6 +312,7 @@ fi-pl:
         update: "%{user_name} päivitti osallisuusprosessin %{resource_name}"
       participatory_process_group:
         create: "%{user_name} loi osallisuusprosessien ryhmän %{resource_name}"
+        unpublish: "%{user_name} perui osallistumisprosessin %{resource_name} julkaisun"
         update: "%{user_name} päivitti osallisuusprosessien ryhmää %{resource_name}"
       participatory_process_step:
         activate: "%{user_name} aktivoi vaiheen %{resource_name} osallisuusprosessissa %{space_name}"
@@ -387,6 +389,8 @@ fi-pl:
           participatory_processes:
             one: 1 prosessi
             other: "%{count} prosessia"
+      related_processes:
+        help: Valitut prosessit liitetään tähän ryhmään, myös sellaiset, jotka on aikaisemmin liitetty johonkin toiseen ryhmään.
       show:
         title: Osallisuusprosessiryhmät
     participatory_process_steps:

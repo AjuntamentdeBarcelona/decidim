@@ -13,6 +13,7 @@ tr:
         project_ids: Dahil edilen projeler
         proposals: Dahil edilen teklifler
         start_date: Başlangıç tarihi
+        subresults:
         title: Başlık
         updated_at: Adresinde güncellendi
       status:
@@ -22,8 +23,7 @@ tr:
         progress: İlerleme
       timeline_entry:
         description: Açıklama
-        entry_date: tarih
-        title: Başlik / Unvani 
+        title: Başlık
     models:
       decidim/accountability/proposal_linked_event: Teklif bir sonuca dahil edildi
       decidim/accountability/result_progress_updated_event: Sonuç ilerlemesi güncellendi
@@ -93,7 +93,12 @@ tr:
           new:
             create: İçe aktar
             import_all_selected_projects: Seçilen tüm projeleri içe aktarın
+            new_items:
+              one: Seçilen 1 proje içe aktarılacak
+              other: "Seçilen %{count} proje içe aktarılacak"
             no_components: Bu katılımcı alanda projeleri sonuçlara dönüştürecek bütçe bileşenleri yoktur.
+            origin_component_id:
+            select_component: Bir bileşen seç
             title: Projeleri başka bir bileşenden içe aktarın
         results:
           create:
@@ -201,7 +206,6 @@ tr:
             progress: İlerleme
         timeline_entry:
           fields:
-            entry_date: tarih
             title: Başlık
       results:
         count:

@@ -33,6 +33,8 @@ pt-BR:
         personal_url: URL pessoal
         remove_avatar: Excluir avatar
         tos_agreement: Acordo de Termos de Serviço
+      user_group:
+        avatar: Avatar
     models:
       decidim/attachment_created_event: Anexo
       decidim/component_published_event: Componente ativo
@@ -538,7 +540,7 @@ pt-BR:
       metrics:
         name: Métricas da organização
       participatory_space_metrics:
-        name: Métricas
+        name: Participação em números
       participatory_space_stats:
         name: Estatísticas
       social_networks_metadata:
@@ -644,7 +646,6 @@ pt-BR:
       drag_and_drop_help: Adicione imagens arrastando e soltando ou colando-as.
     endorsement_buttons_cell:
       already_endorsed: Dislike
-      endorse: Like
     endorsements:
       identities:
         done: Concluído
@@ -926,7 +927,6 @@ pt-BR:
       title: O que são as medalhas?
     group_admins:
       actions:
-        are_you_sure: Você tem certeza? Isso não removerá o usuário do grupo.
         demote_admin: Remover Administrador
       demote:
         error: Ocorreu um erro ao remover este usuário da lista de administradores.
@@ -953,7 +953,6 @@ pt-BR:
       reject_invitation: Rejeitar
     group_members:
       actions:
-        are_you_sure: Você tem certeza?
         promote_to_admin: Tornar administrador
         remove_from_group: Remover usuário
       index:
@@ -1127,7 +1126,7 @@ pt-BR:
       users:
         description: Número de usuários na organização
         object: usuários
-        title: Usuários
+        title: Participantes
     newsletter_mailer:
       newsletter:
         no_reply_notice: Este email foi enviado de uma caixa postal que não pode receber emails. Favor não responder esta mensagem.
@@ -1156,7 +1155,6 @@ pt-BR:
         error: Ocorreu um erro ao se desinscrever.
         success: Você está inscrito com sucesso.
         token_error: O link expirou.
-        unsubscribe: Cancelar subscrição
     newsletters_opt_in:
       unauthorized: Desculpe, este link não está mais disponível.
       update:
@@ -1164,7 +1162,6 @@ pt-BR:
         success: Configurações de boletim informativo atualizadas com sucesso.
     newsletters_opt_in_mailer:
       notify:
-        body_1: O processamento de dados pessoais e sua proteção estão se tornando cada vez mais importantes para todos nós. Com o novo Regulamento Geral de Proteção de Dados (GDPR) de 25 de maio de 2018, os indivíduos têm melhor controle sobre seus dados pessoais. Por esse motivo, precisamos que seu "OK" continue enviando informações relevantes sobre as atividades do %{organization_name}.
         body_2: 'Como você pode nos dar seu consentimento? Basta clicar no seguinte botão:'
         body_3: Com esse consentimento, você poderá continuar recebendo informações sobre os serviços da plataforma. Se, pelo contrário, não recebermos uma confirmação positiva da sua parte, deixaremos de lhe enviar as nossas mensagens. Se você confirmar que deseja continuar sendo informado, sempre terá a opção de cancelar a qualquer momento.
         button: Sim, quero continuar recebendo informações relevantes
@@ -1310,11 +1307,6 @@ pt-BR:
         confirmation_instructions_sent: Reenviar instruções de confirmação.
         fill_in_email_to_confirm_it: Por favor, preencha o e-mail do seu grupo para confirmar.
     reported_mailer:
-      hide:
-        hello: Olá %{name},
-        manage_moderations: Gerenciar moderações
-        report_html: <p>O seguinte <a href="%{url}">content</a> foi ocultado automaticamente.</p>
-        subject: Um recurso foi escondido automaticamente
       report:
         authors: Autores
         content: Conteúdo denunciado
@@ -1377,6 +1369,7 @@ pt-BR:
         close_modal: Fechar modal
         ok: OK
         title: Confirmar
+      confirm_unload: Esta página contém alterações não salvas. Tem certeza que deseja sair desta página?
       extended_navigation_bar:
         more: Mais
         unfold: Desdobrar

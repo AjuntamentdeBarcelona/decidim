@@ -4,10 +4,19 @@ cs:
     attributes:
       account:
         delete_reason: Důvod odstranění vašeho účtu
+      attachment:
+        documents: Dokumenty
+        image: Obrázek
+        photos: Fotky
       common:
         created_at: Vytvořeno v
+      content_block_attachment:
+        background_image: Obrázek pozadí
+        main_image: Hlavní obrázek
       conversation:
         body: Tělo zprávy
+      editor_image:
+        file: Soubor
       group:
         about: O nás
         avatar: Avatar
@@ -16,12 +25,15 @@ cs:
         name: Jméno
         nickname: Přezdívka
         phone: Telefon
+      import:
+        file: Soubor
       message:
         body: Tělo zprávy
       report:
         details: Další komentáře
       user:
         about: O nás
+        avatar: Avatar
         email: Váš email
         encrypted_password: Heslo
         locale: Jazyk
@@ -33,6 +45,14 @@ cs:
         personal_url: Osobní URL
         remove_avatar: Odstranit avatara
         tos_agreement: Podmínky smlouvy o poskytování služeb
+      user_group:
+        avatar: Avatar
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              format: Přezdívka musí být malými písmeny a nesmí obsahovat mezery
     models:
       decidim/attachment_created_event: Příloha
       decidim/component_published_event: Aktivní komponenty
@@ -166,12 +186,19 @@ cs:
         few: "%{count} sekundy"
         many: "%{count} sekund"
         other: "%{count} sekund"
+    widget:
+      label:
+        date: Vyberte datum pro %{label}
+        time: Vyberte čas pro %{label}
+      picker:
+        time_button: Otevřít výběr času pro %{label}
   decidim:
     accessibility:
       external_link: Externí odkaz
       front_page_link: Přejít na titulní stránku
       logo: "Oficiální logo %{organization}"
       opens_in_new_tab: Otevře se v nové kartě
+      secondary_menu: Sekundární menu
       skip_button: Přeskočit na hlavní obsah
     account:
       blocked: Tento účet byl zablokován kvůli porušení smluvních podmínek
@@ -701,7 +728,7 @@ cs:
       drag_and_drop_help: Přidejte obrázky přetažením nebo vložením.
     endorsement_buttons_cell:
       already_endorsed: Nelíbí se mi
-      endorse: Líbí se mi
+      endorse: Like
     endorsements:
       identities:
         done: Hotovo
@@ -775,6 +802,11 @@ cs:
             email_outro: Toto oznámení jste obdrželi, protože jste sledovali %{amendable_title}. Po předchozím propojení můžete přestat přijímat oznámení.
             email_subject: Pozměňovací návrh k %{amendable_title} byl zamítnut od %{emendation_author_nickname}
             notification_title: <a href="%{emendation_path}">Pozměňovací návrh</a> vytvořen od <a href="%{emendation_author_path}">%{emendation_author_nickname}</a> k <a href="%{amendable_path}">%{amendable_title}</a> byl odmítnut.
+        emendation_promoted:
+          follower:
+            email_intro: 'Byla zveřejněna oprava pro %{amendable_title}. Můžete si ji prohlédnout na této stránce:'
+            email_outro: Toto oznámení jste obdrželi, protože jste autorem %{amendable_title}.
+            email_subject: Doplněk z %{emendation_author_nickname} byl zveřejněn jako nový %{amendable_type}
       attachments:
         attachment_created:
           email_intro: 'Do dokumentu %{resource_title} byl přidán nový dokument. Můžete jej vidět z této stránky:'
@@ -1000,7 +1032,8 @@ cs:
       title: Jaké jsou odznaky?
     group_admins:
       actions:
-        are_you_sure: Jste si jisti? Toto uživatele ze skupiny neodstraní.
+        confirm_modal:
+          ok_add: Přidat administrátora
         demote_admin: Odstranit admin
       demote:
         error: Při odebrání tohoto účastníka ze seznamu administrátorů došlo k chybě.
@@ -1030,7 +1063,9 @@ cs:
         error: Při přijímání této žádosti o připojení došlo k chybě.
         success: Žádost o připojení byla úspěšně přijata.
       actions:
-        are_you_sure: Jste si jisti?
+        confirm_modal:
+          ok_remove: Odebrat člena
+          title_remove: Odebrat člena
         promote_to_admin: Udělat adminem
         remove_from_group: Odstranit uživatele
       index:
@@ -1221,6 +1256,8 @@ cs:
         not_started: Ještě nezačalo
         remaining: "Zbývá %{time_distance}"
     metrics:
+      blocked_users:
+        description: Počet blokovaných účastníků
       download:
         csv: Stáhnout data (CSV)
       followers:
@@ -1231,10 +1268,14 @@ cs:
         description: Počet aktivních uživatelů v organizaci
         object: účastníků
         title: Účastníci
+      reported_users:
+        description: Počet nahlášených účastníků
+      user_reports:
+        description: Počet zpráv vypracovaných účastníky
       users:
         description: Počet uživatelů v organizaci
         object: uživatelů
-        title: Uživatelé
+        title: Účastníci
     newsletter_mailer:
       newsletter:
         no_reply_notice: Tento e-mail byl odeslán z e-mailové adresy, která nemůže přijmout příchozí email. Prosím, neodpovídejte na tuto zprávu.
@@ -1262,11 +1303,10 @@ cs:
         main_image: Hlavní obrázek
     newsletters:
       unsubscribe:
-        check_subscription: Pokud chcete změnit své předvolby, můžete tak učinit na <a href="%{link}" target="_blank">konfigurační stránce</a>.
         error: Při odhlášení došlo k chybě.
         success: Úspěšně jste odhlášeni.
         token_error: Platnost odkazu vypršela.
-        unsubscribe: Odhlásit odběr
+        unsubscribe: Odhlásit odběr zpravodaje
     newsletters_opt_in:
       unauthorized: Je nám líto, tento odkaz již není k dispozici.
       update:
@@ -1274,7 +1314,6 @@ cs:
         success: Nastavení Zpravodaje bylo úspěšně aktualizováno.
     newsletters_opt_in_mailer:
       notify:
-        body_1: Zpracování osobních údajů a jejich ochrana jsou pro nás všechny stále důležitější. S novým obecným nařízením o ochraně osobních údajů (GDPR) ze dne 25. května 2018 mají jednotlivci lepší kontrolu nad svými osobními údaji. Z tohoto důvodu potřebujeme vaše "OK" pro pokračování v zasílání relevantních informací o aktivitách %{organization_name}.
         body_2: 'Jak nám můžete dát svůj souhlas? Stačí kliknout na následující tlačítko:'
         body_3: S tímto souhlasem budete moci pokračovat v přijímání informací o službách platformy. Pokud naopak nedostaneme pozitivní potvrzení z vašeho hlediska, přestaneme vám posílat naše zprávy. Pokud potvrdíte, že chcete být stále informováni, máte vždy možnost kdykoli zrušit.
         button: Ano, chci i nadále přijímat relevantní informace
@@ -1296,10 +1335,12 @@ cs:
     notifications_digest_mailer:
       header:
         daily: Denní výběr oznámení
+        real_time: V reálném čase
         weekly: Týdenní výběr oznámení
       hello: Dobrý den %{name},
       intro:
         daily: 'Toto jsou oznámení z posledního dne založená na aktivitě, kterou máte:'
+        real_time: 'Toto je oznámení o aktivitě, kterou sledujete:'
         weekly: 'Toto jsou oznámení z minulého týdne založená na aktivitě, kterou máte:'
       outro: Obdrželi jste tato oznámení, protože sledujete tento obsah nebo jeho autory. Můžete je zrušit z jejich příslušných stránek.
       see_more: Zobrazit další oznámení
@@ -1431,11 +1472,24 @@ cs:
         confirmation_instructions_sent: Pokyny pro potvrzení e-mailu byly odeslány.
         fill_in_email_to_confirm_it: Pro potvrzení vyplňte e-mailovou adresu skupiny.
     reported_mailer:
-      hide:
-        hello: Zdravím %{name},
-        manage_moderations: Správa moderování
+      hidden_automatically:
+        content: Nahlášený obsah
+        details: Podrobnosti
+        hello: Dobrý den %{name},
+        manage_moderations: Spravovat moderace
+        participatory_space: Participativní prostor
+        reason: Důvod
         report_html: <p>Následující <a href="%{url}">obsah</a> byl automaticky skryt.</p>
         subject: Zdroj byl automaticky skryt
+      hidden_manually:
+        content: Nahlášený obsah
+        details: Podrobnosti
+        hello: Dobrý den %{name},
+        manage_moderations: Spravovat moderace
+        participatory_space: Participativní prostor
+        reason: Důvod
+        report_html: <p>Následující <a href="%{url}">obsah</a> byl skrytý od %{moderator}.</p>
+        subject: Zdroj byl skryt %{moderator}
       report:
         authors: Autoři
         content: Nahlášený obsah
@@ -1453,6 +1507,8 @@ cs:
       create:
         error: Při vytváření shromáždění došlo k chybě. Zkuste to znovu.
         success: Zpráva byla úspěšně vytvořena a bude kontrolována administrátorem.
+      hide:
+        success: Tento zdroj byl skryt.
       parent_hidden:
         report_details: Nadřazený dokument byl skryt
     resource_endorsements:
@@ -1500,6 +1556,7 @@ cs:
         close_modal: Zavřít okno
         ok: OK
         title: Potvrdit
+      confirm_unload: Tato stránka obsahuje neuložené změny. Opravdu chcete opustit tuto stránku?
       embed:
         title: Vložený obsah videa
       extended_navigation_bar:
@@ -1737,7 +1794,7 @@ cs:
         confirm_new_password: Potvrďte nové heslo
         new_password: Nové heslo
         old_password_help: Chcete-li potvrdit změny vašeho účtu, zadejte prosím své aktuální heslo.
-        password_help: "minimální počet znaků je %{minimun_characters}, nesmí být příliš obvyklý (např. 123456) a musí se lišit od vašeho uživatelského jména a e-mailu."
+        password_help: "minimální počet znaků je %{minimum_characters}, nesmí být příliš obvyklý (např. 123456) a musí se lišit od vašeho uživatelského jména a e-mailu."
         password_help_admin: "minimální počet znaků je %{minimum_characters}, nesmí být příliš časté (např. 123456), musí se lišit od vaší přezdívky a e-mailu a musí se lišit od vašich starých hesel."
         title: Změna hesla
       new:
@@ -1974,10 +2031,12 @@ cs:
         decidim_logo: Logo Decidim
         decidim_title: Decidim
         download_open_data: Stáhněte si soubory s otevřenými daty
+        help: Nápověda
         log_in: Přihlásit
         made_with_open_source: Webová stránka vytvořená s <a target="_blank" href="https://github.com/decidim/decidim">svobodným softwarem</a>.
         resources: Zdroje
         sign_up: Vytvořit účet
+        social_media: Sociální sítě
         terms_of_service: Podmínky služby
       header:
         log_in: Přihlásit
@@ -2017,6 +2076,8 @@ cs:
         profile: Můj účet
         public_profile: Můj veřejný profil
         title: Profilové odkazy
+        unread_conversations: Máte nepřečtené konverzace
+        unread_notifications: Máte nepřečtené oznámení
       user_profile:
         account: Účet
         authorizations: Autorizace

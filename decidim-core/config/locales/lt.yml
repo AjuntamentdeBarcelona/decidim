@@ -31,6 +31,8 @@ lt:
         personal_url: Asmeninis URL
         remove_avatar: Pašalinti avatarą
         tos_agreement: Paslaugos sutarties sąlygos
+      user_group:
+        avatar: Avataras
     models:
       decidim/attachment_created_event: Priedas
       decidim/component_published_event: Aktyvusis komponentas
@@ -663,7 +665,6 @@ lt:
       drag_and_drop_help: Pridėkite paveikslėlius juos užvesdami ant lango arba juos įklijuodami.
     endorsement_buttons_cell:
       already_endorsed: Nepatinka
-      endorse: Patinka
     endorsements:
       identities:
         done: Atlikta
@@ -946,7 +947,6 @@ lt:
       title: Kas yra ženkleliai?
     group_admins:
       actions:
-        are_you_sure: Ar tikrai? Tai nepašalins dalyvio iš grupės.
         demote_admin: Pašalinti administratorių
       demote:
         error: Šalinant šį dalyvį iš administratorių sąrašo kilo problema.
@@ -976,7 +976,6 @@ lt:
         error: Priimant šį prisijungimo kvietimą iškilo problema.
         success: Prisijungimo kvietimas priimtas.
       actions:
-        are_you_sure: Ar esate tikri?
         promote_to_admin: Padaryti administratoriumi
         remove_from_group: Pašalinti dalyvį
       index:
@@ -1199,18 +1198,15 @@ lt:
         main_image: Pagrindinis atvaizdas
     newsletters:
       unsubscribe:
-        check_subscription: Jei norite pakeisti savo parinktis, galite tai padaryti <a href="%{link}" target="_blank">konfigūracijos puslapyje</a>.
         error: Atsisakant prenumeratos iškilo problema.
         success: Jūs atsisakėte prenumeratos.
         token_error: Nuorodos galiojimo laikas baigėsi.
-        unsubscribe: Atsisakyti prenumeratos
     newsletters_opt_in:
       update:
         error: Išsaugant naujienlaiškių nuostatas iškilo problema.
         success: Naujienlaiškio nuostatos atnaujintos.
     newsletters_opt_in_mailer:
       notify:
-        body_1: Asmens duomenų tvarkymas ir jų apsauga mums visiems tampa vis svarbesni. 2018 m. gegužės 25 d. priėmus naują Bendrąjį duomenų apsaugos reglamentą (BDAR), asmenys geriau kontroliuoja savo asmens duomenis. Dėl šios priežasties jums reikia spustelėti „Gerai“, kad galėtume ir toliau siųsti reikiamą informaciją apie %{organization_name} veiklą.
         body_2: 'Kaip duoti sutikimą? Spustelkite ant šio mygtuko:'
         body_3: Davę šį sutikimą galėsite ir toliau gauti informaciją apie platformos paslaugas. Kita vertus, jeigu negausime Jūsų sutikimo, Jums nebesiųsime pranešimų. Patvirtinę, kad norite ir toliau gauti informaciją, visada turėsite galimybę bet kuriuo metu sutikimą atšaukti.
         button: Taip, aš noriu ir toliau gauti aktualią informaciją
@@ -1361,11 +1357,6 @@ lt:
         confirmation_instructions_sent: Patvirtinimo el. laiškas išsiųstas.
         fill_in_email_to_confirm_it: Prašau įveskite grupės el. paštą tam, kad jį patvirtinti.
     reported_mailer:
-      hide:
-        hello: Sveiki %{name},
-        manage_moderations: Tvarkyti vedamas diskusijas
-        report_html: <p>Toliau pateikiamas <a href="%{url}">turinys</a> paslėptas automatiškai.</p>
-        subject: Išteklius paslėptas automatiškai
       report:
         authors: Autoriai
         content: Turinys, apie kurį pranešta

@@ -17,6 +17,8 @@ ga:
         about: Faoi
         nickname: Leasainm
         password: Pasfhocal
+      user_group:
+        avatar: Abhatár
     models:
       decidim/attachment_created_event: Ceangaltán
   activerecord:
@@ -100,6 +102,8 @@ ga:
           random: Randamach
       last_activity:
         view_all: Amharc ar uile
+      participatory_space_metrics:
+        name: Méadrachtaí
     core:
       application_helper:
         filter_category_values:

@@ -2,6 +2,8 @@
 cs:
   activemodel:
     attributes:
+      authorization:
+        verification_attachment: Příloha ověření
       config:
         available_methods: Dostupné metody
         offline: Offline
@@ -179,7 +181,6 @@ cs:
             file: ".csv soubor s daty e-mailů"
             info: 'Musí být soubor ve formátu CSV obsahující pouze jeden sloupec s e-mailovou adresou:'
             submit: Nahrát soubor
-            title: Nahrajte nové členy organizace
         authorizations:
           new:
             error: Váš účet nebyl ověřen, nebo nejste členem organizace.

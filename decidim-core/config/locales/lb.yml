@@ -29,6 +29,8 @@ lb:
         password_confirmation: Bestäteg däi Passwuert
         personal_url: Perséinlech URL
         remove_avatar: Avatar läschen
+      user_group:
+        avatar: Profil-Bild
     models:
       decidim/attachment_created_event: Unhang
       decidim/component_published_event: Aktiv Komponent
@@ -370,6 +372,8 @@ lb:
         view_all: Alles gesinn
       metrics:
         name: Organisations-Metriken
+      participatory_space_metrics:
+        name: Statistiken
       stats:
         name: Organisations-Statistiken
       sub_hero:
@@ -648,7 +652,6 @@ lb:
       reject_invitation: Refuséieren
     group_members:
       actions:
-        are_you_sure: Bass du sécher?
         promote_to_admin: Zum Admin maachen
         remove_from_group: Teilnehmer läschen
       index:
@@ -788,15 +791,15 @@ lb:
       followers:
         description: Zuel vun den Teilnehmer, déi dësem Konversatiouns-Espace nofollegen
         object: Follower
-        title: Follower
+        title: Unhänger
       participants:
         description: Zuel vun den aktiven Teilnehmer an dëser Organisatioun
         object: Teilnehmer
-        title: Teilnehmer
+        title: Benotzer
       users:
         description: Zuel vun den Teilnehmer an dëser Organisatioun
         object: Teilnehmer
-        title: Teilnehmer
+        title: Benotzer
     newsletter_mailer:
       newsletter:
         unsubscribe: Fir dës Zort Email ofzebestellen, <a href="%{link}" target="_blank" class="unsubscribe">Abbestellen</a>.
@@ -823,10 +826,8 @@ lb:
       unsubscribe:
         success: Du bass ofgemellt.
         token_error: De Link ass ofgelaf.
-        unsubscribe: Ofbestellen
     newsletters_opt_in_mailer:
       notify:
-        body_1: D'Verschaffen vun perséinlechen Daten an hire Schutz, ginn fir ons all ëmmer méi wichteg. Mat der neier RGPD Reglementatioun hunn Eenzelpersounen eng besser Kontroll iwwer hir perséinlech Daten. Aus dem Grond brauchen mir däin "OK" fir dir weiderhin relevant Informatiounen vun %{organization_name} zoukommen ze loossen.
         body_2: 'Wéi kanns du zoustëmmen? Klick einfach op den Knäppchen hei:'
         body_3: Mat denger Zoustëmmung erhëls du weiderhin Informatiounen iwwert Déngschter vun dëser Plattform. Sollten mir, am Géigenzuch, keng Zoustëmmung vun dir erhalen, wäerten mir dir och keng Noriichten méi schécken. Och am Fall vun enger Zoustëmmung, kanns du zu all Moment dës Optioun ofzewielen.
         button: Ja, ich möchte weiterhin relevante Informationen erhalten
@@ -910,11 +911,6 @@ lb:
           manage_user_group_users: Memberen verwalten
           resend_email_confirmation_instructions: Den Email mat der Confirmatioun vun den Instruktiounen op en Neits schécken
     reported_mailer:
-      hide:
-        hello: Moien %{name}
-        manage_moderations: Moderatiounen verwalten
-        report_html: <p>Den folgenden Inhalt <a href="%{url}">Inhalt</a> gouf automatesch ausgeblent.</p>
-        subject: Eng Ressource gouf automatesch ausgeblent
       report:
         authors: Auteuren
         content: Inhalt gouf gemellt

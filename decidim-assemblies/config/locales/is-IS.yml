@@ -92,8 +92,6 @@ is:
       assembly_copies:
         new:
           copy: Afrita
-          select: Veldu hvaða gögn þú vilt afrita
-          title: Afrit samkoma
       assembly_imports:
         new:
           import: Flytja inn
@@ -215,6 +213,9 @@ is:
           not_found: 'Safnið fannst ekki í gagnagrunninum (ID: %{id})'
     menu:
       assemblies: Þing
+    metrics:
+      assemblies:
+        title: Þing
   layouts:
     decidim:
       assemblies:

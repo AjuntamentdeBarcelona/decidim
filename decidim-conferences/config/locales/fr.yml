@@ -69,6 +69,8 @@ fr:
         email: Email
         name: Nom
         role: Rôle
+      partner:
+        logo: Logo
     errors:
       models:
         conference_registration_invite:
@@ -174,7 +176,7 @@ fr:
           success: Conférence mise à jour avec succès.
       conferences_copies:
         create:
-          error: Une erreur s'est produite lors de la duplication de cette conférence.
+          error: Un problème est survenu lors de la duplication de cette conférence.
           success: Conférence dupliquée avec succès.
       media_links:
         create:
@@ -522,7 +524,7 @@ fr:
           title: Types d'inscription
       show:
         details: Détails
-        introduction: introduction
+        introduction: Introduction
         objectives: Objectifs
         related_assemblies: Assemblées connexes
         related_participatory_processes: Concertations associées

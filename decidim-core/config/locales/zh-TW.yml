@@ -31,6 +31,8 @@ zh-TW:
         personal_url: 個人 URL
         remove_avatar: 刪除頭像
         tos_agreement: 同意服務條款
+      user_group:
+        avatar: 頭像
     models:
       decidim/attachment_created_event: 附件
       decidim/component_published_event: 啟用組件
@@ -474,6 +476,8 @@ zh-TW:
         view_all: 檢視全部
       metrics:
         name: 組織指標
+      participatory_space_metrics:
+        name: 指標
       static_page:
         section:
           name: 節
@@ -562,7 +566,6 @@ zh-TW:
       drag_and_drop_help: 通過拖放或粘貼方式添加圖片。
     endorsement_buttons_cell:
       already_endorsed: 不喜歡
-      endorse: 喜歡！
     endorsements:
       identities:
         done: 已完成
@@ -836,7 +839,6 @@ zh-TW:
       title: 徽章是什麼？
     group_admins:
       actions:
-        are_you_sure: 確定嗎？這將不會將該參與者從該組中移除。
         demote_admin: 移除管理員
       demote:
         error: 刪除此參與者的管理員名單時發生問題。
@@ -865,7 +867,6 @@ zh-TW:
         error: 加入請求接受時發生問題.
         success: 加入申請已成功接受.
       actions:
-        are_you_sure: 您確定嗎？
         promote_to_admin: 設為管理員
         remove_from_group: 刪除該參與者
       index:
@@ -1078,18 +1079,15 @@ zh-TW:
         main_image: 主圖片
     newsletters:
       unsubscribe:
-        check_subscription: 如果您想更改您的偏好設定，您可以在<a href="%{link}" target="_blank">配置頁面</a>進行更改。
         error: 取消訂閱時發生問題.
         success: 你已經成功取消訂閱
         token_error: 該連結已過期。
-        unsubscribe: 取消訂閱
     newsletters_opt_in:
       update:
         error: 儲存通訊設定時出現問題。
         success: 成功更新電子報設定.
     newsletters_opt_in_mailer:
       notify:
-        body_1: 個人資料的處理和保護對我們所有人來說變得越來越重要。隨著2018年5月25日新的《通用數據保護條例》（GDPR）的出台，個人對其個人資料擁有更好的控制權。因此，我們需要您的「確認」，以繼續向您發送有關 %{organization_name} 活動的相關資訊。
         body_2: '您如何給予我們您的同意？只需點擊下面的按鈕：'
         body_3: 通過此同意，您將能夠繼續接收有關平台服務的資訊。如果您沒有給予積極的確認，我們將停止向您發送訊息。如果您確認希望繼續收到資訊，您隨時可以選擇取消訂閱。
         button: 是的，我希望繼續接收相關資訊。
@@ -1237,11 +1235,6 @@ zh-TW:
         confirmation_instructions_sent: 電子郵件確認指示已發送.
         fill_in_email_to_confirm_it: 請填寫您的群組電子郵件以進行確認.
     reported_mailer:
-      hide:
-        hello: 哈囉，%{name},
-        manage_moderations: 管理版主
-        report_html: <p>以下<a href="%{url}">內容</a>已自動隱藏。</p>
-        subject: 一個資源已被自動隱藏。
       report:
         authors: 作者
         content: 已檢舉內容

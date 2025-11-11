@@ -26,6 +26,8 @@ sk:
         title: Akcie
       admin:
         models:
+          budget:
+            name: Rozpočet
           project:
             name: Projekt
         projects:
@@ -113,5 +115,7 @@ sk:
             show_votes: Zobraziť hlasy
             votes_choices:
               enabled: Hlasovanie povolené
+    statistics:
+      projects_count: Projekty
   index:
     confirmed_orders_count: Počet hlasov

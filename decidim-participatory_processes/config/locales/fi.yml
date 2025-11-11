@@ -7,6 +7,7 @@ fi:
         area_id: Alue
         copy_categories: Kopioi aihepiirit
         copy_components: Kopioi komponentit
+        copy_landing_page_blocks: Kopioi laskeutumissivun sisältölohkot
         copy_steps: Kopioi vaiheet
         decidim_area_id: Alue
         description: Kuvaus
@@ -311,6 +312,7 @@ fi:
         update: "%{user_name} päivitti osallistumisprosessin %{resource_name}"
       participatory_process_group:
         create: "%{user_name} loi osallistumisprosessien ryhmän %{resource_name}"
+        unpublish: "%{user_name} perui osallistumisprosessin %{resource_name} julkaisun"
         update: "%{user_name} päivitti osallistumisprosessien ryhmää %{resource_name}"
       participatory_process_step:
         activate: "%{user_name} aktivoi vaiheen %{resource_name} osallistumisprosessissa %{space_name}"
@@ -387,6 +389,8 @@ fi:
           participatory_processes:
             one: 1 prosessi
             other: "%{count} prosessia"
+      related_processes:
+        help: Valitut prosessit liitetään tähän ryhmään, myös sellaiset, jotka on aikaisemmin liitetty johonkin toiseen ryhmään.
       show:
         title: Osallistumisprosessiryhmät
     participatory_process_steps:
@@ -477,8 +481,8 @@ fi:
               one: 1 prosessi
               other: "%{count} prosessia"
             past:
-              one: 1 aikaisempi prosessi
-              other: "%{count} aikaisempaa prosessia"
+              one: 1 päättynyt prosessi
+              other: "%{count} päättynyttä prosessia"
             upcoming:
               one: 1 tuleva prosessi
               other: "%{count} tulevaa prosessia"
@@ -491,7 +495,7 @@ fi:
           names:
             active: Aktiiviset
             all: Kaikki
-            past: Menneet
+            past: Päättyneet
             upcoming: Tulevat
           see: Näytä
           type: Tyyppi

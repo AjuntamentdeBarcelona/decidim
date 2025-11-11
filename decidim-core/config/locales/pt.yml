@@ -29,6 +29,8 @@ pt:
         password_confirmation: Confirme a sua palavra-passe
         personal_url: URL pessoal
         remove_avatar: Remover avatar
+      user_group:
+        avatar: Avatar
     models:
       decidim/attachment_created_event: Anexo
       decidim/component_published_event: Componente ativo
@@ -369,6 +371,8 @@ pt:
         view_all: Ver tudo
       metrics:
         name: Métricas da organização
+      participatory_space_metrics:
+        name: Métricas
       stats:
         name: Estatísticas da organização
       sub_hero:
@@ -651,7 +655,6 @@ pt:
       reject_invitation: Rejeitar
     group_members:
       actions:
-        are_you_sure: Tem a certeza?
         promote_to_admin: Tornar administrador
         remove_from_group: Remover participante
       index:
@@ -826,10 +829,8 @@ pt:
       unsubscribe:
         success: Subscrição cancelada corretamente.
         token_error: A hiperligação expirou.
-        unsubscribe: Cancelar subscrição
     newsletters_opt_in_mailer:
       notify:
-        body_1: O processamento de dados pessoais e a sua proteção estão a tornar-se cada vez mais importantes para todos nós. Com o novo Regulamento Geral de Proteção de Dados (GDPR) de 25 de maio de 2018, os indivíduos têm melhor controlo sobre os seus dados pessoais. Por este motivo, precisamos do seu "OK" para continuar a enviar informações relevantes sobre as atividades de %{organization_name}.
         body_2: 'Como pode dar-nos o seu consentimento? Basta clicar no seguinte botão:'
         body_3: Com este consentimento, poderá continuar a receber informações sobre os serviços da plataforma. Se, pelo contrário, não recebermos uma confirmação positiva da sua parte, deixaremos de lhe enviar as nossas mensagens. Se confirmar que deseja continuar a ser informado, terá sempre a opção de cancelar a qualquer momento.
         button: Sim, quero continuar a receber informações relevantes
@@ -913,11 +914,6 @@ pt:
           manage_user_group_users: Gerir membros
           resend_email_confirmation_instructions: Reenviar instruções de confirmação de e-mail
     reported_mailer:
-      hide:
-        hello: Olá %{name},
-        manage_moderations: Gerir moderações
-        report_html: <p>O seguinte <a href="%{url}">conteúdo</a> foi ocultado automaticamente.</p>
-        subject: Um recurso foi ocultado automaticamente
       report:
         authors: Autores
         content: Conteúdo reportado

@@ -2,6 +2,8 @@
 ar:
   activemodel:
     attributes:
+      authorization:
+        verification_attachment: مرفق التحقق
       config:
         available_methods: الطرق المتاحة
         offline: غير متصل على الانترنت
@@ -85,8 +87,6 @@ ar:
             body: للقيام بذلك ، يجب عليك إدخال إدارة النظام وإضافة تصاريح csv_census إلى المؤسسة
           new:
             file: ".csv ملف مع بيانات رسائل البريد الإلكتروني"
-            submit: رفع ملف
-            title: تحميل إحصاء جديد
         authorizations:
           new:
             error: لم نتمكن من التحقق من حسابك أو لم تكن في تعداد المنظمة.

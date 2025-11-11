@@ -29,6 +29,8 @@
         password_confirmation: Bekreft ditt passord
         personal_url: Din profilside
         remove_avatar: Fjern profilbilde
+      user_group:
+        avatar: Profilbilde
     models:
       decidim/attachment_created_event: Vedlegg
       decidim/component_published_event: Aktive komponent
@@ -376,6 +378,8 @@
         view_all: Vis alle
       metrics:
         name: Organisasjonens målinger
+      participatory_space_metrics:
+        name: Deltakelse i tall
       stats:
         name: Organisasjonsstatistikk
       sub_hero:
@@ -662,7 +666,6 @@
       reject_invitation: Avvis
     group_members:
       actions:
-        are_you_sure: Er du sikker?
         promote_to_admin: Lag administrator
         remove_from_group: Fjern deltaker
       index:
@@ -837,10 +840,8 @@
       unsubscribe:
         success: Du har avsluttet ditt abonnement.
         token_error: Lenken er utløpt.
-        unsubscribe: Avslutt abonnement
     newsletters_opt_in_mailer:
       notify:
-        body_1: Behandlingen av personopplysninger og deres beskyttelse blir stadig viktigere for oss alle. Med den nye General Data Protection Regulation (GDPR) av 25. mai 2018, har enkeltpersoner bedre kontroll over personopplysningene sine. Av denne grunn trenger vi din "OK" for å fortsette å sende relevant informasjon om aktivitetene til %{organization_name}.
         body_2: 'Hvordan kan du gi oss ditt samtykke? Bare klikk på følgende knapp:'
         body_3: Med dette samtykket vil du kunne fortsette å motta informasjon om tjenestene til plattformen. Hvis vi ikke mottar en positiv bekreftelse fra din side, vil vi slutte å sende deg meldingene våre. Hvis du bekrefter at du ønsker å bli informert, har du alltid muligheten til å kansellere når som helst.
         button: Ja, jeg vil fortsette å motta relevant informasjon
@@ -933,11 +934,6 @@
           manage_user_group_users: Administrere medlemmer
           resend_email_confirmation_instructions: Send email bekreftelse instruksjoner på nytt
     reported_mailer:
-      hide:
-        hello: Hei %{name},
-        manage_moderations: Administrer moderasjoner
-        report_html: <p>Det følgene <a href="%{url}">innholdet</a> har blitt automatisk skjult.</p>
-        subject: En ressurs var automatisk skjult
       report:
         authors: Forfattere
         content: Rapportert innhold

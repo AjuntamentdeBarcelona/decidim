@@ -25,6 +25,8 @@ lv:
         title: Darbības
       admin:
         models:
+          budget:
+            name: Budžets
           project:
             name: Projekts
         projects:
@@ -108,5 +110,7 @@ lv:
             show_votes: Rādīt balsis
             votes_choices:
               enabled: Balsošana ir iespējota
+    statistics:
+      projects_count: Projekti
   index:
     confirmed_orders_count: Balsu skaits

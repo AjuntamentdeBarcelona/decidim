@@ -119,6 +119,7 @@ nl:
           recent: Meest recent
           updated: Onlangs bijgewerkt
         show:
+          debate_closed: Gesloten
           edit_debate: Bewerk debat
           open: Debat openen
         update:
@@ -176,6 +177,6 @@ nl:
       debates:
         description: Aantal debatten gemaakt
         object: debatten
-        title: debatten
+        title: Debatten
     statistics:
       debates_count: Debatten

@@ -94,6 +94,20 @@ module Decidim
       safe_join [label_tabs, tabs_content]
     end
 
+    def datetime_field(attribute, opts = {})
+      label = label_for(attribute)
+      opts.reverse_merge!(
+        data: {
+          "date-label": I18n.t("datetime.widget.label.date", label:),
+          "time-label": I18n.t("datetime.widget.label.time", label:),
+          "button-date-label": I18n.t("datetime.widget.picker.date_button", label:),
+          "button-time-label": I18n.t("datetime.widget.picker.time_button", label:)
+        }
+      )
+
+      super
+    end
+
     def password_field(attribute, options = {})
       field attribute, options do |opts|
         opts[:autocomplete] ||= :off
@@ -218,7 +232,7 @@ module Decidim
             disabled: options[:disabled],
             options: editor_options[:editor]
           }
-        ) { content_tag(:div, nil, class: "editor-input", style: "height: #{lines}rem") }
+        ) { content_tag(:div, nil, class: "editor-input", style: "min-height: #{lines}rem") }
         template += error_for(name, options) if error?(name)
         template += editor_upload(editor_image, editor_options[:upload])
         template.html_safe

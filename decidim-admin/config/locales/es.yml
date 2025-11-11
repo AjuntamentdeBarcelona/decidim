@@ -53,6 +53,7 @@ es:
         customize_welcome_notification: Personalizar notificación de bienvenida
         default_locale: Idioma predeterminado
         description: Descripción
+        enable_machine_translations: Habilitar traducciones automáticas
         enable_omnipresent_banner: Mostrar banner omnipresente
         enable_participatory_space_filters: Habilitar los filtros en el espacio de participación
         facebook_handler: Nombre en Facebook
@@ -106,6 +107,8 @@ es:
       participatory_space_private_user:
         email: Correo electrónico
         name: Nombre
+      participatory_space_private_user_csv_import:
+        file: Archivo
       scope:
         code: Código
         name: Nombre
@@ -721,6 +724,11 @@ es:
             report_language: Idioma del informe
             report_reason: Motivo
             title: Detalles del informe
+      new_import:
+        accepted_mime_types:
+          csv: CSV
+          json: JSON
+          xlsx: XLSX
       newsletter_templates:
         index:
           preview_template: Previsualizar
@@ -847,8 +855,8 @@ es:
             choose_color: Elegir un color primario
             colors_title: Colores de la organización
             colors_warning_html: '¡Advertencia! Cambiar estos colores puede romper los contrastes de accesibilidad. Puedes comprobar el contraste de tu elección con <a href="https://webaim.org/resources/contrastchecker">WebAIM Contrast Checker</a> u otras herramientas similares.'
-            explanation: Esta herramienta te ayuda a elegir un esquema de color, compuesto por distintas tonalidades seleccionadas de forma armoniosa para usarse en el sitio web de la organización.
-            legend_html: Colores principales de la aplicación, basados en el <a href="https://www.color-meanings.com/triadic-colors/">algoritmo Triadic</a>. El color <i>secundario</i> es autocalculado a partir del color primario y la saturación que has elegido.
+            explanation: Esta herramienta le ayuda a elegir un esquema de colores, compuesto por tonos igualmente espaciados alrededor de la rueda cromática, que se utilizará en el sitio web de la organización.
+            legend_html: Colores principales de la aplicación, basados en el <a href="https://www.color-meanings.com/triadic-colors/">algoritmo Triádico</a>. El color <i>secundario</i> es autocalculado a partir del color primario y la saturación que has elegido.
             saturation: Saturación
             title: Selector de color
             update_suggested_colors: Actualizar a los colores sugeridos
@@ -1112,6 +1120,7 @@ es:
         hidden: Ocultas
         hide: Esconder
         not_hidden: No ocultas
+        parent_hidden: No se puede mostrar este recurso porque está incluido dentro de otro recurso ("padre") que sigue oculto.
         title: Acciones
         unhide: Vuelve a mostrar
         unreport: Deshacer denuncia
@@ -1122,6 +1131,7 @@ es:
             success: Contenido ocultado correctamente.
           unhide:
             invalid: Se ha producido un error volviendo a mostrar el contenido.
+            parent_invalid: Ha habido un problema desocultando el recurso. El recurso en el que este está incluido ("padre") no está visible.
             success: Contenido exitosamente desocultado.
           unreport:
             invalid: Se ha producido un error al cancelar la denuncia.
