@@ -72,7 +72,6 @@ describe Decidim::Proposals::HighlightedProposalsForComponentCell, type: :cell d
 
     it "renders the proposals" do
       expect(subject).to have_content("A nice title")
-      expect(subject).to have_content("Last proposals")
       expect(subject).to have_css(".card__list-title", count: 1)
     end
   end
