@@ -149,7 +149,7 @@ en:
         actions:
           amend: Amend
           comment: Comment
-          create: Create
+          create: Create a proposal
           endorse: Endorse
           vote: Vote
           vote_comment: Vote comment
@@ -242,6 +242,11 @@ en:
     events:
       proposals:
         admin:
+          proposal_assigned_to_valuator:
+            email_intro: You have been assigned as a valuator to the proposal "%{resource_title}". This means you have been trusted to give them feedback and a proper response in the next coming days. Check it out at <a href="%{admin_proposal_info_url}">the admin panel</a>.
+            email_outro: You have received this notification because you can valuate the proposal.
+            email_subject: You have been assigned as a valuator to the proposal %{resource_title}.
+            notification_title: You have been assigned as a valuator to the proposal <a href="%{resource_path}">%{resource_title}</a>. Check it out at <a href="%{admin_proposal_info_path}">the admin panel</a>.
           proposal_note_created:
             email_intro: Someone has left a note on the proposal "%{resource_title}". Check it out at <a href="%{admin_proposal_info_url}">the admin panel</a>.
             email_outro: You have received this notification because you can valuate the proposal.
@@ -749,6 +754,11 @@ en:
       destroy_draft:
         error: There was a problem deleting the collaborative draft.
         success: Proposal draft was successfully deleted.
+      exit_modal:
+        cancel: Cancel
+        exit: Continue
+        message: You have to give %{number} more votes between different proposals for your votes to be taken into account.
+        title: Remember you have %{number} votes left
       last_activity:
         new_proposal: 'New proposal:'
         proposal_updated: 'Proposal updated:'
@@ -882,25 +892,28 @@ en:
           maximum_votes_reached: Vote limit reached
           no_votes_remaining: No votes remaining
           vote: Vote
-          votes_blocked: Voting disabled
+          votes_blocked: Vote
         votes_count:
           count:
             one: Vote
             other: Votes
         voting_rules:
+          already_vote:
+            description: Remember that you still have to give %{number} supports between different proposals so that your supports are taken into account.
+            see_other_proposals: See other proposals
+            title: You have %{number} supports left
           can_accumulate_votes_beyond_threshold:
             description: Each proposal can accumulate more than %{limit} votes
           minimum_votes_per_user:
-            description: You must distribute a minimum of %{votes} votes among different proposals.
-            given_enough_votes: You have given enough votes.
-            votes_remaining: You have to vote %{remaining_votes} more proposals for your votes to be taken into account.
+            description: You have to distribute a minimum of %{votes} supports among different proposals so that your supports are taken into account.
           proposal_limit:
             description: You can create up to %{limit} proposals.
+          success: Your votes have been successfully accepted
           threshold_per_proposal:
             description: In order to be validated proposals need to reach %{limit} votes.
-          title: 'Votes are subject to the following rules:'
+          title: Rules of participation
           vote_limit:
-            description: You can vote up to %{limit} proposals.
+            description: You can support up to %{limit} proposals.
             votes: Remaining %{number} votes
         wizard_aside:
           back: Back

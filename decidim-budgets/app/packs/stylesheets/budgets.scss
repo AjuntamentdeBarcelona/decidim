@@ -44,8 +44,6 @@
       }
 
       &--meter {
-        background-color: var(--success);
-
         @apply h-2 rounded-s absolute;
       }
     }
@@ -69,10 +67,6 @@
     &__progressbar-legend-strong {
       @apply font-semibold block text-[10px] md:text-sm text-nowrap;
     }
-  }
-
-  &__projects__container {
-    @apply -mt-12 sm:mt-0;
   }
 
   &__card__list-project {
@@ -136,7 +130,7 @@
   }
 
   &__list--header {
-    @apply flex items-center justify-between -ml-2 md:ml-0;
+    @apply flex items-center justify-between;
   }
 
   &-list {
@@ -286,4 +280,16 @@
       @apply md:col-start-1 md:col-span-7;
     }
   }
+}
+
+.budget--highlighted {
+  @apply ring-warning;
+}
+
+.card--list__data-progress {
+  @apply ring-warning;
+}
+
+.card--list__data-added {
+  @apply ring-success;
 }

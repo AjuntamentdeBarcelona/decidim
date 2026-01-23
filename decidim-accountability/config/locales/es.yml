@@ -252,6 +252,7 @@ es:
       accountability:
         actions:
           comment: Comentar
+          vote_comment: Votar comentario
         name: Seguimiento
         settings:
           global:

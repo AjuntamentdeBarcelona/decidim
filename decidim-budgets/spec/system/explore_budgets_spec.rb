@@ -65,8 +65,9 @@ describe "Explore Budgets", :slow do
                :with_vote_threshold_percent,
                manifest:,
                participatory_space: participatory_process,
-               settings: { landing_page_content: description })
+               settings: { landing_page_content: description, vote_focus_mode_by_default: })
       end
+      let(:vote_focus_mode_by_default) { true }
       let(:description) { { en: "Short description", ca: "Descripció curta", es: "Descripción corta" } }
       let(:budget) { budgets.first }
       let(:item) { page.find("#budgets .card--list__item", match: :first) }
@@ -79,17 +80,17 @@ describe "Explore Budgets", :slow do
       it_behaves_like "has embedded video in description", :description
 
       it "has a clickable title" do
-        expect(item).to have_link(translated(budget.title), href: budget_path(budget))
+        expect(item).to have_link(translated(budget.title), href: budget_start_voting_path(budget))
       end
 
       context "when an item is bookmarked" do
         let!(:order) { create(:order, user:, budget:) }
         let!(:line_item) { create(:line_item, order:, project: projects.first) }
 
-        it "shows a finish voting link" do
+        it "shows a finish voting link in focus mode" do
           visit_component
 
-          expect(item).to have_link("Finish voting", href: budget_path(budget))
+          expect(item).to have_link("Finish voting", href: budget_start_voting_path(budget))
         end
 
         it "shows the projects count and it has no remove vote link" do
@@ -111,11 +112,11 @@ describe "Explore Budgets", :slow do
           order
         end
 
-        it "shows the check icon" do
+        it "shows the check icon with a link to the budgets projects in focus mode" do
           visit_component
 
           expect(item).to have_css("div.card__highlight-text svg.fill-success")
-          expect(item).to have_link("See projects", href: budget_path(budget))
+          expect(item).to have_link("See projects", href: budget_start_voting_path(budget))
         end
 
         it "shows the projects count" do
@@ -125,9 +126,9 @@ describe "Explore Budgets", :slow do
         it "has a link to remove vote" do
           visit_component
 
-          expect(item).to have_content("delete your vote")
+          expect(item).to have_content("Delete your vote")
           within item do
-            accept_confirm { click_on "delete your vote" }
+            accept_confirm { click_on "Delete your vote" }
             expect(Decidim::Budgets::Order.where(budget:)).to be_blank
           end
         end
@@ -143,5 +144,9 @@ describe "Explore Budgets", :slow do
 
   def budget_path(budget)
     Decidim::EngineRouter.main_proxy(component).budget_path(budget.id)
+  end
+
+  def budget_start_voting_path(budget)
+    Decidim::EngineRouter.main_proxy(component).budget_focus_projects_path(budget, start_voting: true)
   end
 end

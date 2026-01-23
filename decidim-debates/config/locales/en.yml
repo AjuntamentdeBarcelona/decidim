@@ -30,8 +30,9 @@ en:
       debates:
         actions:
           comment: Comment
-          create: Create
+          create: Create a debate
           endorse: Endorse
+          vote_comment: Vote comment
         name: Debates
         settings:
           global:

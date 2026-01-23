@@ -471,6 +471,10 @@ module Decidim
       ActionAuthorizer.new(user, "comment", self, nil).authorize.ok?
     end
 
+    def user_allowed_to_vote_comment?(user)
+      ActionAuthorizer.new(user, "vote_comment", self, nil).authorize.ok?
+    end
+
     def self.ransack(params = {}, options = {})
       Initiatives::InitiativeSearch.new(self, params, options)
     end

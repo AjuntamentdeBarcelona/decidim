@@ -22,6 +22,7 @@ es:
       sortitions:
         actions:
           comment: Comentar
+          vote_comment: Votar comentario
         name: Sorteos
         settings:
           global:

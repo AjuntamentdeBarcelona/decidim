@@ -605,9 +605,10 @@ es:
       initiative:
         actions:
           comment: Comentar
+          vote_comment: Votar comentario
       initiatives_type:
         actions:
-          create: Crear
+          create: Crear una iniciativa
           title: Acciones
           vote: Firmar
   layouts:

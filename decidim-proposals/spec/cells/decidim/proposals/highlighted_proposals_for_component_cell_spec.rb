@@ -65,4 +65,14 @@ describe Decidim::Proposals::HighlightedProposalsForComponentCell, type: :cell d
       end
     end
   end
+
+  context "when votes on proposals is enabled" do
+    let(:model) { create(:proposal_component, :with_votes_enabled) }
+    let!(:proposal) { create(:proposal, :with_votes, title: { en: "A nice title" }, component: model) }
+
+    it "renders the proposals" do
+      expect(subject).to have_content("A nice title")
+      expect(subject).to have_css(".card__list-title", count: 1)
+    end
+  end
 end

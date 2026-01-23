@@ -196,6 +196,8 @@ es:
         vote: Votar
         voted_budgets: Presupuestos votados
         voted_on: Has votado %{links}.
+      focus_mode:
+        back_to_budgets: Volver a los presupuestos
       last_activity:
         new_vote_at: Nueva votación presupuestaria en
       limit_announcement:
@@ -213,6 +215,25 @@ es:
             id: ID
             map: Mapa
             title: Título
+      order:
+        status:
+          continue_voting: Ir a los presupuestos
+          download_vote: Descarga tu voto
+          pending_to_vote_budgets:
+            one: Puedes votar en otro presupuesto
+            other: Puedes votar en otros presupuestos
+          share_text: "¡Acabas de votar por tus proyectos favoritos en: ·%{space_name}·! 🎉 Puedes seguir votando en: \"%{component_url}\""
+          share_vote: Comparte tu voto
+          title: Tu voto se ha tramitado correctamente
+          view_votes:
+            one: Ver voto
+            other: Ver votos
+          votes_count:
+            one: Tu voto en %{budget_name} ya se ha registrado.
+            other: Tus %{count} votos en %{budget_name} ya se han registrado.
+      order_pdf:
+        text: 'Has votado en "%{space_name}", donde has seleccionado los siguientes proyectos:'
+        title: Tu voto se ha aceptado correctamente.
       order_summary_mailer:
         order_summary:
           selected_projects: 'Lo proyectos que has seleccionado son:'
@@ -266,17 +287,17 @@ es:
           budget: Presupuesto
           dynamic_help:
             keep_adding_projects: Seguir añadiendo proyectos
-            minimum_reached: Has alcanzado el mínimo para poder votar
+            minimum_reached: "<b>Has alcanzado el mínimo para poder votar</b>"
             start_adding_projects: Empezar a añadir proyectos
           minimum: Mínimo
           minimum_projects_rule:
-            description: Selecciona al menos %{minimum_number} proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
+            description: "<b>Selecciona al menos %{minimum_number} proyectos</b> que quieras y vota de acuerdo a tus preferencias."
           projects_rule:
             description: Selecciona al menos %{minimum_number} y hasta %{maximum_number} proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
           projects_rule_maximum_only:
-            description: Selecciona hasta %{maximum_number} proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
+            description: Selecciona hasta %{maximum_number} proyectos que quieras y vota de acuerdo a tus preferencias.
           vote_threshold_percent_rule:
-            description: Asigna al menos %{minimum_budget} a los proyectos que quieras y vota de acuerdo a tus preferencias para definir el presupuesto.
+            description: Selecciona los proyectos que quieras hasta al menos el %{minimum_budget} del total del presupuesto y vota según tus preferencias.
         orders:
           highest_cost: Mayor coste
           label: Ordenar proyectos por
@@ -301,9 +322,10 @@ es:
           added: Añadido
           all: Todos
         projects_for: Proyectos de %{name}
-        select_projects: Selecciona proyectos
+        select_projects: Añadir proyectos
         show:
           budget: Presupuesto
+        start_voting: Empezar a votar
       prompt: Seleccionar presupuesto
       vote_reminder_mailer:
         vote_reminder:
@@ -319,6 +341,7 @@ es:
         actions:
           comment: Comentar
           vote: Vota
+          vote_comment: Votar comentario
         name: Presupuestos
         settings:
           global:
@@ -338,6 +361,7 @@ es:
             scopes_enabled: Ámbitos habilitados
             title: Título
             total_budget: Presupuesto total
+            vote_focus_mode_by_default: Acceder a los presupuestos en modo focus directamente
             vote_minimum_budget_projects_number: Número mínimo de proyectos a votar
             vote_rule_minimum_budget_projects_enabled: 'Activar norma: Número mínimo de proyectos a votar'
             vote_rule_selected_projects_enabled: 'Habilitar regla: número mínimo y máximo de proyectos en los que votar'

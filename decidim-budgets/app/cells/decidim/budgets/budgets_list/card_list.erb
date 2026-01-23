@@ -1,6 +1,6 @@
 <% if highlighted.any? %>
   <% reordered_highlighted_budgets.each do |budget| %>
-    <%= cell("decidim/budgets/budget_list_item", budget) %>
+    <%= cell("decidim/budgets/budget_list_item", budget, **focus_options) %>
   <% end %>
 <% end %>
 
@@ -8,6 +8,6 @@
 
 <% if non_highlighted.exists? %>
   <% non_highlighted.each do |budget| %>
-    <%= cell("decidim/budgets/budget_list_item", budget) %>
+    <%= cell("decidim/budgets/budget_list_item", budget, **focus_options) %>
   <% end %>
 <% end %>

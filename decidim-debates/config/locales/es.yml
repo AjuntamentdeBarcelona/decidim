@@ -30,8 +30,9 @@ es:
       debates:
         actions:
           comment: Comentar
-          create: Crear
+          create: Crear un debate
           endorse: Adherirse
+          vote_comment: Votar comentario
         name: Debates
         settings:
           global:

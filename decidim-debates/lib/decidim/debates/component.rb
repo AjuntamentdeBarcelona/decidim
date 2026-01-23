@@ -51,10 +51,10 @@ Decidim.register_component(:debates) do |component|
     resource.card = "decidim/debates/debate"
     resource.reported_content_cell = "decidim/debates/reported_content"
     resource.searchable = true
-    resource.actions = %w(create endorse comment)
+    resource.actions = %w(create endorse comment vote_comment)
   end
 
-  component.actions = %w(create endorse comment)
+  component.actions = %w(create endorse comment vote_comment)
 
   component.exports :comments do |exports|
     exports.collection do |component_instance|

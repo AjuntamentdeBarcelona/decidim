@@ -202,6 +202,7 @@ FactoryBot.define do
     accepted_tos_version { organization.tos_version }
     notifications_sending_frequency { "real_time" }
     email_on_moderations { true }
+    email_on_assigned_proposals { true }
     password_updated_at { Time.current }
     previous_passwords { [] }
     extended_data { {} }
@@ -248,6 +249,15 @@ FactoryBot.define do
       password { "" }
       encrypted_password { "" }
       managed { true }
+    end
+
+    trait :tos_not_accepted do
+      accepted_tos_version { nil }
+    end
+
+    trait :ephemeral do
+      managed
+      extended_data { { ephemeral: true } }
     end
 
     trait :officialized do

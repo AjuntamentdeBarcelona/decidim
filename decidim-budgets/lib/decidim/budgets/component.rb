@@ -15,7 +15,7 @@ Decidim.register_component(:budgets) do |component|
 
   component.query_type = "Decidim::Budgets::BudgetsType"
 
-  component.actions = %w(vote comment)
+  component.actions = %w(vote comment vote_comment)
 
   component.on(:before_destroy) do |instance|
     raise StandardError, "Cannot remove this component" if Decidim::Budgets::Budget.where(component: instance).any?
@@ -87,6 +87,7 @@ Decidim.register_component(:budgets) do |component|
     settings.attribute :vote_rule_selected_projects_enabled, type: :boolean, default: false
     settings.attribute :vote_selected_projects_minimum, type: :integer, default: 0
     settings.attribute :vote_selected_projects_maximum, type: :integer, default: 1
+    settings.attribute :vote_focus_mode_by_default, type: :boolean, default: true
     settings.attribute :comments_enabled, type: :boolean, default: true
     settings.attribute :comments_max_length, type: :integer, required: true
     settings.attribute :geocoding_enabled, type: :boolean, default: false
