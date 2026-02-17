@@ -106,7 +106,7 @@ en:
       menu:
         participatory_process_groups: Process groups
         participatory_process_groups_submenu:
-          info: Info
+          info: About this process group
           landing_page: Landing page layout
         participatory_processes: Processes
         participatory_processes_submenu:
@@ -495,9 +495,13 @@ en:
             all: All
             max_results: Maximum amount of elements to show
             selection_criteria: Selection criteria
+        imports:
+          attachment_error: The attachment "%{title}" could not be imported (%{error}).
+          hero_image_error: The hero image could not be imported (%{error}).
         new_import:
           accepted_types:
             json: JSON
+          help_html: This import feature allows you to create a new participatory process from an exported JSON file. You can export a process from another organization or from this same organization. The imported process will include its settings, components, and attachments (if selected).
         participatory_process_duplicates:
           form:
             slug_help_html: 'URL slugs are used to generate the URLs that point to this process. Only accepts letters, numbers and dashes, and must start with a letter. Example: %{url}'
