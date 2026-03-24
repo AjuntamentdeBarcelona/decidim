@@ -84,7 +84,11 @@ es:
         hide_replies:
           one: Ocultar respuesta
           other: Ocultar %{count} respuestas
+        load_replies: Cargar respuestas
         moderated_at: Comentario moderado el %{date}
+        replies_count:
+          one: "%{count} respuesta"
+          other: "%{count} respuestas"
         reply: Respuesta
         report:
           action: Denunciar
@@ -116,7 +120,9 @@ es:
         blocked_comments_warning: Los comentarios están desactivados en estos momentos, solo las administradoras pueden responder o publicar nuevos.
         comment_details_title: Detalles del comentario
         in_favor: A favor
+        load_more_comments: Cargar más comentarios
         loading: Cargando los comentarios ...
+        no_comments: No hay comentarios
         single_comment_warning: <a href="%{url}">Ver todos los comentarios</a>
         single_comment_warning_title: Estás viendo un solo comentario
         title:

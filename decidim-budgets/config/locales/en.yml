@@ -341,6 +341,7 @@ en:
         actions:
           comment: Comment
           vote: Vote
+          vote_comment: Vote comment
         name: Budgets
         settings:
           global:
