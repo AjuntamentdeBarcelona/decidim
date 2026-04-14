@@ -312,8 +312,26 @@ describe "Participatory Processes" do
 
           it "shows the components" do
             within ".participatory-space__nav-container" do
-              expect(page).to have_content(decidim_escape_translated(proposals_component.name))
-              expect(page).to have_no_content(decidim_escape_translated(meetings_component.name))
+              expect(page).to have_content(translated(proposals_component.name))
+              expect(page).to have_no_content(translated(meetings_component.name))
+              expect(page.html).to include decidim_escape_translated(proposals_component.name).gsub("&quot;", "\"")
+            end
+          end
+
+          it "displays component names with special characters (\", ', &) correctly in the nav links" do
+            create(
+              :component,
+              :published,
+              participatory_space: participatory_process,
+              manifest_name: :proposals,
+              name: { en: "Tracking \"pop\" & 'test'" }
+            )
+            visit decidim_participatory_processes.participatory_process_path(participatory_process, locale: I18n.locale)
+
+            within ".participatory-space__nav-container" do
+              expect(page).to have_content('Tracking "pop" & \'test\'')
+              expect(page).to have_no_content("&quot;")
+              expect(page).to have_no_content("&amp;")
             end
           end
 
