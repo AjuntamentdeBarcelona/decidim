@@ -43,7 +43,7 @@ module Decidim
           if question.max_choices.present? && question.question_type == "multiple_option"
             title += " (#{t("decidim.elections.votes.question.max_choices", count: question.max_choices)})"
           end
-          title.html_safe
+          title
         end
       end
 
